@@ -83,7 +83,7 @@ public class CalcDialog extends JDialog {
         try {
             tf.setBorder(black);
             int ret = Integer.valueOf(tf.getText());
-            if(ret > cfg.getValidate().getBitrate().getMax() || ret < 5) {
+            if(ret > cfg.getValidate().getBitrate().getMax().intValue() || ret < 5) {
                 throw new Exception();
             }
             return ret;
