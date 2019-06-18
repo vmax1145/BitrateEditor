@@ -1,10 +1,13 @@
 # BitrateEditor
 Bitrate Editor for Ambarella based camers.
-!!! USE AT YOUR OWN RISK !!!
-Author is not resposible for any loss or damages caused by using this software.
+# !!! USE AT YOUR OWN RISK !!!
 
-[b]Пока ТОЛЬКО для SJ8Pro прошивки на базе v1.3.0[/b]
-[color=maroon][b]ИСПОЛЬЗУЕТЕ НА СВОЙ СТРАХ И РИСК. НИ АВТОР НИ КТО ИНОЙ НИ КАКОЙ ОТВЕТСТВЕННОСТИ НЕ НЕСЕТ[/b][/color]
+# Author is not resposible for any loss or damages caused by using this software.
+
+# ИСПОЛЬЗУЕТЕ НА СВОЙ СТРАХ И РИСК. НИ АВТОР НИ КТО ИНОЙ НИ КАКОЙ ОТВЕТСТВЕННОСТИ НЕ НЕСЕТ
+
+# Как пользоваться
+Пока ТОЛЬКО для SJ8Pro прошивки на базе v1.3.0
 
 1. Кладете содержимое архива в одну директорию с  SJ8_FWUPDATE.bin и SJ8_CHECK.ch
 2. Запускаете bitrates.bat
@@ -15,7 +18,7 @@ Author is not resposible for any loss or damages caused by using this software.
 просьба о замеченных несоответствиях сообщать.
 
 
-[b]Инфа для продвинутых....[/b]
+# Для продвинутых
 Программа теоретически адаптируется и для других версий прошивки и [i]возможно[/i] даже для других аппаратов 
 нужно только переписать конфиг..
 
@@ -45,3 +48,4 @@ inUse - просто пометка используется или нет
      "min": {"min":0.75, "max":1.0},
      "max": {"min":1.0, "max":1.25}
   }
+
