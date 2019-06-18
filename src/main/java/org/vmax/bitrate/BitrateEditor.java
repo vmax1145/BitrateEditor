@@ -70,6 +70,7 @@ public class BitrateEditor extends JFrame {
 
 
     public static void main(String args[]) throws Exception {
+        System.out.println("BitrateEditor by v_max");
         if(args.length<1) {
             System.out.println("config name required");
             return;
