@@ -11,6 +11,23 @@ import lombok.Setter;
 public class Bitrate {
 
 
+    public void fillFrom(Bitrate bitrate) {
+        setInx(bitrate.getInx());
+        setName(bitrate.getName());
+        setType(bitrate.getType());
+        setMin(bitrate.getMin());
+        setMax(bitrate.getMax());
+        setMbps(bitrate.getMbps());
+        setInUse(bitrate.isInUse());
+
+        width = null;
+        height = null;
+        fps = null;
+        interlaced = null;
+        hdr = null;
+
+        parseName();
+    }
 
     public enum Type {
         CBR, VBR

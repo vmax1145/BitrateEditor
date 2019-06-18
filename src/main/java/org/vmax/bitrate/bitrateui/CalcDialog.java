@@ -73,7 +73,7 @@ public class CalcDialog extends JDialog {
                 }
             }
             setVisible(false);
-            ((BitratesTableModel)(editor.getModel())).fireTableDataChanged();
+            editor.onDataChange();
         }
         catch (Exception ignored) {
         }

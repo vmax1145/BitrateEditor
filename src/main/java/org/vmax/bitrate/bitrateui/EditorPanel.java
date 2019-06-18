@@ -66,4 +66,8 @@ public class EditorPanel extends JTable {
         }
         return comp;
     }
+
+    public void onDataChange() {
+        ((BitratesTableModel)(this.getModel())).fireTableDataChanged();
+    }
 }
