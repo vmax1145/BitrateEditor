@@ -14,6 +14,7 @@ public class Bitrate {
     public enum Type {
         CBR, VBR
     }
+    private int inx;
     private String name;
     private Type type;
     private float[] mbps;

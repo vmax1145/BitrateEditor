@@ -16,7 +16,7 @@ public class BitratesTableModel extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return cfg.getVideoModes().length;
+        return bitrates.length;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class BitratesTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
 
         if(columnIndex == 0) {
-            return cfg.getVideoModes()[rowIndex].getName() ;
+            return bitrates[rowIndex].getName() ;
         }
         else if(columnIndex == 1) {
             return bitrates[rowIndex].getType();
@@ -89,7 +89,7 @@ public class BitratesTableModel extends AbstractTableModel {
             return bitrates[rowIndex].getMax();
         }
         else {
-            return cfg.getVideoModes()[rowIndex].isInUse() ;
+            return bitrates[rowIndex].isInUse() ;
         }
     }
 

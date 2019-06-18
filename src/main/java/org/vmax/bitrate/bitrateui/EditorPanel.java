@@ -15,6 +15,18 @@ public class EditorPanel extends JTable {
     public EditorPanel(Config cfg, Bitrate[] bitrates) {
         super(new BitratesTableModel(cfg, bitrates));
         this.cfg=cfg;
+        adjustColumns();
+    }
+
+    @Override
+    public void setModel(TableModel m) {
+        super.setModel(m);
+        if(cfg!=null) {
+            adjustColumns();
+        }
+    }
+
+    private void adjustColumns() {
         setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         for(int i=0;i<cfg.getQualities().length;i++) {
             this.getColumnModel().getColumn(i+2).setCellEditor(new RangeCellEditor(cfg.getValidate().getBitrate()));
@@ -38,7 +50,6 @@ public class EditorPanel extends JTable {
                 width=300;
             columnModel.getColumn(column).setPreferredWidth(width);
         }
-
     }
 
 

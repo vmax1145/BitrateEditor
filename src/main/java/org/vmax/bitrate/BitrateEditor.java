@@ -15,6 +15,7 @@ import java.io.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 import java.util.zip.CRC32;
 
 @Service
@@ -23,7 +24,10 @@ public class BitrateEditor extends JFrame {
 
     public BitrateEditor(Config cfg, Bitrate[] bitrates) throws HeadlessException {
 
-        EditorPanel editorPanl = new EditorPanel(cfg, bitrates);
+        Bitrate[] bitratesFiltered = Arrays.asList(bitrates)
+                .stream().filter(b->b.isInUse()).collect(Collectors.toList()).toArray(new Bitrate[0]);
+
+        EditorPanel editorPanel = new EditorPanel(cfg, bitratesFiltered);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         JMenuBar bar = new JMenuBar();
@@ -46,11 +50,28 @@ public class BitrateEditor extends JFrame {
 
 
         JMenu advancedMenu = new JMenu("Advanced");
+
+        JCheckBoxMenuItem showActive = new JCheckBoxMenuItem("Show active only");
+        showActive.setSelected(true);
+        showActive.addActionListener(e -> {
+            boolean selected = showActive.getModel().isSelected();
+            if(!selected) {
+                editorPanel.setModel(new BitratesTableModel(cfg,bitrates));
+            }
+            else {
+                editorPanel.setModel(new BitratesTableModel(cfg,bitratesFiltered));
+            }
+            ((BitratesTableModel)(editorPanel.getModel())).fireTableDataChanged();
+        });
+
+        advancedMenu.add(showActive);
+        advancedMenu.addSeparator();
+
         advancedMenu.add(new AbstractAction("Generate test bitrates") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DetectGenerator.generate(bitrates);
-                ((BitratesTableModel)(editorPanl.getModel())).fireTableDataChanged();
+                ((BitratesTableModel)(editorPanel.getModel())).fireTableDataChanged();
             }
         });
         bar.add(advancedMenu);
@@ -58,7 +79,7 @@ public class BitrateEditor extends JFrame {
 
 
 
-        JScrollPane jsp = new JScrollPane(editorPanl);
+        JScrollPane jsp = new JScrollPane(editorPanel);
         add(jsp, BorderLayout.CENTER);
         setJMenuBar(bar);
         pack();
@@ -183,6 +204,7 @@ public class BitrateEditor extends JFrame {
             }
 
             bitrates[i] = new Bitrate();
+            bitrates[i].setInx(i);
             bitrates[i].setName(cfg.getVideoModes()[i].getName());
             bitrates[i].setMbps(mbps);
             bitrates[i].setType(Bitrate.Type.values()[type]);
@@ -226,13 +248,13 @@ public class BitrateEditor extends JFrame {
 
             FileUtils.copyFile(new File(cfg.getFwFileName()), out);
             try(RandomAccessFile raf = new RandomAccessFile(out,"rw")) {
-                for(int i=0;i<cfg.getVideoModes().length;i++) {
+                for(Bitrate bitrate : bitrates) {
                     for(int j=0;j<cfg.getQualities().length; j++) {
-                        int rowAddr = cfg.getBitratesTableAddress()+(i*cfg.getQualities().length+j)*16;
-                        Utils.writeUInt(raf, rowAddr, bitrates[i].getType().ordinal());
-                        Utils.writeFloat(raf, rowAddr+4, bitrates[i].getMbps()[j]);
-                        Utils.writeFloat(raf, rowAddr+8, bitrates[i].getMin());
-                        Utils.writeFloat(raf, rowAddr+12, bitrates[i].getMax());
+                        int rowAddr = cfg.getBitratesTableAddress()+(bitrate.getInx()*cfg.getQualities().length+j)*16;
+                        Utils.writeUInt(raf, rowAddr, bitrate.getType().ordinal());
+                        Utils.writeFloat(raf, rowAddr+4, bitrate.getMbps()[j]);
+                        Utils.writeFloat(raf, rowAddr+8, bitrate.getMin());
+                        Utils.writeFloat(raf, rowAddr+12, bitrate.getMax());
                     }
                 }
                 CRC32 crc = calculateSectionCrc32(cfg,raf);
