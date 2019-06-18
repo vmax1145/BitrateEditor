@@ -5,6 +5,7 @@ import org.vmax.bitrate.cfg.Config;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import java.awt.*;
@@ -50,6 +51,9 @@ public class EditorPanel extends JTable {
                 width=300;
             columnModel.getColumn(column).setPreferredWidth(width);
         }
+        JComboBox<Bitrate.Type> select = new JComboBox<>(Bitrate.Type.values());
+        TableColumn column = getColumnModel().getColumn(1);
+        column.setCellEditor(new DefaultCellEditor(select));
     }
 
 

@@ -102,7 +102,9 @@ public class BitratesTableModel extends AbstractTableModel {
             }
             bitrates[rowIndex].getMbps()[columnIndex-2]=val;
         }
-        System.out.println(aValue+" "+aValue.getClass());
+        if(columnIndex == 1) {
+            bitrates[rowIndex].setType((Bitrate.Type) aValue);
+        }
     }
 
 }
