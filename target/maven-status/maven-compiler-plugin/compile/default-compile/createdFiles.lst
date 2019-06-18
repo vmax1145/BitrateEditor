@@ -1,0 +1,16 @@
+org\vmax\bitrate\Bitrate$Type.class
+org\vmax\bitrate\Bitrate.class
+org\vmax\bitrate\cfg\Validate.class
+org\vmax\bitrate\cfg\Config.class
+org\vmax\bitrate\cfg\BitrateName.class
+org\vmax\bitrate\bitrateui\EditorPanel.class
+org\vmax\bitrate\cfg\Verify.class
+org\vmax\bitrate\bitrateui\BitratesTableModel.class
+org\vmax\bitrate\bitrateui\VerifyException.class
+org\vmax\bitrate\Utils.class
+org\vmax\bitrate\bitrateui\RangedFloat.class
+org\vmax\bitrate\BitrateEditor$2.class
+org\vmax\bitrate\BitrateEditor.class
+org\vmax\bitrate\bitrateui\RangeCellEditor.class
+org\vmax\bitrate\BitrateEditor$1.class
+org\vmax\bitrate\cfg\Range.class
