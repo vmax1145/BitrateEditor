@@ -67,17 +67,17 @@ public class BitrateEditor extends JFrame {
 
 
     public static void main(String args[]) throws Exception {
-        System.out.println( "  ____  _ _             _       ______    _ _ _             \n" +
-                            " |  _ \\(_) |           | |     |  ____|  | (_) |            \n" +
-                            " | |_) |_| |_ _ __ __ _| |_ ___| |__   __| |_| |_ ___  _ __ \n" +
-                            " |  _ <| | __| '__/ _` | __/ _ \\  __| / _` | | __/ _ \\| '__|\n" +
-                            " | |_) | | |_| | | (_| | ||  __/ |___| (_| | | || (_) | |   \n" +
-                            " |____/|_|\\__|_|  \\__,_|\\__\\___|______\\__,_|_|\\__\\___/|_|   \n" +
-                            "                                                            \n" +
-                            "                                                            ");
+        System.out.println("  ____  _ _             _       ______    _ _ _             \n" +
+                           " |  _ \\(_) |           | |     |  ____|  | (_) |            \n" +
+                           " | |_) |_| |_ _ __ __ _| |_ ___| |__   __| |_| |_ ___  _ __ \n" +
+                           " |  _ <| | __| '__/ _` | __/ _ \\  __| / _` | | __/ _ \\| '__|\n" +
+                           " | |_) | | |_| | | (_| | ||  __/ |___| (_| | | || (_) | |   \n" +
+                           " |____/|_|\\__|_|  \\__,_|\\__\\___|______\\__,_|_|\\__\\___/|_|   \n" +
+                           "                                                            \n" +
+                           "                                                            ");
         System.out.println("************************************************************");
-        System.out.println("* Author do not take any responsibility and isn't liable   *");
-        System.out.println("*  for any damage or loss caused by using this software.   *");
+        System.out.println("*  Author do not take any responsibility and isn't liable  *");
+        System.out.println("*   for any damage or loss caused by using this software.  *");
         System.out.println("*                                                          *");
         System.out.println("*      !!! All you are doing is at your own risk !!!       *");
         System.out.println("*                                                          *");
