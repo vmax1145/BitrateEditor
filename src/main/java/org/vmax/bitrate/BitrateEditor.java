@@ -3,6 +3,7 @@ package org.vmax.bitrate;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;
 import org.vmax.bitrate.bitrateui.BitratesTableModel;
+import org.vmax.bitrate.bitrateui.CalcDialog;
 import org.vmax.bitrate.bitrateui.EditorPanel;
 import org.vmax.bitrate.bitrateui.VerifyException;
 import org.vmax.bitrate.cfg.Config;
@@ -29,6 +30,9 @@ public class BitrateEditor extends JFrame {
 
         EditorPanel editorPanel = new EditorPanel(cfg, bitratesFiltered);
 
+        CalcDialog calcDialog = new CalcDialog(this, editorPanel, cfg, bitrates);
+
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         JMenuBar bar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
@@ -47,6 +51,16 @@ public class BitrateEditor extends JFrame {
                 System.exit(0);
             }
         });
+
+
+        JMenu toolsMenu = new JMenu("Tools");
+        toolsMenu.add(new AbstractAction("Calculate") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                calcDialog.setVisible(true);
+            }
+        });
+        bar.add(toolsMenu);
 
 
         JMenu advancedMenu = new JMenu("Advanced");
@@ -77,13 +91,15 @@ public class BitrateEditor extends JFrame {
         bar.add(advancedMenu);
 
 
-
-
         JScrollPane jsp = new JScrollPane(editorPanel);
         add(jsp, BorderLayout.CENTER);
         setJMenuBar(bar);
         pack();
         setVisible(true);
+
+
+
+
     }
 
 
@@ -127,7 +143,7 @@ public class BitrateEditor extends JFrame {
 
             if(cfg.getMd5fileName()!=null) {
                 byte[] digest = calculateDigest(raf);
-                System.out.print("File digest: " + Utils.hex(digest));
+                //System.out.println("File digest: " + Utils.hex(digest));
                 byte[] check = FileUtils.readFileToByteArray(new File(cfg.getMd5fileName()));
                 if(!Arrays.equals(digest,check)) {
                     System.out.println("File md5 digest mismatch");
@@ -212,6 +228,9 @@ public class BitrateEditor extends JFrame {
             bitrates[i].setMax(max);
             bitrates[i].setInUse(cfg.getVideoModes()[i].isInUse());
 
+            if(!bitrates[i].parseName()) {
+                System.out.print("WARN: unparceable ");
+            }
             System.out.println(i+". "+cfg.getVideoModes()[i].getName() +" " +type+" "+mbps[0]+"/"+mbps[1]+"/"+mbps[2]+" "+min+" "+max);
         }
         return bitrates;

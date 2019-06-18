@@ -11,6 +11,7 @@ import lombok.Setter;
 public class Bitrate {
 
 
+
     public enum Type {
         CBR, VBR
     }
@@ -27,52 +28,44 @@ public class Bitrate {
     private Integer fps;
     private Boolean interlaced;
     private Boolean hdr;
-    private Integer ratioX;
-    private Integer ratioY;
 
-//    public boolean parseName() {
-//
-//        String[] parts = name.split("\\s+");
-//        try {
-//            for (String part : parts) {
-//                if (part.equalsIgnoreCase("HDR")) {
-//                    hdr = true;
-//                }
-//                if (part.indexOf("x") > 0) {
-//                    String[] sizes = StringUtils.split(part, "x");
-//                    if (sizes.length != 2) {
-//                        throw new IllegalArgumentException("Unparseable name:" + name);
-//                    }
-//
-//                    width = Integer.valueOf(sizes[0]);
-//                    height = Integer.valueOf(sizes[1]);
-//                }
-//                if (part.endsWith("I") || part.endsWith("P")) {
-//                    interlaced = part.endsWith("I");
-//                    fps = Integer.valueOf(part.substring(0, part.length() - 1));
-//                }
-//                if(part.indexOf(":")>0) {
-//                    String[] sizes = StringUtils.split(part, ":");
-//                    if (sizes.length != 2) {
-//                        throw new IllegalArgumentException("Unparseable name:" + name);
-//                    }
-//                    ratioX = Integer.valueOf(sizes[0]);
-//                    ratioY = Integer.valueOf(sizes[1]);
-//                }
-//            }
-//            if(hdr == null) hdr = false;
-//        } catch (Exception e) {
-//            System.out.println("Unparseable name:" + name);
-//            width = null;
-//            height = null;
-//            fps = null;
-//            interlaced = null;
-//            hdr = null;
-//            ratioX = null;
-//            ratioY = null;
-//            return false;
-//        }
-//        return width!=null && height!=null && fps!=null && interlaced!=null && ratioX!=null && ratioY!=null;
-//    }
+    public boolean parseName() {
+
+        String[] parts = name.split("\\s+");
+        try {
+            for (String part : parts) {
+                if (part.equalsIgnoreCase("HDR")) {
+                    hdr = true;
+                }
+                if (part.indexOf("x") > 0) {
+                    String[] sizes = part.split("x");
+                    if (sizes.length != 2) {
+                        throw new IllegalArgumentException("Unparseable name:" + name);
+                    }
+
+                    width = Integer.valueOf(sizes[0]);
+                    height = Integer.valueOf(sizes[1]);
+                }
+                if (part.endsWith("I") || part.endsWith("P")) {
+                    interlaced = part.endsWith("I");
+                    fps = Integer.valueOf(part.substring(0, part.length() - 1));
+                }
+            }
+            if(hdr == null) hdr = false;
+        } catch (Exception e) {
+            width = null;
+            height = null;
+            fps = null;
+            interlaced = null;
+            hdr = null;
+            return false;
+        }
+        return width!=null && height!=null && fps!=null && interlaced!=null;
+    }
+
+    public double calculateFlow() {
+        double flow = 1.0*width*height*fps;
+        return interlaced ? flow*0.6 : flow;
+    }
 
 }
