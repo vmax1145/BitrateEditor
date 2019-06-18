@@ -28,7 +28,7 @@ public class CalcDialog extends JDialog {
         GridLayout layout = new GridLayout(3,2,5,5);
         contentPane.setLayout(layout);
         contentPane.add(new JLabel("Bitrate for 4K60 : "));
-        JTextField uhd60tf = new JTextField(cfg.getValidate().getBitrate().getMax().toString(), 6);
+        JTextField uhd60tf = new JTextField(cfg.getValidate().getBitrate().getMax().intValue()+"", 6);
         contentPane.add(uhd60tf);
         contentPane.add(new JLabel("Bitrate for 1080@60 : "));
         JTextField fhd60tf = new JTextField("60", 6);
