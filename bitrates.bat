@@ -1,8 +1,8 @@
 setlocal
 @echo off
 echo **************************************************************
-echo * Authour do not take any responsibility and 
-echo * is not liable for any damage caused by using this software.
+echo * Author do not take any responsibility and
+echo * is not liable for any damage or loss caused by using this software.
 echo *
 echo * !!! All you are doing is at your own risk !!!
 echo *
