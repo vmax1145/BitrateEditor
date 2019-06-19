@@ -105,6 +105,13 @@ public class BitratesTableModel extends AbstractTableModel {
         if(columnIndex == 1) {
             bitrates[rowIndex].setType((Bitrate.Type) aValue);
         }
+        if(columnIndex == cfg.getQualities().length+2) {
+            bitrates[rowIndex].setMin((Float) aValue);
+        }
+        if(columnIndex == cfg.getQualities().length+3) {
+            bitrates[rowIndex].setMax((Float) aValue);
+        }
     }
+
 
 }

@@ -264,23 +264,30 @@ public class BitrateEditor extends JFrame {
         int tableStartAddr = cfg.getBitratesTableAddress(); //tableStartAddr
         for(int i=0;i<cfg.getVideoModes().length;i++) {
 
-            int type = (int) Utils.readUInt(raf,tableStartAddr+i*step);
-            float min = Utils.readFloat(raf,tableStartAddr+i*step+8);
-            float max = Utils.readFloat(raf,tableStartAddr+i*step+12);
+            int rowAddr = tableStartAddr + i * step;
+            int type = (int) Utils.readUInt(raf, rowAddr);
+            float min = Utils.readFloat(raf,rowAddr+8);
+            float max = Utils.readFloat(raf,rowAddr+12);
 
             float[] mbps = new float[cfg.getQualities().length];
             for(int j=0;j<cfg.getQualities().length; j++) {
-                if(type != (int) Utils.readUInt(raf,tableStartAddr+i*step+ j*16)) {
-                    System.out.println("Bitrate type is different for:"+ cfg.getVideoModes()[i]);
+                if(type != (int) Utils.readUInt(raf,rowAddr )) {
+                    System.out.println("Addr:"+rowAddr+" Bitrate type is different for:"+ cfg.getVideoModes()[i]);
                 }
-                if(min != Utils.readFloat(raf,tableStartAddr+i*step+8 + j*16)) {
-                    System.out.println("Min value is different for:"+ cfg.getVideoModes()[i]);
+                if(min != Utils.readFloat(raf,rowAddr + 8 )) {
+                    System.out.println("Addr:"+rowAddr+" Min value is different for:"+ cfg.getVideoModes()[i]);
                 }
-                if(max != Utils.readFloat(raf,tableStartAddr+i*step+12 + j*16)) {
-                    System.out.println("Max value is different for:"+ cfg.getVideoModes()[i]);
+                if(max != Utils.readFloat(raf,rowAddr + 12 )) {
+                    System.out.println("Addr:"+rowAddr+" Max value is different for:"+ cfg.getVideoModes()[i]);
                 }
 
-                mbps[j] = Utils.readFloat(raf, tableStartAddr + i * step + 4 + j*16);
+                mbps[j] = Utils.readFloat(raf, rowAddr + 4 );
+                rowAddr += 16;
+            }
+
+            if(type >= Bitrate.Type.values().length) {
+                System.out.println("Addr:"+rowAddr+" Bad bitrate type:"+ type+" forcing VBR");
+                type = Bitrate.Type.VBR.ordinal();
             }
 
             bitrates[i] = new Bitrate();
@@ -293,7 +300,7 @@ public class BitrateEditor extends JFrame {
             bitrates[i].setInUse(cfg.getVideoModes()[i].isInUse());
 
             if(!bitrates[i].parseName()) {
-                System.out.print("WARN: unparceable ");
+                System.out.print("Addr:"+rowAddr+" unparceable ");
             }
             System.out.println(i+". "+cfg.getVideoModes()[i].getName() +" " +type+" "+mbps[0]+"/"+mbps[1]+"/"+mbps[2]+" "+min+" "+max);
         }
