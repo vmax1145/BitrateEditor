@@ -96,7 +96,7 @@ public class BitratesTableModel extends AbstractTableModel {
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         if(columnIndex-2 >=0 && columnIndex-2<cfg.getQualities().length) {
-            Float val = new RangedFloat((String) aValue).getValue();
+            Float val = new RangedFloat((String) aValue, cfg.getValidate().getBitrate()).getValue();
             if(cfg.getValidate().getBitrate().getMin().compareTo(val)>0) {
                 throw new IllegalArgumentException("Invalid bitrate");
             }
@@ -106,10 +106,12 @@ public class BitratesTableModel extends AbstractTableModel {
             bitrates[rowIndex].setType((Bitrate.Type) aValue);
         }
         if(columnIndex == cfg.getQualities().length+2) {
-            bitrates[rowIndex].setMin((Float) aValue);
+            Float val = new RangedFloat((String) aValue, cfg.getValidate().getMin()).getValue();
+            bitrates[rowIndex].setMin(val);
         }
         if(columnIndex == cfg.getQualities().length+3) {
-            bitrates[rowIndex].setMax((Float) aValue);
+            Float val = new RangedFloat((String) aValue, cfg.getValidate().getMax()).getValue();
+            bitrates[rowIndex].setMax(val);
         }
     }
 
