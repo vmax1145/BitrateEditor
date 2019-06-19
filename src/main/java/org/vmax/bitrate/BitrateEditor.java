@@ -1,19 +1,16 @@
 package org.vmax.bitrate;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;
-import org.vmax.bitrate.bitrateui.BitratesTableModel;
 import org.vmax.bitrate.bitrateui.CalcDialog;
 import org.vmax.bitrate.bitrateui.EditorPanel;
+import org.vmax.bitrate.bitrateui.MenuBuilder;
 import org.vmax.bitrate.bitrateui.VerifyException;
 import org.vmax.bitrate.cfg.Config;
 import org.vmax.bitrate.cfg.Verify;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.io.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -35,125 +32,13 @@ public class BitrateEditor extends JFrame {
         CalcDialog calcDialog = new CalcDialog(this, editorPanel, cfg, bitrates);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        JMenuBar bar = new JMenuBar();
-        JMenu fileMenu = new JMenu("File");
-        bar.add(fileMenu);
 
-        fileMenu.add(new AbstractAction("Export bitrates") {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser jfc = new JFileChooser(new File(".\\"));
-                FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON files", "json");
-                jfc.addChoosableFileFilter(filter);
-                int returnValue = jfc.showSaveDialog(BitrateEditor.this);
-                if (returnValue == JFileChooser.APPROVE_OPTION) {
-                    File selectedFile = jfc.getSelectedFile();
-                    if(selectedFile.exists()) {
-                        int dialogResult = JOptionPane.showConfirmDialog (jfc, "Owerwrite existing file?","Warning",JOptionPane.YES_NO_OPTION);
-                        if(dialogResult != JOptionPane.YES_OPTION){
-                            return;
-                        }
-                    }
-                    try {
-                        try(FileWriter fw = new FileWriter(selectedFile)) {
-                                new ObjectMapper().writer().writeValue(fw,bitrates);
-                        }
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
-                }
-            }
-        });
-
-        fileMenu.add(new AbstractAction("Import bitrates") {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser jfc = new JFileChooser(new File(".\\"));
-                FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON files", "json");
-                jfc.addChoosableFileFilter(filter);
-                int returnValue = jfc.showOpenDialog(BitrateEditor.this);
-                if (returnValue == JFileChooser.APPROVE_OPTION) {
-                    File selectedFile = jfc.getSelectedFile();
-                    if(!selectedFile.exists()) {
-                        JOptionPane.showConfirmDialog (jfc, "File not exists","Warning",JOptionPane.OK_OPTION);
-                        return;
-                    }
-                    try {
-                        try (FileInputStream fis = new FileInputStream(selectedFile)) {
-                            Bitrate[] bitratesLoaded = new ObjectMapper().readerFor(Bitrate[].class).readValue(fis);
-                            if(bitrates.length != bitratesLoaded.length) {
-                                JOptionPane.showConfirmDialog (jfc, "File not match configuration","Warning",JOptionPane.OK_OPTION);
-                            }
-                            if(cfg.getQualities().length != bitratesLoaded[0].getMbps().length) {
-                                JOptionPane.showConfirmDialog (jfc, "File not match configuration","Warning",JOptionPane.OK_OPTION);
-                            }
-                            for (int i = 0; i < bitrates.length; i++) {
-                                Bitrate b = bitrates[i];
-                                b.fillFrom(bitratesLoaded[i]);
-                            }
-                            editorPanel.onDataChange();
-                        }
-                    }
-                    catch (Exception e1) {
-                        e1.printStackTrace();
-                    }
-                }
-            }
-        });
-
-
-
-        fileMenu.add(new AbstractAction("Save") {
-             @Override
-             public void actionPerformed(ActionEvent e) {
-                 updateFW(cfg,bitrates);
-             }
-        });
-
-        fileMenu.add(new AbstractAction("Exit") {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-
-
-        JMenu toolsMenu = new JMenu("Tools");
-        toolsMenu.add(new AbstractAction("Calculate") {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                calcDialog.setVisible(true);
-            }
-        });
-        bar.add(toolsMenu);
-
-
-        JMenu advancedMenu = new JMenu("Advanced");
-
-        JCheckBoxMenuItem showActive = new JCheckBoxMenuItem("Show active only");
-        showActive.setSelected(true);
-        showActive.addActionListener(e -> {
-            boolean selected = showActive.getModel().isSelected();
-            if(!selected) {
-                editorPanel.setModel(new BitratesTableModel(cfg,bitrates));
-            }
-            else {
-                editorPanel.setModel(new BitratesTableModel(cfg,bitratesFiltered));
-            }
-            editorPanel.onDataChange();
-        });
-
-        advancedMenu.add(showActive);
-        advancedMenu.addSeparator();
-
-        advancedMenu.add(new AbstractAction("Generate test bitrates") {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DetectGenerator.generate(bitrates);
-                editorPanel.onDataChange();
-            }
-        });
-        bar.add(advancedMenu);
+        JMenuBar bar = new MenuBuilder(this)
+                .with(editorPanel)
+                .with(cfg)
+                .with(bitrates,bitratesFiltered)
+                .with(calcDialog)
+                .build();
 
 
         JScrollPane jsp = new JScrollPane(editorPanel);
@@ -203,22 +88,11 @@ public class BitrateEditor extends JFrame {
         }
         Bitrate[] bitrates;
         try (RandomAccessFile raf = new RandomAccessFile(f,"r")) {
+            verifyFirmware(cfg, raf);
             bitrates =getBitrates(cfg, raf);
-
-            if(cfg.getMd5fileName()!=null) {
-                byte[] digest = calculateDigest(raf);
-                //System.out.println("File digest: " + Utils.hex(digest));
-                byte[] check = FileUtils.readFileToByteArray(new File(cfg.getMd5fileName()));
-                if(!Arrays.equals(digest,check)) {
-                    System.out.println("File md5 digest mismatch");
-                    return;
-                }
-            }
         }
 
-        SwingUtilities.invokeLater(() -> {
-            new BitrateEditor(cfg, bitrates);
-        });
+        SwingUtilities.invokeLater(() -> new BitrateEditor(cfg, bitrates));
 
     }
 
@@ -241,24 +115,8 @@ public class BitrateEditor extends JFrame {
 
     private static Bitrate[] getBitrates(Config cfg, RandomAccessFile raf) throws Exception {
         Bitrate[] bitrates;
-        if (!verifyCheckSum(cfg, raf)) {
-            System.out.println("Error verify fw file:");
-            throw new VerifyException("Verify fail: checksum");
-        }
-
-
-        for(Verify verify : cfg.getVerify()) {
-            byte[] bytes = verify.getVal().getBytes("ASCII");
-            raf.seek(verify.getAddr());
-            for(byte b : bytes) {
-                if(raf.read() != (b & 0xff)) {
-                    throw new VerifyException("Verify fail:"+verify.getVal());
-                }
-            }
-        }
 
         bitrates = new Bitrate[cfg.getVideoModes().length];
-
 
         int step=16*cfg.getQualities().length;
         int tableStartAddr = cfg.getBitratesTableAddress(); //tableStartAddr
@@ -307,6 +165,34 @@ public class BitrateEditor extends JFrame {
         return bitrates;
     }
 
+    private static void verifyFirmware(Config cfg, RandomAccessFile raf) throws IOException, VerifyException, NoSuchAlgorithmException {
+        if (!verifyCheckSum(cfg, raf)) {
+            System.out.println("Error verify fw file:");
+            throw new VerifyException("Verify fail: checksum");
+        }
+
+
+        for(Verify verify : cfg.getVerify()) {
+            byte[] bytes = verify.getVal().getBytes("ASCII");
+            raf.seek(verify.getAddr());
+            for(byte b : bytes) {
+                if(raf.read() != (b & 0xff)) {
+                    throw new VerifyException("Verify fail:"+verify.getVal());
+                }
+            }
+        }
+
+        if(cfg.getMd5fileName()!=null) {
+            byte[] digest = calculateDigest(raf);
+            //System.out.println("File digest: " + Utils.hex(digest));
+            byte[] check = FileUtils.readFileToByteArray(new File(cfg.getMd5fileName()));
+            if(!Arrays.equals(digest,check)) {
+                System.out.println("File md5 digest mismatch");
+                return;
+            }
+        }
+    }
+
     private static boolean verifyCheckSum(Config cfg, RandomAccessFile raf) throws IOException {
 
         CRC32 sectionCrc = calculateSectionCrc32(cfg, raf);
@@ -323,7 +209,7 @@ public class BitrateEditor extends JFrame {
     }
 
 
-    private void updateFW(Config cfg, Bitrate[] bitrates)  {
+    public void updateFW(Config cfg, Bitrate[] bitrates)  {
         try {
             File out = new File(cfg.getFwFileName() + ".mod");
             if(out.exists()) {
