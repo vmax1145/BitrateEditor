@@ -40,6 +40,8 @@ public class Bitrate {
     private float max=1.25f;
     private boolean inUse = false;
 
+    private long[] gop = new long[3];
+
     private Integer width;
     private Integer height;
     private Integer fps;

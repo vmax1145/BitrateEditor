@@ -42,6 +42,7 @@ public class BitrateEditor extends JFrame {
 
 
         JScrollPane jsp = new JScrollPane(editorPanel);
+        jsp.setPreferredSize(new Dimension(800,500));
         add(jsp, BorderLayout.CENTER);
         setJMenuBar(bar);
         pack();
@@ -90,6 +91,7 @@ public class BitrateEditor extends JFrame {
         try (RandomAccessFile raf = new RandomAccessFile(f,"r")) {
             verifyFirmware(cfg, raf);
             bitrates =getBitrates(cfg, raf);
+
         }
 
         SwingUtilities.invokeLater(() -> new BitrateEditor(cfg, bitrates));
@@ -161,6 +163,22 @@ public class BitrateEditor extends JFrame {
                 System.out.print("Addr:"+rowAddr+" unparceable ");
             }
             System.out.println(i+". "+cfg.getVideoModes()[i].getName() +" " +type+" "+mbps[0]+"/"+mbps[1]+"/"+mbps[2]+" "+min+" "+max);
+
+
+        }
+
+        int addr = cfg.getGopTableAddress();
+        if(addr > 0) {
+            for (int i = 0; i < bitrates.length; i++) {
+                for (int j = 0; j < 3; j++) {
+                    bitrates[i].getGop()[j] = (int) Utils.readUInt(raf, addr);
+                    addr += 4;
+                }
+                addr += 4;
+                if (bitrates[i].getGop()[1] != bitrates[i].getGop()[2]) {
+                    System.out.println(i + " unexpected GOP values: " + bitrates[i].getGop()[0] + "/" + bitrates[i].getGop()[1] + "/" + bitrates[i].getGop()[2]);
+                }
+            }
         }
         return bitrates;
     }
@@ -233,6 +251,18 @@ public class BitrateEditor extends JFrame {
                         Utils.writeFloat(raf, rowAddr+12, bitrate.getMax());
                     }
                 }
+
+                if(cfg.getGopTableAddress() > 0) {
+                    int addr = cfg.getGopTableAddress();
+                    for (int i = 0; i < bitrates.length; i++) {
+                        for (int j = 0; j < 3; j++) {
+                            Utils.writeUInt(raf, addr, bitrates[i].getGop()[j]);
+                            addr += 4;
+                        }
+                        addr += 4;
+                    }
+                }
+
                 CRC32 crc = calculateSectionCrc32(cfg,raf);
                 Utils.writeUInt(raf,cfg.getSectionCrcAddr(), (int) crc.getValue());
 
@@ -242,6 +272,7 @@ public class BitrateEditor extends JFrame {
                         fos.write(md5);
                     }
                 }
+
             }
         }
         catch (Exception e) {

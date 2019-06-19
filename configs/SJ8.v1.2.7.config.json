@@ -370,6 +370,7 @@
   "sectionLen": 25627520,
   "sectionCrcAddr": 560,
   "bitratesTableAddress": 25250772,
+  "gopTableAddress": 0,
 
   "validate": {
      "bitrate": {"min":1, "max":120},

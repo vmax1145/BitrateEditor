@@ -21,7 +21,7 @@ public class BitratesTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return cfg.getQualities().length+5;
+        return cfg.getQualities().length+7;
     }
 
     @Override
@@ -41,6 +41,12 @@ public class BitratesTableModel extends AbstractTableModel {
         else if(columnIndex == cfg.getQualities().length+3) {
             return "max";
         }
+        else if(columnIndex == cfg.getQualities().length+4) {
+            return "GOP M";
+        }
+        else if(columnIndex == cfg.getQualities().length+5) {
+            return "GOP N";
+        }
         else  {
             return "active";
         }
@@ -54,6 +60,10 @@ public class BitratesTableModel extends AbstractTableModel {
             case 1 : return Bitrate.Type.class;
             default: {
                 if(columnIndex == cfg.getQualities().length+4) {
+                    return Integer.class;
+                } else if(columnIndex == cfg.getQualities().length+5) {
+                    return Integer.class;
+                } else if(columnIndex == cfg.getQualities().length+6) {
                     return Boolean.class;
                 }
                 else {
@@ -66,7 +76,7 @@ public class BitratesTableModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return columnIndex>=1 && columnIndex<cfg.getQualities().length+4
+        return columnIndex>=1 && columnIndex<cfg.getQualities().length+6
                && bitrates[rowIndex].isInUse();
     }
 
@@ -87,6 +97,12 @@ public class BitratesTableModel extends AbstractTableModel {
         }
         else if(columnIndex == cfg.getQualities().length+3) {
             return bitrates[rowIndex].getMax();
+        }
+        else if(columnIndex == cfg.getQualities().length+4) {
+            return bitrates[rowIndex].getGop()[0];
+        }
+        else if(columnIndex == cfg.getQualities().length+5) {
+            return bitrates[rowIndex].getGop()[1];
         }
         else {
             return bitrates[rowIndex].isInUse() ;
@@ -113,6 +129,22 @@ public class BitratesTableModel extends AbstractTableModel {
             Float val = new RangedFloat((String) aValue, cfg.getValidate().getMax()).getValue();
             bitrates[rowIndex].setMax(val);
         }
+        if(columnIndex == cfg.getQualities().length+4) {
+            int v = (Integer)aValue;
+            if(v<0 || v>256) {
+                throw new IllegalArgumentException("Invalid GOP N");
+            }
+            bitrates[rowIndex].getGop()[0]=v;
+        }
+        if(columnIndex == cfg.getQualities().length+5) {
+            int v = (Integer)aValue;
+            if(v<0 || v>256) {
+                throw new IllegalArgumentException("Invalid GOP M");
+            }
+            bitrates[rowIndex].getGop()[1]=v;
+            bitrates[rowIndex].getGop()[2]=v;
+        }
+
     }
 
 

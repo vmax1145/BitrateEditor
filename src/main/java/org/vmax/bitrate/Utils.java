@@ -34,12 +34,12 @@ public class Utils {
         bb.putFloat(val);
         raf.write(b);
     }
-    public static void writeUInt(RandomAccessFile raf, int addr, int val) throws IOException {
+    public static void writeUInt(RandomAccessFile raf, int addr, long val) throws IOException {
         raf.seek(addr);
         byte[] b = new byte[Integer.BYTES];
         ByteBuffer bb = ByteBuffer.wrap(b);
         bb.order(ByteOrder.LITTLE_ENDIAN);
-        bb.putInt(val);
+        bb.putInt((int) val);
         raf.write(b);
     }
 

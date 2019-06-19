@@ -25,6 +25,7 @@ public class EditorPanel extends JTable {
         if(cfg!=null) {
             adjustColumns();
         }
+
     }
 
     private void adjustColumns() {
@@ -37,6 +38,7 @@ public class EditorPanel extends JTable {
 
         TableModel tableModel = getModel();
         TableColumnModel columnModel = getColumnModel();
+        int w = 100 ;
         for (int column = 0; column < getColumnCount(); column++) {
 
             TableCellRenderer renderer = getCellRenderer(0, 0);
@@ -50,10 +52,13 @@ public class EditorPanel extends JTable {
             if(width > 300)
                 width=300;
             columnModel.getColumn(column).setPreferredWidth(width);
+            w+=width;
         }
         JComboBox<Bitrate.Type> select = new JComboBox<>(Bitrate.Type.values());
         TableColumn column = getColumnModel().getColumn(1);
         column.setCellEditor(new DefaultCellEditor(select));
+
+
     }
 
 

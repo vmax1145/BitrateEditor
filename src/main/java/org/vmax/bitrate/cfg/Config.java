@@ -18,6 +18,7 @@ import java.util.List;
 public class Config {
 
     private int bitratesTableAddress;
+    private int gopTableAddress=0;
     private BitrateName[] videoModes;
     private String[] qualities;
 
