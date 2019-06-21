@@ -43,6 +43,8 @@ public class Config {
             return new ObjectMapper().enable(JsonParser.Feature.ALLOW_COMMENTS)
                     .readerFor(Config.class)
                     .readValue(fis);
+        } catch (Exception e) {
+            throw new IOException("Error parsing config: "+arg, e);
         }
     }
 }

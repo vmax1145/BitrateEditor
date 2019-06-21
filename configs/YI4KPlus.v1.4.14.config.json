@@ -1,6 +1,10 @@
 *************************************************************************
 ** THIS CONFIG IS HIGH RISK DUE TO LACK OF UNBREAKING TOOLS FOR YI4KPlus
-** NOT TESTED!!!, WANNA BE FIRST? OK, AT YOUR OWN RISK
+** NOT TESTED!!!, WANNA BE FIRST? OK, AT YOUR OWN RISK.
+**
+** this note added to prevent start, removing it means you recognize and
+** accept risks at your own responsibility,
+** Author is not responsible for any loss or damage
 *************************************************************************
 
 { "note":"YI 4k Plus v1.4.14",
