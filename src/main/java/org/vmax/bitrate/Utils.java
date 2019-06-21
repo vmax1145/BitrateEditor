@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.zip.CRC32;
 
 public class Utils {
 
@@ -67,5 +70,43 @@ public class Utils {
             sb.append(hex(bytes[i]));
         }
         return sb.toString();
+    }
+
+    public static void crcCheck(ByteBuffer buf, int from, int to, int crcAddr) {
+        CRC32 crc = new CRC32();
+        buf.position(from);
+        for(int i=from ; i<to; i++) {
+            crc.update(buf.get());
+        }
+        buf.position(crcAddr);
+        long expected = (buf.getInt()&0xffffffffL);
+        if(  expected != crc.getValue()) {
+            System.out.println("CRC expected:"+hex(expected)+" actual:"+hex(crc.getValue()));
+        }
+    }
+    public static void crcSet(ByteBuffer buf, int from, int to, int crcAddr) {
+        CRC32 crc = new CRC32();
+        buf.position(from);
+        for(int i=from ; i<to; i++) {
+            crc.update(buf.get());
+        }
+        buf.position(crcAddr);
+        buf.putInt((int) crc.getValue());
+    }
+
+    public static byte[] calculateDigest(RandomAccessFile raf) throws NoSuchAlgorithmException, IOException {
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        raf.seek(0);
+        byte[] buf = new byte[4096];
+        int nread;
+        while((nread = raf.read(buf))>=0) {
+            md.update(buf,0,nread);
+        }
+        byte[] digest = md.digest();
+        byte[] digestReversed = new byte[digest.length];
+        for (int i = 0; i < digest.length; i++) {
+            digestReversed[i] = digest[i / 4 * 4 + 3 - (i % 4)];
+        }
+        return digestReversed;
     }
 }

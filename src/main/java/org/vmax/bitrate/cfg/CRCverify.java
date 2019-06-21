@@ -7,8 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Verify {
-    private int addr;
-    private String val;
-    private CRCverify crc;
+public class CRCverify {
+    private int fromAddr;
+    private int len;
 }

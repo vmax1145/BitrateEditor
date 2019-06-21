@@ -17,6 +17,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Config {
 
+    private String note = "";
+
     private int bitratesTableAddress;
     private int gopTableAddress=0;
     private BitrateName[] videoModes;
@@ -32,6 +34,9 @@ public class Config {
     private List<Verify> verify = new ArrayList<>();
 
     private Validate validate;
+
+    private ProcessorConfig preProcessor;
+    private ProcessorConfig postProcessor;
 
     public static Config readConfig(String arg) throws IOException {
         try(FileInputStream fis = new FileInputStream(arg)) {
