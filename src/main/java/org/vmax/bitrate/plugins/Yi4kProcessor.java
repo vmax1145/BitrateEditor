@@ -60,7 +60,7 @@ public class Yi4kProcessor implements PreProcessor, PostProcessor {
         ) {
             is.getChannel().read(buf);
             buf.flip();
-            Utils.crcCheck(buf, 0, 0x8A8, 0x8A8);
+            Utils.crcCheck(buf, 0, Z18_ENCODED_DATA_OFFSET-4, Z18_ENCODED_DATA_OFFSET-4);
 
             buf.position(Z18_SECRET_INIT);
             int secretStart = buf.getInt();
@@ -116,6 +116,8 @@ public class Yi4kProcessor implements PreProcessor, PostProcessor {
             }
             buf.position(Z18_ENCODED_DATA_OFFSET);
             buf.put(bytes);
+
+            Utils.crcSet(buf, 0, Z18_ENCODED_DATA_OFFSET-4, Z18_ENCODED_DATA_OFFSET-4);
 
             FileChannel fc = os.getChannel();
             buf.position(0);
