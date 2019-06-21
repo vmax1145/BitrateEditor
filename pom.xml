@@ -6,7 +6,7 @@
 
     <groupId>org.vmax</groupId>
     <artifactId>bitrate-editor</artifactId>
-    <version>1.6-SNAPSHOT</version>
+    <version>1.7-SNAPSHOT</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

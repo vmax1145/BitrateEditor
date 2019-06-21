@@ -1,3 +1,8 @@
+*************************************************************************
+** THIS CONFIG IS HIGH RISK DUE TO LACK OF UNBREAKING TOOLS FOR YI4KPlus
+** NOT TESTED!!!, WANNA BE FIRST? OK, AT YOUR OWN RISK
+*************************************************************************
+
 { "note":"YI 4k Plus v1.4.14",
   "preProcessor": {
     "className":"org.vmax.bitrate.plugins.Yi4kProcessor",
