@@ -105,8 +105,8 @@
       "inUse": false
     },
     { //22
-      "name": "1920x1080 24P",
-      "inUse": true
+      "name": "???? 1920x1080 24P",
+      "inUse": false
     },
     { //23
       "name": "???? 1600x900 30P",
@@ -189,8 +189,8 @@
       "inUse": false
     },
     { //43
-      "name": "???? 1920x1080 24P",
-      "inUse": false
+      "name": "1920x1080 24P",
+      "inUse": true
     },
     { //44
       "name": "???? 1920x1080 15P",
