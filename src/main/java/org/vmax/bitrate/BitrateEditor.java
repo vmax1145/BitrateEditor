@@ -100,6 +100,14 @@ public class BitrateEditor extends JFrame {
         Bitrate[] bitrates;
         try (RandomAccessFile raf = new RandomAccessFile(f,"r")) {
             verifyFirmware(cfg, raf);
+
+            raf.seek(0x0182A040);
+            byte[] bytes = new byte[50];
+            for(int i=0;i<86;i++) {
+                raf.read(bytes);
+                System.out.println(i+" "+new String(bytes));
+            }
+
             bitrates =getBitrates(cfg, raf);
 
         }
