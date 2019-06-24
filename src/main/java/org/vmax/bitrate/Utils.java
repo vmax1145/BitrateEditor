@@ -36,6 +36,7 @@ public class Utils {
         bb.order(ByteOrder.LITTLE_ENDIAN);
         bb.putFloat(val);
         raf.write(b);
+        System.out.println(val +" "+Utils.hex(b));
     }
     public static void writeUInt(RandomAccessFile raf, int addr, long val) throws IOException {
         raf.seek(addr);
@@ -108,5 +109,14 @@ public class Utils {
             digestReversed[i] = digest[i / 4 * 4 + 3 - (i % 4)];
         }
         return digestReversed;
+    }
+
+    public static String toHexValue(float val) {
+        byte[] b = new byte[Float.BYTES];
+        ByteBuffer bb = ByteBuffer.wrap(b);
+        bb.order(ByteOrder.LITTLE_ENDIAN);
+        bb.putFloat(val);
+        bb.position(0);
+        return hex(bb.getInt());
     }
 }

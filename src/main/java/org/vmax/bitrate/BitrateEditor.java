@@ -101,13 +101,6 @@ public class BitrateEditor extends JFrame {
         try (RandomAccessFile raf = new RandomAccessFile(f,"r")) {
             verifyFirmware(cfg, raf);
 
-            raf.seek(0x0182A040);
-            byte[] bytes = new byte[50];
-            for(int i=0;i<86;i++) {
-                raf.read(bytes);
-                System.out.println(i+" "+new String(bytes));
-            }
-
             bitrates =getBitrates(cfg, raf);
 
         }
@@ -181,6 +174,19 @@ public class BitrateEditor extends JFrame {
                 }
             }
         }
+
+
+//        int memAddr = 0xAB9C84;
+//        for(Bitrate bitrate : bitrates) {
+//            if(bitrate.isInUse()) {
+//                System.out.println("# " + bitrate.getName() + " " + bitrate.getMbps()[0] + "mb/s");
+//                System.out.println("writel 0x" + Utils.hex(memAddr).substring(2) + " 0x" + Utils.toHexValue(bitrate.getMbps()[0]));
+//            }
+//            memAddr+=0x30;
+//        }
+
+
+
         return bitrates;
     }
 
