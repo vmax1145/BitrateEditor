@@ -176,14 +176,6 @@ public class BitrateEditor extends JFrame {
         }
 
 
-//        int memAddr = 0xAB9C84;
-//        for(Bitrate bitrate : bitrates) {
-//            if(bitrate.isInUse()) {
-//                System.out.println("# " + bitrate.getName() + " " + bitrate.getMbps()[0] + "mb/s");
-//                System.out.println("writel 0x" + Utils.hex(memAddr).substring(2) + " 0x" + Utils.toHexValue(bitrate.getMbps()[0]));
-//            }
-//            memAddr+=0x30;
-//        }
 
 
 
