@@ -3,11 +3,7 @@ package org.vmax.bitrate.plugins;
 import org.vmax.bitrate.Utils;
 import org.vmax.bitrate.cfg.Config;
 
-import java.io.*;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.channels.FileChannel;
-import java.security.NoSuchAlgorithmException;
+import java.io.IOException;
 
 public class Yi4kProcessor implements PreProcessor, PostProcessor {
 
@@ -29,105 +25,33 @@ public class Yi4kProcessor implements PreProcessor, PostProcessor {
     }
 
     @Override
-    public void preprocess() throws IOException, NoSuchAlgorithmException {
-        cfg.getPreProcessor().getFwFileName();
-        File fin = new File(cfg.getPreProcessor().getFwFileName());
-        if (!fin.exists()) {
-            throw new IOException("FW file " + fin.getName() + " not found");
-        }
-        try (RandomAccessFile raf = new RandomAccessFile(fin,"r")){
-            System.out.println("infile digest=" + Utils.hex(Utils.calculateDigest(raf)));
-        }
-
-        File fout = new File(cfg.getFwFileName());
-        if (fout.exists()) {
-            throw new IOException("Preprocessed file " + fout.getName() + " already exists");
-        } else {
-            fout.createNewFile();
-            fout.deleteOnExit();
-        }
-
+    public void preprocess(byte[] fwBytes) throws IOException {
         byte[] secretbytes = SECRET.getBytes("ASCII");
 
 
-        int totalLen = (int) fin.length();
-        ByteBuffer buf = ByteBuffer.allocate(totalLen);
-        buf.order(ByteOrder.LITTLE_ENDIAN);
+        Utils.crcCheck(fwBytes, 0, Z18_ENCODED_DATA_OFFSET-4, Z18_ENCODED_DATA_OFFSET-4);
 
-
-        try (FileInputStream is = new FileInputStream(fin);
-             FileOutputStream os = new FileOutputStream(fout);
-        ) {
-            is.getChannel().read(buf);
-            buf.flip();
-            Utils.crcCheck(buf, 0, Z18_ENCODED_DATA_OFFSET-4, Z18_ENCODED_DATA_OFFSET-4);
-
-            buf.position(Z18_SECRET_INIT);
-            int secretStart = buf.getInt();
-
-            byte[] bytes = new byte[totalLen - Z18_ENCODED_DATA_OFFSET];
-            buf.position(Z18_ENCODED_DATA_OFFSET);
-            buf.get(bytes);
-            for( int i=0 ; i<bytes.length; i++) {
-                bytes[i] = (byte) (bytes[i]^ secretbytes[(i+secretStart)%secretbytes.length]);
-            }
-            buf.position(Z18_ENCODED_DATA_OFFSET);
-            buf.put(bytes);
-            Utils.crcCheck(buf, Z18_ENCODED_DATA_OFFSET, totalLen, ALL_CRC_POSITION);
-
-            FileChannel fc = os.getChannel();
-            buf.position(0);
-            fc.write(buf);
-            fc.close();
+        int secretStart = (int) Utils.readUInt(fwBytes,Z18_SECRET_INIT);
+        for( int i=0 ; i<fwBytes.length-Z18_ENCODED_DATA_OFFSET; i++) {
+            fwBytes[i+Z18_ENCODED_DATA_OFFSET] = (byte) (fwBytes[i+Z18_ENCODED_DATA_OFFSET]^ secretbytes[(i+secretStart)%secretbytes.length]);
         }
+        Utils.crcCheck(fwBytes, Z18_ENCODED_DATA_OFFSET, fwBytes.length-Z18_ENCODED_DATA_OFFSET, ALL_CRC_POSITION);
+
     }
 
 
-    public void postprocess() throws IOException, NoSuchAlgorithmException {
-        File fin = new File(cfg.getFwFileName() + ".mod");
-        if (!fin.exists()) {
-            throw new IOException("FW file " + fin.getName() + " not found");
+    public void postprocess(byte[] fwBytes) throws IOException {
+
+        int secretStart = (int) Utils.readUInt(fwBytes,Z18_SECRET_INIT);
+        byte[] secretbytes = SECRET.getBytes("ASCII");
+
+        Utils.crcSet(fwBytes, Z18_ENCODED_DATA_OFFSET, fwBytes.length-Z18_ENCODED_DATA_OFFSET, ALL_CRC_POSITION);
+
+        for( int i=Z18_ENCODED_DATA_OFFSET ; i<fwBytes.length; i++) {
+                fwBytes[i] = (byte) (fwBytes[i]^ secretbytes[(i-Z18_ENCODED_DATA_OFFSET+secretStart)%secretbytes.length]);
         }
-        File fout = new File(cfg.getPostProcessor().getFwFileName() + ".mod");
-        if (fout.exists()) {
-            throw new IOException("Mod file " + fout.getName() + " already exists");
-        } else {
-            fout.createNewFile();
-        }
-        int totalLen = (int) fin.length();
-        ByteBuffer buf = ByteBuffer.allocate(totalLen);
-        buf.order(ByteOrder.LITTLE_ENDIAN);
 
-        try (FileInputStream is = new FileInputStream(fin);
-             FileOutputStream os = new FileOutputStream(fout);
-        ) {
-            is.getChannel().read(buf);
-            buf.position(Z18_SECRET_INIT);
-            int secretStart = buf.getInt();
-            byte[] secretbytes = SECRET.getBytes("ASCII");
-
-            Utils.crcSet(buf, Z18_ENCODED_DATA_OFFSET, totalLen, ALL_CRC_POSITION);
-
-            byte[] bytes = new byte[totalLen - Z18_ENCODED_DATA_OFFSET];
-            buf.position(Z18_ENCODED_DATA_OFFSET);
-            buf.get(bytes);
-            for (int i = 0; i < bytes.length; i++) {
-                bytes[i] = (byte) (bytes[i] ^ secretbytes[(i + secretStart) % secretbytes.length]);
-            }
-            buf.position(Z18_ENCODED_DATA_OFFSET);
-            buf.put(bytes);
-
-            Utils.crcSet(buf, 0, Z18_ENCODED_DATA_OFFSET-4, Z18_ENCODED_DATA_OFFSET-4);
-
-            FileChannel fc = os.getChannel();
-            buf.position(0);
-            fc.write(buf);
-            fc.close();
-        }
-        try (RandomAccessFile raf = new RandomAccessFile(fout, "r")) {
-            System.out.println("output digest=" + Utils.hex(Utils.calculateDigest(raf)));
-        }
-        fin.delete();
+        Utils.crcSet(fwBytes, 0, Z18_ENCODED_DATA_OFFSET-4, Z18_ENCODED_DATA_OFFSET-4);
     }
 }
 

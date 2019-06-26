@@ -13,7 +13,10 @@ import org.vmax.bitrate.plugins.PreProcessor;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -22,8 +25,10 @@ import java.util.zip.CRC32;
 @Service
 public class BitrateEditor extends JFrame {
 
+    private byte[] fwBytes;
 
-    public BitrateEditor(Config cfg, Bitrate[] bitrates) throws HeadlessException {
+    public BitrateEditor(Config cfg, Bitrate[] bitrates, byte[] fwBytes)  {
+        this.fwBytes = fwBytes;
         if(cfg.getNote()!=null) {
             setTitle("BitrateEditor : "+cfg.getNote());
         }
@@ -86,30 +91,30 @@ public class BitrateEditor extends JFrame {
         }
         Config cfg = Config.readConfig(args[0]);
 
-        if(cfg.getPreProcessor()!=null) {
-            PreProcessor preprocessor = (PreProcessor) Class.forName(cfg.getPreProcessor().getClassName()).newInstance();
-            preprocessor.withConfig(cfg);
-            preprocessor.preprocess();
-        }
-
         File f = new File(cfg.getFwFileName());
         if(!f.exists()) {
             System.out.println("FW file "+cfg.getFwFileName()+" not found");
             return;
         }
-        Bitrate[] bitrates;
-        try (RandomAccessFile raf = new RandomAccessFile(f,"r")) {
-            verifyFirmware(cfg, raf);
+        byte[] fwBytes = FileUtils.readFileToByteArray(f);
 
-            bitrates =getBitrates(cfg, raf);
-
+        if(cfg.getPreProcessor()!=null) {
+            PreProcessor preprocessor = (PreProcessor) Class.forName(cfg.getPreProcessor().getClassName()).newInstance();
+            preprocessor.withConfig(cfg);
+            preprocessor.preprocess(fwBytes);
         }
+FileUtils.writeByteArrayToFile(new File("preprocessed"),fwBytes);
 
-        SwingUtilities.invokeLater(() -> new BitrateEditor(cfg, bitrates));
+        verifyFirmware(cfg, fwBytes);
+
+        Bitrate[] bitrates = getBitrates(cfg,fwBytes);
+
+
+        SwingUtilities.invokeLater(() -> new BitrateEditor(cfg, bitrates, fwBytes));
 
     }
 
-    private static Bitrate[] getBitrates(Config cfg, RandomAccessFile raf) throws Exception {
+    private static Bitrate[] getBitrates(Config cfg, byte[] fw) throws Exception {
         Bitrate[] bitrates;
 
         bitrates = new Bitrate[cfg.getVideoModes().length];
@@ -119,23 +124,23 @@ public class BitrateEditor extends JFrame {
         for(int i=0;i<cfg.getVideoModes().length;i++) {
 
             int rowAddr = tableStartAddr + i * step;
-            int type = (int) Utils.readUInt(raf, rowAddr);
-            float min = Utils.readFloat(raf,rowAddr+8);
-            float max = Utils.readFloat(raf,rowAddr+12);
+            int type = (int) Utils.readUInt(fw, rowAddr);
+            float min = Utils.readFloat(fw,rowAddr+8);
+            float max = Utils.readFloat(fw,rowAddr+12);
 
             float[] mbps = new float[cfg.getQualities().length];
             for(int j=0;j<cfg.getQualities().length; j++) {
-                if(type != (int) Utils.readUInt(raf,rowAddr )) {
+                if(type != (int) Utils.readUInt(fw,rowAddr )) {
                     System.out.println("Addr:"+rowAddr+" Bitrate type is different for:"+ cfg.getVideoModes()[i].getName());
                 }
-                if(min != Utils.readFloat(raf,rowAddr + 8 )) {
+                if(min != Utils.readFloat(fw,rowAddr + 8 )) {
                     System.out.println("Addr:"+rowAddr+" Min value is different for:"+ cfg.getVideoModes()[i].getName());
                 }
-                if(max != Utils.readFloat(raf,rowAddr + 12 )) {
+                if(max != Utils.readFloat(fw,rowAddr + 12 )) {
                     System.out.println("Addr:"+rowAddr+" Max value is different for:"+ cfg.getVideoModes()[i].getName());
                 }
 
-                mbps[j] = Utils.readFloat(raf, rowAddr + 4 );
+                mbps[j] = Utils.readFloat(fw, rowAddr + 4 );
                 rowAddr += 16;
             }
 
@@ -165,7 +170,7 @@ public class BitrateEditor extends JFrame {
         if(addr > 0) {
             for (int i = 0; i < bitrates.length; i++) {
                 for (int j = 0; j < 3; j++) {
-                    bitrates[i].getGop()[j] = (int) Utils.readUInt(raf, addr);
+                    bitrates[i].getGop()[j] = (int) Utils.readUInt(fw, addr);
                     addr += 4;
                 }
                 addr += 4;
@@ -182,27 +187,25 @@ public class BitrateEditor extends JFrame {
         return bitrates;
     }
 
-    private static void verifyFirmware(Config cfg, RandomAccessFile raf) throws IOException, VerifyException, NoSuchAlgorithmException {
+    private static void verifyFirmware(Config cfg, byte[] fwBytes) throws IOException, VerifyException, NoSuchAlgorithmException {
 
 
         for(Verify verify : cfg.getVerify()) {
             if(verify.getVal()!=null) {
                 byte[] bytes = verify.getVal().getBytes("ASCII");
-                raf.seek(verify.getAddr());
-                for (byte b : bytes) {
-                    if (raf.read() != (b & 0xff)) {
+
+                for (int i = 0, addr = verify.getAddr(); i < bytes.length; i++, addr++) {
+                    byte b = bytes[i];
+                    if (fwBytes[addr] != b) {
                         throw new VerifyException("Verify fail:" + verify.getVal());
                     }
                 }
             }
             else if(verify.getCrc()!=null) {
                 // expected 1783079994
-                long expectedCrc = Utils.readUInt(raf,verify.getAddr());
-                byte[] bytes = new byte[verify.getCrc().getLen()];
-                raf.seek(verify.getCrc().getFromAddr());
-                raf.read(bytes);
+                long expectedCrc = Utils.readUInt(fwBytes,verify.getAddr());
                 CRC32 crc = new CRC32();
-                crc.update(bytes);
+                crc.update(fwBytes, verify.getCrc().getFromAddr(), verify.getCrc().getLen());
                 long crcActual = crc.getValue();
                 if(crcActual!=expectedCrc) {
                     throw new VerifyException("Verify CRC fail:" + verify.getAddr()+" expected:"+expectedCrc+" actual:"+crcActual);
@@ -210,13 +213,11 @@ public class BitrateEditor extends JFrame {
             }
         }
 
-        if (!verifyCheckSum(cfg, raf)) {
-            System.out.println("Error verify fw file:");
-            throw new VerifyException("Verify fail: checksum");
-        }
+        //verify section crc
+        Utils.crcCheck(fwBytes, cfg.getSectionStartAddr()+0x100, cfg.getSectionLen()-0x100, cfg.getSectionCrcAddr());
 
         if(cfg.getMd5fileName()!=null) {
-            byte[] digest = Utils.calculateDigest(raf);
+            byte[] digest = Utils.calculateDigest(fwBytes);
             //System.out.println("File digest: " + Utils.hex(digest));
             byte[] check = FileUtils.readFileToByteArray(new File(cfg.getMd5fileName()));
             if(!Arrays.equals(digest,check)) {
@@ -226,24 +227,9 @@ public class BitrateEditor extends JFrame {
         }
     }
 
-    private static boolean verifyCheckSum(Config cfg, RandomAccessFile raf) throws IOException {
-
-        CRC32 sectionCrc = calculateSectionCrc32(cfg, raf);
-        return sectionCrc.getValue() == Utils.readUInt(raf,cfg.getSectionCrcAddr());
-    }
-
-    private static CRC32 calculateSectionCrc32(Config cfg, RandomAccessFile raf) throws IOException {
-        byte[] section = new byte[cfg.getSectionLen()-0x100];
-        raf.seek(cfg.getSectionStartAddr()+0x100);
-        raf.read(section);
-        CRC32 sectionCrc = new CRC32();
-        sectionCrc.update(section);
-        return sectionCrc;
-    }
-
-
-    public void updateFW(Config cfg, Bitrate[] bitrates)  {
+    public void updateFW(Config cfg, Bitrate[] bitrates) {
         try {
+            byte[] fwBytes = Arrays.copyOf(this.fwBytes, this.fwBytes.length);
             File out = new File(cfg.getFwFileName() + ".mod");
             if(out.exists()) {
                 JOptionPane.showMessageDialog(this,"File "+out.getName()+" already exists");
@@ -255,45 +241,44 @@ public class BitrateEditor extends JFrame {
                 return;
             }
 
-            FileUtils.copyFile(new File(cfg.getFwFileName()), out);
-            try(RandomAccessFile raf = new RandomAccessFile(out,"rw")) {
-                for(Bitrate bitrate : bitrates) {
-                    for(int j=0;j<cfg.getQualities().length; j++) {
-                        int rowAddr = cfg.getBitratesTableAddress()+(bitrate.getInx()*cfg.getQualities().length+j)*16;
-                        Utils.writeUInt(raf, rowAddr, bitrate.getType().ordinal());
-                        Utils.writeFloat(raf, rowAddr+4, bitrate.getMbps()[j]);
-                        Utils.writeFloat(raf, rowAddr+8, bitrate.getMin());
-                        Utils.writeFloat(raf, rowAddr+12, bitrate.getMax());
-                    }
+            for(Bitrate bitrate : bitrates) {
+                for(int j=0;j<cfg.getQualities().length; j++) {
+                    int rowAddr = cfg.getBitratesTableAddress()+(bitrate.getInx()*cfg.getQualities().length+j)*16;
+                    Utils.writeUInt(fwBytes, rowAddr, bitrate.getType().ordinal());
+                    Utils.writeFloat(fwBytes, rowAddr+4, bitrate.getMbps()[j]);
+                    Utils.writeFloat(fwBytes, rowAddr+8, bitrate.getMin());
+                    Utils.writeFloat(fwBytes, rowAddr+12, bitrate.getMax());
                 }
+            }
 
-                if(cfg.getGopTableAddress() > 0) {
-                    int addr = cfg.getGopTableAddress();
-                    for (int i = 0; i < bitrates.length; i++) {
-                        for (int j = 0; j < 3; j++) {
-                            Utils.writeUInt(raf, addr, bitrates[i].getGop()[j]);
-                            addr += 4;
-                        }
+            if(cfg.getGopTableAddress() > 0) {
+                int addr = cfg.getGopTableAddress();
+                for (int i = 0; i < bitrates.length; i++) {
+                    for (int j = 0; j < 3; j++) {
+                        Utils.writeUInt(fwBytes, addr, bitrates[i].getGop()[j]);
                         addr += 4;
                     }
+                    addr += 4;
                 }
-
-                CRC32 crc = calculateSectionCrc32(cfg,raf);
-                Utils.writeUInt(raf,cfg.getSectionCrcAddr(), (int) crc.getValue());
-
-                if(cfg.getMd5fileName()!=null) {
-                    byte[] md5 = Utils.calculateDigest(raf);
-                    try(FileOutputStream fos = new FileOutputStream(ch)) {
-                        fos.write(md5);
-                    }
-                }
-
             }
+
+
+            Utils.crcSet(fwBytes, cfg.getSectionStartAddr()+0x100, cfg.getSectionLen()-0x100, cfg.getSectionCrcAddr());
+
             if(cfg.getPostProcessor()!=null) {
                 PostProcessor postprocessor = (PostProcessor) Class.forName(cfg.getPostProcessor().getClassName()).newInstance();
                 postprocessor.withConfig(cfg);
-                postprocessor.postprocess();
+                postprocessor.postprocess(fwBytes);
             }
+
+            FileUtils.writeByteArrayToFile(out, fwBytes);
+            if(cfg.getMd5fileName()!=null) {
+                byte[] md5 = Utils.calculateDigest(fwBytes);
+                try(FileOutputStream fos = new FileOutputStream(ch)) {
+                    fos.write(md5);
+                }
+            }
+
         }
         catch (Exception e) {
             e.printStackTrace();

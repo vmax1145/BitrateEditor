@@ -7,6 +7,6 @@ import java.security.NoSuchAlgorithmException;
 
 public interface PreProcessor {
     PreProcessor withConfig(Config cfg);
-    void preprocess() throws IOException, NoSuchAlgorithmException;
+    void preprocess(byte[] fwBytes) throws IOException, NoSuchAlgorithmException;
 
 }
