@@ -1,13 +1,13 @@
-*************************************************************************
-** THIS CONFIG IS HIGH RISK DUE TO LACK OF UNBREAKING TOOLS FOR YI4KPlus
-** NOT TESTED!!!, WANNA BE FIRST? OK, AT YOUR OWN RISK.
-**
-** Author is not responsible for any loss or damage
-**
-** this note added to prevent start, removing it means you recognize and
-** accept risks at your own responsibility,
-**
-*************************************************************************
+//*************************************************************************
+//** THIS CONFIG IS HIGH RISK DUE TO LACK OF UNBREAKING TOOLS FOR YI4KPlus
+//** NOT TESTED!!!, WANNA BE FIRST? OK, AT YOUR OWN RISK.
+//**
+//** Author is not responsible for any loss or damage
+//**
+//** this note added to prevent start, removing it means you recognize and
+//** accept risks at your own responsibility,
+//**
+//*************************************************************************
 
 { "note":"YI 4k Plus v1.4.14",
   "preProcessor": {
