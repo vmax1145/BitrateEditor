@@ -6,6 +6,7 @@ import org.vmax.amba.cfg.bitrate.BitrateEditorConfig;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.xml.bind.ValidationException;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileInputStream;
@@ -99,6 +100,16 @@ public class BitrateMenuBuilder {
                             if(cfg.getQualities().length != bitratesLoaded[0].getMbps().length) {
                                 JOptionPane.showConfirmDialog (jfc, "File not match configuration","Warning",JOptionPane.OK_OPTION);
                             }
+
+                            if(bitratesLoaded.length != bitrates.length) {
+                                throw new ValidationException("Video modes are different");
+                            }
+                            for (int i = 0; i < bitratesLoaded.length; i++) {
+                                if( !bitratesLoaded[i].getName().equals(bitrates[i].getName()) ) {
+                                    throw new ValidationException("Video modes are different");
+                                }
+                            }
+
                             for (int i = 0; i < bitrates.length; i++) {
                                 Bitrate b = bitrates[i];
                                 b.fillFrom(bitratesLoaded[i]);
