@@ -1,6 +1,16 @@
 { "note":"SJ8 Pro v1.3.0",
+
+  "preProcessor": {
+    "className":"org.vmax.bitrate.plugins.SJ8ProPocessor",
+    "md5fileName": "SJ8_CHECK.ch"
+  },
+  "postProcessor": {
+    "className":"org.vmax.bitrate.plugins.SJ8ProPocessor",
+    "md5fileName": "SJ8_CHECK.ch"
+  },
+
   "fwFileName": "SJ8_FWUPDATE.bin",
-  "md5fileName": "SJ8_CHECK.ch",
+
   "verify": [
     {
       "addr": 6519572,
@@ -13,6 +23,13 @@
     {
       "addr": 6520000,
       "val": "SJ8PRO"
+    },
+    {
+      "addr":560,
+      "crc": {
+        "fromAddr":816,
+        "len":25709760
+      }
     }
   ],
 
@@ -368,9 +385,6 @@
     "standard",
     "economy"
   ],
-  "sectionStartAddr": 560,
-  "sectionLen": 25710016,
-  "sectionCrcAddr": 560,
   "bitratesTableAddress": 25333104,
   "gopTableAddress": 25348588,
 

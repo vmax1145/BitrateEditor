@@ -14,13 +14,11 @@ import org.vmax.bitrate.plugins.PreProcessor;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.stream.Collectors;
-import java.util.zip.CRC32;
 
 @Service
 public class BitrateEditor extends JFrame {
@@ -202,29 +200,11 @@ FileUtils.writeByteArrayToFile(new File("preprocessed"),fwBytes);
                 }
             }
             else if(verify.getCrc()!=null) {
-                // expected 1783079994
-                long expectedCrc = Utils.readUInt(fwBytes,verify.getAddr());
-                CRC32 crc = new CRC32();
-                crc.update(fwBytes, verify.getCrc().getFromAddr(), verify.getCrc().getLen());
-                long crcActual = crc.getValue();
-                if(crcActual!=expectedCrc) {
-                    throw new VerifyException("Verify CRC fail:" + verify.getAddr()+" expected:"+expectedCrc+" actual:"+crcActual);
-                }
+                Utils.crcCheck(fwBytes,verify.getCrc().getFromAddr(), verify.getCrc().getLen(), verify.getAddr());
             }
         }
 
-        //verify section crc
-        Utils.crcCheck(fwBytes, cfg.getSectionStartAddr()+0x100, cfg.getSectionLen()-0x100, cfg.getSectionCrcAddr());
 
-        if(cfg.getMd5fileName()!=null) {
-            byte[] digest = Utils.calculateDigest(fwBytes);
-            //System.out.println("File digest: " + Utils.hex(digest));
-            byte[] check = FileUtils.readFileToByteArray(new File(cfg.getMd5fileName()));
-            if(!Arrays.equals(digest,check)) {
-                System.out.println("File md5 digest mismatch");
-                return;
-            }
-        }
     }
 
     public void updateFW(Config cfg, Bitrate[] bitrates) {
@@ -235,11 +215,7 @@ FileUtils.writeByteArrayToFile(new File("preprocessed"),fwBytes);
                 JOptionPane.showMessageDialog(this,"File "+out.getName()+" already exists");
                 return;
             }
-            File ch = new File(cfg.getMd5fileName()+".mod");
-            if(cfg.getMd5fileName()!=null && ch.exists()) {
-                JOptionPane.showMessageDialog(this,"File "+ch.getName()+" already exists");
-                return;
-            }
+
 
             for(Bitrate bitrate : bitrates) {
                 for(int j=0;j<cfg.getQualities().length; j++) {
@@ -263,7 +239,11 @@ FileUtils.writeByteArrayToFile(new File("preprocessed"),fwBytes);
             }
 
 
-            Utils.crcSet(fwBytes, cfg.getSectionStartAddr()+0x100, cfg.getSectionLen()-0x100, cfg.getSectionCrcAddr());
+            for(Verify verify : cfg.getVerify()) {
+                if(verify.getCrc()!=null) {
+                    Utils.crcSet(fwBytes,verify.getCrc().getFromAddr(), verify.getCrc().getLen(), verify.getAddr());
+                }
+            }
 
             if(cfg.getPostProcessor()!=null) {
                 PostProcessor postprocessor = (PostProcessor) Class.forName(cfg.getPostProcessor().getClassName()).newInstance();
@@ -272,13 +252,6 @@ FileUtils.writeByteArrayToFile(new File("preprocessed"),fwBytes);
             }
 
             FileUtils.writeByteArrayToFile(out, fwBytes);
-            if(cfg.getMd5fileName()!=null) {
-                byte[] md5 = Utils.calculateDigest(fwBytes);
-                try(FileOutputStream fos = new FileOutputStream(ch)) {
-                    fos.write(md5);
-                }
-            }
-
         }
         catch (Exception e) {
             e.printStackTrace();

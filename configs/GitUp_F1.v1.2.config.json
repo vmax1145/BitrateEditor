@@ -12,6 +12,13 @@
     {
       "addr": 5273196,
       "val": "20180103"
+    },
+    {
+      "addr":252,
+      "crc": {
+        "fromAddr":508,
+        "len":5740512
+      }
     }
   ],
   "videoModes": [
@@ -297,9 +304,6 @@
     "standard",
     "economy"
   ],
-  "sectionStartAddr": 252,
-  "sectionLen": 5740768,
-  "sectionCrcAddr": 252,
   "bitratesTableAddress": 5451180,
   "gopTableAddress": 0,
 

@@ -1,13 +1,13 @@
-*************************************************************************
-** THIS CONFIG IS HIGH RISK DUE TO LACK OF UNBREAKING TOOLS FOR YI4KPlus
-** NOT TESTED!!!, WANNA BE FIRST? OK, AT YOUR OWN RISK.
-**
-** Author is not responsible for any loss or damage
-**
-** this note added to prevent start, removing it means you recognize and
-** accept risks at your own responsibility,
-**
-*************************************************************************
+//*************************************************************************
+//** THIS CONFIG IS HIGH RISK DUE TO LACK OF UNBREAKING TOOLS FOR YI4KPlus
+//** NOT TESTED!!!, WANNA BE FIRST? OK, AT YOUR OWN RISK.
+//**
+//** Author is not responsible for any loss or damage
+//**
+//** this note added to prevent start, removing it means you recognize and
+//** accept risks at your own responsibility,
+//**
+//*************************************************************************
 
 { "note":"YI 4k Plus v1.4.14",
   "preProcessor": {
@@ -28,12 +28,22 @@
       "val": "Z18V13L_1.4.14_build-20180622051900_git-bd1c9b2c_r1019"
     },
     {
+      //all body crc
       "addr":32,
       "crc": {
          "fromAddr":2220,
          "len":67166785
       }
+    },
+    {
+      //section crc
+        "addr":587260,
+        "crc": {
+          "fromAddr":587516,
+          "len":13754468
+        }
     }
+
   ],
 
   "videoModes": [
@@ -136,9 +146,6 @@
     "standard",
     "economy"
   ],
-  "sectionStartAddr": 587260,
-  "sectionLen": 13754724,
-  "sectionCrcAddr": 587260,
   "bitratesTableAddress": 11703164,
   "gopTableAddress":11773104,
 

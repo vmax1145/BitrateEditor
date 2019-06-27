@@ -24,12 +24,7 @@ public class Config {
     private BitrateName[] videoModes;
     private String[] qualities;
 
-    private int sectionStartAddr;
-    private int sectionLen;
-    private int sectionCrcAddr;
-
     private String fwFileName;
-    private String md5fileName;
 
     private List<Verify> verify = new ArrayList<>();
 

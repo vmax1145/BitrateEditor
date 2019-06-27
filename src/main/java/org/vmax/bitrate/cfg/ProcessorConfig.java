@@ -8,4 +8,5 @@ import lombok.Setter;
 public class ProcessorConfig {
     private String className;
     private String fwFileName;
+    private String md5fileName;
 }

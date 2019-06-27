@@ -1,5 +1,7 @@
 package org.vmax.bitrate;
 
+import org.vmax.bitrate.bitrateui.VerifyException;
+
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -59,13 +61,13 @@ public class Utils {
         return sb.toString();
     }
 
-    public static void crcCheck(byte[] fw, int from, int len, int crcAddr) {
+    public static void crcCheck(byte[] fw, int from, int len, int crcAddr) throws VerifyException {
         CRC32 crc = new CRC32();
         crc.update(fw, from, len);
 
         long expected = readUInt(fw,crcAddr);
         if(  expected != crc.getValue()) {
-            System.out.println("CRC expected:"+hex(expected)+" actual:"+hex(crc.getValue()));
+            throw new VerifyException("CRC "+crcAddr+" expected:"+hex(expected)+" actual:"+hex(crc.getValue()));
         }
     }
     public static void crcSet(byte[] buf, int from, int len, int crcAddr) {

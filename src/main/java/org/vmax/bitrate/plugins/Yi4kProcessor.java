@@ -1,9 +1,11 @@
 package org.vmax.bitrate.plugins;
 
 import org.vmax.bitrate.Utils;
+import org.vmax.bitrate.bitrateui.VerifyException;
 import org.vmax.bitrate.cfg.Config;
 
 import java.io.IOException;
+import java.util.zip.CRC32;
 
 public class Yi4kProcessor implements PreProcessor, PostProcessor {
 
@@ -25,9 +27,13 @@ public class Yi4kProcessor implements PreProcessor, PostProcessor {
     }
 
     @Override
-    public void preprocess(byte[] fwBytes) throws IOException {
+    public void preprocess(byte[] fwBytes) throws IOException, VerifyException {
         byte[] secretbytes = SECRET.getBytes("ASCII");
+        CRC32 crcH = new CRC32();
 
+        for(int i=0;i<0x8a8;i++) {
+            crcH.update(fwBytes[i]);
+        }
 
         Utils.crcCheck(fwBytes, 0, Z18_ENCODED_DATA_OFFSET-4, Z18_ENCODED_DATA_OFFSET-4);
 
@@ -36,7 +42,7 @@ public class Yi4kProcessor implements PreProcessor, PostProcessor {
             fwBytes[i+Z18_ENCODED_DATA_OFFSET] = (byte) (fwBytes[i+Z18_ENCODED_DATA_OFFSET]^ secretbytes[(i+secretStart)%secretbytes.length]);
         }
         Utils.crcCheck(fwBytes, Z18_ENCODED_DATA_OFFSET, fwBytes.length-Z18_ENCODED_DATA_OFFSET, ALL_CRC_POSITION);
-
+        Utils.crcCheck(fwBytes, 0, Z18_ENCODED_DATA_OFFSET-4, Z18_ENCODED_DATA_OFFSET-4);
     }
 
 
