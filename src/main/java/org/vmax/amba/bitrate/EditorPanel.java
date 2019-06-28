@@ -1,6 +1,7 @@
 package org.vmax.amba.bitrate;
 
 import org.vmax.amba.cfg.bitrate.BitrateEditorConfig;
+import org.vmax.amba.ui.RangeCellEditor;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;

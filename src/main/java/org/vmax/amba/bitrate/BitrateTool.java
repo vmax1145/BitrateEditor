@@ -1,7 +1,7 @@
 package org.vmax.amba.bitrate;
 
 import lombok.Getter;
-import org.springframework.stereotype.Service;
+
 import org.vmax.amba.FirmwareTool;
 import org.vmax.amba.Utils;
 import org.vmax.amba.cfg.bitrate.BitrateEditorConfig;
@@ -12,7 +12,7 @@ import java.awt.*;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-@Service
+
 public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
 
     @Getter
@@ -62,15 +62,15 @@ public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
 
         EditorPanel editorPanel = new EditorPanel(cfg, bitratesFiltered);
 
-        CalcDialog calcDialog = new CalcDialog(this, editorPanel, cfg, bitrates);
+        BitrateCalcDialog bitrateCalcDialog = new BitrateCalcDialog(this, editorPanel, cfg, bitrates);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        JMenuBar bar = new MenuBuilder(this)
+        JMenuBar bar = new BitrateMenuBuilder(this)
                 .with(editorPanel)
                 .with(cfg)
                 .with(bitrates,bitratesFiltered)
-                .with(calcDialog)
+                .with(bitrateCalcDialog)
                 .build();
 
 

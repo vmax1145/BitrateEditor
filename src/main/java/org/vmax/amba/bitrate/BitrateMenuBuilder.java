@@ -12,37 +12,37 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class MenuBuilder {
+public class BitrateMenuBuilder {
 
     private final BitrateTool bitrateEditor;
     private EditorPanel editorPanel;
     private Bitrate[] bitrates;
     private Bitrate[] bitratesFiltered;
     private BitrateEditorConfig cfg;
-    private CalcDialog calcDialog;
+    private BitrateCalcDialog bitrateCalcDialog;
 
-    public MenuBuilder(BitrateTool bitrateEditor) {
+    public BitrateMenuBuilder(BitrateTool bitrateEditor) {
         this.bitrateEditor = bitrateEditor;
     }
-    public MenuBuilder with(EditorPanel editorPanel) {
+    public BitrateMenuBuilder with(EditorPanel editorPanel) {
         this.editorPanel = editorPanel;
         return this;
     }
 
-    public MenuBuilder with(BitrateEditorConfig cfg) {
+    public BitrateMenuBuilder with(BitrateEditorConfig cfg) {
         this.cfg = cfg;
         return this;
     }
 
-    public MenuBuilder with(Bitrate[] bitrates, Bitrate[] bitratesFiltered) {
+    public BitrateMenuBuilder with(Bitrate[] bitrates, Bitrate[] bitratesFiltered) {
         this.bitrates = bitrates;
         this.bitratesFiltered =bitratesFiltered;
         return this;
     }
 
 
-    public MenuBuilder with(CalcDialog calcDialog) {
-        this.calcDialog = calcDialog;
+    public BitrateMenuBuilder with(BitrateCalcDialog bitrateCalcDialog) {
+        this.bitrateCalcDialog = bitrateCalcDialog;
         return this;
     }
 
@@ -134,7 +134,7 @@ public class MenuBuilder {
         toolsMenu.add(new AbstractAction("Calculate") {
             @Override
             public void actionPerformed(ActionEvent e) {
-                calcDialog.setVisible(true);
+                bitrateCalcDialog.setVisible(true);
             }
         });
         bar.add(toolsMenu);

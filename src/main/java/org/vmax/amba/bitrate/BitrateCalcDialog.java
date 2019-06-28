@@ -7,7 +7,7 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
-public class CalcDialog extends JDialog {
+public class BitrateCalcDialog extends JDialog {
 
     private static long FHD_FLOW = 60*1920*1080;
     private static long UHD_FLOW = 60*3840*2160;
@@ -18,7 +18,7 @@ public class CalcDialog extends JDialog {
     private Bitrate[] bitrates;
     private BitrateEditorConfig cfg;
 
-    public CalcDialog(BitrateTool editor, EditorPanel editorPanel, BitrateEditorConfig cfg, Bitrate[] bitrates) {
+    public BitrateCalcDialog(BitrateTool editor, EditorPanel editorPanel, BitrateEditorConfig cfg, Bitrate[] bitrates) {
         super(editor, "Calculate bitrates", true);
         this.bitrates = bitrates;
         this.cfg = cfg;

@@ -1,4 +1,4 @@
-package org.vmax.amba.bitrate;
+package org.vmax.amba.ui;
 
 import org.vmax.amba.cfg.Range;
 

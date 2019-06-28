@@ -1,11 +1,12 @@
-package org.vmax.amba.bitrate;
+package org.vmax.amba.data;
 
 import lombok.NoArgsConstructor;
 import org.vmax.amba.cfg.Range;
 
 @NoArgsConstructor
 public class RangedFloat{
-    Float value;
+
+    private Float value;
 
 
     public RangedFloat(String s, Range range) throws NumberFormatException {
