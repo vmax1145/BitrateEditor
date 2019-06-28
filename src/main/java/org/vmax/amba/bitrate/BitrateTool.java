@@ -1,35 +1,62 @@
-package org.vmax.bitrate;
+package org.vmax.amba.bitrate;
 
-import org.apache.commons.io.FileUtils;
+import lombok.Getter;
 import org.springframework.stereotype.Service;
-import org.vmax.bitrate.bitrateui.CalcDialog;
-import org.vmax.bitrate.bitrateui.EditorPanel;
-import org.vmax.bitrate.bitrateui.MenuBuilder;
-import org.vmax.bitrate.bitrateui.VerifyException;
-import org.vmax.bitrate.cfg.Config;
-import org.vmax.bitrate.cfg.Verify;
-import org.vmax.bitrate.plugins.PostProcessor;
-import org.vmax.bitrate.plugins.PreProcessor;
+import org.vmax.amba.FirmwareTool;
+import org.vmax.amba.Utils;
+import org.vmax.amba.cfg.bitrate.BitrateEditorConfig;
+import org.vmax.amba.cfg.FirmwareConfig;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
 @Service
-public class BitrateEditor extends JFrame {
+public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
+
+    @Getter
+    public final String startMessage =
+                    "  ____  _ _             _       ______    _ _ _             \n" +
+                    " |  _ \\(_) |           | |     |  ____|  | (_) |            \n" +
+                    " | |_) |_| |_ _ __ __ _| |_ ___| |__   __| |_| |_ ___  _ __ \n" +
+                    " |  _ <| | __| '__/ _` | __/ _ \\  __| / _` | | __/ _ \\| '__|\n" +
+                    " | |_) | | |_| | | (_| | ||  __/ |___| (_| | | || (_) | |   \n" +
+                    " |____/|_|\\__|_|  \\__,_|\\__\\___|______\\__,_|_|\\__\\___/|_|   \n" +
+                    "                                                            \n" +
+                    "                                                            \n" +
+                    "************************************************************\n"+
+                    "*  Author do not take any responsibility and isn't liable  *\n"+
+                    "*   for any damage or loss caused by using this software.  *\n"+
+                    "*                                                          *\n"+
+                    "*      !!! All you are doing is at your own risk !!!       *\n"+
+                    "*                                                          *\n"+
+                    "************************************************************\n";
+
 
     private byte[] fwBytes;
 
-    public BitrateEditor(Config cfg, Bitrate[] bitrates, byte[] fwBytes)  {
+    @Override
+    public Class<BitrateEditorConfig> getConfigClz() {
+        return BitrateEditorConfig.class;
+    }
+
+    public void init(FirmwareConfig fcfg, byte[] fwBytes) {
+        BitrateEditorConfig cfg = (BitrateEditorConfig) fcfg;
+        Bitrate[] bitrates = null;
         this.fwBytes = fwBytes;
         if(cfg.getNote()!=null) {
             setTitle("BitrateEditor : "+cfg.getNote());
         }
+
+        try {
+            bitrates = getBitrates(cfg, fwBytes);
+        } catch (Exception e) {
+            System.out.println("Error reading bitrates");
+            e.printStackTrace();
+            System.exit(0);
+        }
+
         Bitrate[] bitratesFiltered = Arrays.asList(bitrates)
                 .stream().filter(b->b.isInUse()).collect(Collectors.toList()).toArray(new Bitrate[0]);
 
@@ -53,66 +80,11 @@ public class BitrateEditor extends JFrame {
         setJMenuBar(bar);
         pack();
         setVisible(true);
-
-
-
     }
 
 
-    public static void main(String args[]) throws Exception {
-        System.out.println("  ____  _ _             _       ______    _ _ _             \n" +
-                           " |  _ \\(_) |           | |     |  ____|  | (_) |            \n" +
-                           " | |_) |_| |_ _ __ __ _| |_ ___| |__   __| |_| |_ ___  _ __ \n" +
-                           " |  _ <| | __| '__/ _` | __/ _ \\  __| / _` | | __/ _ \\| '__|\n" +
-                           " | |_) | | |_| | | (_| | ||  __/ |___| (_| | | || (_) | |   \n" +
-                           " |____/|_|\\__|_|  \\__,_|\\__\\___|______\\__,_|_|\\__\\___/|_|   \n" +
-                           "                                                            \n" +
-                           "                                                            ");
-        System.out.println("************************************************************");
-        System.out.println("*  Author do not take any responsibility and isn't liable  *");
-        System.out.println("*   for any damage or loss caused by using this software.  *");
-        System.out.println("*                                                          *");
-        System.out.println("*      !!! All you are doing is at your own risk !!!       *");
-        System.out.println("*                                                          *");
-        System.out.println("************************************************************");
-        System.out.println();
-        System.out.print("Are you sure you want to continue (Y/N):");
-        char[] in = new char[1];
-        new InputStreamReader(System.in).read(in);
-        if(!(in[0]=='Y' || in[0]=='y')) {
-            return;
-        }
 
-        if(args.length<1) {
-            System.out.println("config name required");
-            return;
-        }
-        Config cfg = Config.readConfig(args[0]);
-
-        File f = new File(cfg.getFwFileName());
-        if(!f.exists()) {
-            System.out.println("FW file "+cfg.getFwFileName()+" not found");
-            return;
-        }
-        byte[] fwBytes = FileUtils.readFileToByteArray(f);
-
-        if(cfg.getPreProcessor()!=null) {
-            PreProcessor preprocessor = (PreProcessor) Class.forName(cfg.getPreProcessor().getClassName()).newInstance();
-            preprocessor.withConfig(cfg);
-            preprocessor.preprocess(fwBytes);
-        }
-FileUtils.writeByteArrayToFile(new File("preprocessed"),fwBytes);
-
-        verifyFirmware(cfg, fwBytes);
-
-        Bitrate[] bitrates = getBitrates(cfg,fwBytes);
-
-
-        SwingUtilities.invokeLater(() -> new BitrateEditor(cfg, bitrates, fwBytes));
-
-    }
-
-    private static Bitrate[] getBitrates(Config cfg, byte[] fw) throws Exception {
+    private Bitrate[] getBitrates(BitrateEditorConfig cfg, byte[] fw)  {
         Bitrate[] bitrates;
 
         bitrates = new Bitrate[cfg.getVideoModes().length];
@@ -161,7 +133,6 @@ FileUtils.writeByteArrayToFile(new File("preprocessed"),fwBytes);
             }
             System.out.println(i+". "+cfg.getVideoModes()[i].getName() +" " +type+" "+mbps[0]+"/"+mbps[1]+"/"+mbps[2]+" "+min+" "+max);
 
-
         }
 
         int addr = cfg.getGopTableAddress();
@@ -178,44 +149,13 @@ FileUtils.writeByteArrayToFile(new File("preprocessed"),fwBytes);
             }
         }
 
-
-
-
-
         return bitrates;
     }
 
-    private static void verifyFirmware(Config cfg, byte[] fwBytes) throws IOException, VerifyException, NoSuchAlgorithmException {
 
-
-        for(Verify verify : cfg.getVerify()) {
-            if(verify.getVal()!=null) {
-                byte[] bytes = verify.getVal().getBytes("ASCII");
-
-                for (int i = 0, addr = verify.getAddr(); i < bytes.length; i++, addr++) {
-                    byte b = bytes[i];
-                    if (fwBytes[addr] != b) {
-                        throw new VerifyException("Verify fail:" + verify.getVal());
-                    }
-                }
-            }
-            else if(verify.getCrc()!=null) {
-                Utils.crcCheck(fwBytes,verify.getCrc().getFromAddr(), verify.getCrc().getLen(), verify.getAddr());
-            }
-        }
-
-
-    }
-
-    public void updateFW(Config cfg, Bitrate[] bitrates) {
+    public void updateFW(BitrateEditorConfig cfg, Bitrate[] bitrates) {
         try {
             byte[] fwBytes = Arrays.copyOf(this.fwBytes, this.fwBytes.length);
-            File out = new File(cfg.getFwFileName() + ".mod");
-            if(out.exists()) {
-                JOptionPane.showMessageDialog(this,"File "+out.getName()+" already exists");
-                return;
-            }
-
 
             for(Bitrate bitrate : bitrates) {
                 for(int j=0;j<cfg.getQualities().length; j++) {
@@ -238,27 +178,12 @@ FileUtils.writeByteArrayToFile(new File("preprocessed"),fwBytes);
                 }
             }
 
-
-            for(Verify verify : cfg.getVerify()) {
-                if(verify.getCrc()!=null) {
-                    Utils.crcSet(fwBytes,verify.getCrc().getFromAddr(), verify.getCrc().getLen(), verify.getAddr());
-                }
-            }
-
-            if(cfg.getPostProcessor()!=null) {
-                PostProcessor postprocessor = (PostProcessor) Class.forName(cfg.getPostProcessor().getClassName()).newInstance();
-                postprocessor.withConfig(cfg);
-                postprocessor.postprocess(fwBytes);
-            }
-
-            FileUtils.writeByteArrayToFile(out, fwBytes);
+            Utils.saveFirmware(cfg, fwBytes);
         }
         catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this,"Oooops! See error stream for details" );
         }
     }
-
-
 
 }

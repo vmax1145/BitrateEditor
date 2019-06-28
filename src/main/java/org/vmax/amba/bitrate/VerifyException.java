@@ -1,4 +1,4 @@
-package org.vmax.bitrate.bitrateui;
+package org.vmax.amba.bitrate;
 
 public class VerifyException extends Exception {
     public VerifyException() {

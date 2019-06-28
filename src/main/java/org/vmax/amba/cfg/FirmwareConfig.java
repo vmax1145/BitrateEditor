@@ -1,6 +1,6 @@
-package org.vmax.bitrate.cfg;
+package org.vmax.amba.cfg;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
@@ -15,28 +15,21 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Config {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class FirmwareConfig {
 
     private String note = "";
-
-    private int bitratesTableAddress;
-    private int gopTableAddress=0;
-    private BitrateName[] videoModes;
-    private String[] qualities;
-
+    private String toolClass;
     private String fwFileName;
-
     private List<Verify> verify = new ArrayList<>();
-
-    private Validate validate;
-
     private ProcessorConfig preProcessor;
     private ProcessorConfig postProcessor;
 
-    public static Config readConfig(String arg) throws IOException {
+    public static <T extends FirmwareConfig> T readConfig(Class<T> clz,String arg) throws IOException {
         try(FileInputStream fis = new FileInputStream(arg)) {
-            return new ObjectMapper().enable(JsonParser.Feature.ALLOW_COMMENTS)
-                    .readerFor(Config.class)
+            return new ObjectMapper()
+                    .enable(JsonParser.Feature.ALLOW_COMMENTS)
+                    .readerFor(clz)
                     .readValue(fis);
         } catch (Exception e) {
             throw new IOException("Error parsing config: "+arg, e);

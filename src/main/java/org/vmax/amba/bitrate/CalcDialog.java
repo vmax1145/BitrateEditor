@@ -1,8 +1,6 @@
-package org.vmax.bitrate.bitrateui;
+package org.vmax.amba.bitrate;
 
-import org.vmax.bitrate.Bitrate;
-import org.vmax.bitrate.BitrateEditor;
-import org.vmax.bitrate.cfg.Config;
+import org.vmax.amba.cfg.bitrate.BitrateEditorConfig;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -18,9 +16,9 @@ public class CalcDialog extends JDialog {
     private static final Border black = new LineBorder(Color.black);
 
     private Bitrate[] bitrates;
-    private Config cfg;
+    private BitrateEditorConfig cfg;
 
-    public CalcDialog(BitrateEditor editor, EditorPanel editorPanel, Config cfg, Bitrate[] bitrates) {
+    public CalcDialog(BitrateTool editor, EditorPanel editorPanel, BitrateEditorConfig cfg, Bitrate[] bitrates) {
         super(editor, "Calculate bitrates", true);
         this.bitrates = bitrates;
         this.cfg = cfg;

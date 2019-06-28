@@ -67,7 +67,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>org.vmax.bitrate.BitrateEditor</mainClass>
+                    <mainClass>org.vmax.amba.AppMain</mainClass>
                 </configuration>
             </plugin>
         </plugins>

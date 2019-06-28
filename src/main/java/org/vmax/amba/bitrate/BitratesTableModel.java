@@ -1,15 +1,14 @@
-package org.vmax.bitrate.bitrateui;
+package org.vmax.amba.bitrate;
 
-import org.vmax.bitrate.Bitrate;
-import org.vmax.bitrate.cfg.Config;
+import org.vmax.amba.cfg.bitrate.BitrateEditorConfig;
 
 import javax.swing.table.AbstractTableModel;
 
 public class BitratesTableModel extends AbstractTableModel {
-    private final Config cfg;
+    private final BitrateEditorConfig cfg;
     private final Bitrate[] bitrates;
 
-    public BitratesTableModel(Config cfg, Bitrate[] bitrates) {
+    public BitratesTableModel(BitrateEditorConfig cfg, Bitrate[] bitrates) {
         this.cfg = cfg;
         this.bitrates = bitrates;
     }

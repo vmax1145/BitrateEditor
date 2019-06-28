@@ -1,4 +1,4 @@
-package org.vmax.bitrate.cfg;
+package org.vmax.amba.cfg;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

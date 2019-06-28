@@ -1,4 +1,5 @@
 { "note":"Git Up F1 v1.2",
+  "toolClass": "org.vmax.amba.bitrate.BitrateTool",
   "fwFileName": "FWF1.bin",
   "verify": [
     {

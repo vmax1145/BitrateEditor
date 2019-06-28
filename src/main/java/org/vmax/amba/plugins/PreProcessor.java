@@ -1,13 +1,13 @@
-package org.vmax.bitrate.plugins;
+package org.vmax.amba.plugins;
 
-import org.vmax.bitrate.bitrateui.VerifyException;
-import org.vmax.bitrate.cfg.Config;
+import org.vmax.amba.bitrate.VerifyException;
+import org.vmax.amba.cfg.FirmwareConfig;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
 public interface PreProcessor {
-    PreProcessor withConfig(Config cfg);
+    PreProcessor withConfig(FirmwareConfig cfg);
     void preprocess(byte[] fwBytes) throws IOException, NoSuchAlgorithmException, VerifyException;
 
 }

@@ -1,9 +1,9 @@
-package org.vmax.bitrate.plugins;
+package org.vmax.amba.plugins;
 
 import org.apache.commons.io.FileUtils;
-import org.vmax.bitrate.Utils;
-import org.vmax.bitrate.bitrateui.VerifyException;
-import org.vmax.bitrate.cfg.Config;
+import org.vmax.amba.Utils;
+import org.vmax.amba.bitrate.VerifyException;
+import org.vmax.amba.cfg.FirmwareConfig;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -12,9 +12,9 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 public class SJ8ProPocessor implements PreProcessor, PostProcessor {
-    Config cfg;
+    FirmwareConfig cfg;
     @Override
-    public SJ8ProPocessor withConfig(Config cfg) {
+    public SJ8ProPocessor withConfig(FirmwareConfig cfg) {
         this.cfg=cfg;
         return this;
     }

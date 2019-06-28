@@ -1,4 +1,4 @@
-package org.vmax.bitrate;
+package org.vmax.amba.bitrate;
 
 
 import lombok.Getter;

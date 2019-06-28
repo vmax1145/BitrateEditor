@@ -10,11 +10,12 @@
 *************************************************************************
 
 { "note":"YI 4k Plus v1.4.14",
+  "toolClass": "org.vmax.amba.bitrate.BitrateTool",
   "preProcessor": {
-    "className":"org.vmax.bitrate.plugins.Yi4kProcessor"
+    "className":"org.vmax.amba.plugins.Yi4kProcessor"
   },
   "postProcessor": {
-    "className":"org.vmax.bitrate.plugins.Yi4kProcessor"
+    "className":"org.vmax.amba.plugins.Yi4kProcessor"
   },
 
   "fwFileName": "Yi4kPlus_v1.4.14.bin",

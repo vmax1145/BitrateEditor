@@ -1,8 +1,8 @@
-package org.vmax.bitrate.plugins;
+package org.vmax.amba.plugins;
 
-import org.vmax.bitrate.Utils;
-import org.vmax.bitrate.bitrateui.VerifyException;
-import org.vmax.bitrate.cfg.Config;
+import org.vmax.amba.Utils;
+import org.vmax.amba.bitrate.VerifyException;
+import org.vmax.amba.cfg.FirmwareConfig;
 
 import java.io.IOException;
 import java.util.zip.CRC32;
@@ -15,13 +15,13 @@ public class Yi4kProcessor implements PreProcessor, PostProcessor {
     private static final int Z18_ENCODED_DATA_OFFSET =0x08AC;
 
 
-    private Config cfg;
+    private FirmwareConfig cfg;
 
     public Yi4kProcessor() {
     }
 
     @Override
-    public Yi4kProcessor withConfig(Config cfg) {
+    public Yi4kProcessor withConfig(FirmwareConfig cfg) {
         this.cfg = cfg;
         return this;
     }

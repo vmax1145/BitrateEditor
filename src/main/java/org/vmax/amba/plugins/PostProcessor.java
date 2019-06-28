@@ -1,12 +1,12 @@
-package org.vmax.bitrate.plugins;
+package org.vmax.amba.plugins;
 
-import org.vmax.bitrate.cfg.Config;
+import org.vmax.amba.cfg.FirmwareConfig;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
 public interface PostProcessor {
-    PostProcessor withConfig(Config cfg);
+    PostProcessor withConfig(FirmwareConfig cfg);
     void postprocess(byte[] fwBytes) throws IOException, NoSuchAlgorithmException;
 
 }

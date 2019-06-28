@@ -1,4 +1,6 @@
-package org.vmax.bitrate;
+package org.vmax.amba;
+
+import org.vmax.amba.bitrate.Bitrate;
 
 public class DetectGenerator {
 

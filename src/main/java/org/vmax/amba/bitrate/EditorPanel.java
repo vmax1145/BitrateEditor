@@ -1,7 +1,6 @@
-package org.vmax.bitrate.bitrateui;
+package org.vmax.amba.bitrate;
 
-import org.vmax.bitrate.Bitrate;
-import org.vmax.bitrate.cfg.Config;
+import org.vmax.amba.cfg.bitrate.BitrateEditorConfig;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
@@ -11,9 +10,9 @@ import javax.swing.table.TableModel;
 import java.awt.*;
 
 public class EditorPanel extends JTable {
-    private Config cfg;
+    private BitrateEditorConfig cfg;
 
-    public EditorPanel(Config cfg, Bitrate[] bitrates) {
+    public EditorPanel(BitrateEditorConfig cfg, Bitrate[] bitrates) {
         super(new BitratesTableModel(cfg, bitrates));
         this.cfg=cfg;
         adjustColumns();

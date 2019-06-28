@@ -1,10 +1,8 @@
-package org.vmax.bitrate.bitrateui;
+package org.vmax.amba.bitrate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.vmax.bitrate.Bitrate;
-import org.vmax.bitrate.BitrateEditor;
-import org.vmax.bitrate.DetectGenerator;
-import org.vmax.bitrate.cfg.Config;
+import org.vmax.amba.DetectGenerator;
+import org.vmax.amba.cfg.bitrate.BitrateEditorConfig;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -16,14 +14,14 @@ import java.io.IOException;
 
 public class MenuBuilder {
 
-    private final BitrateEditor bitrateEditor;
+    private final BitrateTool bitrateEditor;
     private EditorPanel editorPanel;
     private Bitrate[] bitrates;
     private Bitrate[] bitratesFiltered;
-    private Config cfg;
+    private BitrateEditorConfig cfg;
     private CalcDialog calcDialog;
 
-    public MenuBuilder(BitrateEditor bitrateEditor) {
+    public MenuBuilder(BitrateTool bitrateEditor) {
         this.bitrateEditor = bitrateEditor;
     }
     public MenuBuilder with(EditorPanel editorPanel) {
@@ -31,7 +29,7 @@ public class MenuBuilder {
         return this;
     }
 
-    public MenuBuilder with(Config cfg) {
+    public MenuBuilder with(BitrateEditorConfig cfg) {
         this.cfg = cfg;
         return this;
     }

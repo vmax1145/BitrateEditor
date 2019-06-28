@@ -1,6 +1,6 @@
-package org.vmax.bitrate.bitrateui;
+package org.vmax.amba.bitrate;
 
-import org.vmax.bitrate.cfg.Range;
+import org.vmax.amba.cfg.Range;
 
 import javax.swing.*;
 import javax.swing.border.Border;

@@ -1,7 +1,15 @@
-package org.vmax.bitrate;
+package org.vmax.amba;
 
-import org.vmax.bitrate.bitrateui.VerifyException;
+import org.apache.commons.io.FileUtils;
+import org.vmax.amba.bitrate.VerifyException;
+import org.vmax.amba.cfg.bitrate.BitrateEditorConfig;
+import org.vmax.amba.cfg.FirmwareConfig;
+import org.vmax.amba.cfg.Verify;
+import org.vmax.amba.plugins.PostProcessor;
+import org.vmax.amba.plugins.PreProcessor;
 
+import javax.swing.*;
+import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -94,5 +102,61 @@ public class Utils {
         bb.putFloat(val);
         bb.position(0);
         return hex(bb.getInt());
+    }
+
+    protected static byte[] loadFirmware(FirmwareConfig cfg) throws IOException, VerifyException, NoSuchAlgorithmException, ClassNotFoundException, IllegalAccessException, InstantiationException {
+
+        File f = new File(cfg.getFwFileName());
+        if(!f.exists()) {
+            System.out.println("FW file "+cfg.getFwFileName()+" not found");
+            System.exit(0);
+        }
+        byte[] fwBytes = FileUtils.readFileToByteArray(f);
+
+        if(cfg.getPreProcessor()!=null) {
+            PreProcessor preprocessor = (PreProcessor) Class.forName(cfg.getPreProcessor().getClassName()).newInstance();
+            preprocessor.withConfig(cfg);
+            preprocessor.preprocess(fwBytes);
+        }
+
+
+        for(Verify verify : cfg.getVerify()) {
+            if(verify.getVal()!=null) {
+                byte[] bytes = verify.getVal().getBytes("ASCII");
+
+                for (int i = 0, addr = verify.getAddr(); i < bytes.length; i++, addr++) {
+                    byte b = bytes[i];
+                    if (fwBytes[addr] != b) {
+                        throw new VerifyException("Verify fail:" + verify.getVal());
+                    }
+                }
+            }
+            else if(verify.getCrc()!=null) {
+                crcCheck(fwBytes,verify.getCrc().getFromAddr(), verify.getCrc().getLen(), verify.getAddr());
+            }
+        }
+        return fwBytes;
+    }
+
+    public static void saveFirmware(BitrateEditorConfig cfg, byte[] fwBytes ) throws Exception {
+            File out = new File(cfg.getFwFileName() + ".mod");
+            if(out.exists()) {
+                JOptionPane.showMessageDialog(null,"File "+out.getName()+" already exists");
+                return;
+            }
+
+            for(Verify verify : cfg.getVerify()) {
+                if(verify.getCrc()!=null) {
+                    crcSet(fwBytes,verify.getCrc().getFromAddr(), verify.getCrc().getLen(), verify.getAddr());
+                }
+            }
+
+            if(cfg.getPostProcessor()!=null) {
+                PostProcessor postprocessor = (PostProcessor) Class.forName(cfg.getPostProcessor().getClassName()).newInstance();
+                postprocessor.withConfig(cfg);
+                postprocessor.postprocess(fwBytes);
+            }
+
+            FileUtils.writeByteArrayToFile(out, fwBytes);
     }
 }
