@@ -25,6 +25,7 @@
       "val": "SJ8PRO"
     },
     {
+      //section crc
       "addr":560,
       "crc": {
         "fromAddr":816,

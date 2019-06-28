@@ -1,4 +1,4 @@
-{ "note":"Git Up F1  v1.2",
+{ "note":"Git Up F1 v1.2",
   "fwFileName": "FWF1.bin",
   "verify": [
     {
@@ -14,6 +14,7 @@
       "val": "20180103"
     },
     {
+      //section crc
       "addr":252,
       "crc": {
         "fromAddr":508,
