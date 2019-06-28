@@ -305,7 +305,7 @@
     "economy"
   ],
   "bitratesTableAddress": 5451180,
-  "gopTableAddress": 0,
+  "gopTableAddress": 5463608,
 
   "validate": {
      "bitrate": {"min":1, "max":150},
