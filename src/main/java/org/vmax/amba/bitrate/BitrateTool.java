@@ -4,7 +4,7 @@ import lombok.Getter;
 
 import org.vmax.amba.FirmwareTool;
 import org.vmax.amba.Utils;
-import org.vmax.amba.cfg.bitrate.BitrateEditorConfig;
+import org.vmax.amba.bitrate.config.BitrateEditorConfig;
 import org.vmax.amba.cfg.FirmwareConfig;
 
 import javax.swing.*;
@@ -39,6 +39,11 @@ public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
     @Override
     public Class<BitrateEditorConfig> getConfigClz() {
         return BitrateEditorConfig.class;
+    }
+
+    @Override
+    public String getStartMessage(FirmwareConfig cfg) {
+        return startMessage;
     }
 
     public void init(FirmwareConfig fcfg, byte[] fwBytes) {

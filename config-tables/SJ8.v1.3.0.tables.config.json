@@ -1,0 +1,46 @@
+{ "note":"SJ8 Pro v1.3.0 dummy tables edit",
+  "toolClass": "org.vmax.amba.tables.TablesTool",
+  "preProcessor": {
+    "className":"org.vmax.amba.plugins.SJ8ProPocessor",
+    "md5fileName": "SJ8_CHECK.ch"
+  },
+  "postProcessor": {
+    "className":"org.vmax.amba.plugins.SJ8ProPocessor",
+    "md5fileName": "SJ8_CHECK.ch"
+  },
+
+  "fwFileName": "SJ8_FWUPDATE.bin",
+
+  "verify": [
+    {
+      "addr": 6519572,
+      "val": "V1.3.0"
+    },
+    {
+      "addr": 6519936,
+      "val": "2018.12.28"
+    },
+    {
+      "addr": 6520000,
+      "val": "SJ8PRO"
+    },
+    {
+      //section crc
+      "addr":560,
+      "crc": {
+        "fromAddr":816,
+        "len":25709760
+      }
+    }
+  ],
+
+  "tableAddr": 5908592,
+  "ncol": 10,
+  "nrow": 13,
+  "range": {
+    "min": -1000,
+    "max": 1000
+  },
+  "type": "UInt32"
+
+}

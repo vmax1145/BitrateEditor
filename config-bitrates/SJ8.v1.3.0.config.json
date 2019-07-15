@@ -1,0 +1,397 @@
+{ "note":"SJ8 Pro v1.3.0",
+  "toolClass": "org.vmax.amba.bitrate.BitrateTool",
+  "preProcessor": {
+    "className":"org.vmax.amba.plugins.SJ8ProPocessor",
+    "md5fileName": "SJ8_CHECK.ch"
+  },
+  "postProcessor": {
+    "className":"org.vmax.amba.plugins.SJ8ProPocessor",
+    "md5fileName": "SJ8_CHECK.ch"
+  },
+
+  "fwFileName": "SJ8_FWUPDATE.bin",
+
+  "verify": [
+    {
+      "addr": 6519572,
+      "val": "V1.3.0"
+    },
+    {
+      "addr": 6519936,
+      "val": "2018.12.28"
+    },
+    {
+      "addr": 6520000,
+      "val": "SJ8PRO"
+    },
+    {
+      //section crc
+      "addr":560,
+      "crc": {
+        "fromAddr":816,
+        "len":25709760
+      }
+    }
+  ],
+
+  // modes for all bitrate table rows required
+  "videoModes": [
+    { //0
+      "name": "3840x2160 30P",
+      "inUse": true
+    },
+    { //1
+      "name": "3840x2160 60P",
+      "inUse": true
+    },
+    { //2
+      "name": "???? 3840x2160 15P",
+      "inUse": false
+    },
+    { //3
+      "name": "2704x1520 60P",
+      "inUse": true
+    },
+    { //4
+      "name": "???? 2560x1920 30P",
+      "inUse": false
+    },
+    { //5
+      "name": "???? 2560x1440 60P",
+      "inUse": false
+    },
+    { //6
+      "name": "???? 2560x1440 30P",
+      "inUse": false
+    },
+    { //7
+      "name": "???? HDR 2560x1440 30P",
+      "inUse": false
+    },
+    { //8
+      "name": "???? 2304x1296 30P",
+      "inUse": false
+    },
+    { //9
+      "name": "2560x1440 60P",
+      "inUse": true
+    },
+    { //10
+      "name": "2560x1440 30P",
+      "inUse": true
+    },
+    { //11
+      "name": "1920x1080 60P",
+      "inUse": true
+    },
+    { //12
+      "name": "1920x1080 25P",
+      "inUse": true
+    },
+    { //13
+      "name": "???? 1920x1080 40P",
+      "inUse": false
+    },
+    { //14
+      "name": "1920x1080 30P",
+      "inUse": true
+    },
+    { //15
+      "name": "???? HDR 1920x1080 30P",
+      "inUse": false
+    },
+    { //16
+      "name": "???? 1920x1080 60I",
+      "inUse": false
+    },
+    { //17
+      "name": "???? 1440x1080 60P",
+      "inUse": false
+    },
+    { //18
+      "name": "???? 1440x1080 30P",
+      "inUse": false
+    },
+    { //19
+      "name": "???? 1440x1080 60I",
+      "inUse": false
+    },
+    { //20
+      "name": "1920x1080 30P ULTRA",
+      "inUse": true
+    },
+    { //21
+      "name": "???? 1600x1200 30P",
+      "inUse": false
+    },
+    { //22
+      "name": "???? 1920x1080 24P",
+      "inUse": false
+    },
+    { //23
+      "name": "???? 1600x900 30P",
+      "inUse": false
+    },
+    { //24
+      "name": "???? 1280x720 60P",
+      "inUse": false
+    },
+    { //25
+      "name": "???? 1280x720 30P",
+      "inUse": false
+    },
+    { //26
+      "name": "???? HDR 1280x720 30P",
+      "inUse": false
+    },
+    { //27
+      "name": "???? 848x480 60P",
+      "inUse": false
+    },
+    { //28
+      "name": "???? 848x480 30P",
+      "inUse": false
+    },
+    { //28
+      "name": "???? 720x480 60P",
+      "inUse": false
+    },
+    { //30
+      "name": "???? 720x480 30P",
+      "inUse": false
+    },
+    { //31
+      "name": "???? 1280x960 60P",
+      "inUse": false
+    },
+    { //32
+      "name": "???? 1280x960 30P",
+      "inUse": false
+    },
+    { //33
+      "name": "???? 960x540 30P",
+      "inUse": false
+    },
+    { //34
+      "name": "???? 640x360 30P",
+      "inUse": false
+    },
+    { //35
+      "name": "???? 640x480 60P",
+      "inUse": false
+    },
+    { //36
+      "name": "???? 640x480 30P",
+      "inUse": false
+    },
+    { //37
+      "name": "???? 432x240 60P",
+      "inUse": false
+    },
+    { //38
+      "name": "???? 432x240 30P",
+      "inUse": false
+    },
+    { //39
+      "name": "???? 320x240 30P",
+      "inUse": false
+    },
+    { //40
+      "name": "???? 352x240 30P",
+      "inUse": false
+    },
+    { //41
+      "name": "???? 2560x1440 50P",
+      "inUse": false
+    },
+    { //42
+      "name": "???? 1920x1080 48P",
+      "inUse": false
+    },
+    { //43
+      "name": "1920x1080 24P",
+      "inUse": true
+    },
+    { //44
+      "name": "???? 1920x1080 15P",
+      "inUse": false
+    },
+    { //45
+      "name": "???? 1600x1200 48P",
+      "inUse": false
+    },
+    { //46
+      "name": "???? 1600x1200 24P",
+      "inUse": false
+    },
+    { //47
+      "name": "???? 1280x960 48P",
+      "inUse": false
+    },
+    { //48
+      "name": "???? 1280x960 24P",
+      "inUse": false
+    },
+    { //49
+      "name": "???? 1280x720 48P",
+      "inUse": false
+    },
+    { //50
+      "name": "???? 1280x720 24P",
+      "inUse": false
+    },
+    { //51
+      "name": "???? 848x480 48P",
+      "inUse": false
+    }, 
+    { //52
+      "name": "???? 848x480 24P",
+      "inUse": false
+    },
+    { //53
+      "name": "???? 640x480 48P",
+      "inUse": false
+    },
+    { //54
+      "name": "???? 640x480 24P",
+      "inUse": false
+    },
+    { //55
+      "name": "???? Precise",
+      "inUse": false
+    },
+    { //56
+      "name": "1920x1080 120P",
+      "inUse": true
+    },
+    { //57
+      "name": "???? 1920x1080 100P",
+      "inUse": false
+    },
+    { //58
+      "name": "1280x720 240P",
+      "inUse": true
+    },
+    { //59
+      "name": "???? 1280x720 200P",
+      "inUse": false
+    },
+    { //60
+      "name": "???? 1280x720 120P",
+      "inUse": false
+    },
+    { //61
+      "name": "???? 848x480 240P",
+      "inUse": false
+    },
+    { //62
+      "name": "???? 848x480 120P",
+      "inUse": false
+    },
+    { //63
+      "name": "???? 640x480 240P",
+      "inUse": false
+    },
+    { //64
+      "name": "???? 640x480 120P",
+      "inUse": false
+    },
+    { //65
+      "name": "???? 432x240 240P",
+      "inUse": false
+    },
+    { //66
+      "name": "???? 432x240 120P",
+      "inUse": false
+    },
+    { //67
+      "name": "???? 320x240 120P",
+      "inUse": false
+    },
+    { //68
+      "name": "???? 4000x3000 30P",
+      "inUse": false
+    },
+    { //69
+      "name": "3840x2160 30P ULTRA",
+      "inUse": true
+    },
+    { //70
+      "name": "???? 3840x2160 30P",
+      "inUse": false
+    },
+    { //71
+      "name": "1920x1080 60P ULTRA",
+      "inUse": true
+    },
+    { //72
+      "name": "???? 3840x2160 30P",
+      "inUse": false
+    },
+    { //73
+      "name": "???? 3840x2160 30P",
+      "inUse": false
+    },
+    { //74
+      "name": "2560x1440 24P",
+      "inUse": true
+    },
+    { //75
+      "name": "???? 3840x2160 30P",
+      "inUse": false
+    },
+    { //76
+      "name": "???? 3840x2160 30P",
+      "inUse": false
+    },
+    { //77
+      "name": "???? 3840x2160 30P",
+      "inUse": false
+    },
+    { //78 
+      "name": "2720x1520 24P",
+      "inUse": true
+    },
+    { //79
+      "name": "2720x1520 25P",
+      "inUse": true
+    },
+    { //80
+      "name": "2720x1520 30P",
+      "inUse": true
+    },
+    { //81
+      "name": "???? 3840x2160 30P",
+      "inUse": false
+    }, 
+    { //82
+      "name": "3840x2160 24P",
+      "inUse": true
+    },
+    { //83
+      "name": "3840x2160 24P ULTRA",
+      "inUse": true
+    },
+    { //84
+      "name": "???? 3840x2160 30P",
+      "inUse": false
+    },
+    { //85
+      "name": "???? 3840x2160 30P",
+      "inUse": false
+    }
+  ],
+  "qualities": [
+    "fine",
+    "standard",
+    "economy"
+  ],
+  "bitratesTableAddress": 25333104,
+  "gopTableAddress": 25348588,
+
+  "validate": {
+     "bitrate": {"min":1, "max":120},
+     "min": {"min":0.75, "max":1.0},
+     "max": {"min":1.0, "max":1.25}
+  }
+}

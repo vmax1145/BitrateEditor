@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public abstract class FirmwareTool<T extends FirmwareConfig> extends JFrame {
 
-    public abstract String getStartMessage();
+    public abstract String getStartMessage(FirmwareConfig cfg);
     public abstract void init(FirmwareConfig cfg, byte[] fwBytes);
 
     public abstract Class<T> getConfigClz();

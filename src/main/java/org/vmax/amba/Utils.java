@@ -2,7 +2,7 @@ package org.vmax.amba;
 
 import org.apache.commons.io.FileUtils;
 import org.vmax.amba.bitrate.VerifyException;
-import org.vmax.amba.cfg.bitrate.BitrateEditorConfig;
+import org.vmax.amba.bitrate.config.BitrateEditorConfig;
 import org.vmax.amba.cfg.FirmwareConfig;
 import org.vmax.amba.cfg.Verify;
 import org.vmax.amba.plugins.PostProcessor;
@@ -159,4 +159,55 @@ public class Utils {
 
             FileUtils.writeByteArrayToFile(out, fwBytes);
     }
+
+
+    //------------------
+
+
+
+    public static long readUShort(byte[] fw, int addr)  {
+        ByteBuffer bb = ByteBuffer.wrap(fw, addr, Short.BYTES);
+        bb.order(ByteOrder.LITTLE_ENDIAN);
+        return bb.getShort() & 0xffffL;
+    }
+
+
+    public static void writeUShort(byte[] fw, int addr, long val) {
+        ByteBuffer bb = ByteBuffer.wrap(fw,addr,Short.BYTES);
+        bb.order(ByteOrder.LITTLE_ENDIAN);
+        bb.putShort((short) val);
+    }
+
+
+    public static String hex(long v, int digits) {
+        String s = Long.toHexString(v & 0xffffffffL);
+        while (s.length()<digits) {
+            s="0"+s;
+        }
+        return s ;
+    }
+
+
+//    public static byte[] loadTable(Config cfg) throws IOException {
+//        File f = new File(cfg.getFileName());
+//        if(!f.exists()) {
+//            System.out.println("File "+cfg.getFileName()+" not found");
+//            System.exit(0);
+//        }
+//        int len = cfg.getNcol() * cfg.getNrow() * cfg.getType().getByteLen();
+//        byte[] bytes = new byte[len];
+//        try (FileInputStream fis = new FileInputStream(f)) {
+//            fis.skip(cfg.getTableAddr());
+//            fis.read(bytes);
+//        }
+//        return bytes;
+//    }
+
+    public static long readUByte(byte[] fw, int addr)  {
+        return fw[addr] & 0xffL;
+    }
+    public static void writeUByte(byte[] fw, int addr, long val) {
+        fw[addr]= (byte) val;
+    }
+
 }

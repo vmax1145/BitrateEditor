@@ -25,7 +25,7 @@ public class AppMain {
 
 
 
-        System.out.println(tool.getStartMessage());
+        System.out.println(tool.getStartMessage(cfg));
         System.out.print("Are you sure you want to continue (Y/N):");
         char[] in = new char[1];
         int n = new InputStreamReader(System.in).read(in);

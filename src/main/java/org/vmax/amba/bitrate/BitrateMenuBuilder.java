@@ -1,8 +1,7 @@
 package org.vmax.amba.bitrate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.vmax.amba.DetectGenerator;
-import org.vmax.amba.cfg.bitrate.BitrateEditorConfig;
+import org.vmax.amba.bitrate.config.BitrateEditorConfig;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -172,7 +171,7 @@ public class BitrateMenuBuilder {
         advancedMenu.add(new AbstractAction("Generate test bitrates") {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DetectGenerator.generate(bitrates);
+                BitrateGenerator.generate(bitrates);
                 editorPanel.onDataChange();
             }
         });

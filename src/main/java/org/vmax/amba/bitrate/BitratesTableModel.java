@@ -1,7 +1,6 @@
 package org.vmax.amba.bitrate;
 
-import org.vmax.amba.cfg.bitrate.BitrateEditorConfig;
-import org.vmax.amba.data.RangedFloat;
+import org.vmax.amba.bitrate.config.BitrateEditorConfig;
 
 import javax.swing.table.AbstractTableModel;
 

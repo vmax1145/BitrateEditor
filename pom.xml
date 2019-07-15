@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.vmax</groupId>
-    <artifactId>bitrate-editor</artifactId>
-    <version>2.0-SNAPSHOT</version>
+    <artifactId>firmware-editor-tool</artifactId>
+    <version>3.0-SNAPSHOT</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -58,7 +58,11 @@
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>${jfree.chart.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
