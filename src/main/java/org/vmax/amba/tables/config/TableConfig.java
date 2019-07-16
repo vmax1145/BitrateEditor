@@ -27,7 +27,6 @@ public class TableConfig extends FirmwareConfig {
         }
     }
 
-    private String fileName;
     private int tableAddr;
     private int ncol;
     private int nrow;

@@ -34,13 +34,13 @@
     }
   ],
 
-  "tableAddr": 5908592,
-  "ncol": 10,
-  "nrow": 13,
+  "tableAddr": 31896748,
+  "ncol": 25,
+  "nrow": 90,
   "range": {
     "min": -1000,
     "max": 1000
   },
-  "type": "UInt32"
+  "type": "Int16"
 
 }

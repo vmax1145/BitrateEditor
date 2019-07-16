@@ -108,7 +108,7 @@ public class TablesTool  extends FirmwareTool<TableConfig> {
         fileMenu.add(new AbstractAction("Save") {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try(RandomAccessFile raf = new RandomAccessFile(new File(cfg.getFileName()),"rw")) {
+                try(RandomAccessFile raf = new RandomAccessFile(new File(cfg.getFwFileName()),"rw")) {
                     raf.seek(cfg.getTableAddr());
                     raf.write(model.getBytes());
                     JOptionPane.showMessageDialog(TablesTool.this,"File updated" );
