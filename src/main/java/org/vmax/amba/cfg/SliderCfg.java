@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Slider {
+public class SliderCfg {
     private int addr;
     private String name;
     private Type   type;

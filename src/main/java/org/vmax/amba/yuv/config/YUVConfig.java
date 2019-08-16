@@ -13,6 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 public class YUVConfig extends FirmwareConfig {
 
-    private List<YUVTab> tabs = new ArrayList<>();
+    private List<YUVTabCfg> tabs = new ArrayList<>();
 
 }
