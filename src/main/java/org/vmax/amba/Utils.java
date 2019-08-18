@@ -2,7 +2,6 @@ package org.vmax.amba;
 
 import org.apache.commons.io.FileUtils;
 import org.vmax.amba.bitrate.VerifyException;
-import org.vmax.amba.bitrate.config.BitrateEditorConfig;
 import org.vmax.amba.cfg.FirmwareConfig;
 import org.vmax.amba.cfg.Verify;
 import org.vmax.amba.plugins.PostProcessor;
@@ -138,7 +137,7 @@ public class Utils {
         return fwBytes;
     }
 
-    public static void saveFirmware(BitrateEditorConfig cfg, byte[] fwBytes ) throws Exception {
+    public static void saveFirmware(FirmwareConfig cfg, byte[] fwBytes ) throws Exception {
             File out = new File(cfg.getFwFileName() + ".mod");
             if(out.exists()) {
                 JOptionPane.showMessageDialog(null,"File "+out.getName()+" already exists");

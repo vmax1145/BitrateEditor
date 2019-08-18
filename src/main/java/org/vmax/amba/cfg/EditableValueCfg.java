@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class SliderCfg {
+public class EditableValueCfg {
     private int addr;
     private String name;
     private Type   type;

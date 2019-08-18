@@ -36,7 +36,7 @@
 
   "tabs": [
     { "name":"Photo VIVID",
-      "sliders":[
+      "editables":[
         {"name":"Y" ,        "addr":34365974, "type":"Int16", "range":{ "min":0,"max":4096} },
         {"name":"U" ,        "addr":34365982, "type":"Int16", "range":{ "min":0,"max":4096} },
         {"name":"V" ,        "addr":34365990, "type":"Int16", "range":{ "min":0,"max":4096} },
@@ -46,7 +46,7 @@
       ]
     },
     { "name":"Photo FLAT",
-      "sliders":[
+      "editables":[
         {"name":"Y" ,        "addr":34366098, "type":"Int16", "range":{ "min":0,"max":4096} },
         {"name":"U" ,        "addr":34366106, "type":"Int16", "range":{ "min":0,"max":4096} },
         {"name":"V" ,        "addr":34366114, "type":"Int16", "range":{ "min":0,"max":4096} },
@@ -56,7 +56,7 @@
       ]
     },
     { "name":"Video VIVID",
-      "sliders":[
+      "editables":[
         {"name":"Y" ,        "addr":34390550, "type":"Int16", "range":{ "min":0,"max":4096} },
         {"name":"U" ,        "addr":34390558, "type":"Int16", "range":{ "min":0,"max":4096} },
         {"name":"V" ,        "addr":34390566, "type":"Int16", "range":{ "min":0,"max":4096} },
@@ -66,7 +66,7 @@
       ]
     },
     { "name":"Video FLAT",
-      "sliders":[
+      "editables":[
         {"name":"Y" ,        "addr":34390674, "type":"Int16", "range":{ "min":0,"max":4096} },
         {"name":"U" ,        "addr":34390682, "type":"Int16", "range":{ "min":0,"max":4096} },
         {"name":"V" ,        "addr":34390690, "type":"Int16", "range":{ "min":0,"max":4096} },
