@@ -3,12 +3,11 @@ package org.vmax.amba.yuv;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.vmax.amba.FirmwareTool;
 import org.vmax.amba.Utils;
-import org.vmax.amba.cfg.ShortValueCfg;
+import org.vmax.amba.cfg.EditableValueCfg;
 import org.vmax.amba.cfg.FirmwareConfig;
 import org.vmax.amba.data.SingleShortData;
 import org.vmax.amba.yuv.config.YUVConfig;
 import org.vmax.amba.yuv.config.YUVTabCfg;
-import org.vmax.amba.yuv.ui.SpringUtilities;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
