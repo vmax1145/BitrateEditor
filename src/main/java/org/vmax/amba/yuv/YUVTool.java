@@ -70,7 +70,8 @@ public class YUVTool extends FirmwareTool<YUVConfig> {
             JSlider sliderField = new JSlider(e.getRange().getMin(),e.getRange().getMax(),Math.round(e.getValue()));
             label.setLabelFor(sliderField);
             p.add(sliderField);
-            JLabel val=new JLabel("       ");
+            JTextField val=new JTextField(4);
+            val.setEditable(false);
             p.add(val);
             val.setText(Short.toString(e.getValue()));
             sliderField.addChangeListener(e1 -> {
