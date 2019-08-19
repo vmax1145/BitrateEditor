@@ -3,7 +3,7 @@ package org.vmax.amba.yuv;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.vmax.amba.FirmwareTool;
 import org.vmax.amba.Utils;
-import org.vmax.amba.cfg.EditableValueCfg;
+import org.vmax.amba.cfg.ShortValueCfg;
 import org.vmax.amba.cfg.FirmwareConfig;
 import org.vmax.amba.data.SingleShortData;
 import org.vmax.amba.yuv.config.YUVConfig;
@@ -42,7 +42,7 @@ public class YUVTool extends FirmwareTool<YUVConfig> {
 
             System.out.println(tabCfg.getName());
             YUVTabData tabData = new YUVTabData();
-            for(EditableValueCfg slider :  tabCfg.getEditables()) {
+            for(ShortValueCfg slider :  tabCfg.getEditables()) {
                 SingleShortData svdata = new SingleShortData();
                 svdata.setName(slider.getName());
                 svdata.setRange(slider.getRange());
@@ -67,14 +67,21 @@ public class YUVTool extends FirmwareTool<YUVConfig> {
         for(SingleShortData e : tabData) {
             JLabel label = new JLabel(e.getName(), JLabel.TRAILING);
             p.add(label);
-            JTextField textField = new JTextField(10);
-            textField.setText(Short.toString(e.getValue()));
-            label.setLabelFor(textField);
-            p.add(textField);
+            JSlider sliderField = new JSlider(e.getRange().getMin(),e.getRange().getMax(),Math.round(e.getValue()));
+            label.setLabelFor(sliderField);
+            p.add(sliderField);
+            JLabel val=new JLabel("       ");
+            p.add(val);
+            val.setText(Short.toString(e.getValue()));
+            sliderField.addChangeListener(e1 -> {
+                int v = sliderField.getValue();
+                val.setText(Short.toString((short) v));
+            });
+
         }
 
         SpringUtilities.makeCompactGrid(p,
-                tabData.size(), 2, //rows, cols
+                tabData.size(), 3, //rows, cols
                 6, 6,        //initX, initY
                 6, 6);
 

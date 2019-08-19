@@ -4,7 +4,7 @@ package org.vmax.amba.yuv.config;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.vmax.amba.cfg.EditableValueCfg;
+import org.vmax.amba.cfg.ShortValueCfg;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +16,6 @@ public class YUVTabCfg {
 
     private String name;
 
-    private List<EditableValueCfg> editables = new ArrayList<>();
+    private List<ShortValueCfg> editables = new ArrayList<>();
 }
 

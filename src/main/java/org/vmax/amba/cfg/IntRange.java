@@ -7,9 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class EditableValueCfg {
-    private int addr;
-    private String name;
-    private Type   type;
-    private Range  range;
+public class IntRange {
+    private int min;
+    private int max;
 }
