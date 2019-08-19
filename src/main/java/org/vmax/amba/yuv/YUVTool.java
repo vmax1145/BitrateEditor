@@ -8,7 +8,8 @@ import org.vmax.amba.cfg.ShortValueCfg;
 import org.vmax.amba.data.SingleShortData;
 import org.vmax.amba.yuv.config.YUVConfig;
 import org.vmax.amba.yuv.config.YUVTabCfg;
-import org.vmax.amba.yuv.ui.SpringUtilities;
+import org.vmax.amba.yuv.ui.ImageView;
+import org.vmax.amba.yuv.ui.SlidersPanel;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -18,6 +19,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 public class YUVTool extends FirmwareTool<YUVConfig> {
 
@@ -36,7 +38,7 @@ public class YUVTool extends FirmwareTool<YUVConfig> {
         JMenuBar bar = buildMenu(yuvCfg, fwBytes);
 
         JTabbedPane tabs = new JTabbedPane();
-        tabs.setPreferredSize(new Dimension(800,500));
+        tabs.setPreferredSize(new Dimension(1400,800));
         add(tabs, BorderLayout.CENTER);
         for(YUVTabCfg tabCfg : yuvCfg.getTabs()) {
 
@@ -53,43 +55,28 @@ public class YUVTool extends FirmwareTool<YUVConfig> {
                 System.out.println(slider.getName()+" "+svdata.getAddr()+":"+svdata.getOriginalValue()+"->"+svdata.getValue());
             }
             data.add(tabData);
-            tabs.add(tabCfg.getName(),createTab(tabData));
+            tabs.add(tabCfg.getName(),createTab(tabData, tabCfg.getImageSample()));
         }
         setJMenuBar(bar);
         pack();
         setVisible(true);
     }
 
-    private Component createTab(YUVTabData tabData) {
+    private Component createTab(YUVTabData tabData, String imagePath) {
         JPanel borderP = new JPanel(new BorderLayout());
         JPanel wrap = new JPanel();
-        JPanel p = new JPanel(new SpringLayout());
-        for(SingleShortData e : tabData) {
-            JLabel label = new JLabel(e.getName(), JLabel.TRAILING);
-            p.add(label);
-            JSlider sliderField = new JSlider(e.getRange().getMin(),e.getRange().getMax(),Math.round(e.getValue()));
-            label.setLabelFor(sliderField);
-            p.add(sliderField);
-            JTextField val=new JTextField(4);
-            val.setEditable(false);
-            p.add(val);
-            val.setText(Short.toString(e.getValue()));
-            sliderField.addChangeListener(e1 -> {
-                int v = sliderField.getValue();
-                val.setText(Short.toString((short) v));
-            });
 
-        }
-
-        SpringUtilities.makeCompactGrid(p,
-                tabData.size(), 3, //rows, cols
-                6, 6,        //initX, initY
-                6, 6);
+        java.util.List<Integer> vals =tabData.stream().map(d->(int)(d.getOriginalValue())).collect(Collectors.toList());
+        ImageView imageView = new ImageView(imagePath,vals);
+        borderP.add(imageView, BorderLayout.CENTER);
+        SlidersPanel p = new SlidersPanel(tabData);
+        p.addListener(imageView);
 
         wrap.add(p);
         borderP.add(wrap, BorderLayout.WEST);
         return borderP;
     }
+
 
 
     private JMenuBar buildMenu(YUVConfig cfg, byte[] fwBytes) {
