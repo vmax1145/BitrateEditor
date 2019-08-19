@@ -15,7 +15,8 @@ import java.util.List;
 public class YUVTabCfg {
 
     private String name;
-
+    private String imageSample;
     private List<ShortValueCfg> editables = new ArrayList<>();
+
 }
 
