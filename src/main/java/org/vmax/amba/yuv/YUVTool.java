@@ -49,10 +49,10 @@ public class YUVTool extends FirmwareTool<YUVConfig> {
                 svdata.setName(slider.getName());
                 svdata.setRange(slider.getRange());
                 svdata.setAddr(slider.getAddr());
-                svdata.setOriginalValue((short) Utils.readUShort(fwBytes,slider.getAddr()));
-                svdata.setValue(svdata.getOriginalValue());
+                svdata.setValue((short) Utils.readUShort(fwBytes,slider.getAddr()));
+                svdata.setType(org.vmax.amba.cfg.Type.Int16);
                 tabData.add(svdata);
-                System.out.println(slider.getName()+" "+svdata.getAddr()+":"+svdata.getOriginalValue()+"->"+svdata.getValue());
+                System.out.println(slider.getName()+" "+svdata.getAddr()+":"+svdata.getValue());
             }
             data.add(tabData);
             tabs.add(tabCfg.getName(),createTab(tabData, tabCfg.getImageSample()));
@@ -66,7 +66,7 @@ public class YUVTool extends FirmwareTool<YUVConfig> {
         JPanel borderP = new JPanel(new BorderLayout());
         JPanel wrap = new JPanel();
 
-        java.util.List<Integer> vals =tabData.stream().map(d->(int)(d.getOriginalValue())).collect(Collectors.toList());
+        java.util.List<Integer> vals = tabData.stream().map(d->(int)(d.getValue())).collect(Collectors.toList());
         ImageView imageView = new ImageView(imagePath,vals);
         borderP.add(imageView, BorderLayout.CENTER);
         SlidersPanel p = new SlidersPanel(tabData);
@@ -135,7 +135,9 @@ public class YUVTool extends FirmwareTool<YUVConfig> {
                                 throw new Exception("Invalid data in import");
                             }
                             for (int j = 0; j < yuvTabData.size(); j++) {
-                                yuvTabData.get(j).setValue(inTabData.get(j).getValue());
+                                short val = inTabData.get(j).getValue();
+                                yuvTabData.get(j).setValue(val);
+                                yuvTabData.get(j).getSlider().setValue(val);
                             }
                         }
                     }

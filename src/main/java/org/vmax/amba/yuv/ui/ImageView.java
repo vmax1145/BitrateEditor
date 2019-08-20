@@ -50,10 +50,10 @@ public class ImageView extends JPanel implements SliderValuesListener {
     }
 
     private int filterRGB(int x, int y, int rgb) {
-        int[] yuv = rgbToYCbCr(rgb);
-        yuv[0] = (yuv[0]-Yoffset)*inY/Y + inYoffset;
-        yuv[1] = (yuv[1]-Uoffset)*inU/U + inUoffset;
-        yuv[2] = (yuv[2]-Voffset)*inV/V + inVoffset;
+        float[] yuv = rgbToYCbCr(rgb);
+        yuv[0] = (yuv[0]-16-Yoffset)*inY/Y + inYoffset+16;
+        yuv[1] = (yuv[1]-128f-Uoffset)*inU/U + inUoffset + 128.f;
+        yuv[2] = (yuv[2]-128f-Voffset)*inV/V + inVoffset + 128.f;
         return ycbcrToRgb(yuv);
     }
 
@@ -84,29 +84,29 @@ public class ImageView extends JPanel implements SliderValuesListener {
     }
 
 
-    private static int[] rgbToYCbCr( int rgb) {
+    private static float[] rgbToYCbCr( int rgb) {
         // multiply coefficients in book by 1024, which is 2^10
         int r = (rgb>>16)&0xff;
         int g = (rgb>>8)&0xff;
         int b = (rgb)&0xff;
-        int[] yuv = new int[3];
+        float[] yuv = new float[3];
         yuv[0] = (( 187*r + 629*g + 63*b ) >> 10) + 16;
         yuv[1] = ((-103*r - 346*g + 450*b) >> 10) + 128;
         yuv[2] = (( 450*r - 409*g - 41*b ) >> 10) + 128;
         return yuv;
     }
 
-    private static int ycbcrToRgb( int[] yuv ) {
+    private static int ycbcrToRgb( float[] yuv ) {
         // multiply coefficients in book by 1024, which is 2^10
-        int y=yuv[0];
+        float y=yuv[0];
         y = 1191*(y - 16);
         if( y < 0 ) y = 0;
-        int cb = yuv[1]-128;
-        int cr = yuv[2]-128;
+        float cb = yuv[1]-128;
+        float cr = yuv[2]-128;
 
-        int r = (y + 1836*cr) >> 10;
-        int g = (y - 547*cr - 218*cb) >> 10;
-        int b = (y + 2165*cb) >> 10;
+        int r = ((int)(y + 1836*cr)) >> 10;
+        int g = ((int)(y - 547*cr - 218*cb)) >> 10;
+        int b = ((int)(y + 2165*cb)) >> 10;
 
         if( r < 0 ) r = 0;
         else if( r > 255 ) r = 255;

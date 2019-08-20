@@ -18,6 +18,7 @@ public class SlidersPanel extends JPanel {
             JLabel label = new JLabel(e.getName(), JLabel.TRAILING);
             add(label);
             JSlider sliderField = new JSlider(e.getRange().getMin(),e.getRange().getMax(),Math.round(e.getValue()));
+            e.setSlider(sliderField);
             sliders.add(sliderField);
             label.setLabelFor(sliderField);
             add(sliderField);
@@ -29,6 +30,7 @@ public class SlidersPanel extends JPanel {
             sliderField.addChangeListener(e1 -> {
                 int v = sliderField.getValue();
                 val.setText(Short.toString((short) v));
+                e.setValue((short) v);
                 valuesChanged();
             });
         }
