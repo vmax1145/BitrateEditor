@@ -36,7 +36,7 @@
 
   "tabs": [
     { "name":"Video VIVID",
-      "imageSample": "samples/SJ8.v1.3.0.stock/Video_vivid.jpg",
+      "imageSample": "samples/SJ8.v1.3.0.stock/video_vivid.jpg",
       "editables":[
         {"name":"Y" ,        "addr":34365974, "type":"Int16", "range":{ "min":0,"max":2048}},
         {"name":"U" ,        "addr":34365982, "type":"Int16", "range":{ "min":0,"max":2048} },
@@ -47,7 +47,7 @@
       ]
     },
     { "name":"Video FLAT",
-      "imageSample": "samples/SJ8.v1.3.0.stock/Video_flat.jpg",
+      "imageSample": "samples/SJ8.v1.3.0.stock/video_flat.jpg",
       "editables":[
         {"name":"Y" ,        "addr":34366098, "type":"Int16", "range":{ "min":0,"max":2048} },
         {"name":"U" ,        "addr":34366106, "type":"Int16", "range":{ "min":0,"max":2048} },
@@ -58,7 +58,7 @@
       ]
     },
     { "name":"Photo VIVID",
-      "imageSample": "samples/SJ8.v1.3.0.stock/Photo_vivid.jpg",
+      "imageSample": "samples/SJ8.v1.3.0.stock/photo_vivid.jpg",
       "editables":[
         {"name":"Y" ,        "addr":34390550, "type":"Int16", "range":{ "min":0,"max":2048} },
         {"name":"U" ,        "addr":34390558, "type":"Int16", "range":{ "min":0,"max":2048} },
@@ -69,7 +69,7 @@
       ]
     },
     { "name":"Photo FLAT",
-      "imageSample": "samples/SJ8.v1.3.0.stock/Photo_flat.jpg",
+      "imageSample": "samples/SJ8.v1.3.0.stock/photo_flat.jpg",
       "editables":[
         {"name":"Y" ,        "addr":34390674, "type":"Int16", "range":{ "min":0,"max":2048} },
         {"name":"U" ,        "addr":34390682, "type":"Int16", "range":{ "min":0,"max":2048} },
