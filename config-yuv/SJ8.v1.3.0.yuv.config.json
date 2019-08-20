@@ -41,9 +41,9 @@
         {"name":"Y" ,        "addr":34365974, "type":"Int16", "range":{ "min":0,"max":2048}},
         {"name":"U" ,        "addr":34365982, "type":"Int16", "range":{ "min":0,"max":2048} },
         {"name":"V" ,        "addr":34365990, "type":"Int16", "range":{ "min":0,"max":2048} },
-        {"name":"Y-offset" , "addr":34365992, "type":"Int16", "range":{ "min":-1024,"max":1024} },
-        {"name":"U-offset" , "addr":34365994, "type":"Int16", "range":{ "min":-1024,"max":1024} },
-        {"name":"V-offset" , "addr":34365996, "type":"Int16", "range":{ "min":-1024,"max":1024} }
+        {"name":"Y-offset" , "addr":34365992, "type":"Int16", "range":{ "min":-128,"max":128} },
+        {"name":"U-offset" , "addr":34365994, "type":"Int16", "range":{ "min":-128,"max":128} },
+        {"name":"V-offset" , "addr":34365996, "type":"Int16", "range":{ "min":-128,"max":128} }
       ]
     },
     { "name":"Video FLAT",
@@ -52,9 +52,9 @@
         {"name":"Y" ,        "addr":34366098, "type":"Int16", "range":{ "min":0,"max":2048} },
         {"name":"U" ,        "addr":34366106, "type":"Int16", "range":{ "min":0,"max":2048} },
         {"name":"V" ,        "addr":34366114, "type":"Int16", "range":{ "min":0,"max":2048} },
-        {"name":"Y-offset" , "addr":34366116, "type":"Int16", "range":{ "min":-1024,"max":1024} },
-        {"name":"U-offset" , "addr":34366118, "type":"Int16", "range":{ "min":-1024,"max":1024} },
-        {"name":"V-offset" , "addr":34366120, "type":"Int16", "range":{ "min":-1024,"max":1024} }
+        {"name":"Y-offset" , "addr":34366116, "type":"Int16", "range":{ "min":-128,"max":128} },
+        {"name":"U-offset" , "addr":34366118, "type":"Int16", "range":{ "min":-128,"max":128} },
+        {"name":"V-offset" , "addr":34366120, "type":"Int16", "range":{ "min":-128,"max":128} }
       ]
     },
     { "name":"Photo VIVID",
@@ -63,9 +63,9 @@
         {"name":"Y" ,        "addr":34390550, "type":"Int16", "range":{ "min":0,"max":2048} },
         {"name":"U" ,        "addr":34390558, "type":"Int16", "range":{ "min":0,"max":2048} },
         {"name":"V" ,        "addr":34390566, "type":"Int16", "range":{ "min":0,"max":2048} },
-        {"name":"Y-offset" , "addr":34390568, "type":"Int16", "range":{ "min":-1024,"max":1024} },
-        {"name":"U-offset" , "addr":34390570, "type":"Int16", "range":{ "min":-1024,"max":1024} },
-        {"name":"V-offset" , "addr":34390572, "type":"Int16", "range":{ "min":-1024,"max":1024} }
+        {"name":"Y-offset" , "addr":34390568, "type":"Int16", "range":{ "min":-128,"max":128} },
+        {"name":"U-offset" , "addr":34390570, "type":"Int16", "range":{ "min":-128,"max":128} },
+        {"name":"V-offset" , "addr":34390572, "type":"Int16", "range":{ "min":-128,"max":128} }
       ]
     },
     { "name":"Photo FLAT",
@@ -74,9 +74,9 @@
         {"name":"Y" ,        "addr":34390674, "type":"Int16", "range":{ "min":0,"max":2048} },
         {"name":"U" ,        "addr":34390682, "type":"Int16", "range":{ "min":0,"max":2048} },
         {"name":"V" ,        "addr":34390690, "type":"Int16", "range":{ "min":0,"max":2048} },
-        {"name":"Y-offset" , "addr":34390692, "type":"Int16", "range":{ "min":-1024,"max":1024} },
-        {"name":"U-offset" , "addr":34390694, "type":"Int16", "range":{ "min":-1024,"max":1024} },
-        {"name":"V-offset" , "addr":34390696, "type":"Int16", "range":{ "min":-1024,"max":1024} }
+        {"name":"Y-offset" , "addr":34390692, "type":"Int16", "range":{ "min":-128,"max":128} },
+        {"name":"U-offset" , "addr":34390694, "type":"Int16", "range":{ "min":-128,"max":128} },
+        {"name":"V-offset" , "addr":34390696, "type":"Int16", "range":{ "min":-128,"max":128} }
       ]
     }
   ]
