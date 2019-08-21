@@ -1,28 +1,21 @@
 package org.vmax.amba.bitrate;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.vmax.amba.bitrate.config.BitrateEditorConfig;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.xml.bind.ValidationException;
 import java.awt.event.ActionEvent;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
 
 public class BitrateMenuBuilder {
 
-    private final BitrateTool bitrateEditor;
+    private final JMenuBar bar;
     private EditorPanel editorPanel;
     private Bitrate[] bitrates;
     private Bitrate[] bitratesFiltered;
     private BitrateEditorConfig cfg;
     private BitrateCalcDialog bitrateCalcDialog;
 
-    public BitrateMenuBuilder(BitrateTool bitrateEditor) {
-        this.bitrateEditor = bitrateEditor;
+    public BitrateMenuBuilder(JMenuBar jMenuBar) {
+        this.bar = jMenuBar;
     }
     public BitrateMenuBuilder with(EditorPanel editorPanel) {
         this.editorPanel = editorPanel;
@@ -47,98 +40,6 @@ public class BitrateMenuBuilder {
     }
 
     public JMenuBar build() {
-        JMenuBar bar = new JMenuBar();
-        JMenu fileMenu = new JMenu("File");
-        bar.add(fileMenu);
-
-        fileMenu.add(new AbstractAction("Export bitrates") {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser jfc = new JFileChooser(new File(".\\"));
-                FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON files", "json");
-                jfc.addChoosableFileFilter(filter);
-                int returnValue = jfc.showSaveDialog(bitrateEditor);
-                if (returnValue == JFileChooser.APPROVE_OPTION) {
-                    File selectedFile = jfc.getSelectedFile();
-                    if(selectedFile.exists()) {
-                        int dialogResult = JOptionPane.showConfirmDialog (jfc, "Owerwrite existing file?","Warning",JOptionPane.YES_NO_OPTION);
-                        if(dialogResult != JOptionPane.YES_OPTION){
-                            return;
-                        }
-                    }
-                    try {
-                        try(FileWriter fw = new FileWriter(selectedFile)) {
-                            new ObjectMapper().writer().writeValue(fw,bitrates);
-                        }
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
-                }
-            }
-        });
-
-        fileMenu.add(new AbstractAction("Import bitrates") {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser jfc = new JFileChooser(new File(".\\"));
-                FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON files", "json");
-                jfc.addChoosableFileFilter(filter);
-                int returnValue = jfc.showOpenDialog(bitrateEditor);
-                if (returnValue == JFileChooser.APPROVE_OPTION) {
-                    File selectedFile = jfc.getSelectedFile();
-                    if(!selectedFile.exists()) {
-                        JOptionPane.showConfirmDialog (jfc, "File not exists","Warning",JOptionPane.OK_OPTION);
-                        return;
-                    }
-                    try {
-                        try (FileInputStream fis = new FileInputStream(selectedFile)) {
-                            Bitrate[] bitratesLoaded = new ObjectMapper().readerFor(Bitrate[].class).readValue(fis);
-                            if(bitrates.length != bitratesLoaded.length) {
-                                JOptionPane.showConfirmDialog (jfc, "File not match configuration","Warning",JOptionPane.OK_OPTION);
-                            }
-                            if(cfg.getQualities().length != bitratesLoaded[0].getMbps().length) {
-                                JOptionPane.showConfirmDialog (jfc, "File not match configuration","Warning",JOptionPane.OK_OPTION);
-                            }
-
-                            if(bitratesLoaded.length != bitrates.length) {
-                                throw new ValidationException("Video modes are different");
-                            }
-                            for (int i = 0; i < bitratesLoaded.length; i++) {
-                                if( !bitratesLoaded[i].getName().equals(bitrates[i].getName()) ) {
-                                    throw new ValidationException("Video modes are different");
-                                }
-                            }
-
-                            for (int i = 0; i < bitrates.length; i++) {
-                                Bitrate b = bitrates[i];
-                                b.fillFrom(bitratesLoaded[i]);
-                            }
-                            editorPanel.onDataChange();
-                        }
-                    }
-                    catch (Exception e1) {
-                        e1.printStackTrace();
-                    }
-                }
-            }
-        });
-
-
-
-        fileMenu.add(new AbstractAction("Save") {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                bitrateEditor.updateFW(cfg,bitrates);
-            }
-        });
-
-        fileMenu.add(new AbstractAction("Exit") {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-
 
         JMenu toolsMenu = new JMenu("Tools");
         toolsMenu.add(new AbstractAction("Calculate") {
@@ -178,4 +79,6 @@ public class BitrateMenuBuilder {
         bar.add(advancedMenu);
         return bar;
     }
+
+
 }

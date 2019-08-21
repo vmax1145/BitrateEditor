@@ -1,16 +1,20 @@
 package org.vmax.amba.bitrate;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
-
 import org.vmax.amba.FirmwareTool;
 import org.vmax.amba.Utils;
 import org.vmax.amba.bitrate.config.BitrateEditorConfig;
 import org.vmax.amba.cfg.FirmwareConfig;
 
 import javax.swing.*;
+import javax.xml.bind.ValidationException;
 import java.awt.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 
 public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
@@ -35,6 +39,10 @@ public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
 
 
     private byte[] fwBytes;
+    private BitrateEditorConfig cfg;
+    private Bitrate[] bitrates;
+    private Bitrate[] bitratesFiltered;
+    private EditorPanel editorPanel;
 
     @Override
     public Class<BitrateEditorConfig> getConfigClz() {
@@ -47,8 +55,7 @@ public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
     }
 
     public void init(FirmwareConfig fcfg, byte[] fwBytes) {
-        BitrateEditorConfig cfg = (BitrateEditorConfig) fcfg;
-        Bitrate[] bitrates = null;
+        cfg = (BitrateEditorConfig) fcfg;
         this.fwBytes = fwBytes;
         if(cfg.getNote()!=null) {
             setTitle("BitrateEditor : "+cfg.getNote());
@@ -62,16 +69,15 @@ public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
             System.exit(0);
         }
 
-        Bitrate[] bitratesFiltered = Arrays.asList(bitrates)
-                .stream().filter(b->b.isInUse()).collect(Collectors.toList()).toArray(new Bitrate[0]);
+        Bitrate[] bitratesFiltered = Arrays.stream(bitrates)
+                .filter(Bitrate::isInUse)
+                .toArray(Bitrate[]::new);
 
         EditorPanel editorPanel = new EditorPanel(cfg, bitratesFiltered);
 
         BitrateCalcDialog bitrateCalcDialog = new BitrateCalcDialog(this, editorPanel, cfg, bitrates);
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        JMenuBar bar = new BitrateMenuBuilder(this)
+        JMenuBar bar = new BitrateMenuBuilder(super.buildMenu())
                 .with(editorPanel)
                 .with(cfg)
                 .with(bitrates,bitratesFiltered)
@@ -83,8 +89,6 @@ public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
         jsp.setPreferredSize(new Dimension(800,500));
         add(jsp, BorderLayout.CENTER);
         setJMenuBar(bar);
-        pack();
-        setVisible(true);
     }
 
 
@@ -158,10 +162,9 @@ public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
     }
 
 
-    public void updateFW(BitrateEditorConfig cfg, Bitrate[] bitrates) {
+    @Override
+    public void updateFW() {
         try {
-            byte[] fwBytes = Arrays.copyOf(this.fwBytes, this.fwBytes.length);
-
             for(Bitrate bitrate : bitrates) {
                 for(int j=0;j<cfg.getQualities().length; j++) {
                     int rowAddr = cfg.getBitratesTableAddress()+(bitrate.getInx()*cfg.getQualities().length+j)*16;
@@ -171,7 +174,6 @@ public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
                     Utils.writeFloat(fwBytes, rowAddr+12, bitrate.getMax());
                 }
             }
-
             if(cfg.getGopTableAddress() > 0) {
                 int addr = cfg.getGopTableAddress();
                 for (int i = 0; i < bitrates.length; i++) {
@@ -182,11 +184,56 @@ public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
                     addr += 4;
                 }
             }
-
             Utils.saveFirmware(cfg, fwBytes);
         }
         catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(this,"Oooops! See error stream for details" );
+        }
+    }
+
+    @Override
+    public void exportData(File selectedFile) {
+        try {
+            try(FileWriter fw = new FileWriter(selectedFile)) {
+                new ObjectMapper().writer().writeValue(fw,bitrates);
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this,"Oooops! See error stream for details" );
+        }
+    }
+
+    @Override
+    public void importData(File selectedFile) {
+        try {
+            try (FileInputStream fis = new FileInputStream(selectedFile)) {
+                Bitrate[] bitratesLoaded = new ObjectMapper().readerFor(Bitrate[].class).readValue(fis);
+                if(bitrates.length != bitratesLoaded.length) {
+                    JOptionPane.showMessageDialog (this, "File not match configuration","Warning",JOptionPane.ERROR_MESSAGE);
+                }
+                if(cfg.getQualities().length != bitratesLoaded[0].getMbps().length) {
+                    JOptionPane.showMessageDialog (this, "File not match configuration","Warning",JOptionPane.ERROR_MESSAGE);
+                }
+
+                if(bitratesLoaded.length != bitrates.length) {
+                    throw new ValidationException("Video modes are different");
+                }
+                for (int i = 0; i < bitratesLoaded.length; i++) {
+                    if( !bitratesLoaded[i].getName().equals(bitrates[i].getName()) ) {
+                        throw new ValidationException("Video modes are different");
+                    }
+                }
+
+                for (int i = 0; i < bitrates.length; i++) {
+                    Bitrate b = bitrates[i];
+                    b.fillFrom(bitratesLoaded[i]);
+                }
+                editorPanel.onDataChange();
+            }
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
             JOptionPane.showMessageDialog(this,"Oooops! See error stream for details" );
         }
     }

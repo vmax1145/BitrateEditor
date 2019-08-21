@@ -2,6 +2,7 @@ package org.vmax.amba;
 
 import org.vmax.amba.cfg.FirmwareConfig;
 
+import javax.swing.*;
 
 
 public class AppMain {
@@ -30,7 +31,11 @@ public class AppMain {
 //        if(n<=0 || !(in[0]=='Y' || in[0]=='y')) {
 //            System.exit(0);
 //        }
+        tool.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tool.init(cfg, fwBytes);
+        tool.pack();
+        tool.setVisible(true);
+
 
     }
 
