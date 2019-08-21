@@ -1,0 +1,84 @@
+{ "note":"SJ8 Pro v1.3.0 dummy tables edit",
+  "toolClass": "org.vmax.amba.yuv.YUVTool",
+  "preProcessor": {
+    "className":"org.vmax.amba.plugins.SJ8ProPocessor",
+    "md5fileName": "FWF1_MD5.ch"
+  },
+  "postProcessor": {
+    "className":"org.vmax.amba.plugins.SJ8ProPocessor",
+    "md5fileName": "FWF1_MD5.ch"
+  },
+
+  "fwFileName": "FWF1.bin",
+
+  "verify": [
+    {
+      "addr": 5272368,
+      "val": "FWF1"
+    },
+    {
+      "addr": 5273188,
+      "val": "F1-V1.2"
+    },
+    {
+      "addr": 5273196,
+      "val": "20180103"
+    },
+    {
+      //section crc
+      "addr":10791644,
+      "crc": {
+        "fromAddr":10791900,
+        "len":2973696
+      }
+    }
+  ],
+
+  "tabs": [
+    { "name":"Color GITUP",
+      "imageSample": "samples/GitUp_F1.v1.2.stock/color_gitup_video.jpg",
+      "editables":[
+        {"name":"Y" ,        "addr":13513730, "type":"Int16", "range":{ "min":0,"max":2048}},
+        {"name":"U" ,        "addr":13513738, "type":"Int16", "range":{ "min":0,"max":2048} },
+        {"name":"V" ,        "addr":13513746, "type":"Int16", "range":{ "min":0,"max":2048} },
+        {"name":"Y-offset" , "addr":13513748, "type":"Int16", "range":{ "min":-128,"max":128} },
+        {"name":"U-offset" , "addr":13513750, "type":"Int16", "range":{ "min":-128,"max":128} },
+        {"name":"V-offset" , "addr":13513752, "type":"Int16", "range":{ "min":-128,"max":128} }
+      ]
+    },
+    { "name":"COLOR KLGD (Sepia)",
+      "imageSample": "samples/GitUp_F1.v1.2.stock/color_sepia_video.jpg",
+      "editables":[
+        {"name":"Y" ,        "addr":13513854, "type":"Int16", "range":{ "min":0,"max":2048} },
+        {"name":"U" ,        "addr":13513862, "type":"Int16", "range":{ "min":0,"max":2048} },
+        {"name":"V" ,        "addr":13513870, "type":"Int16", "range":{ "min":0,"max":2048} },
+        {"name":"Y-offset" , "addr":13513872, "type":"Int16", "range":{ "min":-128,"max":128} },
+        {"name":"U-offset" , "addr":13513874, "type":"Int16", "range":{ "min":-128,"max":128} },
+        {"name":"V-offset" , "addr":13513876, "type":"Int16", "range":{ "min":-128,"max":128} }
+      ]
+    },
+    { "name":"Photo GITUP",
+      "imageSample": "samples/GitUp_F1.v1.2.stock/color_gitup_photo.jpg",
+      "editables":[
+        {"name":"Y" ,        "addr":13538306, "type":"Int16", "range":{ "min":0,"max":2048} },
+        {"name":"U" ,        "addr":13538314, "type":"Int16", "range":{ "min":0,"max":2048} },
+        {"name":"V" ,        "addr":13538322, "type":"Int16", "range":{ "min":0,"max":2048} },
+        {"name":"Y-offset" , "addr":13538324, "type":"Int16", "range":{ "min":-128,"max":128} },
+        {"name":"U-offset" , "addr":13538326, "type":"Int16", "range":{ "min":-128,"max":128} },
+        {"name":"V-offset" , "addr":13538328, "type":"Int16", "range":{ "min":-128,"max":128} }
+      ]
+    },
+    { "name":"Photo KLGD (Sepia)",
+      "imageSample": "samples/GitUp_F1.v1.2.stock/color_sepia_photo.jpg",
+      "editables":[
+        {"name":"Y" ,        "addr":13538430, "type":"Int16", "range":{ "min":0,"max":2048} },
+        {"name":"U" ,        "addr":13538438, "type":"Int16", "range":{ "min":0,"max":2048} },
+        {"name":"V" ,        "addr":13538446, "type":"Int16", "range":{ "min":0,"max":2048} },
+        {"name":"Y-offset" , "addr":13538448, "type":"Int16", "range":{ "min":-128,"max":128} },
+        {"name":"U-offset" , "addr":13538450, "type":"Int16", "range":{ "min":-128,"max":128} },
+        {"name":"V-offset" , "addr":13538452, "type":"Int16", "range":{ "min":-128,"max":128} }
+      ]
+    }
+  ]
+
+}
