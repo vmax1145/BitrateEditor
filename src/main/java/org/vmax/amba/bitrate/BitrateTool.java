@@ -73,7 +73,7 @@ public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
                 .filter(Bitrate::isInUse)
                 .toArray(Bitrate[]::new);
 
-        EditorPanel editorPanel = new EditorPanel(cfg, bitratesFiltered);
+        editorPanel = new EditorPanel(cfg, bitratesFiltered);
 
         BitrateCalcDialog bitrateCalcDialog = new BitrateCalcDialog(this, editorPanel, cfg, bitrates);
 
