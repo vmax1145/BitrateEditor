@@ -34,12 +34,16 @@
     }
   ],
 
-  "tableAddr": 31896748,
-  "ncol": 25,
-  "nrow": 90,
+  "tables": [
+    {"addr":31825636, "color":"red"},
+    {"addr":31826148, "color":"green"},
+    {"addr":31826660, "color":"blue"}
+  ],
+  "ncol": 16,
+  "nrow": 16,
   "range": {
-    "min": -1000,
-    "max": 1000
+    "min": 0,
+    "max": 1024
   },
   "type": "Int16"
 

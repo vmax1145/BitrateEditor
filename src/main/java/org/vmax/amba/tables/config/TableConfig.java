@@ -12,10 +12,11 @@ import org.vmax.amba.cfg.Type;
 @NoArgsConstructor
 public class TableConfig extends FirmwareConfig {
 
-    private int tableAddr;
+    private SingleTableConf[] tables;
     private int ncol;
     private int nrow;
     private Range range;
     private Type type;
+
 
 }
