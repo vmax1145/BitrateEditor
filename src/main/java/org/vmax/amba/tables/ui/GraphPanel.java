@@ -14,6 +14,7 @@ import org.jfree.data.xy.XYDataset;
 import org.vmax.amba.tables.Table2dModel;
 import org.vmax.amba.tables.config.SingleTableConf;
 import org.vmax.amba.tables.config.TableConfig;
+import org.vmax.amba.tables.config.TableSetConfig;
 import org.vmax.amba.tables.math.ChartPoint;
 import org.vmax.amba.tables.math.DouglassPeucker;
 import org.vmax.amba.tables.math.PointWithRange;
@@ -33,9 +34,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class GraphPanel extends ChartPanel implements TableModelListener {
+
 
 
     public enum Datasets {
@@ -51,8 +54,8 @@ public class GraphPanel extends ChartPanel implements TableModelListener {
     private List<Table2dModel> fileTableModels;
     private boolean[] enabledGraphs;
 
-    public static GraphPanel create(TableConfig cfg, List<Table2dModel> fileTableModels) {
-        JFreeChart chart = createChart(cfg,fileTableModels);
+    public static GraphPanel create(TableConfig cfg, TableSetConfig tsCfg, List<Table2dModel> fileTableModels) {
+        JFreeChart chart = createChart(cfg, tsCfg , fileTableModels);
         GraphPanel graphTable = new GraphPanel( chart, fileTableModels);
         graphTable.addMouseMotionListener(new MouseMotionAdapter(){
             @Override
@@ -93,7 +96,7 @@ public class GraphPanel extends ChartPanel implements TableModelListener {
                 }
         );
         graphTable.getPopupMenu().addSeparator();
-        SingleTableConf[] tables = cfg.getTables();
+        SingleTableConf[] tables = tsCfg.getTables();
         for (int i = 0; i < tables.length; i++) {
             SingleTableConf stcfg = tables[i];
             int inx = i;
@@ -117,6 +120,7 @@ public class GraphPanel extends ChartPanel implements TableModelListener {
     public GraphPanel( JFreeChart chart, List<Table2dModel> fileTableModels) {
         super(chart);
         this.enabledGraphs = new boolean[fileTableModels.size()];
+        Arrays.fill(enabledGraphs,true);
         this.plot = chart.getXYPlot();
         this.fileTableModels = fileTableModels;
         setDomainZoomable(false);
@@ -125,7 +129,7 @@ public class GraphPanel extends ChartPanel implements TableModelListener {
     }
 
 
-    private static JFreeChart createChart(TableConfig cfg, List<Table2dModel> fileTableModels)
+    private static JFreeChart createChart(TableConfig cfg, TableSetConfig tableSetConfig, List<Table2dModel> fileTableModels)
     {
         final JFreeChart chart = ChartFactory.createXYLineChart(
                 null,
@@ -162,7 +166,7 @@ public class GraphPanel extends ChartPanel implements TableModelListener {
         rangeAxis.setAutoRange(false);
         rangeAxis.setRange(cfg.getRange().getMin(),cfg.getRange().getMax());
 
-        SingleTableConf[] tables = cfg.getTables();
+        SingleTableConf[] tables = tableSetConfig.getTables();
         for (int i = 0; i < tables.length; i++) {
             SingleTableConf stcfg = tables[i];
             Color color = stcfg.getColor().getColor();
@@ -372,30 +376,35 @@ public class GraphPanel extends ChartPanel implements TableModelListener {
         }
     }
 
-
     @Override
     public void tableChanged(TableModelEvent e) {
         getChart().fireChartChanged();
+    }
+
+
+    public void updateSplineFromTable() {
+
         int inx = 0;
         selectedPoints.clear();
         for(Table2dModel fileTableModel : fileTableModels) {
             List<ChartPoint> reduced = createReducedPoints(fileTableModel);
-
             ((ReducedDataset) plot.getDataset(Datasets.REQUCED.ordinal()+inx)).updateReduced(reduced);
             ((SplineDataset) plot.getDataset(Datasets.SPLINE.ordinal()+inx)).updateSpline();
             inx+= Datasets.values().length;
         }
+        getChart().fireChartChanged();
     }
 
-    public void updateTable() {
+    public void updateTableFromSpline() {
         int inx=0;
+
         for(Table2dModel fileTableModel : fileTableModels) {
             for (int i = 0; i < fileTableModel.getColumnCount() * fileTableModel.getRowCount(); i++) {
                 Number v = plot.getDataset(Datasets.SPLINE.ordinal()+inx).getY(0, i);
                 fileTableModel.setValueAtInx(i, v);
             }
-            fileTableModel.fireTableDataChanged();
             inx+= Datasets.values().length;
+            fileTableModel.fireTableDataChanged();
         }
     }
 

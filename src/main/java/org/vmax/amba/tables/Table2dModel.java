@@ -9,7 +9,8 @@ import javax.swing.table.AbstractTableModel;
 
 public class Table2dModel extends AbstractTableModel {
 
-
+    @Getter
+    private final int addr;
 
     public enum ViewMode {
         DEC, HEX
@@ -24,8 +25,9 @@ public class Table2dModel extends AbstractTableModel {
     @Getter
     private byte[] bytes;
 
-    public Table2dModel(TableConfig cfg, byte bytes[]) {
+    public Table2dModel(TableConfig cfg, int addr, byte bytes[]) {
         this.cfg = cfg;
+        this.addr = addr;
         this.bytes = bytes;
     }
 
@@ -209,7 +211,6 @@ public class Table2dModel extends AbstractTableModel {
             default:
                 throw new IllegalArgumentException("Invalid datatype");
         }
-
     }
 
 }
