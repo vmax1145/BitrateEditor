@@ -1,6 +1,5 @@
 package org.vmax.amba.tables;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import org.apache.commons.io.FileUtils;
 import org.vmax.amba.FirmwareTool;
@@ -20,7 +19,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class TablesTool  extends FirmwareTool<TableConfig> {
 
@@ -77,36 +75,7 @@ public class TablesTool  extends FirmwareTool<TableConfig> {
 
         JMenuBar bar = buildMenu(cfg,fwBytes);
         setJMenuBar(bar);
-
-
-
-        int diff = 274432;
-        java.util.List<TableSetConfig> configs =  Arrays.stream(cfg.getTableSets())
-                .map( tsc-> {
-                    TableSetConfig tsc2 = new TableSetConfig();
-                    tsc2.setLabel("4K60");
-                    tsc2.setTables(
-
-                    Arrays.stream(tsc.getTables())
-                               .map( stc-> {
-                                   SingleTableConf stc2 = new SingleTableConf();
-                                   stc2.setColor(stc.getColor());
-                                   stc2.setLabel(stc.getLabel());
-                                   stc2.setAddr(stc.getAddr()+diff);
-                                   return stc2;
-                                   }
-                               ).collect(Collectors.toList()).toArray(new SingleTableConf[0])
-                    );
-                    return tsc2;
-                    }
-                ).collect(Collectors.toList());
-        try {
-            System.out.println(new ObjectMapper().writer().writeValueAsString(configs));
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        
     }
 
     private JMenuBar buildMenu(TableConfig cfg, byte[] fwBytes) {
