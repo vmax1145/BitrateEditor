@@ -109,8 +109,27 @@ public class GraphPanel extends ChartPanel implements TableModelListener {
                 }
             });
         }
+        graphTable.getPopupMenu().addSeparator();
+        graphTable.getPopupMenu().add(
+                new AbstractAction("Linear spline") {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        graphTable.linearSpline();
+                    }
+                }
+        );
+        graphTable.getPopupMenu().add(
+                new AbstractAction("Zero spline") {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        graphTable.zeroSpline();
+                    }
+                }
+        );
+
         return graphTable;
     }
+
 
     private void graphEnabled(int inx, boolean state) {
         enabledGraphs[inx] = state;
@@ -406,6 +425,30 @@ public class GraphPanel extends ChartPanel implements TableModelListener {
             inx+= Datasets.values().length;
             fileTableModel.fireTableDataChanged();
         }
+    }
+
+    private void linearSpline() {
+        int inx=0;
+        for(int i=0 ; i<fileTableModels.size(); i++) {
+            if(enabledGraphs[i]) {
+                ((ReducedDataset) plot.getDataset(Datasets.REQUCED.ordinal() + inx)).linear();
+                ((SplineDataset) plot.getDataset(Datasets.SPLINE.ordinal() + inx)).updateSpline();
+            }
+            inx+=Datasets.values().length;
+        }
+        getChart().fireChartChanged();
+    }
+
+    private void zeroSpline() {
+        int inx=0;
+        for(int i=0 ; i<fileTableModels.size(); i++) {
+            if(enabledGraphs[i]) {
+                ((ReducedDataset) plot.getDataset(Datasets.REQUCED.ordinal() + inx)).zero();
+                ((SplineDataset) plot.getDataset(Datasets.SPLINE.ordinal() + inx)).updateSpline();
+            }
+            inx+=Datasets.values().length;
+        }
+        getChart().fireChartChanged();
     }
 
 

@@ -99,4 +99,20 @@ public class ReducedDataset extends AbstractXYDataset {
         this.reducedPoints.clear();
         this.reducedPoints.addAll(reduced);
     }
+
+    public void linear() {
+        reducedPoints.clear();
+        ChartPoint start = new ChartPoint(0,cfg.getRange().getMin());
+        ChartPoint end   = new ChartPoint(cfg.getNcol()*cfg.getNrow(), cfg.getRange().getMax());
+        reducedPoints.add(start);
+        reducedPoints.add(end);
+    }
+
+    public void zero() {
+        reducedPoints.clear();
+        ChartPoint start = new ChartPoint(0,cfg.getRange().getMin());
+        ChartPoint end   = new ChartPoint(cfg.getNcol()*cfg.getNrow(), cfg.getRange().getMin());
+        reducedPoints.add(start);
+        reducedPoints.add(end);
+    }
 }

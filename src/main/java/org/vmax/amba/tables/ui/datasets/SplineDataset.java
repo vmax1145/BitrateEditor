@@ -59,4 +59,8 @@ public class SplineDataset extends AbstractXYDataset {
             function = new LinearInterpolator().interpolate(ax,ay);
         }
     }
+
+    public void linearSpline() {
+
+    }
 }
