@@ -19,6 +19,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class TablesTool  extends FirmwareTool<TableConfig> {
 
@@ -26,17 +27,11 @@ public class TablesTool  extends FirmwareTool<TableConfig> {
     private java.util.List<TableSet> tableSets = new ArrayList<>();
 
 
-    private class TableSet {
-        @Getter
-        private TableSetConfig tableSetConfig;
-        @Getter
-        private java.util.List<Table2dModel> models = new ArrayList<>();
-    }
-
-
-
-
     private byte[] fwBytes;
+    @Getter
+    private Table2dModel selectedModel=null;
+    @Getter
+    private TableSet selectedTableSet=null;
 
     public String getStartMessage(FirmwareConfig cfg) {
         return "Tables editor";
@@ -55,17 +50,17 @@ public class TablesTool  extends FirmwareTool<TableConfig> {
         for(TableSetConfig tableSetConfig : cfg.getTableSets()) {
             JPanel p = new JPanel();
             p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
-            p.setPreferredSize(new Dimension(800,900));
+            p.setPreferredSize(new Dimension(900,900));
 
             TableSet tableSet = new TableSet();
-            tableSet.tableSetConfig = tableSetConfig;
+            tableSet.setTableSetConfig(tableSetConfig);
             tableSets.add(tableSet);
             for (SingleTableConf stcfg : tableSetConfig.getTables()) {
                 byte[] bytes = loadTable(cfg, stcfg, fwBytes);
                 Table2dModel model = new Table2dModel(cfg, stcfg.getAddr(), bytes);
-                tableSet.models.add(model);
-                TableEditorPanel tableEditorPanel = new TableEditorPanel(cfg, model, stcfg.getColor().getColor());
-                tableEditorPanel.setPreferredSize(new Dimension(800, 300));
+                tableSet.getModels().add(model);
+                TableEditorPanel tableEditorPanel = new TableEditorPanel(this, cfg, tableSet, model, stcfg.getColor().getColor());
+                tableEditorPanel.setPreferredSize(new Dimension(900, 300));
                 p.add(tableEditorPanel);
 
             }
@@ -75,7 +70,7 @@ public class TablesTool  extends FirmwareTool<TableConfig> {
 
         JMenuBar bar = buildMenu(cfg,fwBytes);
         setJMenuBar(bar);
-        
+
     }
 
     private JMenuBar buildMenu(TableConfig cfg, byte[] fwBytes) {
@@ -98,9 +93,9 @@ public class TablesTool  extends FirmwareTool<TableConfig> {
 
         JMenu graphs = new JMenu("Graphs");
         for(TableSet ts : tableSets) {
-            JFrame curveFrame = new JFrame(ts.tableSetConfig.getLabel());
+            JFrame curveFrame = new JFrame(ts.getTableSetConfig().getLabel());
             curveFrame.setDefaultCloseOperation(HIDE_ON_CLOSE);
-            GraphPanel graphPanel = GraphPanel.create(cfg, ts.tableSetConfig, ts.getModels());
+            GraphPanel graphPanel = GraphPanel.create(cfg, ts.getTableSetConfig(), ts.getModels());
             JScrollPane sp = new JScrollPane(graphPanel);
             curveFrame.getContentPane().add(sp);
             JMenuBar curveBar = new JMenuBar();
@@ -120,7 +115,7 @@ public class TablesTool  extends FirmwareTool<TableConfig> {
                 }
             });
             curveFrame.pack();
-            graphs.add(new AbstractAction(ts.tableSetConfig.getLabel()) {
+            graphs.add(new AbstractAction(ts.getTableSetConfig().getLabel()) {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     curveFrame.setVisible(true);
@@ -140,7 +135,7 @@ public class TablesTool  extends FirmwareTool<TableConfig> {
         try {
             try(FileOutputStream fw = new FileOutputStream(selectedFile,false)) {
                 for(TableSet ts : tableSets) {
-                    for (Table2dModel model : ts.models) {
+                    for (Table2dModel model : ts.getModels()) {
                         fw.write(model.getBytes());
                     }
                 }
@@ -157,7 +152,7 @@ public class TablesTool  extends FirmwareTool<TableConfig> {
             byte[] bytes = FileUtils.readFileToByteArray(selectedFile);
             int from = 0;
             for(TableSet ts : tableSets) {
-                for (Table2dModel model : ts.models) {
+                for (Table2dModel model : ts.getModels()) {
                     int len = model.getBytes().length;
                     byte[] mbytes = new byte[len];
                     System.arraycopy(bytes,from,mbytes,0,len);
@@ -175,7 +170,7 @@ public class TablesTool  extends FirmwareTool<TableConfig> {
     public void updateFW()  {
         try {
             for(TableSet ts : tableSets) {
-                for (Table2dModel model : ts.models) {
+                for (Table2dModel model : ts.getModels()) {
                     byte[] modelBytes = model.getBytes();
                     System.arraycopy(modelBytes, 0, fwBytes, model.getAddr(), modelBytes.length);
                 }
@@ -196,6 +191,35 @@ public class TablesTool  extends FirmwareTool<TableConfig> {
     @Override
     public Class<TableConfig> getConfigClz() {
         return TableConfig.class;
+    }
+
+
+    public void setSelectedModel(Table2dModel model) {
+        this.selectedModel = model;
+        this.selectedTableSet = null;
+    }
+    public void setSelectedTableSet(TableSet tableSet) {
+        this.selectedTableSet = tableSet;
+        this.selectedModel = null;
+    }
+
+    public void pasteToModel(Table2dModel toModel) {
+        if(selectedModel!=null && selectedModel!=toModel) {
+            System.arraycopy(selectedModel.getBytes(),0,toModel.getBytes(),0,selectedModel.getBytes().length);
+            toModel.fireTableDataChanged();
+        }
+    }
+
+    public void pasteToTableSet(TableSet toSet) {
+        if(selectedTableSet!=null && selectedTableSet!=toSet) {
+            List<Table2dModel> models = selectedTableSet.getModels();
+            for (int i = 0; i < models.size(); i++) {
+                Table2dModel src = models.get(i);
+                Table2dModel dst = toSet.getModels().get(i);
+                System.arraycopy(src.getBytes(),0,dst.getBytes(),0,src.getBytes().length);
+                dst.fireTableDataChanged();
+            }
+        }
     }
 
 }

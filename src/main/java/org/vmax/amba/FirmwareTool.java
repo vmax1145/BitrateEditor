@@ -87,4 +87,6 @@ public abstract class FirmwareTool<T extends FirmwareConfig> extends JFrame {
         return bar;
     }
 
+
+
 }
