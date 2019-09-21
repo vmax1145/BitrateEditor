@@ -91,42 +91,45 @@ public class TablesTool  extends FirmwareTool<TableConfig> {
         });
         bar.add(view);
 
-        JMenu graphs = new JMenu("Graphs");
-        for(TableSet ts : tableSets) {
-            JFrame curveFrame = new JFrame(ts.getTableSetConfig().getLabel());
-            curveFrame.setDefaultCloseOperation(HIDE_ON_CLOSE);
-            GraphPanel graphPanel = GraphPanel.create(cfg, ts.getTableSetConfig(), ts.getModels());
-            JScrollPane sp = new JScrollPane(graphPanel);
-            curveFrame.getContentPane().add(sp);
-            JMenuBar curveBar = new JMenuBar();
-            JMenu curveMenu = new JMenu("Update");
-            curveBar.add(curveMenu);
-            curveFrame.setJMenuBar(curveBar);
-            curveMenu.add(new AbstractAction("Update table from spline") {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    graphPanel.updateTableFromSpline();
-                }
-            });
-            curveMenu.add(new AbstractAction("Recalculate spline") {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    graphPanel.updateSplineFromTable();
-                }
-            });
-            curveFrame.pack();
-            graphs.add(new AbstractAction(ts.getTableSetConfig().getLabel()) {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    curveFrame.setVisible(true);
-                }
-            });
+        if(cfg.isCurves()) {
+            JMenu graphs = new JMenu("Graphs");
+            for (TableSet ts : tableSets) {
+                JFrame curveFrame = new JFrame(ts.getTableSetConfig().getLabel());
+                curveFrame.setDefaultCloseOperation(HIDE_ON_CLOSE);
+                GraphPanel graphPanel = GraphPanel.create(cfg, ts.getTableSetConfig(), ts.getModels());
+                JScrollPane sp = new JScrollPane(graphPanel);
+                curveFrame.getContentPane().add(sp);
+                JMenuBar curveBar = new JMenuBar();
+                JMenu curveMenu = new JMenu("Update");
+                curveBar.add(curveMenu);
+                curveFrame.setJMenuBar(curveBar);
+                curveMenu.add(new AbstractAction("Update table from spline") {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        graphPanel.updateTableFromSpline();
+                    }
+                });
+                curveMenu.add(new AbstractAction("Recalculate spline") {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        graphPanel.updateSplineFromTable();
+                    }
+                });
+                curveFrame.pack();
+                graphs.add(new AbstractAction(ts.getTableSetConfig().getLabel()) {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        curveFrame.setVisible(true);
+                    }
+                });
+            }
+            bar.add(graphs);
         }
 
 
 
 
-        bar.add(graphs);
+
         return bar;
     }
 

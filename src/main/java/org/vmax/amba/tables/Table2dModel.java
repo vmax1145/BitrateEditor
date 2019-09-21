@@ -133,7 +133,12 @@ public class Table2dModel extends AbstractTableModel {
                 val = Long.valueOf((String)aValue);
                 Utils.writeUShort(bytes,toAddr(rowIndex,columnIndex),val);
                 break;
+            case UByte:
+                val = Long.valueOf((String)aValue);
+                Utils.writeUByte(bytes,toAddr(rowIndex,columnIndex),val);
+                break;
             default:
+
                 throw new IllegalArgumentException("Invalid datatype");
         }
     }

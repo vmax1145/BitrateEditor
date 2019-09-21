@@ -17,6 +17,5 @@ public class TableConfig extends FirmwareConfig {
     private int nrow;
     private Range range;
     private Type type;
-
-
+    private boolean curves=true;
 }
