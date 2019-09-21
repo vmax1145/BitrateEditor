@@ -42,13 +42,13 @@
       ]
     },
     {
-      "label":"Average",
+      "label":"Spot",
       "tables": [
         {"label": "Green", "addr": 34266325, "color": "green"}
       ]
     },
     {
-      "label":"Spot",
+      "label":"Average",
       "tables": [
         {"label": "Blue",  "addr": 34266421, "color": "blue"}
       ]
