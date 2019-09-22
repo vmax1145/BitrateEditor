@@ -15,6 +15,7 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Map;
 
 
 public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
@@ -103,10 +104,11 @@ public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
         for(int i=0;i<cfg.getVideoModes().length;i++) {
 
             int rowAddr = tableStartAddr + i * step;
-            int type = (int) Utils.readUInt(fw, rowAddr);
+            final int type = (int) Utils.readUInt(fw, rowAddr);
             float min = Utils.readFloat(fw,rowAddr+8);
             float max = Utils.readFloat(fw,rowAddr+12);
 
+            final int frowAddr = rowAddr;
             float[] mbps = new float[cfg.getQualities().length];
             for(int j=0;j<cfg.getQualities().length; j++) {
                 if(type != (int) Utils.readUInt(fw,rowAddr )) {
@@ -123,16 +125,32 @@ public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
                 rowAddr += 16;
             }
 
-            if(type >= Bitrate.Type.values().length || type<0) {
-                System.out.println("Addr:"+rowAddr+" Bad bitrate type:"+ type+" forcing VBR");
-                type = Bitrate.Type.VBR.ordinal();
+            Bitrate.Type t = null;
+            if(cfg.getBitrateTypeMapping()!=null) {
+                t = cfg.getBitrateTypeMapping().entrySet()
+                        .stream()
+                        .filter(e->e.getValue()==type)
+                        .map(Map.Entry::getKey)
+                        .findFirst()
+                        .orElseGet( ()-> {
+                                System.out.println("Addr:" + frowAddr + " Bad bitrate type:" + type + " forcing VBR");
+                                return Bitrate.Type.VBR;
+                            }
+                        );
+            }
+            else  if(type >= Bitrate.Type.values().length || type<0) {
+                System.out.println("Addr:"+frowAddr+" Bad bitrate type:"+ type+" forcing VBR");
+                t= Bitrate.Type.VBR;
+            }
+            else {
+                t = Bitrate.Type.values()[type];
             }
 
             bitrates[i] = new Bitrate();
             bitrates[i].setInx(i);
             bitrates[i].setName(cfg.getVideoModes()[i].getName());
             bitrates[i].setMbps(mbps);
-            bitrates[i].setType(Bitrate.Type.values()[type]);
+            bitrates[i].setType(t);
             bitrates[i].setMin(min);
             bitrates[i].setMax(max);
             bitrates[i].setInUse(cfg.getVideoModes()[i].isInUse());
@@ -168,7 +186,14 @@ public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
             for(Bitrate bitrate : bitrates) {
                 for(int j=0;j<cfg.getQualities().length; j++) {
                     int rowAddr = cfg.getBitratesTableAddress()+(bitrate.getInx()*cfg.getQualities().length+j)*16;
-                    Utils.writeUInt(fwBytes, rowAddr, bitrate.getType().ordinal());
+                    int intType ;
+                    if(cfg.getBitrateTypeMapping()!=null) {
+                        intType = cfg.getBitrateTypeMapping().get(bitrate.getType());
+                    }
+                    else {
+                        intType = bitrate.getType().ordinal();
+                    }
+                    Utils.writeUInt(fwBytes, rowAddr, intType);
                     Utils.writeFloat(fwBytes, rowAddr+4, bitrate.getMbps()[j]);
                     Utils.writeFloat(fwBytes, rowAddr+8, bitrate.getMin());
                     Utils.writeFloat(fwBytes, rowAddr+12, bitrate.getMax());

@@ -34,7 +34,7 @@
     },
     { //2
       "name": "3840x2160 15P",
-      "inUse": true
+      "inUse": false
     },
     { //3
       "name": "2880x2160 30P",
@@ -42,7 +42,7 @@
     },
     { //4
       "name": "2560x1920 30P",
-      "inUse": true
+      "inUse": false
     },
     { //5
       "name": "2704x2028 30P",
@@ -66,11 +66,11 @@
     },
     { //10
       "name": "HDR 2560x1440 30P",
-      "inUse": true
+      "inUse": false
     },
     { //11
       "name": "2304x1296 30P",
-      "inUse": true
+      "inUse": false
     },
     { //12
       "name": "1920x1440 60P",
@@ -86,11 +86,11 @@
     },
     { //15
       "name": "HDR 1920x1080 60P",
-      "inUse": true
+      "inUse": false
     },
     { //16
       "name": "1920x1080 40P",
-      "inUse": true
+      "inUse": false
     },
     { //17
       "name": "1920x1080 30P",
@@ -106,39 +106,39 @@
     },
     { //20
       "name": "HDR 1920x1080 30P",
-      "inUse": true
+      "inUse": false
     },
     { //21
       "name": "1920x1080 60I",
-      "inUse": true
+      "inUse": false
     },
     { //22
       "name": "1440x1080 60P",
-      "inUse": true
+      "inUse": false
     },
     { //23
       "name": "1440x1080 30P",
-      "inUse": true
+      "inUse": false
     },
     { //24
       "name": "1440x1080 60I",
-      "inUse": true
+      "inUse": false
     },
     { //25
       "name": "1600x1200 60P",
-      "inUse": true
+      "inUse": false
     },
     { //26
       "name": "1600x1200 30P",
-      "inUse": true
+      "inUse": false
     },
     { //27
       "name": "1440x1080 30P",
-      "inUse": true
+      "inUse": false
     },
     { //28
       "name": "1600x900 30P",
-      "inUse": true
+      "inUse": false
     },
     { //29
       "name": "1280x720 60P",
@@ -150,23 +150,23 @@
     },
     { //31
       "name": "HDR 1280x720 30P",
-      "inUse": true
+      "inUse": false
     },
     { //32
       "name": "848x480 60P",
-      "inUse": true
+      "inUse": false
     },
     { //33
       "name": "848x480 30P",
-      "inUse": true
+      "inUse": false
     },
     { //34
       "name": "720x480 60P",
-      "inUse": true
+      "inUse": false
     },
     { //35
       "name": "720x480 30P",
-      "inUse": true
+      "inUse": false
     },
     { //36
       "name": "1280x960 120P",
@@ -181,148 +181,152 @@
       "inUse": true
     },
     { //39
-      "name": "1280x720 30P SV",
+      "name": "1280x720 120P SV",
       "inUse": true
     },
     { //40
-      "name": "960x540 30P",
+      "name": "1280x720 30P SV",
       "inUse": true
     },
     { //41
-      "name": "640x360 30P",
-      "inUse": true
+      "name": "960x540 30P",
+      "inUse": false
     },
     { //42
-      "name": "640x480 60P",
-      "inUse": true
+      "name": "640x360 30P",
+      "inUse": false
     },
     { //43
-      "name": "640x480 30P",
-      "inUse": true
+      "name": "640x480 60P",
+      "inUse": false
     },
     { //44
-      "name": "432x240 60P",
-      "inUse": true
+      "name": "640x480 30P",
+      "inUse": false
     },
     { //45
-      "name": "432x240 30P",
-      "inUse": true
+      "name": "432x240 60P",
+      "inUse": false
     },
     { //46
-      "name": "320x240 30P",
-      "inUse": true
+      "name": "432x240 30P",
+      "inUse": false
     },
     { //47
-      "name": "352x240 30P",
-      "inUse": true
+      "name": "320x240 30P",
+      "inUse": false
     },
     { //48
-      "name": "2560x1440 50P",
-      "inUse": true
+      "name": "352x240 30P",
+      "inUse": false
     },
     { //49
-      "name": "1920x1080 48P",
-      "inUse": true
+      "name": "2560x1440 50P",
+      "inUse": false
     },
     { //50
-      "name": "1920x1080 24P",
-      "inUse": true
+      "name": "1920x1080 48P",
+      "inUse": false
     },
     { //51
-      "name": "1920x1080 15P",
-      "inUse": true
+      "name": "1920x1080 24P",
+      "inUse": false
     },
     { //52
-      "name": "1600x1200 48P",
-      "inUse": true
+      "name": "1920x1080 15P",
+      "inUse": false
     },
     { //53
-      "name": "1600x1200 24P",
-      "inUse": true
+      "name": "1600x1200 48P",
+      "inUse": false
     },
     { //54
-      "name": "1280x960 48P",
-      "inUse": true
+      "name": "1600x1200 24P",
+      "inUse": false
     },
     { //55
-      "name": "1280x960 24P",
-      "inUse": true
+      "name": "1280x960 48P",
+      "inUse": false
     },
     { //56
-      "name": "1280x720 48P",
-      "inUse": true
+      "name": "1280x960 24P",
+      "inUse": false
     },
     { //57
-      "name": "1280x720 24P",
-      "inUse": true
+      "name": "1280x720 48P",
+      "inUse": false
     },
     { //58
-      "name": "848x480 48P",
-      "inUse": true
-    }, 
+      "name": "1280x720 24P",
+      "inUse": false
+    },
     { //59
-      "name": "848x480 24P",
-      "inUse": true
+      "name": "848x480 48P",
+      "inUse": false
     },
     { //60
-      "name": "640x480 48P",
-      "inUse": true
+      "name": "848x480 24P",
+      "inUse": false
     },
     { //61
-      "name": "640x480 24P",
-      "inUse": true
+      "name": "640x480 48P",
+      "inUse": false
     },
     { //62
-      "name": "Precise",
-      "inUse": true
+      "name": "640x480 24P",
+      "inUse": false
     },
     { //63
+      "name": "Precise",
+      "inUse": false
+    },
+    { //64
       "name": "1920x1080 120P",
       "inUse": true
     },
-    { //64
-      "name": "1920x1080 100P",
-      "inUse": true
-    },
     { //65
+      "name": "1920x1080 100P",
+      "inUse": false
+    },
+    { //66
       "name": "1280x720 240P",
       "inUse": true
     },
-    { //66
-      "name": "1280x720 200P",
-      "inUse": true
-    },
     { //67
+      "name": "1280x720 200P",
+      "inUse": false
+    },
+    { //68
       "name": "1280x720 120P",
       "inUse": true
     },
-    { //68
-      "name": "848x480 240P",
-      "inUse": true
-    },
     { //69
-      "name": "848x480 120P",
-      "inUse": true
+      "name": "848x480 240P",
+      "inUse": false
     },
     { //70
-      "name": "640x480 240P",
-      "inUse": true
+      "name": "848x480 120P",
+      "inUse": false
     },
     { //71
-      "name": "640x480 120P",
-      "inUse": true
+      "name": "640x480 240P",
+      "inUse": false
     },
     { //72
-      "name": "432x240 240P",
-      "inUse": true
+      "name": "640x480 120P",
+      "inUse": false
     },
     { //73
-      "name": "432x240 120P",
-      "inUse": true
+      "name": "432x240 240P",
+      "inUse": false
     },
     { //74
+      "name": "432x240 120P",
+      "inUse": false
+    },
+    { //75
       "name": "320x240 120P",
-      "inUse": true
+      "inUse": false
     }
   ],
   "qualities": [
@@ -330,12 +334,16 @@
     "standard",
     "economy"
   ],
+  "bitrateTypeMapping": {
+    "CBR":1,
+    "VBR":2
+  },
   "bitratesTableAddress": 5725576,
   "gopTableAddress": 5739260,
 
   "validate": {
-     "bitrate": {"min":1, "max":120},
-     "min": {"min":0.50, "max":1.00},
-     "max": {"min":1.00, "max":1.50}
+    "bitrate": {"min":1, "max":120},
+    "min": {"min":0.50, "max":1.00},
+    "max": {"min":1.00, "max":1.50}
   }
 }

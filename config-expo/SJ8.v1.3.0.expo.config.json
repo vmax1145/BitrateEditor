@@ -36,24 +36,21 @@
 
   "tableSets": [
     {
-      "label":"Center",
+      "label":"Center/Spot/Average",
       "tables": [
-        {"label": "Red",   "addr": 34266229, "color": "red"}
+        {"label": "Center",   "addr": 34266229, "color": "red"},
+        {"label": "Spot",     "addr": 34266325, "color": "green"},
+        {"label": "Average",  "addr": 34266421, "color": "blue"}
       ]
     },
     {
-      "label":"Spot",
+      "label":"Center/Spot/Average",
       "tables": [
-        {"label": "Green", "addr": 34266325, "color": "green"}
-      ]
-    },
-    {
-      "label":"Average",
-      "tables": [
-        {"label": "Blue",  "addr": 34266421, "color": "blue"}
+        {"label": "Center",   "addr": 34315381, "color": "red"},
+        {"label": "Spot",     "addr": 34315477, "color": "green"},
+        {"label": "Average",  "addr": 34315573, "color": "blue"}
       ]
     }
-
   ],
 
 

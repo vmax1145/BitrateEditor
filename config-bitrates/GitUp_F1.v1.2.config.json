@@ -306,6 +306,10 @@
     "standard",
     "economy"
   ],
+  "bitrateTypeMapping": {
+    "CBR":1,
+    "VBR":2
+  },
   "bitratesTableAddress": 5451180,
   "gopTableAddress": 5463608,
 
