@@ -1,0 +1,341 @@
+{ "note":"Hawkeye Firefly 8SE U110",
+  "toolClass": "org.vmax.amba.bitrate.BitrateTool",
+  "fwFileName": "FIREFLY_FWUPDATES.bin",
+  "verify": [
+    {
+      "addr": 5610764,
+      "val": "FIREFLY_FWUPDATES"
+    },
+    {
+      "addr": 4126584,
+      "val": "FireFly8SE"
+    },
+    {
+      "addr": 4126595,
+      "val": "U110"
+    },
+    {
+      //section crc
+      "addr":252,
+      "crc": {
+        "fromAddr":508,
+        "len":6015808
+      }
+    }
+  ],
+  "videoModes": [
+    { //0
+      "name": "3840x2160 30P",
+      "inUse": true
+    },
+    { //1
+      "name": "3840x2160 25P SV",
+      "inUse": true
+    },
+    { //2
+      "name": "3840x2160 15P",
+      "inUse": true
+    },
+    { //3
+      "name": "2880x2160 30P",
+      "inUse": true
+    },
+    { //4
+      "name": "2560x1920 30P",
+      "inUse": true
+    },
+    { //5
+      "name": "2704x2028 30P",
+      "inUse": true
+    },
+    { //6
+      "name": "2704x1520 30P SV",
+      "inUse": true
+    },
+    { //7
+      "name": "2704x1520 30P",
+      "inUse": true
+    },
+    { //8
+      "name": "2560x1440 60P",
+      "inUse": true
+    },
+    { //9
+      "name": "2560x1440 30P",
+      "inUse": true
+    },
+    { //10
+      "name": "HDR 2560x1440 30P",
+      "inUse": true
+    },
+    { //11
+      "name": "2304x1296 30P",
+      "inUse": true
+    },
+    { //12
+      "name": "1920x1440 60P",
+      "inUse": true
+    },
+    { //13
+      "name": "1920x1440 30P",
+      "inUse": true
+    },
+    { //14
+      "name": "1920x1080 60P",
+      "inUse": true
+    },
+    { //15
+      "name": "HDR 1920x1080 60P",
+      "inUse": true
+    },
+    { //16
+      "name": "1920x1080 40P",
+      "inUse": true
+    },
+    { //17
+      "name": "1920x1080 30P",
+      "inUse": true
+    },
+    { //18
+      "name": "1920x1080 60P SV",
+      "inUse": true
+    },
+    { //19
+      "name": "1920x1080 30P SV",
+      "inUse": true
+    },
+    { //20
+      "name": "HDR 1920x1080 30P",
+      "inUse": true
+    },
+    { //21
+      "name": "1920x1080 60I",
+      "inUse": true
+    },
+    { //22
+      "name": "1440x1080 60P",
+      "inUse": true
+    },
+    { //23
+      "name": "1440x1080 30P",
+      "inUse": true
+    },
+    { //24
+      "name": "1440x1080 60I",
+      "inUse": true
+    },
+    { //25
+      "name": "1600x1200 60P",
+      "inUse": true
+    },
+    { //26
+      "name": "1600x1200 30P",
+      "inUse": true
+    },
+    { //27
+      "name": "1440x1080 30P",
+      "inUse": true
+    },
+    { //28
+      "name": "1600x900 30P",
+      "inUse": true
+    },
+    { //29
+      "name": "1280x720 60P",
+      "inUse": true
+    },
+    { //30
+      "name": "1280x720 30P",
+      "inUse": true
+    },
+    { //31
+      "name": "HDR 1280x720 30P",
+      "inUse": true
+    },
+    { //32
+      "name": "848x480 60P",
+      "inUse": true
+    },
+    { //33
+      "name": "848x480 30P",
+      "inUse": true
+    },
+    { //34
+      "name": "720x480 60P",
+      "inUse": true
+    },
+    { //35
+      "name": "720x480 30P",
+      "inUse": true
+    },
+    { //36
+      "name": "1280x960 120P",
+      "inUse": true
+    },
+    { //37
+      "name": "1280x960 60P",
+      "inUse": true
+    },
+    { //38
+      "name": "1280x960 30P",
+      "inUse": true
+    },
+    { //39
+      "name": "1280x720 30P SV",
+      "inUse": true
+    },
+    { //40
+      "name": "960x540 30P",
+      "inUse": true
+    },
+    { //41
+      "name": "640x360 30P",
+      "inUse": true
+    },
+    { //42
+      "name": "640x480 60P",
+      "inUse": true
+    },
+    { //43
+      "name": "640x480 30P",
+      "inUse": true
+    },
+    { //44
+      "name": "432x240 60P",
+      "inUse": true
+    },
+    { //45
+      "name": "432x240 30P",
+      "inUse": true
+    },
+    { //46
+      "name": "320x240 30P",
+      "inUse": true
+    },
+    { //47
+      "name": "352x240 30P",
+      "inUse": true
+    },
+    { //48
+      "name": "2560x1440 50P",
+      "inUse": true
+    },
+    { //49
+      "name": "1920x1080 48P",
+      "inUse": true
+    },
+    { //50
+      "name": "1920x1080 24P",
+      "inUse": true
+    },
+    { //51
+      "name": "1920x1080 15P",
+      "inUse": true
+    },
+    { //52
+      "name": "1600x1200 48P",
+      "inUse": true
+    },
+    { //53
+      "name": "1600x1200 24P",
+      "inUse": true
+    },
+    { //54
+      "name": "1280x960 48P",
+      "inUse": true
+    },
+    { //55
+      "name": "1280x960 24P",
+      "inUse": true
+    },
+    { //56
+      "name": "1280x720 48P",
+      "inUse": true
+    },
+    { //57
+      "name": "1280x720 24P",
+      "inUse": true
+    },
+    { //58
+      "name": "848x480 48P",
+      "inUse": true
+    }, 
+    { //59
+      "name": "848x480 24P",
+      "inUse": true
+    },
+    { //60
+      "name": "640x480 48P",
+      "inUse": true
+    },
+    { //61
+      "name": "640x480 24P",
+      "inUse": true
+    },
+    { //62
+      "name": "Precise",
+      "inUse": true
+    },
+    { //63
+      "name": "1920x1080 120P",
+      "inUse": true
+    },
+    { //64
+      "name": "1920x1080 100P",
+      "inUse": true
+    },
+    { //65
+      "name": "1280x720 240P",
+      "inUse": true
+    },
+    { //66
+      "name": "1280x720 200P",
+      "inUse": true
+    },
+    { //67
+      "name": "1280x720 120P",
+      "inUse": true
+    },
+    { //68
+      "name": "848x480 240P",
+      "inUse": true
+    },
+    { //69
+      "name": "848x480 120P",
+      "inUse": true
+    },
+    { //70
+      "name": "640x480 240P",
+      "inUse": true
+    },
+    { //71
+      "name": "640x480 120P",
+      "inUse": true
+    },
+    { //72
+      "name": "432x240 240P",
+      "inUse": true
+    },
+    { //73
+      "name": "432x240 120P",
+      "inUse": true
+    },
+    { //74
+      "name": "320x240 120P",
+      "inUse": true
+    }
+  ],
+  "qualities": [
+    "fine",
+    "standard",
+    "economy"
+  ],
+  "bitratesTableAddress": 5725576,
+  "gopTableAddress": 5739260,
+
+  "validate": {
+     "bitrate": {"min":1, "max":120},
+     "min": {"min":0.50, "max":1.00},
+     "max": {"min":1.00, "max":1.50}
+  }
+}
