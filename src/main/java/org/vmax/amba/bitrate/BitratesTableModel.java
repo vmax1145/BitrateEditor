@@ -75,8 +75,7 @@ public class BitratesTableModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return columnIndex>=1 && columnIndex<cfg.getQualities().length+6
-               && bitrates[rowIndex].isInUse();
+        return columnIndex>=1 && columnIndex<cfg.getQualities().length+6;
     }
 
     @Override
