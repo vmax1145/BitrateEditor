@@ -60,7 +60,5 @@ public class SplineDataset extends AbstractXYDataset {
         }
     }
 
-    public void linearSpline() {
 
-    }
 }

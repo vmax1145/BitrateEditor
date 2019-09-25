@@ -1,5 +1,6 @@
 package org.vmax.amba.tables.ui;
 
+import lombok.extern.slf4j.Slf4j;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -9,6 +10,7 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.chart.ui.Align;
 import org.jfree.chart.ui.RectangleInsets;
 import org.jfree.data.xy.XYDataset;
 import org.vmax.amba.tables.Table2dModel;
@@ -22,6 +24,7 @@ import org.vmax.amba.tables.ui.datasets.ReducedDataset;
 import org.vmax.amba.tables.ui.datasets.SplineDataset;
 import org.vmax.amba.tables.ui.datasets.TableDataset;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -33,10 +36,15 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.FilteredImageSource;
+import java.awt.image.RGBImageFilter;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Slf4j
 public class GraphPanel extends ChartPanel implements TableModelListener {
 
 
@@ -53,10 +61,14 @@ public class GraphPanel extends ChartPanel implements TableModelListener {
     private XYPlot plot;
     private List<Table2dModel> fileTableModels;
     private boolean[] enabledGraphs;
+    private FilteredImageSource previewImageSource = null;
+
 
     public static GraphPanel create(TableConfig cfg, TableSetConfig tsCfg, List<Table2dModel> fileTableModels) {
         JFreeChart chart = createChart(cfg, tsCfg , fileTableModels);
-        GraphPanel graphTable = new GraphPanel( chart, fileTableModels);
+
+        GraphPanel graphTable = new GraphPanel( cfg, chart, fileTableModels);
+
         graphTable.addMouseMotionListener(new MouseMotionAdapter(){
             @Override
             public void mouseMoved(MouseEvent e) {
@@ -136,7 +148,7 @@ public class GraphPanel extends ChartPanel implements TableModelListener {
     }
 
 
-    public GraphPanel( JFreeChart chart, List<Table2dModel> fileTableModels) {
+    public GraphPanel(TableConfig cfg, JFreeChart chart, List<Table2dModel> fileTableModels) {
         super(chart);
         this.enabledGraphs = new boolean[fileTableModels.size()];
         Arrays.fill(enabledGraphs,true);
@@ -144,6 +156,24 @@ public class GraphPanel extends ChartPanel implements TableModelListener {
         this.fileTableModels = fileTableModels;
         setDomainZoomable(false);
         setRangeZoomable(false);
+
+        if(cfg.getImageSample()!=null) {
+            try {
+                if(fileTableModels.size()==3 && fileTableModels.get(0).getRowCount()*fileTableModels.get(0).getRowCount()==256) {
+                    Image im  = ImageIO.read(new File(cfg.getImageSample()));
+                    previewImageSource = new FilteredImageSource(im.getSource(), new PreviewImageFilter(plot, cfg.getRange().getMax().intValue()));
+                }
+                else {
+                    log.error("Preview requires 3 tables with 256 values each");
+                }
+            }
+            catch (IOException e) {
+                log.error("Error loading sample image:"+e.getMessage());
+            }
+            updateBackgroundImageAndFireChartChanged();
+        }
+
+
         fileTableModels.forEach(m->m.addTableModelListener(this));
     }
 
@@ -358,6 +388,7 @@ public class GraphPanel extends ChartPanel implements TableModelListener {
             }
             inx+=Datasets.values().length;
         }
+        updateBackgroundImageAndFireChartChanged();
     }
 
     private void deletePointPressed() {
@@ -370,7 +401,7 @@ public class GraphPanel extends ChartPanel implements TableModelListener {
                 }
                 inx+=Datasets.values().length;
             }
-            getChart().fireChartChanged();
+            updateBackgroundImageAndFireChartChanged();
         }
     }
 
@@ -384,7 +415,7 @@ public class GraphPanel extends ChartPanel implements TableModelListener {
                 }
                 inx+=Datasets.values().length;
             }
-            getChart().fireChartChanged();
+            updateBackgroundImageAndFireChartChanged();
         }
     }
 
@@ -397,7 +428,7 @@ public class GraphPanel extends ChartPanel implements TableModelListener {
 
     @Override
     public void tableChanged(TableModelEvent e) {
-        getChart().fireChartChanged();
+        updateBackgroundImageAndFireChartChanged();
     }
 
 
@@ -411,7 +442,7 @@ public class GraphPanel extends ChartPanel implements TableModelListener {
             ((SplineDataset) plot.getDataset(Datasets.SPLINE.ordinal()+inx)).updateSpline();
             inx+= Datasets.values().length;
         }
-        getChart().fireChartChanged();
+        updateBackgroundImageAndFireChartChanged();
     }
 
     public void updateTableFromSpline() {
@@ -436,7 +467,7 @@ public class GraphPanel extends ChartPanel implements TableModelListener {
             }
             inx+=Datasets.values().length;
         }
-        getChart().fireChartChanged();
+        updateBackgroundImageAndFireChartChanged();
     }
 
     private void zeroSpline() {
@@ -448,9 +479,52 @@ public class GraphPanel extends ChartPanel implements TableModelListener {
             }
             inx+=Datasets.values().length;
         }
+        updateBackgroundImageAndFireChartChanged();
+    }
+
+
+    private void updateBackgroundImageAndFireChartChanged() {
+        if ( previewImageSource != null) {
+            Image bgImage = createImage(previewImageSource);
+            plot.setBackgroundImageAlignment(Align.TOP_LEFT);
+            plot.setBackgroundImageAlpha(1);
+            plot.setBackgroundImage(bgImage);
+        }
         getChart().fireChartChanged();
     }
 
 
+    private static class PreviewImageFilter extends RGBImageFilter {
+        private SplineDataset[] splines = new SplineDataset[3];
+        private int max;
+
+        PreviewImageFilter(XYPlot plot, int max) {
+            this.max=max;
+            int inx=0;
+            for(int i=0 ; i<3; i++) {
+                splines[i]=((SplineDataset) plot.getDataset(Datasets.SPLINE.ordinal() + inx));
+                inx+=Datasets.values().length;
+            }
+        }
+
+        @Override
+        public int filterRGB(int x, int y, int rgb) {
+            int r = (rgb>>16)&0xff;
+            int g = (rgb>>8)&0xff;
+            int b = (rgb)&0xff;
+
+            r = splines[0].getY(0,r).intValue()*256/max;
+            g = splines[1].getY(0,g).intValue()*256/max;
+            b = splines[2].getY(0,b).intValue()*256/max;
+
+            if( r < 0 ) r = 0;
+            else if( r > 255 ) r = 255;
+            if( g < 0 ) g = 0;
+            else if( g > 255 ) g = 255;
+            if( b < 0 ) b = 0;
+            else if( b > 255 ) b = 255;
+            return (r<<16) | (g<<8) | b | 0xff000000;
+        }
+    }
 }
 

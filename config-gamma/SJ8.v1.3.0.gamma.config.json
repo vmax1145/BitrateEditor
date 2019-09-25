@@ -147,6 +147,6 @@
     "min": 0,
     "max": 1024
   },
-  "type": "Int16"
-
+  "type": "Int16",
+  "imageSample": "samples/SJ8.v1.3.0.stock/video_vivid.jpg"
 }
