@@ -1,4 +1,4 @@
-{ "note":"SJ8 Pro v1.3.0 dummy tables edit",
+{ "note":"SJ8 Pro v1.3.0 Gamma curves",
   "toolClass": "org.vmax.amba.tables.TablesTool",
   "preProcessor": {
     "className":"org.vmax.amba.plugins.SJ8ProPocessor",
