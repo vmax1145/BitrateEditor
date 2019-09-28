@@ -61,8 +61,8 @@ public class ReducedDataset extends AbstractXYDataset {
                 start.X = reducedPoints.get(inx - 1).X + 1;
                 end.X = reducedPoints.get(inx + 1).X;
             }
-            start.Y = 0;
-            end.Y = 1024;
+            start.Y = cfg.getRange().getMin();
+            end.Y = cfg.getRange().getMax();
             return new PointWithRange(p, range);
         }
         return null;

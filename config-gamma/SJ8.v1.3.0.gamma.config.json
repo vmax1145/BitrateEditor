@@ -136,8 +136,36 @@
         {"addr": 32240868,"color": "green","label": "Green"},
         {"addr": 32241380,"color": "blue","label": "Blue"}
       ]
+    },
+    //------------------------------
+    //--------------------------------
+    {
+      "label": "Photo/255",
+      "tables": [
+        {"addr": 32661548,"color": "red","label": "Red"},
+        {"addr": 32662060,"color": "green","label": "Green"},
+        {"addr": 32662572,"color": "blue","label": "Blue"}
+      ]
+    },
+    {
+      "label": "Photo/128",
+      "tables": [
+        {"addr": 32663084,"color": "red","label": "Red"},
+        {"addr": 32663596,"color": "green","label": "Green"},
+        {"addr": 32664108,"color": "blue","label": "Blue"}
+      ]
+    },
+    {
+      "label": "Photo/0",
+      "tables": [
+        {"addr": 32664620,"color": "red","label": "Red"},
+        {"addr": 32665132,"color": "green","label": "Green"},
+        {"addr": 32665644,"color": "blue","label": "Blue"}
+      ]
     }
   ],
+
+
 
 
 
