@@ -1,4 +1,4 @@
-package org.vmax.amba.tabledata;
+package org.vmax.amba.cfg.tabledata;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +10,8 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class TableDataConfig {
+public class TableDataConfig  {
+    private String label;
     private NamedRowsConfig rowsConfig;
     private List<ColumnConfig> columnsConfig = new ArrayList<>();
 }

@@ -1,4 +1,4 @@
-package org.vmax.amba.tabledata;
+package org.vmax.amba.cfg.tabledata;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

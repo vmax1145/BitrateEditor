@@ -1,0 +1,74 @@
+{
+  "note": "SJ8 Pro v1.3.0",
+  "toolClass": "org.vmax.amba.generic.GenericTool",
+  "fwFileName": "paramdef",
+
+  "tableDataConfig": {
+       "label": "Profiles",
+       "rowsConfig": {
+         "firstRowAddr": 2112,     //0x840
+         "rowLenth": 1552,        //0x610
+         "rowNames":[
+           "1280x720p30",
+           "1920x1080p30",
+           "-1920x1080p60",
+           "2560x1440p30",
+           "-2592x1520p30",
+           "2592x1944p30",
+
+           "1280x720p25",
+           "1920x1080p25",
+           "-1920x1080p50",
+           "2560x1440p25",
+           "-2592x1520p25",
+           "2592x1944p25",
+
+           "1280x720p30",
+           "1920x1080p30",
+           "-1920x1080p60",
+           "2560x1440p30",
+           "-2592x1520p30",
+           "2592x1944p30"
+         ]
+       },
+       "columnsConfig": [
+         //гоп - фпс - битрейт h.265 - битрейт h.264
+         {
+           "columnHeader": "GOP",
+           "addrOffset": 720,
+           "type": "UInt32",
+           "range": {
+             "min": 1,
+             "max" : 30
+           }
+         },
+         {
+           "columnHeader": "FPS",
+           "addrOffset": 724,
+           "type": "UInt32",
+           "range": {
+             "min": 1,
+             "max" : 60
+           }
+         },
+         {
+           "columnHeader": "H265 kb/s",
+           "addrOffset": 728,
+           "type": "UInt32",
+           "range": {
+             "min": 1,
+             "max" : 60000
+           }
+         },
+         {
+           "columnHeader": "H264 kb/s",
+           "addrOffset": 728,
+           "type": "UInt32",
+           "range": {
+             "min": 1,
+             "max" : 60000
+           }
+         }
+       ]
+  }
+}
