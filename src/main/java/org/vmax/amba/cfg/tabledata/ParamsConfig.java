@@ -10,8 +10,8 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class TableDataConfig  {
+public class ParamsConfig {
     private String label;
-    private NamedRowsConfig rowsConfig;
-    private List<ValueConfig> columnsConfig = new ArrayList<>();
+    private int baseAddr = 0;
+    private List<ValueConfig> params = new ArrayList<>();
 }

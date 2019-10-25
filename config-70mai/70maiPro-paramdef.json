@@ -3,72 +3,147 @@
   "toolClass": "org.vmax.amba.generic.GenericTool",
   "fwFileName": "paramdef",
 
-  "tableDataConfig": {
-       "label": "Profiles",
-       "rowsConfig": {
-         "firstRowAddr": 2112,     //0x840
-         "rowLenth": 1552,        //0x610
-         "rowNames":[
-           "1280x720p30",
-           "1920x1080p30",
-           "1920x1080p60 (not used)",
-           "2560x1440p30",
-           "2592x1520p30 (not used)",
-           "2592x1944p30",
+  "tableDataConfigs":[
+      {
+         "label": "Profiles",
+         "rowsConfig": {
+           "firstRowAddr": 2112,     //0x840
+           "rowLenth": 1552,        //0x610
+           "rowNames":[
+             "1280x720p30",
+             "1920x1080p30",
+             "1920x1080p60 (not used)",
+             "2560x1440p30",
+             "2592x1520p30 (not used)",
+             "2592x1944p30",
 
-           "1280x720p25",
-           "1920x1080p25",
-           "1920x1080p50 (not used)",
-           "2560x1440p25",
-           "2592x1520p25 (not used)",
-           "2592x1944p25",
+             "1280x720p25",
+             "1920x1080p25",
+             "1920x1080p50 (not used)",
+             "2560x1440p25",
+             "2592x1520p25 (not used)",
+             "2592x1944p25",
 
-           "1280x720p30",
-           "1920x1080p30",
-           "1920x1080p60 (not used)",
-           "2560x1440p30",
-           "2592x1520p30 (not used)",
-           "2592x1944p30"
+             "1280x720p30",
+             "1920x1080p30",
+             "1920x1080p60 (not used)",
+             "2560x1440p30",
+             "2592x1520p30 (not used)",
+             "2592x1944p30"
+           ]
+         },
+         "columnsConfig": [
+  //         {
+  //           "label": "FPS",
+  //           "addrOffset": 724,
+  //           "type": "UInt32",
+  //           "range": {
+  //             "min": 1,
+  //             "max" : 60
+  //           }
+  //         },
+           {
+             "label": "H265 kb/s",
+             "addrOffset": 728,
+             "type": "UInt32",
+             "range": {
+               "min": 1,
+               "max" : 60000
+             }
+           },
+           {
+             "label": "H264 kb/s",
+             "addrOffset": 732,
+             "type": "UInt32",
+             "range": {
+               "min": 1,
+               "max" : 60000
+             }
+           },
+           {
+             "label": "GOP",
+             "addrOffset": 720,
+             "type": "UInt32",
+             "range": {
+               "min": 1,
+               "max" : 30
+             }
+           }
+
          ]
-       },
-       "columnsConfig": [
-//         {
-//           "columnHeader": "FPS",
-//           "addrOffset": 724,
-//           "type": "UInt32",
-//           "range": {
-//             "min": 1,
-//             "max" : 60
-//           }
-//         },
-         {
-           "columnHeader": "H265 kb/s",
-           "addrOffset": 728,
-           "type": "UInt32",
-           "range": {
-             "min": 1,
-             "max" : 60000
-           }
-         },
-         {
-           "columnHeader": "H264 kb/s",
-           "addrOffset": 732,
-           "type": "UInt32",
-           "range": {
-             "min": 1,
-             "max" : 60000
-           }
-         },
-         {
-           "columnHeader": "GOP",
-           "addrOffset": 720,
-           "type": "UInt32",
-           "range": {
-             "min": 1,
-             "max" : 30
-           }
-         }
-
-       ]
-  }
+      }
+  ],
+  
+  "paramsTabs": [
+    {
+      "label": "Logo and Stamp",
+      "baseAddr": 0,
+      "params": [
+        {
+          "label": "Logo On/Off",
+          "addrOffset": 1880,
+          "type": "UInt32",
+          "range": {
+            "min": 0,
+            "max" : 1
+          }
+        },
+        {
+          "label": "Stamp On/Off",
+          "addrOffset": 1840,
+          "type": "UInt32",
+          "range": {
+            "min": 0,
+            "max" : 1
+          }
+        },
+        {
+          "label": "Stamp Width",
+          "addrOffset": 1856,
+          "type": "UInt32",
+          "range": {
+            "min": 0,
+            "max" : 1
+          }
+        },
+        {
+          "label": "Stamp Height",
+          "addrOffset": 1860,
+          "type": "UInt32",
+          "range": {
+            "min": 0,
+            "max" : 1
+          }
+        },
+        {
+          "label": "Stamp X",
+          "addrOffset": 1864,
+          "type": "UInt32",
+          "range": {
+            "min": 0,
+            "max" : 32768
+          }
+        },
+        {
+          "label": "Stamp Y",
+          "addrOffset": 1868,
+          "type": "UInt32",
+          "range": {
+            "min": 0,
+            "max" : 32768
+          }
+        },
+        {
+          "label": "Stamp Color (bbrrgg)",
+          "addrOffset": 1848,
+          "type": "UInt32",
+          "range": {
+            "min": 0,
+            "max" : 65536
+          },
+          "hex":true
+        }
+      ]
+    }
+  ]
 }

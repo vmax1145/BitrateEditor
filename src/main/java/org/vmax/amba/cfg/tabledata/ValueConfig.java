@@ -13,10 +13,11 @@ import java.util.Map;
 @Setter
 @NoArgsConstructor
 
-public class ColumnConfig {
+public class ValueConfig {
     private int addrOffset;
     private Type type;
     private Range range;
-    private String columnHeader;
+    private String label;
+    private boolean hex;
     private Map<String, Integer> valuesMapping = new LinkedHashMap<>();
 }

@@ -24,15 +24,24 @@ public class RangeCellEditor extends DefaultCellEditor {
     @Override
     public boolean stopCellEditing() {
         try {
-            Float v = Float.valueOf(textField.getText());
-            if (v < range.getMin() || v>range.getMax()) {
-                throw new NumberFormatException();
+            String s = textField.getText();
+            Float v;
+            if(s.startsWith("#")) {
+                v = new Long(Long.parseLong(s.substring(1),16)).floatValue();
             }
+            else {
+                v = Float.valueOf(s);
+            }
+            if(range!=null) {
+                if (v < range.getMin() || v > range.getMax()) {
+                    throw new NumberFormatException();
+                }
+            }
+            return super.stopCellEditing();
         } catch (NumberFormatException e) {
             textField.setBorder(red);
             return false;
         }
-        return super.stopCellEditing();
     }
 
     @Override

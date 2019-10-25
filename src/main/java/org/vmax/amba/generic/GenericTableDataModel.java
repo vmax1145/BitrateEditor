@@ -33,7 +33,7 @@ public class GenericTableDataModel extends AbstractTableModel {
             return "mode";
         }
         columnIndex--;
-        return cfg.getColumnsConfig().get(columnIndex).getColumnHeader();
+        return cfg.getColumnsConfig().get(columnIndex).getLabel();
     }
 
     @Override

@@ -4,7 +4,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.vmax.amba.cfg.FirmwareConfig;
+import org.vmax.amba.cfg.tabledata.ParamsConfig;
 import org.vmax.amba.cfg.tabledata.TableDataConfig;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -12,5 +16,6 @@ import org.vmax.amba.cfg.tabledata.TableDataConfig;
 @NoArgsConstructor
 public class GenericTableDataConfig extends FirmwareConfig {
 
-    private TableDataConfig tableDataConfig;
+    private List<TableDataConfig> tableDataConfigs = new ArrayList<>();
+    private List<ParamsConfig> paramsTabs = new ArrayList<>();
 }
