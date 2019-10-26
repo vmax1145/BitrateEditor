@@ -43,7 +43,7 @@
   //           }
   //         },
            {
-             "label": "H265 kb/s",
+             "label": "Bitrate H265 kb/s",
              "addrOffset": 728,
              "type": "UInt32",
              "range": {
@@ -52,7 +52,7 @@
              }
            },
            {
-             "label": "H264 kb/s",
+             "label": "Bitrate H264 kb/s",
              "addrOffset": 732,
              "type": "UInt32",
              "range": {
@@ -76,9 +76,50 @@
   
   "paramsTabs": [
     {
-      "label": "Logo and Stamp",
+      "label": "Parameters",
       "baseAddr": 0,
       "params": [
+        {
+          "label": "Bitrate type",
+          "addrOffset": 1928,
+          "type": "UInt32",
+          "range": {
+            "min": 0,
+            "max" : 1
+          },
+          "valuesMapping":{
+            "CBR":"0",
+            "VBR":"1"
+          }
+        },
+        {
+          "label": "Bitrate max QP",
+          "addrOffset": 1932,
+          "type": "UInt32",
+          "range": {
+            "min": 0,
+            "max" : 50
+          }
+        },
+        {
+          "label": "Bitrate min QP",
+          "addrOffset": 1936,
+          "type": "UInt32",
+          "range": {
+            "min": 0,
+            "max" : 50
+          }
+        },
+        {
+          "label": "Bitrate in IQP",
+          "addrOffset": 1940,
+          "type": "UInt32",
+          "range": {
+            "min": 0,
+            "max" : 50
+          }
+        },
+
         {
           "label": "Logo On/Off",
           "addrOffset": 1880,
@@ -149,5 +190,7 @@
         }
       ]
     }
+
+
   ]
 }
