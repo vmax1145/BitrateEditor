@@ -12,8 +12,10 @@ public class RangedLong {
     public RangedLong(String s, Range range) throws NumberFormatException {
         s=s.trim();
         this.value = s.startsWith("#") ? Long.parseLong(s.substring(1).trim(),16) : Long.valueOf(s.trim());
-        if(this.value < range.getMin() || this.value>range.getMax()) {
-            throw new NumberFormatException("Out of range:"+range.getMin()+".."+range.getMax());
+        if(range!=null) {
+            if (this.value < range.getMin() || this.value > range.getMax()) {
+                throw new NumberFormatException("Out of range:" + range.getMin() + ".." + range.getMax());
+            }
         }
     }
 

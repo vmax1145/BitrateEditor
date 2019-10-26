@@ -4,9 +4,7 @@ import org.vmax.amba.bitrate.RangeCellEditor;
 import org.vmax.amba.cfg.tabledata.TableDataConfig;
 
 import javax.swing.*;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableModel;
+import javax.swing.table.*;
 import java.awt.*;
 
 public class GenericJTable extends JTable {
@@ -51,7 +49,6 @@ public class GenericJTable extends JTable {
         }
 
     }
-
 
     public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
         Component comp = super.prepareRenderer(renderer, row, col);

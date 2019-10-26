@@ -19,5 +19,5 @@ public class ValueConfig {
     private Range range;
     private String label;
     private boolean hex;
-    private Map<String, Integer> valuesMapping = new LinkedHashMap<>();
+    private Map<String, String> valuesMapping = new LinkedHashMap<>();
 }

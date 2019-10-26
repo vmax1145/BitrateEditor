@@ -38,7 +38,7 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
         }
         for(ParamsConfig pcfg : this.cfg.getParamsTabs()) {
             GenericParamsDataModel model = new GenericParamsDataModel(pcfg, fwBytes);
-            GenericParamsTable editorPanel = new GenericParamsTable(model);
+            GenericParamsTable editorPanel = new GenericParamsTable(pcfg, model);
             tabs.add(pcfg.getLabel(), new JScrollPane(editorPanel));
         }
 

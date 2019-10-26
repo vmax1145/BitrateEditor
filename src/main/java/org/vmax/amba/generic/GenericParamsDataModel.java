@@ -72,7 +72,15 @@ public class GenericParamsDataModel extends AbstractTableModel {
                 val = Utils.readUByte(fw,addr);
                 break;
         }
-        return vcfg.isHex() ? ("#"+Utils.hex(val)) : Long.toString(val);
+        String ret = vcfg.isHex() ? ("#"+Utils.hex(val)) : Long.toString(val);
+        if(!vcfg.getValuesMapping().isEmpty()) {
+            return vcfg.getValuesMapping().entrySet().stream()
+                    .filter(e->e.getValue().equals(ret))
+                    .findFirst()
+                    .orElseThrow(()->new IllegalArgumentException("Value "+ret+" for "+vcfg.getLabel()+" can not be mapped, col="+columnIndex+" row="+rowIndex))
+                    .getKey();
+        }
+        return ret;
     }
 
     @Override
@@ -80,10 +88,12 @@ public class GenericParamsDataModel extends AbstractTableModel {
         if(columnIndex==0) {
             return ;
         }
-        columnIndex--;
         int addr = cfg.getBaseAddr();
         addr+=cfg.getParams().get(rowIndex).getAddrOffset();
         ValueConfig vcfg = cfg.getParams().get(rowIndex);
+        if(!vcfg.getValuesMapping().isEmpty()) {
+            aValue = vcfg.getValuesMapping().get((String)aValue);
+        }
         switch (vcfg.getType()) {
             case Float32:
                 Utils.writeFloat(fw,addr, new RangedFloat((String) aValue,vcfg.getRange()).getValue());
