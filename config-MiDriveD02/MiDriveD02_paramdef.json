@@ -111,7 +111,7 @@
           }
         },
         {
-          "label": "Bitrate in IQP",
+          "label": "Bitrate min IQP",
           "addrOffset": 1940,
           "type": "UInt32",
           "range": {
@@ -187,6 +187,31 @@
           "addrOffset": 1848,
           "type": "UInt32",
           "hex":true
+        },
+
+        {
+          "label": "File length sec (first)",
+          "addrOffset": 30088,
+          "type": "UInt32",
+          "valuesMapping":{
+            "30 sec":"30",
+            "1 min":"60",
+            "2 min":"120",
+            "3 min":"180",
+            "5 min":"300"
+          }
+        },
+        {
+          "label": "File length sec (second)",
+          "addrOffset": 30116,
+          "type": "UInt32",
+          "valuesMapping":{
+            "30 sec":"30",
+            "1 min":"60",
+            "2 min":"120",
+            "3 min":"180",
+            "5 min":"300"
+          }
         }
       ]
     }
