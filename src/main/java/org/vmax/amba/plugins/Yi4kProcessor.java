@@ -27,7 +27,7 @@ public class Yi4kProcessor implements PreProcessor, PostProcessor {
     }
 
     @Override
-    public void preprocess(byte[] fwBytes) throws IOException, VerifyException {
+    public byte[] preprocess(byte[] fwBytes) throws IOException, VerifyException {
         byte[] secretbytes = SECRET.getBytes("ASCII");
         CRC32 crcH = new CRC32();
 
@@ -43,10 +43,11 @@ public class Yi4kProcessor implements PreProcessor, PostProcessor {
         }
         Utils.crcCheck(fwBytes, Z18_ENCODED_DATA_OFFSET, fwBytes.length-Z18_ENCODED_DATA_OFFSET, ALL_CRC_POSITION);
         Utils.crcCheck(fwBytes, 0, Z18_ENCODED_DATA_OFFSET-4, Z18_ENCODED_DATA_OFFSET-4);
+        return fwBytes;
     }
 
 
-    public void postprocess(byte[] fwBytes) throws IOException {
+    public byte[] postprocess(byte[] fwBytes) throws IOException {
 
         int secretStart = (int) Utils.readUInt(fwBytes,Z18_SECRET_INIT);
         byte[] secretbytes = SECRET.getBytes("ASCII");
@@ -58,6 +59,7 @@ public class Yi4kProcessor implements PreProcessor, PostProcessor {
         }
 
         Utils.crcSet(fwBytes, 0, Z18_ENCODED_DATA_OFFSET-4, Z18_ENCODED_DATA_OFFSET-4);
+        return fwBytes;
     }
 }
 

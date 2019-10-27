@@ -7,6 +7,6 @@ import java.security.NoSuchAlgorithmException;
 
 public interface PostProcessor {
     PostProcessor withConfig(FirmwareConfig cfg);
-    void postprocess(byte[] fwBytes) throws IOException, NoSuchAlgorithmException;
+    byte[] postprocess(byte[] fwBytes) throws IOException, NoSuchAlgorithmException;
 
 }

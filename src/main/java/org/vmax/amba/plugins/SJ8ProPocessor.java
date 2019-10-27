@@ -2,7 +2,6 @@ package org.vmax.amba.plugins;
 
 import org.apache.commons.io.FileUtils;
 import org.vmax.amba.Utils;
-import org.vmax.amba.bitrate.VerifyException;
 import org.vmax.amba.cfg.FirmwareConfig;
 
 import java.io.File;
@@ -20,7 +19,7 @@ public class SJ8ProPocessor implements PreProcessor, PostProcessor {
     }
 
     @Override
-    public void postprocess(byte[] fwBytes) throws IOException, NoSuchAlgorithmException {
+    public byte[] postprocess(byte[] fwBytes) throws IOException, NoSuchAlgorithmException {
         File ch = new File(cfg.getPostProcessor().getMd5fileName()+".mod");
         if(ch.exists()) {
             ch.delete();
@@ -29,16 +28,17 @@ public class SJ8ProPocessor implements PreProcessor, PostProcessor {
         try(FileOutputStream fos = new FileOutputStream(ch)) {
             fos.write(md5);
         }
+        return fwBytes;
     }
 
     @Override
-    public void preprocess(byte[] fwBytes) throws IOException, NoSuchAlgorithmException, VerifyException {
+    public byte[] preprocess(byte[] fwBytes) throws Exception {
         byte[] digest = Utils.calculateDigest(fwBytes);
         //System.out.println("File digest: " + Utils.hex(digest));
         byte[] check = FileUtils.readFileToByteArray(new File(cfg.getPreProcessor().getMd5fileName()));
         if(!Arrays.equals(digest,check)) {
-            System.out.println("File md5 digest mismatch");
-            return;
+            throw new Exception("File md5 digest mismatch");
         }
+        return fwBytes;
     }
 }

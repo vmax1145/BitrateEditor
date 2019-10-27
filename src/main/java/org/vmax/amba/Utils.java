@@ -103,7 +103,7 @@ public class Utils {
         return hex(bb.getInt());
     }
 
-    protected static byte[] loadFirmware(FirmwareConfig cfg) throws IOException, VerifyException, NoSuchAlgorithmException, ClassNotFoundException, IllegalAccessException, InstantiationException {
+    protected static byte[] loadFirmware(FirmwareConfig cfg) throws Exception {
 
         File f = new File(cfg.getFwFileName());
         if(!f.exists()) {
@@ -115,7 +115,7 @@ public class Utils {
         if(cfg.getPreProcessor()!=null) {
             PreProcessor preprocessor = (PreProcessor) Class.forName(cfg.getPreProcessor().getClassName()).newInstance();
             preprocessor.withConfig(cfg);
-            preprocessor.preprocess(fwBytes);
+            fwBytes = preprocessor.preprocess(fwBytes);
         }
 
 
@@ -153,7 +153,7 @@ public class Utils {
             if(cfg.getPostProcessor()!=null) {
                 PostProcessor postprocessor = (PostProcessor) Class.forName(cfg.getPostProcessor().getClassName()).newInstance();
                 postprocessor.withConfig(cfg);
-                postprocessor.postprocess(fwBytes);
+                fwBytes = postprocessor.postprocess(fwBytes);
             }
 
             FileUtils.writeByteArrayToFile(out, fwBytes);
