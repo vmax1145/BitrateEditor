@@ -10,10 +10,10 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
-public class SJ8ProPocessor implements PreProcessor, PostProcessor {
+public class SJ8ProProcessor implements PreProcessor, PostProcessor {
     FirmwareConfig cfg;
     @Override
-    public SJ8ProPocessor withConfig(FirmwareConfig cfg) {
+    public SJ8ProProcessor withConfig(FirmwareConfig cfg) {
         this.cfg=cfg;
         return this;
     }

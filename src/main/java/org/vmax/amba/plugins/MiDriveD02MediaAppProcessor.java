@@ -6,7 +6,6 @@ import org.vmax.amba.cfg.FirmwareConfig;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
@@ -39,7 +38,7 @@ public class MiDriveD02MediaAppProcessor implements PreProcessor, PostProcessor 
     }
 
     @Override
-    public byte[] postprocess(byte[] fwBytes) throws IOException, NoSuchAlgorithmException {
+    public byte[] postprocess(byte[] fwBytes) throws IOException {
         int unpackedLen = fwBytes.length;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         byte[] head = {

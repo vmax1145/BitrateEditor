@@ -1,11 +1,11 @@
 { "note":"SJ8 Pro v1.2.7",
   "toolClass": "org.vmax.amba.bitrate.BitrateTool",
   "preProcessor": {
-    "className":"org.vmax.amba.plugins.SJ8ProPocessor",
+    "className":"org.vmax.amba.plugins.SJ8ProProcessor",
     "md5fileName": "SJ8_CHECK.ch"
   },
   "postProcessor": {
-    "className":"org.vmax.amba.plugins.SJ8ProPocessor",
+    "className":"org.vmax.amba.plugins.SJ8ProProcessor",
     "md5fileName": "SJ8_CHECK.ch"
   },
 
