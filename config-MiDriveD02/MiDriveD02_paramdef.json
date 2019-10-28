@@ -2,6 +2,12 @@
   "note": "SJ8 Pro v1.3.0",
   "toolClass": "org.vmax.amba.generic.GenericTool",
   "fwFileName": "paramdef",
+  "verify": [
+    {
+      "addr": 32553,
+      "val": "2.1.1.1"
+    }
+  ],
 
   "tableDataConfigs":[
       {
