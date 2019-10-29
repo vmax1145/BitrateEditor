@@ -1,7 +1,10 @@
 {
   "note": "MiDrive D02 paramdef editor",
   "toolClass": "org.vmax.amba.generic.GenericTool",
+
   "fwFileName": "paramdef",
+  "showFileDialog": true,
+
   "verify": [
     {
       "addr": 32553,

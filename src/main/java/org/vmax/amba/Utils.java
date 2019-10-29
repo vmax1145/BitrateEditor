@@ -106,6 +106,10 @@ public class Utils {
     protected static byte[] loadFirmware(FirmwareConfig cfg) throws Exception {
 
         File f = new File(cfg.getFwFileName());
+        return loadFirmware(cfg, f);
+    }
+
+    public static byte[] loadFirmware(FirmwareConfig cfg, File f) throws Exception {
         if(!f.exists()) {
             System.out.println("FW file "+cfg.getFwFileName()+" not found");
             System.exit(0);
@@ -137,26 +141,39 @@ public class Utils {
         return fwBytes;
     }
 
-    public static void saveFirmware(FirmwareConfig cfg, byte[] fwBytes ) throws Exception {
-            File out = new File(cfg.getFwFileName() + ".mod");
-            if(out.exists()) {
-                JOptionPane.showMessageDialog(null,"File "+out.getName()+" already exists");
-                return;
-            }
-
+    public static void saveFirmware(JFrame tool, FirmwareConfig cfg, byte[] fwBytes ) throws Exception {
             for(Verify verify : cfg.getVerify()) {
                 if(verify.getCrc()!=null) {
                     crcSet(fwBytes,verify.getCrc().getFromAddr(), verify.getCrc().getLen(), verify.getAddr());
                 }
             }
-
             if(cfg.getPostProcessor()!=null) {
                 PostProcessor postprocessor = (PostProcessor) Class.forName(cfg.getPostProcessor().getClassName()).newInstance();
                 postprocessor.withConfig(cfg);
                 fwBytes = postprocessor.postprocess(fwBytes);
             }
 
-            FileUtils.writeByteArrayToFile(out, fwBytes);
+            File out = null;
+            if(cfg.isShowFileDialog() || cfg.getFwFileName()==null) {
+                JFileChooser jfc = new JFileChooser(new File("."));
+                if(cfg.getFwFileName()!=null) {
+                    jfc.setSelectedFile(new File(cfg.getFwFileName() + ".mod"));
+                }
+                if(jfc.showSaveDialog(tool) == JFileChooser.APPROVE_OPTION) {
+                    out = jfc.getSelectedFile();
+                }
+            }
+            else {
+                out = new File(cfg.getFwFileName() + ".mod");
+                if(out.exists()) {
+                    JOptionPane.showMessageDialog(null,"File "+out.getName()+" already exists");
+                    return;
+                }
+            }
+            if(out!=null) {
+                FileUtils.writeByteArrayToFile(out, fwBytes);
+            }
+
     }
 
 

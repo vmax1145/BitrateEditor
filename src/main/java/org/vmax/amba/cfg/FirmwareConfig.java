@@ -24,6 +24,7 @@ public class FirmwareConfig {
     private List<Verify> verify = new ArrayList<>();
     private ProcessorConfig preProcessor;
     private ProcessorConfig postProcessor;
+    private boolean showFileDialog = false;
 
     public static <T extends FirmwareConfig> T readConfig(Class<T> clz,String arg) throws IOException {
         try(FileInputStream fis = new FileInputStream(arg)) {
@@ -35,4 +36,5 @@ public class FirmwareConfig {
             throw new IOException("Error parsing config: "+arg, e);
         }
     }
+
 }

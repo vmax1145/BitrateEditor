@@ -47,7 +47,7 @@ public class PatchTool extends FirmwareTool<PatchToolConfig> {
     @Override
     public void updateFW() {
             try {
-                Utils.saveFirmware(cfg, fwBytes);
+                Utils.saveFirmware(this, cfg, fwBytes);
             }
             catch (Exception e) {
                 e.printStackTrace();

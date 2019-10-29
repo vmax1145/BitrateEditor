@@ -27,7 +27,7 @@ public abstract class FirmwareTool<T extends FirmwareConfig> extends JFrame {
         fileMenu.add(new AbstractAction("Export settings data") {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFileChooser jfc = new JFileChooser(new File(".\\"));
+                JFileChooser jfc = new JFileChooser(new File("."));
                 FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON files", "json");
                 jfc.addChoosableFileFilter(filter);
                 int returnValue = jfc.showSaveDialog(FirmwareTool.this);
@@ -47,7 +47,7 @@ public abstract class FirmwareTool<T extends FirmwareConfig> extends JFrame {
         fileMenu.add(new AbstractAction("Import settings data") {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFileChooser jfc = new JFileChooser(new File(".\\"));
+                JFileChooser jfc = new JFileChooser(new File("."));
                 FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON files", "json");
                 jfc.addChoosableFileFilter(filter);
                 int returnValue = jfc.showOpenDialog(FirmwareTool.this);

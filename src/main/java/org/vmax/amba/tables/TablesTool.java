@@ -178,7 +178,7 @@ public class TablesTool  extends FirmwareTool<TableConfig> {
                     System.arraycopy(modelBytes, 0, fwBytes, model.getAddr(), modelBytes.length);
                 }
             }
-            Utils.saveFirmware(cfg, fwBytes);
+            Utils.saveFirmware(this, cfg, fwBytes);
         }
         catch (Exception e) {
             e.printStackTrace();
