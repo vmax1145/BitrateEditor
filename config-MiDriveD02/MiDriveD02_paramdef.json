@@ -107,8 +107,8 @@
           "addrOffset": 1952,
           "type": "UInt32",
           "range": {
-            "min": 0,
-            "max" : 50
+            "min": 100,
+            "max" : 150
           }
         },
         {
@@ -116,8 +116,8 @@
           "addrOffset": 1956,
           "type": "UInt32",
           "range": {
-            "min": 0,
-            "max" : 50
+            "min": 45,
+            "max" : 100
           }
         },
         {
