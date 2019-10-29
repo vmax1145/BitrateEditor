@@ -1,6 +1,5 @@
 package org.vmax.amba.yuv;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.vmax.amba.FirmwareTool;
 import org.vmax.amba.Utils;
 import org.vmax.amba.cfg.FirmwareConfig;
@@ -81,7 +80,7 @@ public class YUVTool extends FirmwareTool<YUVConfig> {
     public void exportData(File selectedFile) {
         try {
             try(FileOutputStream fw = new FileOutputStream(selectedFile,false)) {
-                new ObjectMapper().writeValue(fw,data);
+                Utils.getObjectMapper().writeValue(fw,data);
             }
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -91,7 +90,7 @@ public class YUVTool extends FirmwareTool<YUVConfig> {
     @Override
     public void importData(File selectedFile) {
         try (FileInputStream fis = new FileInputStream(selectedFile)){
-            YUVData in = new ObjectMapper().readerFor(YUVData.class).readValue(fis);
+            YUVData in = Utils.getObjectMapper().readerFor(YUVData.class).readValue(fis);
             if(in.size()!=data.size()) {
                 throw new Exception("Invalid data in import");
             }

@@ -1,6 +1,5 @@
 package org.vmax.amba.bitrate;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import org.vmax.amba.FirmwareTool;
 import org.vmax.amba.Utils;
@@ -221,7 +220,7 @@ public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
     public void exportData(File selectedFile) {
         try {
             try(FileWriter fw = new FileWriter(selectedFile)) {
-                new ObjectMapper().writer().writeValue(fw,bitrates);
+                Utils.getObjectMapper().writer().writeValue(fw,bitrates);
             }
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -233,7 +232,7 @@ public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
     public void importData(File selectedFile) {
         try {
             try (FileInputStream fis = new FileInputStream(selectedFile)) {
-                Bitrate[] bitratesLoaded = new ObjectMapper().readerFor(Bitrate[].class).readValue(fis);
+                Bitrate[] bitratesLoaded = Utils.getObjectMapper().readerFor(Bitrate[].class).readValue(fis);
                 if(bitrates.length != bitratesLoaded.length) {
                     JOptionPane.showMessageDialog (this, "File not match configuration","Warning",JOptionPane.ERROR_MESSAGE);
                 }

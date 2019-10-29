@@ -1,5 +1,6 @@
 package org.vmax.amba;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
 import org.vmax.amba.bitrate.VerifyException;
 import org.vmax.amba.cfg.FirmwareConfig;
@@ -226,4 +227,7 @@ public class Utils {
         fw[addr]= (byte) val;
     }
 
+    public static ObjectMapper getObjectMapper() {
+        return new ObjectMapper();
+    }
 }
