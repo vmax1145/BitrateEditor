@@ -6,7 +6,6 @@ import org.vmax.midrive.MiGzipOutputStream;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.zip.GZIPInputStream;
 
 public class MiDriveD02MediaAppProcessor implements PreProcessor, PostProcessor {
@@ -46,7 +45,7 @@ public class MiDriveD02MediaAppProcessor implements PreProcessor, PostProcessor 
     }
 
     @Override
-    public byte[] postprocess(byte[] fwBytes) throws IOException {
+    public byte[] postprocess(byte[] fwBytes) throws Exception {
         int unpackedLen = fwBytes.length;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         byte[] head = {
@@ -58,11 +57,11 @@ public class MiDriveD02MediaAppProcessor implements PreProcessor, PostProcessor 
 
         gzipOutputStream.write(fwBytes);
         gzipOutputStream.finish();
-        fwBytes = baos.toByteArray();
-        Utils.writeUInt(fwBytes, 0,fwBytes.length-0x10);
-        Utils.writeUInt(fwBytes, 0x4,unpackedLen);
-        System.out.println("Packed len="+fwBytes.length);
-        return fwBytes;
+        byte[] packed = baos.toByteArray();
+        Utils.writeUInt(packed, 0,packed.length-0x10);
+        Utils.writeUInt(packed, 0x4,unpackedLen);
+        System.out.println("Packed len="+packed.length);
+        return packed;
     }
 
 

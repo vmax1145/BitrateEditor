@@ -85,31 +85,22 @@
       "label": "Parameters",
       "baseAddr": 0,
       "params": [
+//        {
+//          "label": "Bitrate type",
+//          "addrOffset": 1928,
+//          "type": "UInt32",
+//          "range": {
+//            "min": 0,
+//            "max" : 1
+//          },
+//          "valuesMapping":{
+//            "CBR":"0",
+//            "VBR":"1"
+//          }
+//        },
         {
-          "label": "Bitrate type",
-          "addrOffset": 1928,
-          "type": "UInt32",
-          "range": {
-            "min": 0,
-            "max" : 1
-          },
-          "valuesMapping":{
-            "CBR":"0",
-            "VBR":"1"
-          }
-        },
-        {
-          "label": "Bitrate max QP",
-          "addrOffset": 1932,
-          "type": "UInt32",
-          "range": {
-            "min": 0,
-            "max" : 50
-          }
-        },
-        {
-          "label": "Bitrate min QP",
-          "addrOffset": 1936,
+          "label": "VBR max %",
+          "addrOffset": 1952,
           "type": "UInt32",
           "range": {
             "min": 0,
@@ -117,15 +108,14 @@
           }
         },
         {
-          "label": "Bitrate min IQP",
-          "addrOffset": 1940,
+          "label": "VBR min %",
+          "addrOffset": 1956,
           "type": "UInt32",
           "range": {
             "min": 0,
             "max" : 50
           }
         },
-
         {
           "label": "Logo On/Off",
           "addrOffset": 1880,

@@ -2,11 +2,8 @@ package org.vmax.amba.plugins;
 
 import org.vmax.amba.cfg.FirmwareConfig;
 
-import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-
 public interface PostProcessor {
     PostProcessor withConfig(FirmwareConfig cfg);
-    byte[] postprocess(byte[] fwBytes) throws IOException, NoSuchAlgorithmException;
+    byte[] postprocess(byte[] fwBytes) throws Exception;
 
 }
