@@ -1,0 +1,14 @@
+{
+  "note": "MiDrive D02 paramdef editor",
+  "toolClass": "org.vmax.amba.generic.PatchTool",
+
+  "fwFileName": "media_app_zip.bin",
+
+  "preProcessor": {
+    "className":"org.vmax.amba.plugins.MiDriveD02MediaAppProcessor"
+  },
+
+  "postProcessor": {
+    "className":"org.vmax.amba.plugins.MiDriveD02MediaAppProcessor"
+  }
+}
