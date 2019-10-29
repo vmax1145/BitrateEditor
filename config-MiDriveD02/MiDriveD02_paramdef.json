@@ -119,7 +119,7 @@
           "addrOffset": 1956,
           "type": "UInt32",
           "range": {
-            "min": 45,
+            "min": 35,
             "max" : 100
           }
         },
@@ -200,7 +200,7 @@
 
 
         {
-          "label": "File length sec (first)",
+          "label": "File length",
           "addrOffset": 30088,
           "type": "UInt32",
           "valuesMapping":{
@@ -210,19 +210,20 @@
             "3 min":"180",
             "5 min":"300"
           }
-        },
-        {
-          "label": "File length sec (second)",
-          "addrOffset": 30116,
-          "type": "UInt32",
-          "valuesMapping":{
-            "30 sec":"30",
-            "1 min":"60",
-            "2 min":"120",
-            "3 min":"180",
-            "5 min":"300"
-          }
         }
+//      ,
+//        {
+//          "label": "File length sec (second)",
+//          "addrOffset": 30116,
+//          "type": "UInt32",
+//          "valuesMapping":{
+//            "30 sec":"30",
+//            "1 min":"60",
+//            "2 min":"120",
+//            "3 min":"180",
+//            "5 min":"300"
+//          }
+//        }
       ]
     }
 
