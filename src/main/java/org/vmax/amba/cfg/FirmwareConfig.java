@@ -2,10 +2,10 @@ package org.vmax.amba.cfg;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.vmax.amba.Utils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -28,7 +28,7 @@ public class FirmwareConfig {
 
     public static <T extends FirmwareConfig> T readConfig(Class<T> clz,String arg) throws IOException {
         try(FileInputStream fis = new FileInputStream(arg)) {
-            return new ObjectMapper()
+            return Utils.getObjectMapper()
                     .enable(JsonParser.Feature.ALLOW_COMMENTS)
                     .readerFor(clz)
                     .readValue(fis);
