@@ -1,6 +1,6 @@
 {
   "note": "MiDrive D02 paramdef editor",
-  "toolClass": "org.vmax.amba.generic.PatchTool",
+  "toolClass": "org.vmax.midrive.MiPatchTool",
 
   "fwFileName": "media_app_zip.bin",
 
@@ -10,5 +10,18 @@
 
   "postProcessor": {
     "className":"org.vmax.midrive.MiDriveD02MediaAppProcessor"
+  },
+
+  "patchLoader": {
+    "patchAddrOffset": 2151677952,
+    "patches": [
+      { "path":"config-MiDriveD02/patches/patch-mix11.sh",
+        "label": "patch mix 1.1",
+        "description": "changes:\n ae table\n ae speed\n saturation\n noise reduction\n sharpening"
+      }
+    ]
   }
+
+
+
 }

@@ -45,6 +45,8 @@ public class AppMain {
                     }
                 };
                 jfc.addChoosableFileFilter(filter);
+                jfc.setAcceptAllFileFilterUsed(false);
+                jfc.setSelectedFile(new File(cfg.getFwFileName()));
             }
 
             int returnValue = jfc.showOpenDialog(null);
@@ -60,7 +62,7 @@ public class AppMain {
         }
     }
 
-    private static void startTool(FirmwareConfig cfg, FirmwareTool tool, byte[] fwBytes) {
+    private static void startTool(FirmwareConfig cfg, FirmwareTool tool, byte[] fwBytes) throws Exception {
         System.out.println(tool.getStartMessage(cfg));
         tool.init(cfg, fwBytes);
         tool.pack();

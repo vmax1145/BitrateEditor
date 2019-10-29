@@ -3,14 +3,17 @@ package org.vmax.amba.generic;
 import org.vmax.amba.FirmwareTool;
 import org.vmax.amba.Utils;
 import org.vmax.amba.cfg.FirmwareConfig;
+import org.vmax.amba.cfg.Patch;
+import org.vmax.amba.cfg.PatchToolConfig;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.util.List;
 
-public class PatchTool extends FirmwareTool<PatchToolConfig> {
+public abstract class PatchTool<T extends PatchToolConfig> extends FirmwareTool<T> {
 
-    private PatchToolConfig cfg;
+    private T cfg;
     private byte[] fwBytes;
 
     @Override
@@ -19,8 +22,8 @@ public class PatchTool extends FirmwareTool<PatchToolConfig> {
     }
 
     @Override
-    public void init(FirmwareConfig acfg, byte[] fwBytes) {
-        this.cfg = (PatchToolConfig) acfg;
+    public void init(FirmwareConfig acfg, byte[] fwBytes) throws Exception {
+        this.cfg = (T) acfg;
         this.fwBytes = fwBytes;
 
         JMenuBar bar = buildMenu();
@@ -28,9 +31,13 @@ public class PatchTool extends FirmwareTool<PatchToolConfig> {
         tabs.setPreferredSize(new Dimension(600,400));
         add(tabs, BorderLayout.CENTER);
 
+        List<Patch> patchList = loadPatches(cfg);
 
         setJMenuBar(bar);
     }
+
+    protected abstract List<Patch> loadPatches(T cfg) throws Exception;
+
 
 
     @Override
@@ -55,8 +62,4 @@ public class PatchTool extends FirmwareTool<PatchToolConfig> {
             }
     }
 
-    @Override
-    public Class<PatchToolConfig> getConfigClz() {
-        return PatchToolConfig.class;
-    }
 }
