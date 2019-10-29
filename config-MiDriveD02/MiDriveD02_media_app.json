@@ -5,10 +5,10 @@
   "fwFileName": "media_app_zip.bin",
 
   "preProcessor": {
-    "className":"org.vmax.amba.plugins.MiDriveD02MediaAppProcessor"
+    "className":"org.vmax.midrive.MiDriveD02MediaAppProcessor"
   },
 
   "postProcessor": {
-    "className":"org.vmax.amba.plugins.MiDriveD02MediaAppProcessor"
+    "className":"org.vmax.midrive.MiDriveD02MediaAppProcessor"
   }
 }

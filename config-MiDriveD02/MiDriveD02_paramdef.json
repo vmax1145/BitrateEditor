@@ -6,6 +6,10 @@
     {
       "addr": 32553,
       "val": "2.1.1.1"
+    },
+    {
+      "addr": 32586,
+      "val": "himc-dashcam-3559-ov4689-linux"
     }
   ],
 

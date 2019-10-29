@@ -1,8 +1,9 @@
-package org.vmax.amba.plugins;
+package org.vmax.midrive;
 
 import org.vmax.amba.Utils;
 import org.vmax.amba.cfg.FirmwareConfig;
-import org.vmax.midrive.MiGzipOutputStream;
+import org.vmax.amba.plugins.PostProcessor;
+import org.vmax.amba.plugins.PreProcessor;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
