@@ -11,7 +11,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class MiPatchLoaderCfg {
-    private int patchAddrOffset;
+    private long patchAddrOffset;
     private List<MiPatchFileConfig> patches = new ArrayList<>();
 
 }

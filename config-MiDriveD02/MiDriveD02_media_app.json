@@ -3,6 +3,7 @@
   "toolClass": "org.vmax.midrive.MiPatchTool",
 
   "fwFileName": "media_app_zip.bin",
+  "showFileDialog": true,
 
   "preProcessor": {
     "className":"org.vmax.midrive.MiDriveD02MediaAppProcessor"
@@ -17,7 +18,7 @@
     "patches": [
       { "path":"config-MiDriveD02/patches/patch-mix11.sh",
         "label": "patch mix 1.1",
-        "description": "changes:\n ae table\n ae speed\n saturation\n noise reduction\n sharpening"
+        "description": "<HTML>changes:<UL><LI>ae table</LI><LI>ae speed</LI><LI>saturation</LI><LI>noise reduction</LI><LI>sharpening</LI></HTML>"
       }
     ]
   }

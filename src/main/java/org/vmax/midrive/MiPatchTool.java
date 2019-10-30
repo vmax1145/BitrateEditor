@@ -14,17 +14,17 @@ import java.util.stream.Collectors;
 public class MiPatchTool extends PatchTool<MiPatchToolConfig> {
     @Override
     protected List<Patch> loadPatches(MiPatchToolConfig cfg) throws Exception {
-        int addrOffset = cfg.getPatchLoader().getPatchAddrOffset();
+        long addrOffset = cfg.getPatchLoader().getPatchAddrOffset();
         return loadPatches(addrOffset, cfg.getPatchLoader().getPatches());
     }
 
-    private List<Patch> loadPatches(int addrOffset, List<MiPatchFileConfig> patchFiles) {
+    private List<Patch> loadPatches(long addrOffset, List<MiPatchFileConfig> patchFiles) {
         return patchFiles.stream()
              .map( pfc -> parseFile(addrOffset, pfc))
              .collect(Collectors.toList());
     }
 
-    private Patch parseFile(int addrOffset, MiPatchFileConfig pfc) {
+    private Patch parseFile(long addrOffset, MiPatchFileConfig pfc) {
         try {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(pfc.getPath())))) {
                 String line;
