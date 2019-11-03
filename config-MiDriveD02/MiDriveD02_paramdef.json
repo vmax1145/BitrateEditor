@@ -168,29 +168,36 @@
           }
         },
         {
-          "label": "Stamp X",
+          "label": "Stamp X %",
           "addrOffset": 1864,
           "type": "UInt32",
           "range": {
             "min": 0,
-            "max" : 4098
+            "max" : 100
           }
         },
         {
-          "label": "Stamp Y",
+          "label": "Stamp Y %",
           "addrOffset": 1868,
           "type": "UInt32",
           "range": {
             "min": 0,
-            "max" : 4098
+            "max" : 100
           }
         },
         {
-          "label": "Stamp Color (bbrrgg)",
+          "label": "Stamp Color (RGB_555)",
           "addrOffset": 1848,
-          "type": "UInt32",
+          "type": "RGB555",
           "hex":true
         },
+        {
+          "label": "Stamp BGColor (RGB_555)",
+          "addrOffset": 1852,
+          "type": "RGB555",
+          "hex":true
+        },
+
 
         {
           "label": "File length sec (first)",

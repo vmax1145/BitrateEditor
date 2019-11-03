@@ -9,7 +9,8 @@ public enum Type {
     UInt16(Short.BYTES),
     Int16(Short.BYTES),
     UByte(java.lang.Byte.BYTES),
-    Byte(java.lang.Byte.BYTES);
+    Byte(java.lang.Byte.BYTES),
+    RGB555(Integer.BYTES);
 
     @Getter
     private final int byteLen   ;

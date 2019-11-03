@@ -1,8 +1,11 @@
 package org.vmax.amba.generic;
 
 import org.vmax.amba.bitrate.RangeCellEditor;
+import org.vmax.amba.cfg.Type;
 import org.vmax.amba.cfg.tabledata.ParamsConfig;
 import org.vmax.amba.cfg.tabledata.ValueConfig;
+import org.vmax.amba.generic.color.ColorEditor;
+import org.vmax.amba.generic.color.ColorRenderer;
 
 import javax.swing.*;
 import javax.swing.table.TableCellEditor;
@@ -27,14 +30,25 @@ public class GenericParamsTable extends JTable {
     @Override
     public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
         Component comp = super.prepareRenderer(renderer, row, col);
-        if(row%2 ==0)
-            comp.setBackground(new Color(0xe0e0e0));
-        else {
-            comp.setBackground(new Color(0xf0f0f0));
+        if(!Type.RGB555.equals(cfg.getParams().get(row).getType())) {
+            if (row % 2 == 0)
+                comp.setBackground(new Color(0xe0e0e0));
+            else {
+                comp.setBackground(new Color(0xf0f0f0));
+            }
         }
         return comp;
     }
 
+
+    @Override
+    public TableCellRenderer getCellRenderer(int row, int column) {
+
+        if(column==1 && Type.RGB555.equals(cfg.getParams().get(row).getType())) {
+            return new ColorRenderer();
+        }
+        return super.getCellRenderer(row, column);
+    }
 
     @Override
     public TableCellEditor getCellEditor(int row, int column) {
@@ -44,6 +58,9 @@ public class GenericParamsTable extends JTable {
                 String[] vals = vcfg.getValuesMapping().keySet().toArray(new String[]{});
                 JComboBox<String> select = new JComboBox<>(vals);
                 return new DefaultCellEditor(select);
+            }
+            if(Type.RGB555.equals(vcfg.getType())) {
+                return new ColorEditor();
             }
         }
         return super.getCellEditor(row,column);

@@ -7,6 +7,7 @@ import org.vmax.amba.cfg.tabledata.ParamsConfig;
 import org.vmax.amba.cfg.tabledata.ValueConfig;
 
 import javax.swing.table.AbstractTableModel;
+import java.awt.*;
 
 public class GenericParamsDataModel extends AbstractTableModel {
 
@@ -68,6 +69,12 @@ public class GenericParamsDataModel extends AbstractTableModel {
             case UInt16:
                 val = Utils.readUShort(fw,addr);
                 break;
+            case RGB555:
+                val=Utils.readUInt(fw,addr);
+                int r = (int) ((val>>10) & 0x1f)<<3;
+                int g = (int) ((val>>5) & 0x1f)<<3;
+                int b = (int) ((val) & 0x1f)<<3;
+                return new Color(r,g,b);
             default:
                 val = Utils.readUByte(fw,addr);
                 break;
@@ -91,9 +98,12 @@ public class GenericParamsDataModel extends AbstractTableModel {
         int addr = cfg.getBaseAddr();
         addr+=cfg.getParams().get(rowIndex).getAddrOffset();
         ValueConfig vcfg = cfg.getParams().get(rowIndex);
+
         if(!vcfg.getValuesMapping().isEmpty()) {
-            aValue = vcfg.getValuesMapping().get((String)aValue);
+            aValue = vcfg.getValuesMapping().get((String) aValue);
         }
+
+
         switch (vcfg.getType()) {
             case Float32:
                 Utils.writeFloat(fw,addr, new RangedFloat((String) aValue,vcfg.getRange()).getValue());
@@ -105,6 +115,14 @@ public class GenericParamsDataModel extends AbstractTableModel {
             case Int16:
             case UInt16:
                 Utils.writeUShort(fw,addr, new RangedLong((String) aValue,vcfg.getRange()).getValue());
+                break;
+            case RGB555:
+                Color c = (Color) aValue;
+                int r = c.getRed()>>3;
+                int g = c.getGreen()>>3;
+                int b = c.getBlue()>>3;
+                int v = (r <<10) | (g<<5) | (b);
+                Utils.writeUInt(fw,addr, v);
                 break;
             default:
                 Utils.writeUShort(fw,addr, new RangedLong((String) aValue,vcfg.getRange()).getValue());
