@@ -71,6 +71,7 @@ public class GenericParamsDataModel extends AbstractTableModel {
                 break;
             case RGB555:
                 val=Utils.readUInt(fw,addr);
+                val = val >> 1;
                 int r = (int) ((val>>10) & 0x1f)<<3;
                 int g = (int) ((val>>5) & 0x1f)<<3;
                 int b = (int) ((val) & 0x1f)<<3;
@@ -121,7 +122,7 @@ public class GenericParamsDataModel extends AbstractTableModel {
                 int r = c.getRed()>>3;
                 int g = c.getGreen()>>3;
                 int b = c.getBlue()>>3;
-                int v = (r <<10) | (g<<5) | (b);
+                int v = (r <<11) | (g<<6) | (b<<1);
                 Utils.writeUInt(fw,addr, v);
                 break;
             default:
