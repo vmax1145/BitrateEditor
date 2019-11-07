@@ -226,7 +226,10 @@
 //        }
       ]
     }
-
-
+  ],
+  "imageTabs": [
+    {
+      "label": "Logo image"
+    }
   ]
 }

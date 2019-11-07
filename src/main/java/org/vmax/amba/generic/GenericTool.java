@@ -3,6 +3,7 @@ package org.vmax.amba.generic;
 import org.vmax.amba.FirmwareTool;
 import org.vmax.amba.Utils;
 import org.vmax.amba.cfg.FirmwareConfig;
+import org.vmax.amba.cfg.tabledata.ImageConfig;
 import org.vmax.amba.cfg.tabledata.ParamsConfig;
 import org.vmax.amba.cfg.tabledata.TableDataConfig;
 
@@ -41,6 +42,10 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
             GenericParamsTable editorPanel = new GenericParamsTable(pcfg, model);
             tabs.add(pcfg.getLabel(), new JScrollPane(editorPanel));
         }
+        for(ImageConfig icfg : this.cfg.getImageTabs()) {
+            JPanel editorPanel = new JPanel();
+            tabs.add(icfg.getLabel(), new JScrollPane(editorPanel));
+        }
 
         setJMenuBar(bar);
     }
@@ -58,6 +63,7 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
     @Override
     public void updateFW() {
         try {
+
             Utils.saveFirmware(this, cfg, fwBytes);
         }
         catch (Exception e) {
