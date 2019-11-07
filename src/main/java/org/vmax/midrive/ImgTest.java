@@ -28,10 +28,17 @@ import java.util.regex.Pattern;
 public class ImgTest extends JPanel {
     private final int maxPixels;
     private JTextField nomer;
-    private JTextField region;
     private JLabel render;
     private Variant selectedVariant;
     private BufferedImage image;
+
+    public static Dimension[] DIMENSIONS  = {
+            new Dimension(150, 60),
+            new Dimension(230, 90),
+            new Dimension(300, 124),
+            new Dimension(316, 130)
+    };
+
 
     public static final String LOAD_FROM_FILE = "Загрузить из файла";
     private final static Map<String,Variant> VARIANTS = new LinkedHashMap<String , Variant>() {
