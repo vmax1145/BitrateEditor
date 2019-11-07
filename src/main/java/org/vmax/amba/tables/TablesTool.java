@@ -68,12 +68,10 @@ public class TablesTool  extends FirmwareTool<TableConfig> {
             tabbedPane.add(tableSetConfig.getLabel() ,jsp);
         }
 
-        JMenuBar bar = buildMenu(cfg,fwBytes);
-        setJMenuBar(bar);
-
     }
 
-    private JMenuBar buildMenu(TableConfig cfg, byte[] fwBytes) {
+    @Override
+    public JMenuBar buildMenu() {
         JMenuBar bar = super.buildMenu();
 
         JMenu view = new JMenu("View");
@@ -90,6 +88,7 @@ public class TablesTool  extends FirmwareTool<TableConfig> {
             }
         });
         bar.add(view);
+
 
         if(cfg.isCurves()) {
             JMenu graphs = new JMenu("Graphs");
@@ -125,9 +124,6 @@ public class TablesTool  extends FirmwareTool<TableConfig> {
             }
             bar.add(graphs);
         }
-
-
-
 
 
         return bar;

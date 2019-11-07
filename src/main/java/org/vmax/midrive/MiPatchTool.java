@@ -1,21 +1,32 @@
 package org.vmax.midrive;
 
 import org.vmax.amba.Utils;
+import org.vmax.amba.cfg.GenericTableDataConfig;
+import org.vmax.amba.cfg.ImageConfig;
 import org.vmax.amba.cfg.Patch;
 import org.vmax.amba.cfg.PatchEntry;
-import org.vmax.amba.generic.PatchTool;
+import org.vmax.amba.generic.GenericTool;
 
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MiPatchTool extends PatchTool<MiPatchToolConfig> {
+public class MiPatchTool extends GenericTool {
     @Override
-    protected List<Patch> loadPatches(MiPatchToolConfig cfg) throws Exception {
-        long addrOffset = cfg.getPatchLoader().getPatchAddrOffset();
-        return loadPatches(addrOffset, cfg.getPatchLoader().getPatches());
+    protected JComponent createImageTab(ImageConfig icfg, byte[] fwBytes) throws Exception {
+        JComponent c = new MiLogoTab((MiLogoImageConfig) icfg, fwBytes);
+        JPanel p = new JPanel();
+        p.add(c);
+        return p;
+    }
+
+    @Override
+    protected List<Patch> loadPatches(GenericTableDataConfig cfg)  {
+        long addrOffset = ((MiPatchLoaderCfg)cfg.getPatchLoader()).getPatchAddrOffset();
+        return loadPatches(addrOffset, ((MiPatchLoaderCfg)cfg.getPatchLoader()).getPatches());
     }
 
     private List<Patch> loadPatches(long addrOffset, List<MiPatchFileConfig> patchFiles) {

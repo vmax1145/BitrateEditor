@@ -43,6 +43,7 @@ public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
     private Bitrate[] bitrates;
     private Bitrate[] bitratesFiltered;
     private EditorPanel editorPanel;
+    private BitrateCalcDialog bitrateCalcDialog;
 
     @Override
     public Class<BitrateEditorConfig> getConfigClz() {
@@ -75,22 +76,27 @@ public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
 
         editorPanel = new EditorPanel(cfg, bitratesFiltered);
 
-        BitrateCalcDialog bitrateCalcDialog = new BitrateCalcDialog(this, editorPanel, cfg, bitrates);
+        bitrateCalcDialog = new BitrateCalcDialog(this, editorPanel, cfg, bitrates);
 
+
+
+        JScrollPane jsp = new JScrollPane(editorPanel);
+        jsp.setPreferredSize(new Dimension(800,500));
+        add(jsp, BorderLayout.CENTER);
+
+
+    }
+
+    @Override
+    public JMenuBar buildMenu() {
         JMenuBar bar = new BitrateMenuBuilder(super.buildMenu())
                 .with(editorPanel)
                 .with(cfg)
                 .with(bitrates,bitratesFiltered)
                 .with(bitrateCalcDialog)
                 .build();
-
-
-        JScrollPane jsp = new JScrollPane(editorPanel);
-        jsp.setPreferredSize(new Dimension(800,500));
-        add(jsp, BorderLayout.CENTER);
-        setJMenuBar(bar);
+        return bar;
     }
-
 
 
     private Bitrate[] getBitrates(BitrateEditorConfig cfg, byte[] fw)  {

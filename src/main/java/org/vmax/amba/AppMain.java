@@ -65,6 +65,7 @@ public class AppMain {
     private static void startTool(FirmwareConfig cfg, FirmwareTool tool, byte[] fwBytes) throws Exception {
         System.out.println(tool.getStartMessage(cfg));
         tool.init(cfg, fwBytes);
+        tool.setJMenuBar(tool.buildMenu());
         tool.pack();
         tool.setVisible(true);
     }

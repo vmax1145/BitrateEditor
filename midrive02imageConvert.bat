@@ -1,1 +1,0 @@
-java -cp firmware-editor-tool-7.1-SNAPSHOT.jar -Dloader.main=org.vmax.midrive.ImgTest org.springframework.boot.loader.PropertiesLauncher

@@ -34,9 +34,6 @@ public class YUVTool extends FirmwareTool<YUVConfig> {
         this.fwBytes = fwBytes;
         this.yuvCfg = (YUVConfig) cfg;
 
-
-        JMenuBar bar = buildMenu();
-
         JTabbedPane tabs = new JTabbedPane();
         tabs.setPreferredSize(new Dimension(1400,800));
         add(tabs, BorderLayout.CENTER);
@@ -57,7 +54,6 @@ public class YUVTool extends FirmwareTool<YUVConfig> {
             data.add(tabData);
             tabs.add(tabCfg.getName(),createTab(tabData, tabCfg.getImageSample()));
         }
-        setJMenuBar(bar);
     }
 
     private Component createTab(YUVTabData tabData, String imagePath) {

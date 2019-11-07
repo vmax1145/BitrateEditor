@@ -13,16 +13,33 @@
     "className":"org.vmax.midrive.MiDriveD02MediaAppProcessor"
   },
 
-  "patchLoader": {
-    "patchAddrOffset": 2151677952,
-    "patches": [
-      { "path":"config-MiDriveD02/patches/patch-mix11.sh",
-        "label": "patch mix 1.1",
-        "description": "<HTML>changes:<UL><LI>ae table</LI><LI>ae speed</LI><LI>saturation</LI><LI>noise reduction</LI><LI>sharpening</LI></HTML>"
-      }
-    ]
-  }
+//  "patchLoader": {
+//    "patchAddrOffset": 2151677952,
+//    "patches": [
+//      { "path":"config-MiDriveD02/patches/patch-mix11.sh",
+//        "label": "patch mix 1.1",
+//        "description": "<HTML>changes:<UL><LI>ae table</LI><LI>ae speed</LI><LI>saturation</LI><LI>noise reduction</LI><LI>sharpening</LI></HTML>"
+//      }
+//    ]
+//  },
 
-
+  "imageTabs": [
+    {
+      "label": "Logo 720p",
+      "maxPixels":9000
+    },
+    {
+      "label": "Logo 1080p",
+      "maxPixels":20700
+    },
+    {
+      "label": "Logo 1440p",
+      "maxPixels":37200
+    },
+    {
+      "label": "Logo 1944p",
+      "maxPixels":41080
+    }
+  ]
 
 }

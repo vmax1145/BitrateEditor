@@ -2,19 +2,21 @@ package org.vmax.amba.generic;
 
 import org.vmax.amba.FirmwareTool;
 import org.vmax.amba.Utils;
-import org.vmax.amba.cfg.FirmwareConfig;
-import org.vmax.amba.cfg.tabledata.ImageConfig;
+import org.vmax.amba.cfg.*;
 import org.vmax.amba.cfg.tabledata.ParamsConfig;
 import org.vmax.amba.cfg.tabledata.TableDataConfig;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
 
-    private GenericTableDataConfig cfg;
-
+    private GenericTableDataConfig<ImageConfig> cfg;
+    private List<Patch> patchList;
     private byte[] fwBytes;
 
     @Override
@@ -23,11 +25,11 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
     }
 
     @Override
-    public void init(FirmwareConfig acfg, byte[] fwBytes) {
+    public void init(FirmwareConfig acfg, byte[] fwBytes) throws Exception {
         this.cfg = (GenericTableDataConfig) acfg;
         this.fwBytes = fwBytes;
 
-        JMenuBar bar = buildMenu();
+
         JTabbedPane tabs = new JTabbedPane();
         tabs.setPreferredSize(new Dimension(600,400));
         add(tabs, BorderLayout.CENTER);
@@ -43,11 +45,40 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
             tabs.add(pcfg.getLabel(), new JScrollPane(editorPanel));
         }
         for(ImageConfig icfg : this.cfg.getImageTabs()) {
-            JPanel editorPanel = new JPanel();
-            tabs.add(icfg.getLabel(), new JScrollPane(editorPanel));
+            JComponent p = createImageTab(icfg,fwBytes);
+            tabs.add(icfg.getLabel(), new JScrollPane(p));
         }
 
-        setJMenuBar(bar);
+        if(cfg.getPatchLoader()!=null) {
+            patchList = loadPatches(cfg);
+            PatchDataModel model = new PatchDataModel(patchList, fwBytes);
+            JTable jTable = new JTable(model) {
+                public String getToolTipText(MouseEvent e) {
+                    java.awt.Point p = e.getPoint();
+                    int rowIndex = rowAtPoint(p);
+                    if (rowIndex < patchList.size()) {
+                        return patchList.get(rowIndex).getDescription();
+                    }
+                    return super.getToolTipText(e);
+                }
+            };
+            JScrollPane jsp = new JScrollPane(jTable);
+            jsp.setPreferredSize(new Dimension(600,400));
+            tabs.add("Patches",jsp);
+        }
+
+    }
+
+    protected JComponent createImageTab(ImageConfig icfg, byte[] fwBytes) throws Exception {
+        throw new Exception("Image tab not implemented in base class");
+    }
+
+    protected List<Patch> loadPatches(GenericTableDataConfig cfg) {
+        return new ArrayList<>();
+    };
+
+    public boolean hasImportExport() {
+        return false;
     }
 
     @Override
@@ -73,7 +104,7 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
     }
 
     @Override
-    public Class<GenericTableDataConfig> getConfigClz() {
+    public Class<? extends GenericTableDataConfig> getConfigClz() {
         return GenericTableDataConfig.class;
     }
 }
