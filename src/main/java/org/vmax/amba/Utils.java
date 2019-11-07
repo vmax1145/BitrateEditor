@@ -15,11 +15,13 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.zip.CRC32;
 
 public class Utils {
 
-    public static long readUInt(byte[] fw, int addr)  {
+    public static long readUInt(byte[] fw, int addr) {
         ByteBuffer bb = ByteBuffer.wrap(fw, addr, Integer.BYTES);
         bb.order(ByteOrder.LITTLE_ENDIAN);
         return bb.getInt() & 0xffffffffL;
@@ -27,43 +29,44 @@ public class Utils {
 
 
     public static float readFloat(byte[] fw, int addr) {
-        ByteBuffer bb = ByteBuffer.wrap(fw,addr,Float.BYTES);
+        ByteBuffer bb = ByteBuffer.wrap(fw, addr, Float.BYTES);
         bb.order(ByteOrder.LITTLE_ENDIAN);
         return bb.getFloat();
     }
 
-    public static void writeFloat(byte[] fw, int addr, float val)  {
-        ByteBuffer bb = ByteBuffer.wrap(fw,addr,Float.BYTES);
+    public static void writeFloat(byte[] fw, int addr, float val) {
+        ByteBuffer bb = ByteBuffer.wrap(fw, addr, Float.BYTES);
         bb.order(ByteOrder.LITTLE_ENDIAN);
         bb.putFloat(val);
     }
+
     public static void writeUInt(byte[] fw, int addr, long val) {
-        ByteBuffer bb = ByteBuffer.wrap(fw,addr,Integer.BYTES);
+        ByteBuffer bb = ByteBuffer.wrap(fw, addr, Integer.BYTES);
         bb.order(ByteOrder.LITTLE_ENDIAN);
         bb.putInt((int) val);
     }
 
     public static String hex(long v) {
         String s = Long.toHexString(v & 0xffffffffL);
-        while (s.length()<8) {
-            s="0"+s;
+        while (s.length() < 8) {
+            s = "0" + s;
         }
-        return s ;
+        return s;
     }
 
     public static String hex(byte v) {
         String s = Long.toHexString(v & 0xffL);
-        while (s.length()<2) {
-            s="0"+s;
+        while (s.length() < 2) {
+            s = "0" + s;
         }
-        return s ;
+        return s;
     }
 
 
     public static String hex(byte[] bytes) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < bytes.length; i++) {
-            if(i>0) sb.append(" ");
+            if (i > 0) sb.append(" ");
             sb.append(hex(bytes[i]));
         }
         return sb.toString();
@@ -73,15 +76,16 @@ public class Utils {
         CRC32 crc = new CRC32();
         crc.update(fw, from, len);
 
-        long expected = readUInt(fw,crcAddr);
-        if(  expected != crc.getValue()) {
-            throw new VerifyException("CRC "+crcAddr+" expected:"+hex(expected)+" actual:"+hex(crc.getValue()));
+        long expected = readUInt(fw, crcAddr);
+        if (expected != crc.getValue()) {
+            throw new VerifyException("CRC " + crcAddr + " expected:" + hex(expected) + " actual:" + hex(crc.getValue()));
         }
     }
+
     public static void crcSet(byte[] buf, int from, int len, int crcAddr) {
         CRC32 crc = new CRC32();
-        crc.update(buf,from,len);
-        writeUInt(buf, crcAddr,crc.getValue());
+        crc.update(buf, from, len);
+        writeUInt(buf, crcAddr, crc.getValue());
     }
 
     public static byte[] calculateDigest(byte[] fw) throws NoSuchAlgorithmException, IOException {
@@ -111,21 +115,21 @@ public class Utils {
     }
 
     public static byte[] loadFirmware(FirmwareConfig cfg, File f) throws Exception {
-        if(!f.exists()) {
-            System.out.println("FW file "+cfg.getFwFileName()+" not found");
+        if (!f.exists()) {
+            System.out.println("FW file " + cfg.getFwFileName() + " not found");
             System.exit(0);
         }
         byte[] fwBytes = FileUtils.readFileToByteArray(f);
 
-        if(cfg.getPreProcessor()!=null) {
+        if (cfg.getPreProcessor() != null) {
             PreProcessor preprocessor = (PreProcessor) Class.forName(cfg.getPreProcessor().getClassName()).newInstance();
             preprocessor.withConfig(cfg);
             fwBytes = preprocessor.preprocess(fwBytes);
         }
 
 
-        for(Verify verify : cfg.getVerify()) {
-            if(verify.getVal()!=null) {
+        for (Verify verify : cfg.getVerify()) {
+            if (verify.getVal() != null) {
                 byte[] bytes = verify.getVal().getBytes("ASCII");
 
                 for (int i = 0, addr = verify.getAddr(); i < bytes.length; i++, addr++) {
@@ -134,46 +138,44 @@ public class Utils {
                         throw new VerifyException("Verify fail:" + verify.getVal());
                     }
                 }
-            }
-            else if(verify.getCrc()!=null) {
-                crcCheck(fwBytes,verify.getCrc().getFromAddr(), verify.getCrc().getLen(), verify.getAddr());
+            } else if (verify.getCrc() != null) {
+                crcCheck(fwBytes, verify.getCrc().getFromAddr(), verify.getCrc().getLen(), verify.getAddr());
             }
         }
         return fwBytes;
     }
 
-    public static void saveFirmware(JFrame tool, FirmwareConfig cfg, byte[] fwBytes ) throws Exception {
-            for(Verify verify : cfg.getVerify()) {
-                if(verify.getCrc()!=null) {
-                    crcSet(fwBytes,verify.getCrc().getFromAddr(), verify.getCrc().getLen(), verify.getAddr());
-                }
+    public static void saveFirmware(JFrame tool, FirmwareConfig cfg, byte[] fwBytes) throws Exception {
+        for (Verify verify : cfg.getVerify()) {
+            if (verify.getCrc() != null) {
+                crcSet(fwBytes, verify.getCrc().getFromAddr(), verify.getCrc().getLen(), verify.getAddr());
             }
-            if(cfg.getPostProcessor()!=null) {
-                PostProcessor postprocessor = (PostProcessor) Class.forName(cfg.getPostProcessor().getClassName()).newInstance();
-                postprocessor.withConfig(cfg);
-                fwBytes = postprocessor.postprocess(fwBytes);
-            }
+        }
+        if (cfg.getPostProcessor() != null) {
+            PostProcessor postprocessor = (PostProcessor) Class.forName(cfg.getPostProcessor().getClassName()).newInstance();
+            postprocessor.withConfig(cfg);
+            fwBytes = postprocessor.postprocess(fwBytes);
+        }
 
-            File out = null;
-            if(cfg.isShowFileDialog() || cfg.getFwFileName()==null) {
-                JFileChooser jfc = new JFileChooser(new File("."));
-                if(cfg.getFwFileName()!=null) {
-                    jfc.setSelectedFile(new File(cfg.getFwFileName() + ".mod"));
-                }
-                if(jfc.showSaveDialog(tool) == JFileChooser.APPROVE_OPTION) {
-                    out = jfc.getSelectedFile();
-                }
+        File out = null;
+        if (cfg.isShowFileDialog() || cfg.getFwFileName() == null) {
+            JFileChooser jfc = new JFileChooser(new File("."));
+            if (cfg.getFwFileName() != null) {
+                jfc.setSelectedFile(new File(cfg.getFwFileName() + ".mod"));
             }
-            else {
-                out = new File(cfg.getFwFileName() + ".mod");
-                if(out.exists()) {
-                    JOptionPane.showMessageDialog(null,"File "+out.getName()+" already exists");
-                    return;
-                }
+            if (jfc.showSaveDialog(tool) == JFileChooser.APPROVE_OPTION) {
+                out = jfc.getSelectedFile();
             }
-            if(out!=null) {
-                FileUtils.writeByteArrayToFile(out, fwBytes);
+        } else {
+            out = new File(cfg.getFwFileName() + ".mod");
+            if (out.exists()) {
+                JOptionPane.showMessageDialog(null, "File " + out.getName() + " already exists");
+                return;
             }
+        }
+        if (out != null) {
+            FileUtils.writeByteArrayToFile(out, fwBytes);
+        }
 
     }
 
@@ -181,8 +183,7 @@ public class Utils {
     //------------------
 
 
-
-    public static long readUShort(byte[] fw, int addr)  {
+    public static long readUShort(byte[] fw, int addr) {
         ByteBuffer bb = ByteBuffer.wrap(fw, addr, Short.BYTES);
         bb.order(ByteOrder.LITTLE_ENDIAN);
         return bb.getShort() & 0xffffL;
@@ -190,7 +191,7 @@ public class Utils {
 
 
     public static void writeUShort(byte[] fw, int addr, long val) {
-        ByteBuffer bb = ByteBuffer.wrap(fw,addr,Short.BYTES);
+        ByteBuffer bb = ByteBuffer.wrap(fw, addr, Short.BYTES);
         bb.order(ByteOrder.LITTLE_ENDIAN);
         bb.putShort((short) val);
     }
@@ -198,10 +199,10 @@ public class Utils {
 
     public static String hex(long v, int digits) {
         String s = Long.toHexString(v & 0xffffffffL);
-        while (s.length()<digits) {
-            s="0"+s;
+        while (s.length() < digits) {
+            s = "0" + s;
         }
-        return s ;
+        return s;
     }
 
 
@@ -220,14 +221,35 @@ public class Utils {
 //        return bytes;
 //    }
 
-    public static long readUByte(byte[] fw, int addr)  {
+    public static long readUByte(byte[] fw, int addr) {
         return fw[addr] & 0xffL;
     }
+
     public static void writeUByte(byte[] fw, int addr, long val) {
-        fw[addr]= (byte) val;
+        fw[addr] = (byte) val;
     }
 
     public static ObjectMapper getObjectMapper() {
         return new ObjectMapper();
+    }
+
+
+    public static List<Integer> findArray(byte[] fw, byte[] searchFor) {
+        List<Integer> addr = new ArrayList<>();
+        int subArrayLength = searchFor.length;
+        if (subArrayLength != 0) {
+            int limit = fw.length - subArrayLength;
+            outer:
+            for (int i = 0; i <= limit; i++) {
+                for (int j = 0; j < subArrayLength; j++) {
+                    if (searchFor[j] != fw[i + j]) {
+                        continue outer;
+                    }
+                }
+                addr.add(i);
+                i += subArrayLength;
+            }
+        }
+        return addr;
     }
 }

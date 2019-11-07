@@ -57,8 +57,8 @@ public class MiLogoTab extends JPanel {
 
 
     public MiLogoTab(MiLogoImageConfig cfg, byte[] fwBytes) {
-
         super(new SpringLayout());
+        
         this.cfg = cfg;
         add(new JLabel());
         JComboBox<String> variant = new JComboBox<>(VARIANTS.keySet().toArray(new String[0]));
