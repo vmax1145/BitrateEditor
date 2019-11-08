@@ -136,6 +136,27 @@
             "on":"1"
           }
         },
+// not checked
+        {
+          "label": "Logo X %",
+          "addrOffset": 1888,
+          "type": "UInt32",
+          "range": {
+            "min": 0,
+            "max" : 100
+          }
+        },
+// not checked
+        {
+          "label": "Logo Y %",
+          "addrOffset": 1892,
+          "type": "UInt32",
+          "range": {
+            "min": 0,
+            "max" : 100
+          }
+        },
+
         {
           "label": "Stamp On/Off",
           "addrOffset": 1840,

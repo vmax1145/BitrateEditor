@@ -194,11 +194,9 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
         }
         Image im = bim.getScaledInstance(scaledW,scaledH,Image.SCALE_SMOOTH);
 
-        BufferedImage converted = new BufferedImage(cfg.getDimension().getWidth(), cfg.getDimension().getHeight(), BufferedImage.TYPE_USHORT_555_RGB);
+        BufferedImage converted = new BufferedImage(cfg.getDimension().getWidth(), scaledH, BufferedImage.TYPE_USHORT_555_RGB);
         Graphics g = converted.getGraphics();
-        g.setColor(Color.BLACK);
-        g.fillRect(0,0,cfg.getDimension().getWidth(), cfg.getDimension().getHeight());
-        g.drawImage(im, (cfg.getDimension().getWidth()-scaledW)/2, (cfg.getDimension().getHeight()-scaledH)/2, null);
+        g.drawImage(im, (cfg.getDimension().getWidth()-scaledW)/2, 0, null);
         g.dispose();
         return converted;
     }
