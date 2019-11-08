@@ -3,7 +3,6 @@ package org.vmax.midrive;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.vmax.amba.Utils;
 import org.vmax.amba.generic.GenericImageTab;
 import org.vmax.amba.yuv.ui.SpringUtilities;
 
@@ -22,11 +21,9 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.text.MessageFormat;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class MiLogoTab extends JPanel implements GenericImageTab {
     private final byte[] fwBytes;
@@ -66,7 +63,7 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
     public MiLogoTab(MiLogoImageConfig cfg, byte[] fwBytes) {
         super(new SpringLayout());
         this.fwBytes = fwBytes;
-        System.out.println(findAddr(cfg, fwBytes));
+        //System.out.println(findAddr(cfg, fwBytes));
 
         this.cfg = cfg;
         add(new JLabel());
@@ -117,19 +114,19 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
         variant.setSelectedIndex(0);
     }
 
-    private List<String> findAddr(MiLogoImageConfig cfg, byte[] fwBytes) {
-        byte[] find = new byte[6 * Integer.BYTES];
-        ByteBuffer bb = ByteBuffer.wrap(find);
-        bb.order(ByteOrder.LITTLE_ENDIAN);
-        bb.putInt(cfg.getDimension().getHeight());
-        bb.putInt(cfg.getDimension().getWidth());
-        bb.putInt(2);
-        bb.putInt(0xFD80FD80);
-        bb.putInt(0xFD80FD80);
-        bb.putInt(0xFD80FD80);
-        find = bb.array();
-        return Utils.findArray(fwBytes, find).stream().map(Utils::hex).collect(Collectors.toList());
-    }
+//    private List<String> findAddr(MiLogoImageConfig cfg, byte[] fwBytes) {
+//        byte[] find = new byte[6 * Integer.BYTES];
+//        ByteBuffer bb = ByteBuffer.wrap(find);
+//        bb.order(ByteOrder.LITTLE_ENDIAN);
+//        bb.putInt(cfg.getDimension().getHeight());
+//        bb.putInt(cfg.getDimension().getWidth());
+//        bb.putInt(2);
+//        bb.putInt(0xFD80FD80);
+//        bb.putInt(0xFD80FD80);
+//        bb.putInt(0xFD80FD80);
+//        find = bb.array();
+//        return Utils.findArray(fwBytes, find).stream().map(Utils::hex).collect(Collectors.toList());
+//    }
 
     private void processImageCreation() {
         if (MiLogoTab.this.selectedVariant != null) {
@@ -217,33 +214,6 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
         return null;
     }
 
-    @Override
-    public void updateFW() {
-        if(image!=null) {
-            int w = image.getWidth();
-            int h = image.getHeight();
-            byte[] fwBytes = new byte[w * h * Short.BYTES + 3 * Integer.BYTES];
-            short[] data = new short[w * h];
-            image.getRaster().getDataElements(0, 0, w, h, data);
-
-
-            ByteBuffer bb = ByteBuffer.wrap(fwBytes);
-            bb.order(ByteOrder.LITTLE_ENDIAN);
-            bb.position(cfg.getAddr());
-            bb.putInt(w);
-            bb.putInt(2);
-            for (short pix : data) {
-                bb.putShort(pix);
-            }
-        }
-    }
-
-    @Override
-    public JComponent getComponent() {
-        return this;
-    }
-
-
     private BufferedImage loadFromFirmware() {
         ByteBuffer bb = ByteBuffer.wrap(fwBytes);
         bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -261,6 +231,34 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
         raster.setDataElements(0, 0, w, h, data);
         return bim;
     }
+
+    @Override
+    public void updateFW() {
+        if(image!=null) {
+            int w = image.getWidth();
+            int h = image.getHeight();
+
+            short[] data = new short[w * h];
+            image.getRaster().getDataElements(0, 0, w, h, data);
+
+            ByteBuffer bb = ByteBuffer.wrap(fwBytes);
+            bb.order(ByteOrder.LITTLE_ENDIAN);
+            bb.position(cfg.getAddr());
+            bb.putInt(h);
+            bb.putInt(w);
+            bb.putInt(2);
+            for (short pix : data) {
+                bb.putShort(pix);
+            }
+        }
+    }
+
+    @Override
+    public JComponent getComponent() {
+        return this;
+    }
+
+
 
 //    private static void saveBinaryImage(File f, BufferedImage bim) throws IOException {
 //        int w = bim.getWidth();

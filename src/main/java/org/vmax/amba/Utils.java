@@ -142,6 +142,9 @@ public class Utils {
                 crcCheck(fwBytes, verify.getCrc().getFromAddr(), verify.getCrc().getLen(), verify.getAddr());
             }
         }
+
+        //FileUtils.writeByteArrayToFile(new File(f.getName()+".preprocessed"),fwBytes);
+
         return fwBytes;
     }
 

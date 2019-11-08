@@ -13,6 +13,29 @@
     "className":"org.vmax.midrive.MiDriveD02MediaAppProcessor"
   },
 
+  "verify": [
+    {
+      "addr": 6409232,
+      "val": "\u0002"
+    },
+    {
+      "addr": 6367820,
+      "val": "\u0002"
+    },
+    {
+      "addr": 6218996,
+      "val": "\u0002"
+    },
+    {
+      "addr": 6293408,
+      "val": "\u0002"
+    },
+    {
+      "addr": 6432452,
+      "val": "\u0002"
+    }
+  ],
+
 //  "patchLoader": {
 //    "patchAddrOffset": 2151677952,
 //    "patches": [
@@ -59,7 +82,7 @@
     },
     {
       "label": "Logo 1944p",
-      "addr":"6432444",
+      "addr": 6432444,
       "dimension": {
         "width":316,
         "height":130

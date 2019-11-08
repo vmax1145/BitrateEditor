@@ -45,7 +45,7 @@ public class AppMain {
                     }
                 };
                 jfc.addChoosableFileFilter(filter);
-                jfc.setAcceptAllFileFilterUsed(false);
+                jfc.setAcceptAllFileFilterUsed(true);
                 jfc.setSelectedFile(new File(cfg.getFwFileName()));
             }
 
