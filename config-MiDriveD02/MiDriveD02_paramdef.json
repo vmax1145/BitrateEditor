@@ -155,12 +155,12 @@
           }
         },
         {
-          "label": "Logo transparency",
+          "label": "Logo opacity",
           "addrOffset": 1892,
           "type": "UInt32",
           "range": {
             "min": 0,
-            "max" : 100
+            "max" : 128
           }
         },
 
@@ -227,12 +227,12 @@
           "hex":true
         },
         {
-          "label": "Stamp transparency",
+          "label": "Stamp opacity",
           "addrOffset": 1872,
           "type": "UInt32",
           "range": {
             "min": 0,
-            "max" : 100
+            "max" : 128
           }
         },
 
