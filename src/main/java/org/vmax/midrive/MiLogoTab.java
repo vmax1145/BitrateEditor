@@ -183,18 +183,22 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
 
 
     private BufferedImage convertImage(BufferedImage bim) {
-
-        float scaleX = 1.0f * cfg.getDimension().getWidth() / bim.getWidth();
-        float scaleY = 1.0f * cfg.getDimension().getHeight() / bim.getHeight();
-        float scale = Math.min(scaleX, scaleY);
-        int scaledW = (int) (bim.getWidth() * scale);
-        int scaledH = (int) (bim.getHeight() * scale);
-
+        int scaledW, scaledH;
+        if (1.0 * bim.getWidth() / cfg.getDimension().getWidth() > 1.0 * bim.getHeight() / cfg.getDimension().getHeight()) {
+            scaledW = cfg.getDimension().getWidth();
+            scaledH = bim.getHeight() * cfg.getDimension().getWidth() / bim.getWidth();
+        }
+        else {
+            scaledW = bim.getWidth() * cfg.getDimension().getHeight() / bim.getHeight();
+            scaledH = cfg.getDimension().getHeight();
+        }
         Image im = bim.getScaledInstance(scaledW,scaledH,Image.SCALE_SMOOTH);
 
-        BufferedImage converted = new BufferedImage(im.getWidth(this), im.getHeight(this), BufferedImage.TYPE_USHORT_555_RGB);
+        BufferedImage converted = new BufferedImage(cfg.getDimension().getWidth(), cfg.getDimension().getHeight(), BufferedImage.TYPE_USHORT_555_RGB);
         Graphics g = converted.getGraphics();
-        g.drawImage(im, 0, 0, null);
+        g.setColor(Color.BLACK);
+        g.fillRect(0,0,cfg.getDimension().getWidth(), cfg.getDimension().getHeight());
+        g.drawImage(im, (cfg.getDimension().getWidth()-scaledW)/2, (cfg.getDimension().getHeight()-scaledH)/2, null);
         g.dispose();
         return converted;
     }
@@ -209,6 +213,7 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
             File f = chooser.getSelectedFile();
             BufferedImage bim = ImageIO.read(f);
             nomer.setText(f.getName());
+
             return bim;
         }
         return null;
@@ -229,6 +234,7 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
         BufferedImage bim = new BufferedImage(w, h, BufferedImage.TYPE_USHORT_555_RGB);
         WritableRaster raster = bim.getRaster();
         raster.setDataElements(0, 0, w, h, data);
+        System.out.println(cfg.getAddr()+":"+w+"*"+h);
         return bim;
     }
 
@@ -248,8 +254,9 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
             bb.putInt(w);
             bb.putInt(2);
             for (short pix : data) {
-                bb.putShort(pix);
+                bb.putShort((short) (pix&0xFFFE));
             }
+            System.out.println(cfg.getAddr()+":"+w+"*"+h);
         }
     }
 
@@ -258,6 +265,10 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
         return this;
     }
 
+    @Override
+    public String getTabLabel() {
+        return cfg.getLabel()+" ("+cfg.getDimension().getWidth()+"x"+cfg.getDimension().getHeight()+")";
+    }
 
 
 //    private static void saveBinaryImage(File f, BufferedImage bim) throws IOException {

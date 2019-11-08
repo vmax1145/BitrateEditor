@@ -4,5 +4,7 @@ import javax.swing.*;
 
 public interface GenericImageTab {
     void updateFW();
-    public JComponent getComponent();
+    JComponent getComponent();
+
+    String getTabLabel();
 }

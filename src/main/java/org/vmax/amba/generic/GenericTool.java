@@ -51,7 +51,7 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
             imageTabs.add(imgTab);
             JPanel p = new JPanel();
             p.add(imgTab.getComponent());
-            tabs.add(icfg.getLabel(), new JScrollPane(p));
+            tabs.add(imgTab.getTabLabel(), new JScrollPane(p));
         }
 
         if(cfg.getPatchLoader()!=null) {

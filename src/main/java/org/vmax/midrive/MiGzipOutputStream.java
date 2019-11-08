@@ -22,16 +22,17 @@ public class MiGzipOutputStream extends GZIPOutputStream {
         super(out, syncFlush);
     }
 
+
     private void writeHeader(String fileName) throws IOException {
         out.write(new byte[] {
                 (byte) 0x1f,        // Magic number (short)
                 (byte) 0x8b,        // Magic number (short)
                 Deflater.DEFLATED,  // Compression method (CM)
                 0x8,                // Flags (FLG) original filename present
-                (byte) 0x9D,        // Modification time MTIME (int)
-                (byte) 0x8B,        // Modification time MTIME (int)
-                0x7F,               // Modification time MTIME (int)
-                0x5C,               // Modification time MTIME (int)
+                (byte) 0x5D,        // Modification time MTIME (int)
+                (byte) 0x06,        // Modification time MTIME (int)
+                (byte) 0xBC,               // Modification time MTIME (int)
+                (byte) 0x5D,               // Modification time MTIME (int)
                 0,                  // Extra flags (XFLG)
                 0x3                 // Operating system (OS),
         });
