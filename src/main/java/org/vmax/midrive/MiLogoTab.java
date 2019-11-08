@@ -3,6 +3,8 @@ package org.vmax.midrive;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.vmax.amba.Utils;
+import org.vmax.amba.generic.GenericImageTab;
 import org.vmax.amba.yuv.ui.SpringUtilities;
 
 import javax.imageio.ImageIO;
@@ -11,17 +13,23 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
+import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.text.MessageFormat;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
-public class MiLogoTab extends JPanel {
+public class MiLogoTab extends JPanel implements GenericImageTab {
+    private final byte[] fwBytes;
     private MiLogoImageConfig cfg;
     private JTextField nomer;
     private JLabel render;
@@ -30,7 +38,7 @@ public class MiLogoTab extends JPanel {
 
     public static final String LOAD_FROM_FILE = "Загрузить из файла";
 
-    public static Dimension[] DIMENSIONS  = {
+    public static Dimension[] DIMENSIONS = {
             new Dimension(150, 60),
             new Dimension(230, 90),
             new Dimension(300, 124),
@@ -38,13 +46,12 @@ public class MiLogoTab extends JPanel {
     };
 
 
-
-    private final static Map<String,Variant> VARIANTS = new LinkedHashMap<String , Variant>() {
+    private final static Map<String, Variant> VARIANTS = new LinkedHashMap<String, Variant>() {
         {
-            put("Российский номер",  new Variant("http://line4auto.ru/nomer/nom_{0}_{1}.png", "х777хх 177")
+            put("Российский номер", new Variant("http://line4auto.ru/nomer/nom_{0}_{1}.png", "х777хх 177")
 
             );
-            put("Украинский номер",  new Variant("http://line4auto.ru/nomer/nomua_{0}_{1}_{2}.png", "AA 3223 ЕУ")
+            put("Украинский номер", new Variant("http://line4auto.ru/nomer/nomua_{0}_{1}_{2}.png", "AA 3223 ЕУ")
 
             );
             put("Белорусский номер", new Variant("http://line4auto.ru/nomer/nomby_{0}+{1}.png", "0111 EA-1")
@@ -58,7 +65,9 @@ public class MiLogoTab extends JPanel {
 
     public MiLogoTab(MiLogoImageConfig cfg, byte[] fwBytes) {
         super(new SpringLayout());
-        
+        this.fwBytes = fwBytes;
+        System.out.println(findAddr(cfg, fwBytes));
+
         this.cfg = cfg;
         add(new JLabel());
         JComboBox<String> variant = new JComboBox<>(VARIANTS.keySet().toArray(new String[0]));
@@ -71,7 +80,7 @@ public class MiLogoTab extends JPanel {
         add(new JLabel());
 
         JPanel p = new JPanel();
-        p.add(new JButton(new AbstractAction("Generate"){
+        p.add(new JButton(new AbstractAction("Generate") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 processImageCreation();
@@ -82,10 +91,10 @@ public class MiLogoTab extends JPanel {
 
         add(new JLabel());
 
-
-        render = new JLabel();
-        render.setMinimumSize(new Dimension(300,60));
-        render.setPreferredSize(new Dimension(300,60));
+        image = loadFromFirmware();
+        render = new JLabel(new ImageIcon(image));
+        render.setMinimumSize(new Dimension(cfg.getDimension().getWidth() * 3 / 2, cfg.getDimension().getHeight() * 3 / 2));
+        render.setPreferredSize(new Dimension(cfg.getDimension().getWidth() * 3 / 2, cfg.getDimension().getHeight() * 3 / 2));
         p = new JPanel();
         p.add(render);
         add(p);
@@ -98,33 +107,46 @@ public class MiLogoTab extends JPanel {
 
         variant.addActionListener(e -> {
 
-            String  key = (String) variant.getSelectedItem();
+            String key = (String) variant.getSelectedItem();
             MiLogoTab.this.selectedVariant = VARIANTS.get(key);
             nomer.setText(MiLogoTab.this.selectedVariant.getExample());
-            if(LOAD_FROM_FILE.equals(key)) {
+            if (LOAD_FROM_FILE.equals(key)) {
                 processImageCreation();
             }
         });
         variant.setSelectedIndex(0);
     }
 
+    private List<String> findAddr(MiLogoImageConfig cfg, byte[] fwBytes) {
+        byte[] find = new byte[6 * Integer.BYTES];
+        ByteBuffer bb = ByteBuffer.wrap(find);
+        bb.order(ByteOrder.LITTLE_ENDIAN);
+        bb.putInt(cfg.getDimension().getHeight());
+        bb.putInt(cfg.getDimension().getWidth());
+        bb.putInt(2);
+        bb.putInt(0xFD80FD80);
+        bb.putInt(0xFD80FD80);
+        bb.putInt(0xFD80FD80);
+        find = bb.array();
+        return Utils.findArray(fwBytes, find).stream().map(Utils::hex).collect(Collectors.toList());
+    }
+
     private void processImageCreation() {
-        if(MiLogoTab.this.selectedVariant!=null) {
+        if (MiLogoTab.this.selectedVariant != null) {
             try {
                 BufferedImage bim;
-                if(selectedVariant == VARIANTS.get(LOAD_FROM_FILE)) {
+                if (selectedVariant == VARIANTS.get(LOAD_FROM_FILE)) {
                     bim = loadFromExternalFile();
-                }
-                else {
+                } else {
                     bim = generate(selectedVariant.template, nomer.getText());
                 }
 
-                if(bim!=null) {
-                    if(bim.getWidth()*bim.getHeight() > cfg.getMaxPixels()) {
-                        JOptionPane.showMessageDialog(null, "Слишком большая картинка","Ошибка", JOptionPane.ERROR_MESSAGE);
-                    }
-                    else {
-                        bim = convertImage(bim);
+                if (bim != null) {
+
+                    bim = convertImage(bim);
+                    if (bim.getWidth() * bim.getHeight() > cfg.getDimension().getWidth() * cfg.getDimension().getHeight()) {
+                        JOptionPane.showMessageDialog(null, "Слишком большая картинка", "Ошибка", JOptionPane.ERROR_MESSAGE);
+                    } else {
                         ImageIcon ico = new ImageIcon(bim);
                         render.setMinimumSize(new Dimension(bim.getWidth(), bim.getHeight()));
                         render.setPreferredSize(new Dimension(bim.getWidth(), bim.getHeight()));
@@ -132,6 +154,7 @@ public class MiLogoTab extends JPanel {
                         render.getParent().doLayout();
                         MiLogoTab.this.image = bim;
                     }
+
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -149,11 +172,10 @@ public class MiLogoTab extends JPanel {
             count++;
         }
         String[] nomer = nom.split("\\s");
-        if(nomer.length!=count) {
-            JOptionPane.showMessageDialog(this,"Неправильный формат номера","Ошибка",JOptionPane.ERROR_MESSAGE);
+        if (nomer.length != count) {
+            JOptionPane.showMessageDialog(this, "Неправильный формат номера", "Ошибка", JOptionPane.ERROR_MESSAGE);
             return null;
-        }
-        else {
+        } else {
             for (int i = 0; i < nomer.length; i++) {
                 nomer[i] = URLEncoder.encode(nomer[i], "cp1251");
             }
@@ -164,9 +186,18 @@ public class MiLogoTab extends JPanel {
 
 
     private BufferedImage convertImage(BufferedImage bim) {
-        BufferedImage converted = new BufferedImage(bim.getWidth(),bim.getHeight(),BufferedImage.TYPE_USHORT_555_RGB);
+
+        float scaleX = 1.0f * cfg.getDimension().getWidth() / bim.getWidth();
+        float scaleY = 1.0f * cfg.getDimension().getHeight() / bim.getHeight();
+        float scale = Math.min(scaleX, scaleY);
+        int scaledW = (int) (bim.getWidth() * scale);
+        int scaledH = (int) (bim.getHeight() * scale);
+
+        Image im = bim.getScaledInstance(scaledW,scaledH,Image.SCALE_SMOOTH);
+
+        BufferedImage converted = new BufferedImage(im.getWidth(this), im.getHeight(this), BufferedImage.TYPE_USHORT_555_RGB);
         Graphics g = converted.getGraphics();
-        g.drawImage(bim,0,0,null);
+        g.drawImage(im, 0, 0, null);
         g.dispose();
         return converted;
     }
@@ -175,9 +206,9 @@ public class MiLogoTab extends JPanel {
         JFileChooser chooser = new JFileChooser();
         chooser.addChoosableFileFilter(new FileNameExtensionFilter(
                 "image files",
-                "bmp","jpg","jpeg","gif","tiff","png"
+                "bmp", "jpg", "jpeg", "gif", "tiff", "png"
         ));
-        if(chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+        if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File f = chooser.getSelectedFile();
             BufferedImage bim = ImageIO.read(f);
             nomer.setText(f.getName());
@@ -186,24 +217,34 @@ public class MiLogoTab extends JPanel {
         return null;
     }
 
+    @Override
+    public void updateFW() {
+        throw new RuntimeException("not implemented");
+    }
 
-//    private static BufferedImage loadBinaryImage(File f) throws IOException {
-//        byte[] fwBytes = FileUtils.readFileToByteArray(f);
-//        ByteBuffer bb = ByteBuffer.wrap(fwBytes,0, fwBytes.length);
-//        bb.order(ByteOrder.LITTLE_ENDIAN);
-//        int h = bb.getInt();
-//        int w = bb.getInt();
-//        bb.getInt(); //skip
-//        short[] data = new short[w*h];
-//        for(int i=0;i<data.length;i++) {
-//            data[i] = bb.getShort();
-//        }
-//
-//        BufferedImage bim = new BufferedImage(w,h,BufferedImage.TYPE_USHORT_555_RGB);
-//        WritableRaster raster = bim.getRaster();
-//        raster.setDataElements(0,0,w,h,data);
-//        return bim;
-//    }
+    @Override
+    public JComponent getComponent() {
+        return this;
+    }
+
+
+    private BufferedImage loadFromFirmware() {
+        ByteBuffer bb = ByteBuffer.wrap(fwBytes);
+        bb.order(ByteOrder.LITTLE_ENDIAN);
+        bb.position(cfg.getAddr());
+        int h = bb.getInt();
+        int w = bb.getInt();
+        bb.getInt(); //skip
+        short[] data = new short[w * h];
+        for (int i = 0; i < data.length; i++) {
+            data[i] = bb.getShort();
+        }
+
+        BufferedImage bim = new BufferedImage(w, h, BufferedImage.TYPE_USHORT_555_RGB);
+        WritableRaster raster = bim.getRaster();
+        raster.setDataElements(0, 0, w, h, data);
+        return bim;
+    }
 
 //    private static void saveBinaryImage(File f, BufferedImage bim) throws IOException {
 //        int w = bim.getWidth();

@@ -1,10 +1,13 @@
 package org.vmax.midrive;
 
 import org.vmax.amba.Utils;
-import org.vmax.amba.cfg.*;
+import org.vmax.amba.cfg.GenericTableDataConfig;
+import org.vmax.amba.cfg.ImageConfig;
+import org.vmax.amba.cfg.Patch;
+import org.vmax.amba.cfg.PatchEntry;
+import org.vmax.amba.generic.GenericImageTab;
 import org.vmax.amba.generic.GenericTool;
 
-import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
@@ -15,11 +18,8 @@ public class MiPatchTool extends GenericTool {
 
 
     @Override
-    protected JComponent createImageTab(ImageConfig icfg, byte[] fwBytes) throws Exception {
-        JComponent c = new MiLogoTab((MiLogoImageConfig) icfg, fwBytes);
-        JPanel p = new JPanel();
-        p.add(c);
-        return p;
+    protected GenericImageTab createImageTab(ImageConfig icfg, byte[] fwBytes) throws Exception {
+        return new MiLogoTab((MiLogoImageConfig) icfg, fwBytes);
     }
 
     @Override

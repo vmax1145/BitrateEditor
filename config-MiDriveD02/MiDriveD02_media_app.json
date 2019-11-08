@@ -23,22 +23,47 @@
 //    ]
 //  },
 
+
   "imageTabs": [
     {
       "label": "Logo 720p",
-      "maxPixels":9000
+      "addr": 6409224,
+      "dimension": {
+        "width":150,
+        "height":60
+      }
     },
     {
       "label": "Logo 1080p",
-      "maxPixels":20700
+      "addr":6367812,
+      "dimension": {
+        "width":230,
+        "height":90
+      }
     },
     {
       "label": "Logo 1440p",
-      "maxPixels":37200
+      "addr":6218988,
+      "dimension": {
+        "width":300,
+        "height":124
+      }
+    },
+    {
+      "label": "Logo 1520p",
+      "addr":6293400,
+      "dimension": {
+        "width":300,
+        "height":124
+      }
     },
     {
       "label": "Logo 1944p",
-      "maxPixels":41080
+      "addr":"6432444",
+      "dimension": {
+        "width":316,
+        "height":130
+      }
     }
   ]
 

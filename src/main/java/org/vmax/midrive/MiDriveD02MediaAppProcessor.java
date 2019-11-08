@@ -1,5 +1,6 @@
 package org.vmax.midrive;
 
+import org.apache.commons.io.FileUtils;
 import org.vmax.amba.Utils;
 import org.vmax.amba.cfg.FirmwareConfig;
 import org.vmax.amba.plugins.PostProcessor;
@@ -7,6 +8,7 @@ import org.vmax.amba.plugins.PreProcessor;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.util.zip.GZIPInputStream;
 
 public class MiDriveD02MediaAppProcessor implements PreProcessor, PostProcessor {
@@ -41,6 +43,9 @@ public class MiDriveD02MediaAppProcessor implements PreProcessor, PostProcessor 
             if(unpackedLen!=0) {
                 throw new Exception("Unpacked length mismatch");
             }
+
+            FileUtils.writeByteArrayToFile(new File("media_app_unpacked.bin"),unpacked);
+
             return unpacked;
         }
     }

@@ -8,6 +8,7 @@ import org.vmax.amba.cfg.tabledata.TableDataConfig;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
@@ -16,7 +17,8 @@ import java.util.List;
 public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
 
     private GenericTableDataConfig<ImageConfig> cfg;
-    private List<Patch> patchList;
+    private List<Patch> patchList = new ArrayList<>();
+    private List<GenericImageTab> imageTabs = new ArrayList<>();
     private byte[] fwBytes;
 
     @Override
@@ -45,7 +47,10 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
             tabs.add(pcfg.getLabel(), new JScrollPane(editorPanel));
         }
         for(ImageConfig icfg : this.cfg.getImageTabs()) {
-            JComponent p = createImageTab(icfg,fwBytes);
+            GenericImageTab imgTab = createImageTab(icfg,fwBytes);
+            imageTabs.add(imgTab);
+            JPanel p = new JPanel();
+            p.add(imgTab.getComponent());
             tabs.add(icfg.getLabel(), new JScrollPane(p));
         }
 
@@ -69,7 +74,7 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
 
     }
 
-    protected JComponent createImageTab(ImageConfig icfg, byte[] fwBytes) throws Exception {
+    protected GenericImageTab createImageTab(ImageConfig icfg, byte[] fwBytes) throws Exception {
         throw new Exception("Image tab not implemented in base class");
     }
 
@@ -94,12 +99,29 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
     @Override
     public void updateFW() {
         try {
-
+            applyPatches();
+            applyImages();
             Utils.saveFirmware(this, cfg, fwBytes);
         }
         catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this,"Oooops! See error stream for details");
+        }
+    }
+
+    private void applyImages() {
+        for(GenericImageTab imageTab : imageTabs) {
+            imageTab.updateFW();
+        }
+    }
+
+    private void applyPatches() {
+        for(Patch p : patchList) {
+            if(p.isApply()) {
+                for(PatchEntry e : p.getEntries()) {
+                    System.arraycopy(e.getBytes(),0,fwBytes, e.getAddr(),e.getBytes().length);
+                }
+            }
         }
     }
 
