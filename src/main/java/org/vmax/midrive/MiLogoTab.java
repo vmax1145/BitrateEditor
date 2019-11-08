@@ -219,7 +219,23 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
 
     @Override
     public void updateFW() {
-        throw new RuntimeException("not implemented");
+        if(image!=null) {
+            int w = image.getWidth();
+            int h = image.getHeight();
+            byte[] fwBytes = new byte[w * h * Short.BYTES + 3 * Integer.BYTES];
+            short[] data = new short[w * h];
+            image.getRaster().getDataElements(0, 0, w, h, data);
+
+
+            ByteBuffer bb = ByteBuffer.wrap(fwBytes);
+            bb.order(ByteOrder.LITTLE_ENDIAN);
+            bb.position(cfg.getAddr());
+            bb.putInt(w);
+            bb.putInt(2);
+            for (short pix : data) {
+                bb.putShort(pix);
+            }
+        }
     }
 
     @Override
