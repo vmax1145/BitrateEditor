@@ -1,6 +1,7 @@
 package org.vmax.amba.generic;
 
 import org.vmax.amba.bitrate.RangeCellEditor;
+import org.vmax.amba.cfg.Range;
 import org.vmax.amba.cfg.Type;
 import org.vmax.amba.cfg.tabledata.ParamsConfig;
 import org.vmax.amba.cfg.tabledata.ValueConfig;
@@ -35,6 +36,17 @@ public class GenericParamsTable extends JTable {
                 comp.setBackground(new Color(0xe0e0e0));
             else {
                 comp.setBackground(new Color(0xf0f0f0));
+            }
+        }
+        if(col==1) {
+            Range r = cfg.getParams().get(row).getRange();
+            if(r!=null && comp instanceof JComponent) {
+                if(!Type.Float32.equals(cfg.getParams().get(row).getType())) {
+                    ((JComponent) comp).setToolTipText("min:" + r.getMin().intValue() + " max:" + r.getMax().intValue());
+                }
+                else {
+                    ((JComponent) comp).setToolTipText("min:" + r.getMin() + " max:" + r.getMax());
+                }
             }
         }
         return comp;

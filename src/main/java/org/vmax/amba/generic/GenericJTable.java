@@ -1,10 +1,14 @@
 package org.vmax.amba.generic;
 
 import org.vmax.amba.bitrate.RangeCellEditor;
+import org.vmax.amba.cfg.Range;
+import org.vmax.amba.cfg.Type;
 import org.vmax.amba.cfg.tabledata.TableDataConfig;
 
 import javax.swing.*;
-import javax.swing.table.*;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
 import java.awt.*;
 
 public class GenericJTable extends JTable {
@@ -50,6 +54,7 @@ public class GenericJTable extends JTable {
 
     }
 
+    @Override
     public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
         Component comp = super.prepareRenderer(renderer, row, col);
         if(row%2 ==0)
@@ -57,6 +62,18 @@ public class GenericJTable extends JTable {
         else {
             comp.setBackground(new Color(0xf0f0f0));
         }
+        if(col>0) {
+            Range r = cfg.getColumnsConfig().get(col-1).getRange();
+            if(r!=null && comp instanceof JComponent) {
+                if(!Type.Float32.equals(cfg.getColumnsConfig().get(col-1).getType())) {
+                    ((JComponent) comp).setToolTipText("min:" + r.getMin().intValue() + " max:" + r.getMax().intValue());
+                }
+                else {
+                    ((JComponent) comp).setToolTipText("min:" + r.getMin() + " max:" + r.getMax());
+                }
+            }
+        }
+
         return comp;
     }
 
