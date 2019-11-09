@@ -254,7 +254,7 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
             bb.putInt(w);
             bb.putInt(2);
             for (short pix : data) {
-                bb.putShort((short) (pix&0xFFFE));
+                bb.putShort(pix);
             }
             System.out.println(cfg.getAddr()+":"+w+"*"+h);
         }
