@@ -122,7 +122,7 @@ public class GenericParamsDataModel extends AbstractTableModel {
                 int r = c.getRed()>>3;
                 int g = c.getGreen()>>3;
                 int b = c.getBlue()>>3;
-                int v = (r <<11) | (g<<6) | (b<<1);
+                int v = (r <<11) | (g<<6) | (b) ;
                 Utils.writeUInt(fw,addr, v);
                 break;
             default:
