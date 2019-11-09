@@ -26,6 +26,8 @@ public class FirmwareConfig {
     private ProcessorConfig postProcessor;
     private boolean showFileDialog = false;
 
+    private String warning = null;
+
     public static <T extends FirmwareConfig> T readConfig(Class<T> clz,String arg) throws IOException {
         try(FileInputStream fis = new FileInputStream(arg)) {
             return Utils.getObjectMapper()

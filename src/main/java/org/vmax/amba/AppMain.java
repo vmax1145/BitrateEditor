@@ -19,6 +19,14 @@ public class AppMain {
         System.out.println("Firmware editor tools ( by v_max )");
 
         FirmwareConfig basiccfg = FirmwareConfig.readConfig(FirmwareConfig.class, args[0]);
+
+        if(basiccfg.getWarning()!=null) {
+            JOptionPane.showMessageDialog(null,
+                    basiccfg.getWarning(),"WARNING",
+                    JOptionPane.WARNING_MESSAGE
+            );
+        }
+
         FirmwareTool tool = (FirmwareTool) Class.forName(basiccfg.getToolClass()).newInstance();
 
         Class<FirmwareConfig> configClass = tool.getConfigClz();
