@@ -49,7 +49,15 @@
 
   "imageTabs": [
     {
-      "label": "Logo 720p",
+      "label": "Logo-0",
+      "addr": 6427236,
+      "dimension": {
+        "width":76,
+        "height":32
+      }
+    },
+    {
+      "label": "Logo-1",
       "addr": 6409224,
       "dimension": {
         "width":150,
@@ -57,7 +65,7 @@
       }
     },
     {
-      "label": "Logo 1080p",
+      "label": "Logo-2",
       "addr":6367812,
       "dimension": {
         "width":230,
@@ -65,7 +73,7 @@
       }
     },
     {
-      "label": "Logo 1440p",
+      "label": "Logo-3",
       "addr":6218988,
       "dimension": {
         "width":300,
@@ -73,7 +81,7 @@
       }
     },
     {
-      "label": "Logo 1520p",
+      "label": "Logo-4",
       "addr":6293400,
       "dimension": {
         "width":300,
@@ -81,7 +89,7 @@
       }
     },
     {
-      "label": "Logo 1944p",
+      "label": "Logo-5",
       "addr": 6432444,
       "dimension": {
         "width":316,
