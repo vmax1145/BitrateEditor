@@ -192,14 +192,27 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
             scaledW = bim.getWidth() * cfg.getDimension().getHeight() / bim.getHeight();
             scaledH = cfg.getDimension().getHeight();
         }
-        Image im = bim.getScaledInstance(scaledW,scaledH,Image.SCALE_SMOOTH);
 
-        BufferedImage converted = new BufferedImage(cfg.getDimension().getWidth(), cfg.getDimension().getHeight(), BufferedImage.TYPE_USHORT_555_RGB);
-        Graphics g = converted.getGraphics();
-        g.setColor(Color.WHITE);
-        g.fillRect(0,0, cfg.getDimension().getWidth(), cfg.getDimension().getHeight());
-        g.drawImage(im, (cfg.getDimension().getWidth()-scaledW)/2, (cfg.getDimension().getHeight()-scaledH)/2, null);
-        g.dispose();
+        Image im = bim.getScaledInstance(scaledW,scaledH,Image.SCALE_SMOOTH);
+        System.out.println(cfg.getDimension().getWidth()+"/"+cfg.getDimension().getHeight()+"->"+im.getWidth(null)+"/"+im.getHeight(null));
+
+        BufferedImage converted;
+        if(cfg.isFit()) {
+            converted = new BufferedImage(cfg.getDimension().getWidth(), cfg.getDimension().getHeight(), BufferedImage.TYPE_USHORT_555_RGB);
+            Graphics g = converted.getGraphics();
+            g.setColor(Color.WHITE);
+            g.fillRect(0,0, cfg.getDimension().getWidth(), cfg.getDimension().getHeight());
+            g.drawImage(im, (cfg.getDimension().getWidth()-scaledW)/2, (cfg.getDimension().getHeight()-scaledH)/2, null);
+            g.dispose();
+        }
+        else {
+            converted = new BufferedImage(scaledW, scaledH, BufferedImage.TYPE_USHORT_555_RGB);
+            Graphics g = converted.getGraphics();
+            g.setColor(Color.WHITE);
+            g.fillRect(0,0, scaledW, scaledH);
+            g.drawImage(im, 0, 0, null);
+            g.dispose();
+        }
         return converted;
     }
 
