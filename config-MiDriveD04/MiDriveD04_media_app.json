@@ -1,0 +1,94 @@
+{
+  "note": "MiDrive D02 paramdef editor",
+  "toolClass": "org.vmax.midrive.MiPatchTool",
+  "fwFileName": "media_app_zip.bin.mirror",
+  "showFileDialog": true,
+  "preProcessor": {
+    "className": "org.vmax.midrive.MiDriveD02MediaAppProcessor"
+  },
+  "postProcessor": {
+    "className": "org.vmax.midrive.MiDriveD02MediaAppProcessor"
+  },
+
+
+
+    "verify": [
+      {
+        "addr": 6231284,
+        "val": "\u0002"
+      },
+      {
+        "addr": 6305696,
+        "val": "\u0002"
+      },
+      {
+        "addr": 6380108,
+        "val": "\u0002"
+      },
+      {
+        "addr": 6421520,
+        "val": "\u0002"
+      },
+      {
+        "addr": 6439532,
+        "val": "\u0002"
+      },
+      {
+        "addr": 6444740,
+        "val": "\u0002"
+      }
+    ],
+
+
+
+  "imageTabs": [
+    {
+      "label": "Logo 300x124",
+      "addr": 6231276,
+      "dimension": {
+        "width": 300,
+        "height": 124
+      }
+    },
+    {
+      "label": "Logo 300x124",
+      "addr": 6305688,
+      "dimension": {
+        "width": 300,
+        "height": 124
+      }
+    },
+    {
+      "label": "Logo 230x90",
+      "addr": 6380100,
+      "dimension": {
+        "width": 230,
+        "height": 90
+      }
+    },
+    {
+      "label": "Logo 150x60",
+      "addr": 6421512,
+      "dimension": {
+        "width": 150,
+        "height": 60
+      }
+    },
+    {
+      "label": "Logo 76x32",
+      "addr": 6439524,
+      "dimension": {
+        "width": 76,
+        "height": 32
+      }
+    },
+    {
+      "label": "Logo 316x130",
+      "addr": 6444732,
+      "dimension": {
+        "width": 316,
+        "height": 130
+      }
+    }
+  ]
+}

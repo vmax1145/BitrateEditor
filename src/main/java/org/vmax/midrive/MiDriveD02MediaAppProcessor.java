@@ -47,7 +47,25 @@ public class MiDriveD02MediaAppProcessor implements PreProcessor, PostProcessor 
 
 //            System.out.println(Utils.findArray(unpacked, new byte[]{
 //                    2, 0, 0, 0, (byte)0x80, (byte)0xFD, (byte)0x80,  (byte)0xFD
-//            }).stream().map(i->i-8).collect(Collectors.toList()));
+//            }).stream().map(i->{
+//                int addr = i-8;
+//                int h = (int) Utils.readUShort(unpacked,addr);
+//                int w = (int) Utils.readUShort(unpacked,addr+4);
+//                        return new StringBuilder()
+//                                .append("{\n")
+//                                .append("      \"label\": \"Logo ").append(w).append("x").append(h).append("\",\n")
+//                                .append("      \"addr\": ").append(addr).append(",\n")
+//                                .append("      \"dimension\": {\n")
+//                                .append("        \"width\": ").append(w).append(",\n")
+//                                .append("        \"height\": ").append(h).append("\n")
+//                                .append("      }\n")
+//                                .append("},\n")
+//                        .toString();
+//
+//            }).collect(Collectors.toList()));
+//            System.out.println(Utils.findArray(unpacked, new byte[]{
+//                    2, 0, 0, 0, (byte)0x80, (byte)0xFD, (byte)0x80,  (byte)0xFD
+//            }).stream().map(i->i-4).collect(Collectors.toList()));
             return unpacked;
         }
     }
