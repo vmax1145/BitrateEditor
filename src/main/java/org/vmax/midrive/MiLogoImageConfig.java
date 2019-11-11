@@ -14,5 +14,5 @@ import org.vmax.amba.cfg.ImageConfig;
 public class MiLogoImageConfig extends ImageConfig {
     private Dimension dimension;
     private int addr;
-    private boolean fit=true;
+    private boolean fit=false;
 }

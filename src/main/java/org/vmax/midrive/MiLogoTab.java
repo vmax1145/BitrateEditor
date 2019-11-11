@@ -187,10 +187,26 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
         if (1.0 * bim.getWidth() / cfg.getDimension().getWidth() > 1.0 * bim.getHeight() / cfg.getDimension().getHeight()) {
             scaledW = cfg.getDimension().getWidth();
             scaledH = bim.getHeight() * cfg.getDimension().getWidth() / bim.getWidth();
+            if(scaledH%2!=0) {
+                if((scaledH+1)*scaledW < cfg.getDimension().getWidth()*cfg.getDimension().getHeight()) {
+                    scaledH++;
+                }
+                else {
+                    scaledH--;
+                }
+            }
         }
         else {
             scaledW = bim.getWidth() * cfg.getDimension().getHeight() / bim.getHeight();
             scaledH = cfg.getDimension().getHeight();
+            if(scaledH%2!=0) {
+                if((scaledW+1)*scaledH < cfg.getDimension().getWidth()*cfg.getDimension().getHeight()) {
+                    scaledW++;
+                }
+                else {
+                    scaledW--;
+                }
+            }
         }
 
         Image im = bim.getScaledInstance(scaledW,scaledH,Image.SCALE_SMOOTH);
