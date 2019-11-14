@@ -143,7 +143,11 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
                     bim = convertImage(bim);
                     if (bim.getWidth() * bim.getHeight() > cfg.getDimension().getWidth() * cfg.getDimension().getHeight()) {
                         JOptionPane.showMessageDialog(null, "Слишком большая картинка", "Ошибка", JOptionPane.ERROR_MESSAGE);
-                    } else {
+                    }
+                    else if(bim.getHeight()%2!=0 || bim.getWidth()%2!=0) {
+                        JOptionPane.showMessageDialog(null, "Размеры в пикселях и по высоте и по ширине должен быть четным числом", "Ошибка", JOptionPane.ERROR_MESSAGE);
+                    }
+                    else {
                         ImageIcon ico = new ImageIcon(bim);
                         render.setMinimumSize(new Dimension(bim.getWidth(), bim.getHeight()));
                         render.setPreferredSize(new Dimension(bim.getWidth(), bim.getHeight()));
