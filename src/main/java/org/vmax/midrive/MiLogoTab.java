@@ -49,7 +49,8 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
 
             );
             put("Украинский номер", new Variant("http://line4auto.ru/nomer/nomua_{0}_{1}_{2}.png", "AA 3223 ЕУ")
-
+            );
+            put("Украинский номер старого образца", new Variant("http://line4auto.ru/nomer/nomuaold_{0}_{1}+{2}}.png.png", "13 651-76 OH")
             );
             put("Белорусский номер", new Variant("http://line4auto.ru/nomer/nomby_{0}+{1}.png", "0111 EA-1")
             );
