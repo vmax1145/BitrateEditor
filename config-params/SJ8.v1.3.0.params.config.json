@@ -1,7 +1,6 @@
 {
   "note": "SJ8Pro parameters",
   "toolClass": "org.vmax.amba.generic.GenericTool",
-  "showFileDialog": true,
   "preProcessor": {
     "className":"org.vmax.amba.plugins.SJ8ProProcessor",
     "md5fileName": "SJ8_CHECK.ch"
