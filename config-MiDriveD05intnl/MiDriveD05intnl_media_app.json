@@ -1,0 +1,70 @@
+{
+  "note": "MiDrive D05 paramdef editor",
+  "toolClass": "org.vmax.midrive.MiPatchToolD05",
+
+  "fwFileName": "mtd3",
+  "showFileDialog": true,
+
+  "preProcessor": {
+    "className":"org.vmax.midrive.MiDriveD05MediaAppProcessor"
+  },
+
+  "postProcessor": {
+    "className":"org.vmax.midrive.MiDriveD05MediaAppProcessor"
+  },
+
+  "verify": [
+    {
+      "addr": 5242128,
+      "val": "\u0008"
+    },
+    {
+      "addr": 5283540,
+      "val": "\u0008"
+    },
+    {
+      "addr": 5356992,
+      "val": "\u0008"
+    },
+    {
+      "addr": 5361564,
+      "val": "\u0008"
+    }
+  ],
+
+
+  "imageTabs":[{
+    "label": "Logo 230x90",
+    "addr": 5242120,
+    "dimension": {
+      "width": 230,
+      "height": 90
+    }
+  }
+  , {
+      "label": "Logo 306x120",
+      "addr": 5283532,
+      "dimension": {
+        "width": 306,
+        "height": 120
+      }
+    }
+  , {
+      "label": "Logo 76x30",
+      "addr": 5356984,
+      "dimension": {
+        "width": 76,
+        "height": 30
+      }
+    }
+  , {
+      "label": "Logo 154x60",
+      "addr": 5361556,
+      "dimension": {
+        "width": 154,
+        "height": 60
+      }
+    }
+  ]
+
+}

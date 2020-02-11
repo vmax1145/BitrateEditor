@@ -19,7 +19,7 @@ public class MiPatchTool extends GenericTool {
 
     @Override
     protected GenericImageTab createImageTab(ImageConfig icfg, byte[] fwBytes) throws Exception {
-        return new MiLogoTab((MiLogoImageConfig) icfg, fwBytes);
+        return new MiLogoTab((MiLogoImageConfig) icfg, fwBytes, (byte) 2);
     }
 
     @Override

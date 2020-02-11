@@ -32,6 +32,7 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
     private JLabel render;
     private Variant selectedVariant;
     private BufferedImage image;
+    private int magicNumber;
 
     public static final String LOAD_FROM_FILE = "Загрузить из файла";
 
@@ -61,9 +62,10 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
     };
 
 
-    public MiLogoTab(MiLogoImageConfig cfg, byte[] fwBytes) {
+    public MiLogoTab(MiLogoImageConfig cfg, byte[] fwBytes, int magicNumber) {
         super(new SpringLayout());
         this.fwBytes = fwBytes;
+        this.magicNumber = magicNumber;
         //System.out.println(findAddr(cfg, fwBytes));
 
         this.cfg = cfg;
@@ -286,7 +288,7 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
             bb.position(cfg.getAddr());
             bb.putInt(h);
             bb.putInt(w);
-            bb.putInt(2);
+            bb.putInt(magicNumber);
             for (short pix : data) {
                 bb.putShort(pix);
             }
