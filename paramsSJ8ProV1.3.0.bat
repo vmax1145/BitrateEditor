@@ -1,1 +1,1 @@
-javaw -jar firmware-editor-tool-9.1-SNAPSHOT.jar config-params/SJ8.v1.3.0.params.config.json
+java -jar firmware-editor-tool-9.1-SNAPSHOT.jar config-params/SJ8.v1.3.0.params.config.json

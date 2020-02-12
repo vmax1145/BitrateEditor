@@ -1,19 +1,19 @@
-{ "note":"Hawkeye Firefly 8SE U110",
+{ "note":"Hawkeye Firefly 8SE V110",
   "toolClass": "org.vmax.amba.bitrate.BitrateTool",
   "fwFileName": "FIREFLY_FWUPDATES.bin",
   "showFileDialog": true,
   "verify": [
     {
       "addr": 5610764,
-      "val": "FIREFLY_FWUPDATES"
+      "val": "FIREFLY_FWUPDATE.bin"
     },
     {
       "addr": 4126584,
-      "val": "FireFly8SE"
+      "val": "FireFly8SE-V110"
     },
     {
       "addr": 4126595,
-      "val": "U110"
+      "val": "V110"
     },
     {
       //section crc
