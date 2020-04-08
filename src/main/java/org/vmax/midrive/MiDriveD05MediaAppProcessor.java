@@ -11,6 +11,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.Arrays;
 import java.util.stream.Collectors;
+import java.util.zip.DeflaterOutputStream;
 import java.util.zip.GZIPInputStream;
 
 public class MiDriveD05MediaAppProcessor implements PreProcessor, PostProcessor {
@@ -78,7 +79,7 @@ public class MiDriveD05MediaAppProcessor implements PreProcessor, PostProcessor 
                 0x67,0x7A,0x69,0x70,0x68,0x65,0x61,0x64 //gziphead
         };
         baos.write(head);
-        MiGzipOutputStream gzipOutputStream = new MiGzipOutputStream(baos,4096, true);
+        DeflaterOutputStream gzipOutputStream = new MiDriveD05GZIPOutputStream(baos,"media_app.bin");
 
         gzipOutputStream.write(fwBytes);
         gzipOutputStream.finish();
