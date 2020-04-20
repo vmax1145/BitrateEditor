@@ -1,0 +1,67 @@
+{ "note":"SJ8 Pro v1.3.0 Chroma curve edit",
+  "toolClass": "org.vmax.amba.tables.TablesTool",
+  "preProcessor": {
+    "className":"org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName": "SJ8_CHECK.ch"
+  },
+  "postProcessor": {
+    "className":"org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName": "SJ8_CHECK.ch"
+  },
+
+  "fwFileName": "SJ8_FWUPDATE.bin",
+
+  "verify": [
+    {
+      "addr": 6519572,
+      "val": "V1.3.0"
+    },
+    {
+      "addr": 6519936,
+      "val": "2018.12.28"
+    },
+    {
+      "addr": 6520000,
+      "val": "SJ8PRO"
+    },
+    {
+      //section crc
+      "addr":560,
+      "crc": {
+        "fromAddr":816,
+        "len":25709760
+      }
+    }
+  ],
+
+  "tableSets": [
+    {
+      "label":"4K30/255",
+      "tables": [
+        {"label": "Red",   "addr": 31831780, "color": "red"}
+      ]
+    },
+    {
+      "label":"4K30/128",
+      "tables": [
+        {"label": "Red",   "addr": 31832036, "color": "red"}
+      ]
+    },
+    {
+      "label":"4K30/0",
+      "tables": [
+        {"label": "Red",   "addr": 31832292, "color": "red"}
+      ]
+    }
+  ],
+
+
+
+  "ncol": 16,
+  "nrow": 8,
+  "range": {
+    "min": 0,
+    "max": 2048
+  },
+  "type": "Int16"
+}

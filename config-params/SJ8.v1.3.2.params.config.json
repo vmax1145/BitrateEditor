@@ -1,0 +1,73 @@
+{
+  "note": "SJ8Pro v1.3.2 parameters",
+  "toolClass": "org.vmax.amba.generic.GenericTool",
+  "preProcessor": {
+    "className":"org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName": "SJ8_CHECK.ch"
+  },
+  "postProcessor": {
+    "className":"org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName": "SJ8_CHECK.ch"
+  },
+
+  "fwFileName": "SJ8_FWUPDATE.bin",
+
+  "verify": [
+    {
+      "addr": 6630304,
+      "val": "V1.3.2"
+    },
+    {
+      "addr": 6630368,
+      "val": "2019.12.18"
+    },
+    {
+      "addr": 6630624,
+      "val": "SJ8PRO"
+    },
+    {
+      //section crc
+      "addr":560,
+      "crc": {
+        "fromAddr":816,
+        "len":26140416
+      }
+    }
+  ],
+
+  "paramsTabs": [
+    {
+      "label": "Photo JPEG quality (%)",
+      "baseAddr": 4844020,
+      "params": [
+        {
+          "label": "Fine",
+          "addrOffset": 0,
+          "type": "UInt32",
+          "range": {
+            "min": 10,
+            "max" : 100
+          }
+        },
+        {
+          "label": "Standard",
+          "addrOffset": 4,
+          "type": "UInt32",
+          "range": {
+            "min": 10,
+            "max" : 100
+          }
+        },
+        {
+          "label": "Economy",
+          "addrOffset": 8,
+          "type": "UInt32",
+          "range": {
+            "min": 10,
+            "max" : 100
+          }
+        }
+      ]
+    }
+  ]
+}

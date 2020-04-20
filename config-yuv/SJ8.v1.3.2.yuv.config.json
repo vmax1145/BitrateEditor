@@ -1,0 +1,283 @@
+{
+  "note": "SJ8 Pro v1.3.2 yuv ",
+  "toolClass": "org.vmax.amba.yuv.YUVTool",
+  "fwFileName": "SJ8_FWUPDATE.bin",
+  "preProcessor": {
+    "className": "org.vmax.amba.plugins.SJ8ProProcessor",
+    "fwFileName": null,
+    "md5fileName": "SJ8_CHECK.ch"
+  },
+  "postProcessor": {
+    "className": "org.vmax.amba.plugins.SJ8ProProcessor",
+    "fwFileName": null,
+    "md5fileName": "SJ8_CHECK.ch"
+  },
+
+  "verify": [
+    {
+      "addr": 6630304,
+      "val": "V1.3.2"
+    },
+    {
+      "addr": 6630368,
+      "val": "2019.12.18"
+    },
+    {
+      "addr": 6630624,
+      "val": "SJ8PRO"
+    },
+    {
+      "addr": 29682480,
+      "val": null,
+      "crc": {
+        "fromAddr": 29682736,
+        "len": 5365760
+      }
+    }
+  ],
+
+  "showFileDialog": false,
+  "warning": null,
+  "tabs": [
+    {
+      "name": "Video VIVID",
+      "imageSample": "samples/SJ8.v1.3.0.stock/video_vivid.jpg",
+      "editables": [
+        {
+          "addr": 34796630,
+          "name": "Y",
+          "type": "Int16",
+          "range": {
+            "min": 0,
+            "max": 2048
+          }
+        },
+        {
+          "addr": 34796638,
+          "name": "U",
+          "type": "Int16",
+          "range": {
+            "min": 0,
+            "max": 2048
+          }
+        },
+        {
+          "addr": 34796646,
+          "name": "V",
+          "type": "Int16",
+          "range": {
+            "min": 0,
+            "max": 2048
+          }
+        },
+        {
+          "addr": 34796648,
+          "name": "Y-offset",
+          "type": "Int16",
+          "range": {
+            "min": -128,
+            "max": 128
+          }
+        },
+        {
+          "addr": 34796650,
+          "name": "U-offset",
+          "type": "Int16",
+          "range": {
+            "min": -128,
+            "max": 128
+          }
+        },
+        {
+          "addr": 34796652,
+          "name": "V-offset",
+          "type": "Int16",
+          "range": {
+            "min": -128,
+            "max": 128
+          }
+        }
+      ]
+    },
+    {
+      "name": "Video FLAT",
+      "imageSample": "samples/SJ8.v1.3.0.stock/video_flat.jpg",
+      "editables": [
+        {
+          "addr": 34796754,
+          "name": "Y",
+          "type": "Int16",
+          "range": {
+            "min": 0,
+            "max": 2048
+          }
+        },
+        {
+          "addr": 34796762,
+          "name": "U",
+          "type": "Int16",
+          "range": {
+            "min": 0,
+            "max": 2048
+          }
+        },
+        {
+          "addr": 34796770,
+          "name": "V",
+          "type": "Int16",
+          "range": {
+            "min": 0,
+            "max": 2048
+          }
+        },
+        {
+          "addr": 34796772,
+          "name": "Y-offset",
+          "type": "Int16",
+          "range": {
+            "min": -128,
+            "max": 128
+          }
+        },
+        {
+          "addr": 34796774,
+          "name": "U-offset",
+          "type": "Int16",
+          "range": {
+            "min": -128,
+            "max": 128
+          }
+        },
+        {
+          "addr": 34796776,
+          "name": "V-offset",
+          "type": "Int16",
+          "range": {
+            "min": -128,
+            "max": 128
+          }
+        }
+      ]
+    },
+    {
+      "name": "Photo VIVID",
+      "imageSample": "samples/SJ8.v1.3.0.stock/photo_vivid.jpg",
+      "editables": [
+        {
+          "addr": 34821206,
+          "name": "Y",
+          "type": "Int16",
+          "range": {
+            "min": 0,
+            "max": 2048
+          }
+        },
+        {
+          "addr": 34821214,
+          "name": "U",
+          "type": "Int16",
+          "range": {
+            "min": 0,
+            "max": 2048
+          }
+        },
+        {
+          "addr": 34821222,
+          "name": "V",
+          "type": "Int16",
+          "range": {
+            "min": 0,
+            "max": 2048
+          }
+        },
+        {
+          "addr": 34821224,
+          "name": "Y-offset",
+          "type": "Int16",
+          "range": {
+            "min": -128,
+            "max": 128
+          }
+        },
+        {
+          "addr": 34821226,
+          "name": "U-offset",
+          "type": "Int16",
+          "range": {
+            "min": -128,
+            "max": 128
+          }
+        },
+        {
+          "addr": 34821228,
+          "name": "V-offset",
+          "type": "Int16",
+          "range": {
+            "min": -128,
+            "max": 128
+          }
+        }
+      ]
+    },
+    {
+      "name": "Photo FLAT",
+      "imageSample": "samples/SJ8.v1.3.0.stock/photo_flat.jpg",
+      "editables": [
+        {
+          "addr": 34821330,
+          "name": "Y",
+          "type": "Int16",
+          "range": {
+            "min": 0,
+            "max": 2048
+          }
+        },
+        {
+          "addr": 34821338,
+          "name": "U",
+          "type": "Int16",
+          "range": {
+            "min": 0,
+            "max": 2048
+          }
+        },
+        {
+          "addr": 34821346,
+          "name": "V",
+          "type": "Int16",
+          "range": {
+            "min": 0,
+            "max": 2048
+          }
+        },
+        {
+          "addr": 34821348,
+          "name": "Y-offset",
+          "type": "Int16",
+          "range": {
+            "min": -128,
+            "max": 128
+          }
+        },
+        {
+          "addr": 34821350,
+          "name": "U-offset",
+          "type": "Int16",
+          "range": {
+            "min": -128,
+            "max": 128
+          }
+        },
+        {
+          "addr": 34821352,
+          "name": "V-offset",
+          "type": "Int16",
+          "range": {
+            "min": -128,
+            "max": 128
+          }
+        }
+      ]
+    }
+  ]
+}

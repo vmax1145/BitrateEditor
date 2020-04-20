@@ -1,0 +1,79 @@
+{
+  "note": "SJ8 Pro v1.3.2 expo edit",
+  "toolClass": "org.vmax.amba.tables.TablesTool",
+  "fwFileName": "SJ8_FWUPDATE.bin",
+  "verify": [
+    {
+      "addr": 6630304,
+      "val": "V1.3.2"
+    },
+    {
+      "addr": 6630368,
+      "val": "2019.12.18"
+    },
+    {
+      "addr": 6630624,
+      "val": "SJ8PRO"
+    },
+    {
+      "addr": 29682480,
+      "crc": {
+        "fromAddr": 29682736,
+        "len": 5365760
+      }
+    }
+  ],
+  "preProcessor": {
+    "className": "org.vmax.amba.plugins.SJ8ProProcessor",
+    "fwFileName": null,
+    "md5fileName": "SJ8_CHECK.ch"
+  },
+  "postProcessor": {
+    "className": "org.vmax.amba.plugins.SJ8ProProcessor",
+    "fwFileName": null,
+    "md5fileName": "SJ8_CHECK.ch"
+  },
+  "showFileDialog": false,
+  "warning": null,
+  "tableSets": [
+    {
+      "label": "Center",
+      "tables": [
+        {
+          "addr": 34696885,
+          "color": "red",
+          "label": "Center"
+        }
+      ]
+    },
+    {
+      "label": "Spot",
+      "tables": [
+        {
+          "addr": 34696981,
+          "color": "green",
+          "label": "Spot"
+        }
+      ]
+    },
+    {
+      "label": "Average",
+      "tables": [
+        {
+          "addr": 34697077,
+          "color": "blue",
+          "label": "Average"
+        }
+      ]
+    }
+  ],
+  "ncol": 12,
+  "nrow": 8,
+  "range": {
+    "min": 0.0,
+    "max": 128.0
+  },
+  "type": "UByte",
+  "curves": false,
+  "imageSample": null
+}

@@ -1,0 +1,72 @@
+{ "note": "SJ9 Strike v1.0.6 parameters",
+  "toolClass": "org.vmax.amba.generic.GenericTool",
+  "preProcessor": {
+    "className":"org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName": "SJ9_CHECK.ch"
+  },
+  "postProcessor": {
+    "className":"org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName": "SJ9_CHECK.ch"
+  },
+
+  "fwFileName": "SJ9_FWUPDATE.bin",
+
+  "verify": [
+    {
+      "addr": 6634268,
+      "val": "V1.0.6"
+    },
+    {
+      "addr": 6635376,
+      "val": "2019.10.25"
+    },
+    {
+      "addr": 6634364,
+      "val": "SJ9 Strike"
+    },
+    {
+      //section crc
+      "addr":560,
+      "crc": {
+        "fromAddr":816,
+        "len":28000640
+      }
+    }
+  ],
+
+  "paramsTabs": [
+    {
+      "label": "Photo JPEG quality (%)",
+      "baseAddr": 4848048,
+      "params": [
+        {
+          "label": "Fine",
+          "addrOffset": 0,
+          "type": "UInt32",
+          "range": {
+            "min": 10,
+            "max" : 100
+          }
+        },
+        {
+          "label": "Standard",
+          "addrOffset": 4,
+          "type": "UInt32",
+          "range": {
+            "min": 10,
+            "max" : 100
+          }
+        },
+        {
+          "label": "Economy",
+          "addrOffset": 8,
+          "type": "UInt32",
+          "range": {
+            "min": 10,
+            "max" : 100
+          }
+        }
+      ]
+    }
+  ]
+}

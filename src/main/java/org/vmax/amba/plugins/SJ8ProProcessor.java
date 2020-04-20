@@ -33,9 +33,11 @@ public class SJ8ProProcessor implements PreProcessor, PostProcessor {
 
     @Override
     public byte[] preprocess(byte[] fwBytes) throws Exception {
+        postprocess(fwBytes);
         byte[] digest = Utils.calculateDigest(fwBytes);
-        //System.out.println("File digest: " + Utils.hex(digest));
+        System.out.println("Firmware digest: " + Utils.hex(digest));
         byte[] check = FileUtils.readFileToByteArray(new File(cfg.getPreProcessor().getMd5fileName()));
+        System.out.println(cfg.getPreProcessor().getMd5fileName()+" digest: " + Utils.hex(check));
         if(!Arrays.equals(digest,check)) {
             throw new Exception("File md5 digest mismatch");
         }
