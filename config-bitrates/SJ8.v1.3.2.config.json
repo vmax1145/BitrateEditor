@@ -1,4 +1,4 @@
-{ "note":"SJ8 Pro v1.3.2",
+{ "note":"SJ8 Pro v1.3.2 bitrate",
   "toolClass": "org.vmax.amba.bitrate.BitrateTool",
   "preProcessor": {
     "className":"org.vmax.amba.plugins.SJ8ProProcessor",

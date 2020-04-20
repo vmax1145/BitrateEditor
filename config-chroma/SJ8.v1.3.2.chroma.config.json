@@ -1,5 +1,5 @@
 {
-  "note": "SJ8 Pro 3 section chroma curve edit",
+  "note": "SJ8 v1.3.2 section chroma curve edit",
   "toolClass": "org.vmax.amba.tables.TablesTool",
   "fwFileName": "SJ8_FWUPDATE.bin",
   "preProcessor": {
