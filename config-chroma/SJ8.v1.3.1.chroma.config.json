@@ -1,0 +1,80 @@
+{
+  "note": "SJ8 v1.3.2 section chroma curve edit",
+  "toolClass": "org.vmax.amba.tables.TablesTool",
+  "fwFileName": "SJ8_FWUPDATE.bin",
+  "preProcessor": {
+    "className": "org.vmax.amba.plugins.SJ8ProProcessor",
+    "fwFileName": null,
+    "md5fileName": "SJ8_CHECK.ch"
+  },
+  "postProcessor": {
+    "className": "org.vmax.amba.plugins.SJ8ProProcessor",
+    "fwFileName": null,
+    "md5fileName": "SJ8_CHECK.ch"
+  },
+
+  "verify": [
+    {
+      "addr": 6581120,
+      "val": "V1.3.1"
+    },
+    {
+      "addr": 6581344,
+      "val": "2019.06.28"
+    },
+    {
+      "addr": 6581440,
+      "val": "SJ8PRO"
+    },
+    {
+      "addr": 29606576,
+      "crc": {
+        "fromAddr": 29606832,
+        "len": 5365760
+      }
+    }
+  ],
+  "showFileDialog": false,
+  "warning": null,
+  "tableSets": [
+    {
+      "label": "4K30/255",
+      "tables": [
+        {
+          "addr": 32186532,
+          "color": "red",
+          "label": "Red"
+        }
+      ]
+    },
+    {
+      "label": "4K30/128",
+      "tables": [
+        {
+          "addr": 32186788,
+          "color": "red",
+          "label": "Red"
+        }
+      ]
+    },
+    {
+      "label": "4K30/0",
+      "tables": [
+        {
+          "addr": 32187044,
+          "color": "red",
+          "label": "Red"
+        }
+      ]
+    }
+  ],
+  "ncol": 16,
+  "nrow": 8,
+  "range": {
+    "min": 0.0,
+    "max": 2048.0
+  },
+  "type": "Int16",
+  "curves": true,
+  "imageSample": null
+}

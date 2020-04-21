@@ -1,0 +1,78 @@
+{ "note":"SJ8 Pro v1.3.1 expo edit",
+  "toolClass": "org.vmax.amba.tables.TablesTool",
+  "preProcessor": {
+    "className":"org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName": "SJ8_CHECK.ch"
+  },
+  "postProcessor": {
+    "className":"org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName": "SJ8_CHECK.ch"
+  },
+
+  "fwFileName": "SJ8_FWUPDATE.bin",
+
+  "verify": [
+    {
+      "addr": 6581120,
+      "val": "V1.3.1"
+    },
+    {
+      "addr": 6581344,
+      "val": "2019.06.28"
+    },
+    {
+      "addr": 6581440,
+      "val": "SJ8PRO"
+    },
+    {
+      "addr": 29606576,
+      "crc": {
+        "fromAddr": 29606832,
+        "len": 5365760
+      }
+    }
+  ],
+
+  "tableSets": [
+    {
+      "label": "Center",
+      "tables": [
+        {
+          "addr": 34620981,
+          "color": "red",
+          "label": "Center"
+        }
+      ]
+    },
+    {
+      "label": "Spot",
+      "tables": [
+        {
+          "addr": 34621077,
+          "color": "green",
+          "label": "Spot"
+        }
+      ]
+    },
+    {
+      "label": "Average",
+      "tables": [
+        {
+          "addr": 34621173,
+          "color": "blue",
+          "label": "Average"
+        }
+      ]
+    }
+  ],
+
+
+  "ncol": 12,
+  "nrow": 8,
+  "range": {
+    "min": 0,
+    "max": 128
+  },
+  "type": "UByte",
+  "curves":false
+}

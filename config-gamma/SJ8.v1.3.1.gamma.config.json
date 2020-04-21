@@ -1,0 +1,347 @@
+{ "note":"SJ8 Pro v1.3.1 Gamma curves",
+  "toolClass": "org.vmax.amba.tables.TablesTool",
+  "preProcessor": {
+    "className":"org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName": "SJ8_CHECK.ch"
+  },
+  "postProcessor": {
+    "className":"org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName": "SJ8_CHECK.ch"
+  },
+
+  "fwFileName": "SJ8_FWUPDATE.bin",
+
+  "verify": [
+    {
+      "addr": 6581120,
+      "val": "V1.3.1"
+    },
+    {
+      "addr": 6581344,
+      "val": "2019.06.28"
+    },
+    {
+      "addr": 6581440,
+      "val": "SJ8PRO"
+    },
+    {
+      "addr": 29606576,
+      "crc": {
+        "fromAddr": 29606832,
+        "len": 5365760
+      }
+    }
+  ],
+
+  "tableSets": [
+    {
+      "label": "4K30/255",
+      "tables": [
+        {
+          "addr": 32180388,
+          "color": "red",
+          "label": "Red"
+        },
+        {
+          "addr": 32180900,
+          "color": "green",
+          "label": "Green"
+        },
+        {
+          "addr": 32181412,
+          "color": "blue",
+          "label": "Blue"
+        }
+      ]
+    },
+    {
+      "label": "4K30/128",
+      "tables": [
+        {
+          "addr": 32181924,
+          "color": "red",
+          "label": "Red"
+        },
+        {
+          "addr": 32182436,
+          "color": "green",
+          "label": "Green"
+        },
+        {
+          "addr": 32182948,
+          "color": "blue",
+          "label": "Blue"
+        }
+      ]
+    },
+    {
+      "label": "4K30/0",
+      "tables": [
+        {
+          "addr": 32183460,
+          "color": "red",
+          "label": "Red"
+        },
+        {
+          "addr": 32183972,
+          "color": "green",
+          "label": "Green"
+        },
+        {
+          "addr": 32184484,
+          "color": "blue",
+          "label": "Blue"
+        }
+      ]
+    },
+    {
+      "label": "4K60/255",
+      "tables": [
+        {
+          "addr": 32317604,
+          "color": "red",
+          "label": "Red"
+        },
+        {
+          "addr": 32318116,
+          "color": "green",
+          "label": "Green"
+        },
+        {
+          "addr": 32318628,
+          "color": "blue",
+          "label": "Blue"
+        }
+      ]
+    },
+    {
+      "label": "4K60/128",
+      "tables": [
+        {
+          "addr": 32319140,
+          "color": "red",
+          "label": "Red"
+        },
+        {
+          "addr": 32319652,
+          "color": "green",
+          "label": "Green"
+        },
+        {
+          "addr": 32320164,
+          "color": "blue",
+          "label": "Blue"
+        }
+      ]
+    },
+    {
+      "label": "4K60/0",
+      "tables": [
+        {
+          "addr": 32320676,
+          "color": "red",
+          "label": "Red"
+        },
+        {
+          "addr": 32321188,
+          "color": "green",
+          "label": "Green"
+        },
+        {
+          "addr": 32321700,
+          "color": "blue",
+          "label": "Blue"
+        }
+      ]
+    },
+    {
+      "label": "FHD60/255",
+      "tables": [
+        {
+          "addr": 32454820,
+          "color": "red",
+          "label": "Red"
+        },
+        {
+          "addr": 32455332,
+          "color": "green",
+          "label": "Green"
+        },
+        {
+          "addr": 32455844,
+          "color": "blue",
+          "label": "Blue"
+        }
+      ]
+    },
+    {
+      "label": "FHD60/128",
+      "tables": [
+        {
+          "addr": 32456356,
+          "color": "red",
+          "label": "Red"
+        },
+        {
+          "addr": 32456868,
+          "color": "green",
+          "label": "Green"
+        },
+        {
+          "addr": 32457380,
+          "color": "blue",
+          "label": "Blue"
+        }
+      ]
+    },
+    {
+      "label": "FHD60/0",
+      "tables": [
+        {
+          "addr": 32457892,
+          "color": "red",
+          "label": "Red"
+        },
+        {
+          "addr": 32458404,
+          "color": "green",
+          "label": "Green"
+        },
+        {
+          "addr": 32458916,
+          "color": "blue",
+          "label": "Blue"
+        }
+      ]
+    },
+    {
+      "label": "FHD120/255",
+      "tables": [
+        {
+          "addr": 32592036,
+          "color": "red",
+          "label": "Red"
+        },
+        {
+          "addr": 32592548,
+          "color": "green",
+          "label": "Green"
+        },
+        {
+          "addr": 32593060,
+          "color": "blue",
+          "label": "Blue"
+        }
+      ]
+    },
+    {
+      "label": "FHD120/128",
+      "tables": [
+        {
+          "addr": 32593572,
+          "color": "red",
+          "label": "Red"
+        },
+        {
+          "addr": 32594084,
+          "color": "green",
+          "label": "Green"
+        },
+        {
+          "addr": 32594596,
+          "color": "blue",
+          "label": "Blue"
+        }
+      ]
+    },
+    {
+      "label": "FHD120/0",
+      "tables": [
+        {
+          "addr": 32595108,
+          "color": "red",
+          "label": "Red"
+        },
+        {
+          "addr": 32595620,
+          "color": "green",
+          "label": "Green"
+        },
+        {
+          "addr": 32596132,
+          "color": "blue",
+          "label": "Blue"
+        }
+      ]
+    },
+    {
+      "label": "Photo/255",
+      "tables": [
+        {
+          "addr": 33016300,
+          "color": "red",
+          "label": "Red"
+        },
+        {
+          "addr": 33016812,
+          "color": "green",
+          "label": "Green"
+        },
+        {
+          "addr": 33017324,
+          "color": "blue",
+          "label": "Blue"
+        }
+      ]
+    },
+    {
+      "label": "Photo/128",
+      "tables": [
+        {
+          "addr": 33017836,
+          "color": "red",
+          "label": "Red"
+        },
+        {
+          "addr": 33018348,
+          "color": "green",
+          "label": "Green"
+        },
+        {
+          "addr": 33018860,
+          "color": "blue",
+          "label": "Blue"
+        }
+      ]
+    },
+    {
+      "label": "Photo/0",
+      "tables": [
+        {
+          "addr": 33019372,
+          "color": "red",
+          "label": "Red"
+        },
+        {
+          "addr": 33019884,
+          "color": "green",
+          "label": "Green"
+        },
+        {
+          "addr": 33020396,
+          "color": "blue",
+          "label": "Blue"
+        }
+      ]
+    }
+  ],
+
+  "ncol": 16,
+  "nrow": 16,
+  "range": {
+    "min": 0,
+    "max": 1024
+  },
+  "type": "Int16",
+  "imageSample": "samples/SJ8.v1.3.0.stock/video_vivid.jpg"
+}
