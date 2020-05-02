@@ -70,7 +70,7 @@ public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
             System.exit(0);
         }
 
-        Bitrate[] bitratesFiltered = Arrays.stream(bitrates)
+        bitratesFiltered = Arrays.stream(bitrates)
                 .filter(Bitrate::isInUse)
                 .toArray(Bitrate[]::new);
 
