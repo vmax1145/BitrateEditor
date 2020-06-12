@@ -1,0 +1,124 @@
+{ "note":"Git Up F1 v1.2 WB",
+  "toolClass": "org.vmax.amba.generic.GenericTool",
+  "fwFileName": "FWF1.bin",
+  "verify": [
+    {
+      "addr": 5272368,
+      "val": "FWF1"
+    },
+    {
+      "addr": 5273188,
+      "val": "F1-V1.2"
+    },
+    {
+      "addr": 5273196,
+      "val": "20180103"
+    },
+    {
+      //section crc
+      "addr":252,
+      "crc": {
+        "fromAddr":508,
+        "len":5740512
+      }
+    }
+  ],
+
+  "tableDataConfigs":[
+    {
+      "label": "4K30",
+      "rowsConfig": {
+        "firstRowAddr": 12321766,     //0x20AD9F0 + 92
+        "rowLenth": 56,        //2*28
+        "rowNames":[
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20"
+        ]
+      },
+      "columnsConfig": [
+        {
+          "label": "Low Gain-R",
+          "addrOffset": 0,
+          "type": "UInt16",
+          "range": {
+            "min": 1,
+            "max" : 8192
+          }
+        },
+        {
+          "label": "Low Gain-B",
+          "addrOffset": 2,
+          "type": "UInt16",
+          "range": {
+            "min": 1,
+            "max" : 8192
+          }
+        },
+        {
+          "label": "D50 Gain-R",
+          "addrOffset": 4,
+          "type": "UInt16",
+          "range": {
+            "min": 1,
+            "max" : 8192
+          }
+        },
+        {
+          "label": "D50 Gain-B",
+          "addrOffset": 6,
+          "type": "UInt16",
+          "range": {
+            "min": 1,
+            "max" : 8192
+          }
+        },
+        {
+          "label": "High Gain-R",
+          "addrOffset": 8,
+          "type": "UInt16",
+          "range": {
+            "min": 1,
+            "max" : 8192
+          }
+        },
+        {
+          "label": "High Gain-B",
+          "addrOffset": 10,
+          "type": "UInt16",
+          "range": {
+            "min": 1,
+            "max" : 8192
+          }
+        },
+        {
+          "label": "AE Target",
+          "addrOffset": 12,
+          "type": "UInt16",
+          "range": {
+            "min": 1,
+            "max" : 255
+          }
+        }
+      ]
+    }
+  ]
+
+}
