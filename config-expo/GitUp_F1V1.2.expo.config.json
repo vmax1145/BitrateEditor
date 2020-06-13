@@ -1,0 +1,77 @@
+{ "note":"SJ8 Pro v1.3.0 expo edit",
+  "toolClass": "org.vmax.amba.tables.TablesTool",
+  "preProcessor": {
+    "className":"org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName": "FWF1_MD5.ch"
+  },
+  "postProcessor": {
+    "className":"org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName": "FWF1_MD5.ch"
+  },
+
+  "fwFileName": "FWF1.bin",
+
+  "verify": [
+    {
+      "addr": 5272368,
+      "val": "FWF1"
+    },
+    {
+      "addr": 5273188,
+      "val": "F1-V1.2"
+    },
+    {
+      "addr": 5273196,
+      "val": "20180103"
+    },
+    {
+      //section crc
+      "addr":10791644,
+      "crc": {
+        "fromAddr":10791900,
+        "len":2973696
+      }
+    }
+  ],
+
+  "tableSets": [
+    {
+      "label":"Center",
+      "tables": [
+        {"label": "Center",   "addr": 13491801, "color": "red"}
+      ]
+    },
+    {
+      "label":"Spot",
+      "tables": [
+        {"label": "Spot",     "addr": 13491897, "color": "green"}
+      ]
+    },
+    {
+      "label":"Average",
+      "tables": [
+        {"label": "Average",  "addr": 13491993, "color": "blue"}
+      ]
+    }
+
+    //  ,
+//    {
+//      "label":"Center/Spot/Average",
+//      "tables": [
+//        {"label": "Center",   "addr": 34315381, "color": "red"},
+//        {"label": "Spot",     "addr": 34315477, "color": "green"},
+//        {"label": "Average",  "addr": 34315573, "color": "blue"}
+//      ]
+//    }
+  ],
+
+
+  "ncol": 12,
+  "nrow": 8,
+  "range": {
+    "min": 0,
+    "max": 128
+  },
+  "type": "UByte",
+  "curves":false
+}

@@ -1,0 +1,73 @@
+{
+  "note": "SJ8Pro parameters",
+  "toolClass": "org.vmax.amba.generic.GenericTool",
+  "preProcessor": {
+    "className":"org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName": "FWF1_MD5.ch"
+  },
+  "postProcessor": {
+    "className":"org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName": "FWF1_MD5.ch"
+  },
+  
+  "fwFileName": "FWF1.bin",
+
+  "verify": [
+    {
+      "addr": 5272368,
+      "val": "FWF1"
+    },
+    {
+      "addr": 5273188,
+      "val": "F1-V1.2"
+    },
+    {
+      "addr": 5273196,
+      "val": "20180103"
+    },
+    {
+      //section crc
+      "addr":10791644,
+      "crc": {
+        "fromAddr":10791900,
+        "len":2973696
+      }
+    }
+  ],
+
+  "paramsTabs": [
+    {
+      "label": "Photo JPEG quality (%)",
+      "baseAddr": 4041556,
+      "params": [
+        {
+          "label": "Fine",
+          "addrOffset": 0,
+          "type": "UInt32",
+          "range": {
+            "min": 10,
+            "max" : 100
+          }
+        },
+        {
+          "label": "Standard",
+          "addrOffset": 4,
+          "type": "UInt32",
+          "range": {
+            "min": 10,
+            "max" : 100
+          }
+        },
+        {
+          "label": "Economy",
+          "addrOffset": 8,
+          "type": "UInt32",
+          "range": {
+            "min": 10,
+            "max" : 100
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+{ "note":"Git Up F1 v1.2 WB Presets",
+  "toolClass": "org.vmax.amba.generic.GenericTool",
+  "preProcessor": {
+    "className":"org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName": "SJ8_CHECK.ch"
+  },
+  "postProcessor": {
+    "className":"org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName": "SJ8_CHECK.ch"
+  },
+
+  "fwFileName": "SJ8_FWUPDATE.bin",
+
+  "verify": [
+    {
+      "addr": 6519572,
+      "val": "V1.3.0"
+    },
+    {
+      "addr": 6519936,
+      "val": "2018.12.28"
+    },
+    {
+      "addr": 6520000,
+      "val": "SJ8PRO"
+    },
+    {
+      //section crc
+      "addr":560,
+      "crc": {
+        "fromAddr":816,
+        "len":25709760
+      }
+    }
+  ],
+
+  "tableDataConfigs":[
+    {
+      "label": "WB Presets",
+      "rowsConfig": {
+        "firstRowAddr": 34267476,
+        "rowLenth": 52,
+        "rowNames":[
+          "not used",
+          "Sunny",
+          "Cloudy",
+          "Fluorescent",
+          "Water",
+          "not used",
+          "not used",
+          "not used",
+          "not used",
+          "not used",
+          "not used",
+          "not used",
+          "not used"
+        ]
+      },
+
+      "columnsConfig": [
+        {
+          "label": "Gr_min",
+          "addrOffset": 0,
+          "type": "Int32"
+        },
+        {
+          "label": "Gr_max",
+          "addrOffset": 4,
+          "type": "Int32"
+        },
+        {
+          "label": "Gb_min",
+          "addrOffset": 8,
+          "type": "Int32"
+        },
+        {
+          "label": "Gb_max",
+          "addrOffset": 12,
+          "type": "Int32"
+        },
+        {
+          "label": "YA_min_Slope",
+          "addrOffset": 16,
+          "type": "Int32"
+        },
+        {
+          "label": "YA_min",
+          "addrOffset": 20,
+          "type": "Int32"
+        },
+        {
+          "label": "YA_max_Slope",
+          "addrOffset": 24,
+          "type": "Int32"
+        },
+        {
+          "label": "YA_min",
+          "addrOffset": 28,
+          "type": "Int32"
+        },
+        {
+          "label": "YB_min_Slope",
+          "addrOffset": 32,
+          "type": "Int32"
+        },
+        {
+          "label": "YB_min",
+          "addrOffset": 36,
+          "type": "Int32"
+        },
+        {
+          "label": "YB_max_Slope",
+          "addrOffset": 40,
+          "type": "Int32"
+        },
+        {
+          "label": "YB_min",
+          "addrOffset": 44,
+          "type": "Int32"
+        },
+        {
+          "label": "Weight",
+          "addrOffset": 48,
+          "type": "Int32"
+        }
+      ]
+
+    }
+  ]
+
+}

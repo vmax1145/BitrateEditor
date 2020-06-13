@@ -1,0 +1,67 @@
+{ "note":"SJ8 Pro v1.3.0 Chroma curve edit",
+  "toolClass": "org.vmax.amba.tables.TablesTool",
+  "preProcessor": {
+    "className":"org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName": "FWF1_MD5.ch"
+  },
+  "postProcessor": {
+    "className":"org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName": "FWF1_MD5.ch"
+  },
+
+  "fwFileName": "FWF1.bin",
+
+  "verify": [
+    {
+      "addr": 5272368,
+      "val": "FWF1"
+    },
+    {
+      "addr": 5273188,
+      "val": "F1-V1.2"
+    },
+    {
+      "addr": 5273196,
+      "val": "20180103"
+    },
+    {
+      //section crc
+      "addr":10791644,
+      "crc": {
+        "fromAddr":10791900,
+        "len":2973696
+      }
+    }
+  ],
+
+  "tableSets": [
+    {
+      "label":"4K30/255",
+      "tables": [
+        {"label": "Red",   "addr": 12489902, "color": "red"}
+      ]
+    },
+    {
+      "label":"4K30/128",
+      "tables": [
+        {"label": "Red",   "addr": 12490158, "color": "red"}
+      ]
+    },
+    {
+      "label":"4K30/0",
+      "tables": [
+        {"label": "Red",   "addr": 12490414, "color": "red"}
+      ]
+    }
+  ],
+
+
+
+  "ncol": 16,
+  "nrow": 8,
+  "range": {
+    "min": 0,
+    "max": 2048
+  },
+  "type": "Int16"
+}
