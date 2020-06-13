@@ -27,6 +27,12 @@ public class Utils {
         return bb.getInt() & 0xffffffffL;
     }
 
+    public static long readInt(byte[] fw, int addr) {
+        ByteBuffer bb = ByteBuffer.wrap(fw, addr, Integer.BYTES);
+        bb.order(ByteOrder.LITTLE_ENDIAN);
+        return bb.getInt();
+    }
+
 
     public static float readFloat(byte[] fw, int addr) {
         ByteBuffer bb = ByteBuffer.wrap(fw, addr, Float.BYTES);

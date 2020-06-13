@@ -45,6 +45,8 @@ public class GenericTableDataModel extends AbstractTableModel {
         switch(cfg.getColumnsConfig().get(columnIndex).getType()) {
             case Float32:
                 return Float.class;
+            case Int32:
+                return Integer.class;
             default:
                 return Long.class;
         }
@@ -67,8 +69,9 @@ public class GenericTableDataModel extends AbstractTableModel {
         switch (cfg.getColumnsConfig().get(columnIndex).getType()) {
             case Float32:
                 return Utils.readFloat(fw,addr);
-            case UInt32:
             case Int32:
+                return Utils.readInt(fw,addr);
+            case UInt32:
                 return Utils.readUInt(fw,addr);
             case Int16:
             case UInt16:

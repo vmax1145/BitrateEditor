@@ -28,7 +28,7 @@
     {
       "label": "4K30",
       "rowsConfig": {
-        "firstRowAddr": 12321766,     
+        "firstRowAddr": 12321766,
         "rowLenth": 56,        //2*28
         "rowNames":[
           "1",
