@@ -11,7 +11,7 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import java.awt.*;
 
-public class GenericJTable extends JTable {
+public class GenericJTable extends JTable implements GenericTab {
     private TableDataConfig cfg;
 
     public GenericJTable(TableDataConfig cfg, GenericTableDataModel model) {
@@ -78,4 +78,8 @@ public class GenericJTable extends JTable {
     }
 
 
+    @Override
+    public String getTabLabel() {
+        return cfg.getLabel();
+    }
 }

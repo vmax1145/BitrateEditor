@@ -14,7 +14,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 import java.awt.*;
 
-public class GenericParamsTable extends JTable {
+public class GenericParamsTable extends JTable implements GenericTab{
     private ParamsConfig cfg;
 
     public GenericParamsTable(ParamsConfig cfg, GenericParamsDataModel model) {
@@ -76,5 +76,10 @@ public class GenericParamsTable extends JTable {
             }
         }
         return super.getCellEditor(row,column);
+    }
+
+    @Override
+    public String getTabLabel() {
+        return cfg.getLabel();
     }
 }
