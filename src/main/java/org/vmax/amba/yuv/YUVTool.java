@@ -5,17 +5,22 @@ import org.vmax.amba.Utils;
 import org.vmax.amba.cfg.FirmwareConfig;
 import org.vmax.amba.cfg.ShortValueCfg;
 import org.vmax.amba.data.SingleShortData;
+import org.vmax.amba.generic.ExportAction;
+import org.vmax.amba.generic.ImportAction;
 import org.vmax.amba.yuv.config.YUVConfig;
 import org.vmax.amba.yuv.config.YUVTabCfg;
 import org.vmax.amba.yuv.ui.ImageView;
 import org.vmax.amba.yuv.ui.SlidersPanel;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class YUVTool extends FirmwareTool<YUVConfig> {
@@ -72,41 +77,46 @@ public class YUVTool extends FirmwareTool<YUVConfig> {
     }
 
 
-    @Override
-    public void exportData(File selectedFile) {
-        try {
-            try(FileOutputStream fw = new FileOutputStream(selectedFile,false)) {
-                Utils.getObjectMapper().writeValue(fw,data);
+    protected List<ExportAction> getExportActions() {
+        return Collections.singletonList(
+            new ExportAction("Export settings data", this, new FileNameExtensionFilter("JSON files", "json")) {
+                public void exportData(File selectedFile) throws IOException {
+                    try (FileOutputStream fw = new FileOutputStream(selectedFile, false)) {
+                        Utils.getObjectMapper().writeValue(fw, data);
+                    }
+                }
             }
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
+        );
     }
 
     @Override
-    public void importData(File selectedFile) {
-        try (FileInputStream fis = new FileInputStream(selectedFile)){
-            YUVData in = Utils.getObjectMapper().readerFor(YUVData.class).readValue(fis);
-            if(in.size()!=data.size()) {
-                throw new Exception("Invalid data in import");
-            }
-            for(int i=0;i<in.size();i++) {
-                YUVTabData yuvTabData = data.get(i);
-                YUVTabData inTabData = in.get(i);
-                if(yuvTabData.size()!=inTabData.size()) {
-                    throw new Exception("Invalid data in import");
+    protected List<ImportAction> getImportActions() {
+        return Collections.singletonList(
+                new ImportAction("Import settings data", this,new FileNameExtensionFilter("JSON files", "json")) {
+                    @Override
+                    protected void importData(File selectedFile) throws IOException {
+
+                        try (FileInputStream fis = new FileInputStream(selectedFile)) {
+                            YUVData in = Utils.getObjectMapper().readerFor(YUVData.class).readValue(fis);
+                            if (in.size() != data.size()) {
+                                throw new IOException("Invalid data in import");
+                            }
+                            for (int i = 0; i < in.size(); i++) {
+                                YUVTabData yuvTabData = data.get(i);
+                                YUVTabData inTabData = in.get(i);
+                                if (yuvTabData.size() != inTabData.size()) {
+                                    throw new IOException("Invalid data in import");
+                                }
+                                for (int j = 0; j < yuvTabData.size(); j++) {
+                                    short val = inTabData.get(j).getValue();
+                                    yuvTabData.get(j).setValue(val);
+                                    yuvTabData.get(j).getSlider().setValue(val);
+                                }
+                            }
+                        }
+                    }
                 }
-                for (int j = 0; j < yuvTabData.size(); j++) {
-                    short val = inTabData.get(j).getValue();
-                    yuvTabData.get(j).setValue(val);
-                    yuvTabData.get(j).getSlider().setValue(val);
-                }
-            }
-        }
-        catch (Exception e1) {
-            e1.printStackTrace();
-            JOptionPane.showMessageDialog(YUVTool.this, "Error reading settings","Warning",JOptionPane.ERROR_MESSAGE);
-        }
+        );
     }
 
     @Override

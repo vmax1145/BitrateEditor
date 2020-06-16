@@ -5,8 +5,11 @@ import org.vmax.amba.FirmwareTool;
 import org.vmax.amba.Utils;
 import org.vmax.amba.bitrate.config.BitrateEditorConfig;
 import org.vmax.amba.cfg.FirmwareConfig;
+import org.vmax.amba.generic.ExportAction;
+import org.vmax.amba.generic.ImportAction;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.bind.ValidationException;
 import java.awt.*;
 import java.io.File;
@@ -14,6 +17,8 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 
@@ -222,50 +227,60 @@ public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
         }
     }
 
-    @Override
-    public void exportData(File selectedFile) {
-        try {
-            try(FileWriter fw = new FileWriter(selectedFile)) {
-                Utils.getObjectMapper().writer().writeValue(fw,bitrates);
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(this,"Oooops! See error stream for details" );
-        }
-    }
+
+
 
     @Override
-    public void importData(File selectedFile) {
-        try {
-            try (FileInputStream fis = new FileInputStream(selectedFile)) {
-                Bitrate[] bitratesLoaded = Utils.getObjectMapper().readerFor(Bitrate[].class).readValue(fis);
-                if(bitrates.length != bitratesLoaded.length) {
-                    JOptionPane.showMessageDialog (this, "File not match configuration","Warning",JOptionPane.ERROR_MESSAGE);
-                }
-                if(cfg.getQualities().length != bitratesLoaded[0].getMbps().length) {
-                    JOptionPane.showMessageDialog (this, "File not match configuration","Warning",JOptionPane.ERROR_MESSAGE);
-                }
+    protected List<ImportAction> getImportActions() {
+        ImportAction action = new ImportAction("Import settings data", this,new FileNameExtensionFilter("JSON files", "json")) {
+            @Override
+            protected void importData(File selectedFile) throws IOException {
+                try {
+                    try (FileInputStream fis = new FileInputStream(selectedFile)) {
+                        Bitrate[] bitratesLoaded = Utils.getObjectMapper().readerFor(Bitrate[].class).readValue(fis);
+                        if(bitrates.length != bitratesLoaded.length) {
+                            JOptionPane.showMessageDialog (BitrateTool.this, "File not match configuration","Warning",JOptionPane.ERROR_MESSAGE);
+                        }
+                        if(cfg.getQualities().length != bitratesLoaded[0].getMbps().length) {
+                            JOptionPane.showMessageDialog (BitrateTool.this, "File not match configuration","Warning",JOptionPane.ERROR_MESSAGE);
+                        }
 
-                if(bitratesLoaded.length != bitrates.length) {
-                    throw new ValidationException("Video modes are different");
-                }
-                for (int i = 0; i < bitratesLoaded.length; i++) {
-                    if( !bitratesLoaded[i].getName().equals(bitrates[i].getName()) ) {
-                        throw new ValidationException("Video modes are different");
+                        if(bitratesLoaded.length != bitrates.length) {
+                            throw new ValidationException("Video modes are different");
+                        }
+                        for (int i = 0; i < bitratesLoaded.length; i++) {
+                            if( !bitratesLoaded[i].getName().equals(bitrates[i].getName()) ) {
+                                throw new ValidationException("Video modes are different");
+                            }
+                        }
+
+                        for (int i = 0; i < bitrates.length; i++) {
+                            Bitrate b = bitrates[i];
+                            b.fillFrom(bitratesLoaded[i]);
+                        }
+                        editorPanel.onDataChange();
                     }
                 }
-
-                for (int i = 0; i < bitrates.length; i++) {
-                    Bitrate b = bitrates[i];
-                    b.fillFrom(bitratesLoaded[i]);
+                catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(BitrateTool.this,"Oooops! See error stream for details" );
                 }
-                editorPanel.onDataChange();
             }
-        }
-        catch (Exception ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(this,"Oooops! See error stream for details" );
-        }
+        };
+        return Collections.singletonList(action);
     }
+
+    @Override
+    protected List<ExportAction> getExportActions() {
+        ExportAction action = new ExportAction("Export settings data", this, new FileNameExtensionFilter("JSON files", "json")){
+            public void exportData(File selectedFile) throws IOException {
+                try(FileWriter fw = new FileWriter(selectedFile)) {
+                    Utils.getObjectMapper().writer().writeValue(fw,bitrates);
+                }
+            }
+        };
+        return Collections.singletonList(action);
+    }
+
 
 }

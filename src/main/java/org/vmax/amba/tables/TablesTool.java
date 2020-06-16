@@ -5,6 +5,8 @@ import org.apache.commons.io.FileUtils;
 import org.vmax.amba.FirmwareTool;
 import org.vmax.amba.Utils;
 import org.vmax.amba.cfg.FirmwareConfig;
+import org.vmax.amba.generic.ExportAction;
+import org.vmax.amba.generic.ImportAction;
 import org.vmax.amba.tables.config.SingleTableConf;
 import org.vmax.amba.tables.config.TableConfig;
 import org.vmax.amba.tables.config.TableSetConfig;
@@ -12,6 +14,7 @@ import org.vmax.amba.tables.ui.GraphPanel;
 import org.vmax.amba.tables.ui.TableEditorPanel;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
@@ -19,6 +22,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class TablesTool  extends FirmwareTool<TableConfig> {
@@ -130,40 +134,44 @@ public class TablesTool  extends FirmwareTool<TableConfig> {
     }
 
     @Override
-    public void exportData(File selectedFile) {
-        try {
-            try(FileOutputStream fw = new FileOutputStream(selectedFile,false)) {
-                for(TableSet ts : tableSets) {
-                    for (Table2dModel model : ts.getModels()) {
-                        fw.write(model.getBytes());
+    public List<ExportAction> getExportActions() {
+        return Collections.singletonList(
+                new ExportAction("Export settings data", this, new FileNameExtensionFilter("JSON files", "json")){
+                    @Override
+                    public void exportData(File selectedFile) throws IOException {
+                        try(FileOutputStream fw = new FileOutputStream(selectedFile,false)) {
+                            for(TableSet ts : tableSets) {
+                                for (Table2dModel model : ts.getModels()) {
+                                    fw.write(model.getBytes());
+                                }
+                            }
+                        }
                     }
                 }
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(this,"Oooops! See error stream for details" );
-        }
+        );
     }
 
     @Override
-    public void importData(File selectedFile) {
-        try {
-            byte[] bytes = FileUtils.readFileToByteArray(selectedFile);
-            int from = 0;
-            for(TableSet ts : tableSets) {
-                for (Table2dModel model : ts.getModels()) {
-                    int len = model.getBytes().length;
-                    byte[] mbytes = new byte[len];
-                    System.arraycopy(bytes,from,mbytes,0,len);
-                    from+=len;
-                    model.setBytes(mbytes);
+    public List<ImportAction> getImportActions() {
+        return Collections.singletonList(
+                new ImportAction("Import settings data", this,new FileNameExtensionFilter("JSON files", "json")) {
+
+                    @Override
+                    protected void importData(File selectedFile) throws IOException {
+                        byte[] bytes = FileUtils.readFileToByteArray(selectedFile);
+                        int from = 0;
+                        for(TableSet ts : tableSets) {
+                            for (Table2dModel model : ts.getModels()) {
+                                int len = model.getBytes().length;
+                                byte[] mbytes = new byte[len];
+                                System.arraycopy(bytes,from,mbytes,0,len);
+                                from+=len;
+                                model.setBytes(mbytes);
+                            }
+                        }
+                    }
                 }
-            }
-        }
-        catch (Exception ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(this,"Oooops! See error stream for details" );
-        }
+        );
     }
 
     public void updateFW()  {

@@ -7,10 +7,9 @@ import org.vmax.amba.cfg.tabledata.ParamsConfig;
 import org.vmax.amba.cfg.tabledata.TableDataConfig;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.Dimension;
+import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,19 +81,6 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
         return new ArrayList<>();
     };
 
-    public boolean hasImportExport() {
-        return false;
-    }
-
-    @Override
-    public void exportData(File f) {
-        JOptionPane.showMessageDialog(this,"Not implemented yet");
-    }
-
-    @Override
-    public void importData(File f) {
-        JOptionPane.showMessageDialog(this,"Not implemented yet");
-    }
 
     @Override
     public void updateFW() {
@@ -128,5 +114,15 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
     @Override
     public Class<? extends GenericTableDataConfig> getConfigClz() {
         return GenericTableDataConfig.class;
+    }
+
+    @Override
+    protected List<ImportAction> getImportActions() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    protected List<ExportAction> getExportActions() {
+        return new ArrayList<>();
     }
 }
