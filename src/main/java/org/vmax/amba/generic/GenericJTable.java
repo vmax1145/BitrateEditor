@@ -82,4 +82,14 @@ public class GenericJTable extends JTable implements GenericTab {
     public String getTabLabel() {
         return cfg.getLabel();
     }
+
+    @Override
+    public ImportAction getImportAction() {
+        return null;
+    }
+
+    @Override
+    public ExportAction getExportAction() {
+        return null;
+    }
 }

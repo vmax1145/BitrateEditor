@@ -18,6 +18,7 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
     private GenericTableDataConfig<ImageConfig> cfg;
     private List<Patch> patchList = new ArrayList<>();
     private List<GenericImageTab> imageTabs = new ArrayList<>();
+    private List<GenericTab> allTabs = new ArrayList<>();
     private byte[] fwBytes;
 
     @Override
@@ -39,11 +40,13 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
             GenericTableDataModel model = new GenericTableDataModel(tdcfg, fwBytes);
             GenericJTable editorPanel = new GenericJTable(tdcfg, model);
             tabs.add(tdcfg.getLabel(), new JScrollPane(editorPanel));
+            allTabs.add(editorPanel);
         }
         for(ParamsConfig pcfg : this.cfg.getParamsTabs()) {
             GenericParamsDataModel model = new GenericParamsDataModel(pcfg, fwBytes);
             GenericParamsTable editorPanel = new GenericParamsTable(pcfg, model);
             tabs.add(pcfg.getLabel(), new JScrollPane(editorPanel));
+            allTabs.add(editorPanel);
         }
         for(ImageConfig icfg : this.cfg.getImageTabs()) {
             GenericImageTab imgTab = createImageTab(icfg,fwBytes);
@@ -51,6 +54,7 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
             JPanel p = new JPanel();
             p.add(imgTab.getComponent());
             tabs.add(imgTab.getTabLabel(), new JScrollPane(p));
+            allTabs.add(imgTab);
         }
 
         if(cfg.getPatchLoader()!=null) {
@@ -118,11 +122,26 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
 
     @Override
     protected List<ImportAction> getImportActions() {
-        return new ArrayList<>();
+        List<ImportAction> ret = new ArrayList<>();
+        allTabs.forEach(t->{
+            ImportAction action = t.getImportAction();
+            if(action!=null) {
+                ret.add(action);
+            }
+        });
+        return ret;
     }
 
     @Override
     protected List<ExportAction> getExportActions() {
-        return new ArrayList<>();
+        List<ExportAction> ret = new ArrayList<>();
+        allTabs.forEach(t->{
+            ExportAction action = t.getExportAction();
+            if(action!=null) {
+                ret.add(action);
+            }
+        });
+        return ret;
+
     }
 }

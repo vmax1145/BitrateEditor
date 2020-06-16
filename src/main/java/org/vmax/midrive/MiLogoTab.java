@@ -3,7 +3,9 @@ package org.vmax.midrive;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.vmax.amba.generic.ExportAction;
 import org.vmax.amba.generic.GenericImageTab;
+import org.vmax.amba.generic.ImportAction;
 import org.vmax.amba.yuv.ui.SpringUtilities;
 
 import javax.imageio.ImageIO;
@@ -304,6 +306,16 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
     @Override
     public String getTabLabel() {
         return cfg.getLabel()+" ("+cfg.getDimension().getWidth()+"x"+cfg.getDimension().getHeight()+")";
+    }
+
+    @Override
+    public ImportAction getImportAction() {
+        return null;
+    }
+
+    @Override
+    public ExportAction getExportAction() {
+        return null;
     }
 
 
