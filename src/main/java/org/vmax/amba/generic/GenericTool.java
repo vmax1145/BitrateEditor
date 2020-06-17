@@ -38,7 +38,7 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
 
         for(TableDataConfig tdcfg : this.cfg.getTableDataConfigs()) {
             GenericTableDataModel model = new GenericTableDataModel(tdcfg, fwBytes);
-            GenericJTable editorPanel = new GenericJTable(tdcfg, model);
+            GenericJTable editorPanel = new GenericJTable(this, tdcfg, model);
             tabs.add(tdcfg.getLabel(), new JScrollPane(editorPanel));
             allTabs.add(editorPanel);
         }

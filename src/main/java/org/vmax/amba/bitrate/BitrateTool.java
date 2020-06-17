@@ -10,7 +10,6 @@ import org.vmax.amba.generic.ImportAction;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.xml.bind.ValidationException;
 import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
@@ -235,7 +234,7 @@ public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
         ImportAction action = new ImportAction("Import settings data", this,new FileNameExtensionFilter("JSON files", "json")) {
             @Override
             protected void importData(File selectedFile) throws IOException {
-                try {
+
                     try (FileInputStream fis = new FileInputStream(selectedFile)) {
                         Bitrate[] bitratesLoaded = Utils.getObjectMapper().readerFor(Bitrate[].class).readValue(fis);
                         if(bitrates.length != bitratesLoaded.length) {
@@ -246,11 +245,11 @@ public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
                         }
 
                         if(bitratesLoaded.length != bitrates.length) {
-                            throw new ValidationException("Video modes are different");
+                            throw new IOException("Video modes are different");
                         }
                         for (int i = 0; i < bitratesLoaded.length; i++) {
                             if( !bitratesLoaded[i].getName().equals(bitrates[i].getName()) ) {
-                                throw new ValidationException("Video modes are different");
+                                throw new IOException("Video modes are different");
                             }
                         }
 
@@ -260,11 +259,6 @@ public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
                         }
                         editorPanel.onDataChange();
                     }
-                }
-                catch (Exception ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(BitrateTool.this,"Oooops! See error stream for details" );
-                }
             }
         };
         return Collections.singletonList(action);
