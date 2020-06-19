@@ -7,26 +7,32 @@ import org.vmax.amba.cfg.Type;
 import org.vmax.amba.cfg.tabledata.TableDataConfig;
 
 import javax.swing.*;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class GenericJTable extends JTable implements GenericTab {
+public class GenericJTable extends JTable implements GenericTab, PopupMenuListener {
     private final Frame frame;
+    private final JPopupMenu popupMenu;
     private TableDataConfig cfg;
-
+    int colAtPoint=-1;
+    int rowAtPoint=-1;
 
     public GenericJTable(Frame frame, TableDataConfig cfg, GenericTableDataModel model) {
         super(model);
         this.cfg=cfg;
         this.frame = frame;
+        this.popupMenu = new JPopupMenu();
         adjustColumns();
 
         TableColumnModel columnModel = getColumnModel();
@@ -36,7 +42,25 @@ public class GenericJTable extends JTable implements GenericTab {
 
         ListSelectionModel rowSelectionModel = getSelectionModel();
         rowSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+
+
+        JMenuItem copyItem = popupMenu.add(new JMenuItem(new AbstractAction("Copy selection") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                copySelection();
+            }
+        }));
+        JMenuItem pasteItem = popupMenu.add(new JMenuItem(new AbstractAction("Paste selection") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pasteSelection();
+            }
+        }));
+        setComponentPopupMenu(popupMenu);
+        popupMenu.addPopupMenuListener(this);
     }
+
+
 
     @Override
     public void setModel(TableModel m) {
@@ -150,5 +174,36 @@ public class GenericJTable extends JTable implements GenericTab {
         };
     }
 
+    private void copySelection() {
+        System.out.println("copy");
+    }
+    private void pasteSelection() {
+        System.out.println("Paste");
+    }
+
+    @Override
+    public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                Point where = SwingUtilities.convertPoint(popupMenu, new Point(0, 0), GenericJTable.this);
+                rowAtPoint = GenericJTable.this.rowAtPoint(where);
+                colAtPoint = GenericJTable.this.columnAtPoint(where);
+                if(rowAtPoint>-1 && colAtPoint>-1 && getSelectionModel().isSelectionEmpty()){
+                    if(!isCellSelected(rowAtPoint,colAtPoint)) {
+                        changeSelection(rowAtPoint, colAtPoint, true, false);
+                    }
+                }
+            }
+        });
+    }
+
+    @Override
+    public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+    }
+
+    @Override
+    public void popupMenuCanceled(PopupMenuEvent e) {
+    }
 
 }
