@@ -14,6 +14,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import java.awt.*;
+import java.awt.datatransfer.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,6 +23,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class GenericJTable extends JTable implements GenericTab, PopupMenuListener {
+    private static final DataFlavor CLIPBOARD_FLAVOR = new DataFlavor(String[][].class, "GenericTableDataFlavor");
     private final Frame frame;
     private final JPopupMenu popupMenu;
     private TableDataConfig cfg;
@@ -50,12 +52,26 @@ public class GenericJTable extends JTable implements GenericTab, PopupMenuListen
                 copySelection();
             }
         }));
+        JMenuItem copyAll = popupMenu.add(new JMenuItem(new AbstractAction("Copy All") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                copyAll();
+            }
+        }));
+        popupMenu.addSeparator();
         JMenuItem pasteItem = popupMenu.add(new JMenuItem(new AbstractAction("Paste selection") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pasteSelection();
             }
         }));
+        JMenuItem pasteAll = popupMenu.add(new JMenuItem(new AbstractAction("Paste ALL") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pasteAll();
+            }
+        }));
+
         setComponentPopupMenu(popupMenu);
         popupMenu.addPopupMenuListener(this);
     }
@@ -174,11 +190,88 @@ public class GenericJTable extends JTable implements GenericTab, PopupMenuListen
         };
     }
 
-    private void copySelection() {
-        System.out.println("copy");
+    private void copyAll() {
+        int fromrow=0;
+        int torow=getModel().getRowCount();
+        int fromColumn = 0;
+        int toColumn = getModel().getColumnCount();
+        copySelection(fromrow, torow, fromColumn, toColumn);
     }
+
+    private void copySelection() {
+            int fromrow=getSelectionModel().getMinSelectionIndex();
+            int torow=getSelectionModel().getMaxSelectionIndex()+1;
+            int fromColumn = getColumnModel().getSelectionModel().getMinSelectionIndex();
+            int toColumn = getColumnModel().getSelectionModel().getMaxSelectionIndex()+1;
+        copySelection(fromrow, torow, fromColumn, toColumn);
+    }
+
+    private void copySelection(int fromrow, int torow, int fromColumn, int toColumn) {
+        try {
+            if(fromrow>=0 && fromColumn>=0) {
+                String[][] vals = new String[torow - fromrow][];
+                for (int row = fromrow; row < torow; row++) {
+                    vals[row-fromrow] = new String[toColumn - fromColumn];
+                    for (int col = fromColumn; col < toColumn; col++) {
+                        vals[row-fromrow][col-fromColumn] = String.valueOf(getModel().getValueAt(row, col));
+                    }
+                }
+                Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                GenericTableSelection dataSelection = new GenericTableSelection(vals);
+                clipboard.setContents(dataSelection, null);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(frame, "Oooops:"+e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }
+    private void pasteAll() {
+        int fromrow=0;
+        int fromColumn= 0;
+        int nrows=getModel().getRowCount();
+        int nCols =getModel().getColumnCount();
+        pasteSelection(fromrow, fromColumn, nrows, nCols);
+    }
+
     private void pasteSelection() {
-        System.out.println("Paste");
+        int fromrow=getSelectionModel().getMinSelectionIndex();
+        int fromColumn = getColumnModel().getSelectionModel().getMinSelectionIndex();
+        int nrows=getSelectionModel().getMaxSelectionIndex()-fromrow+1;
+        int nCols = getColumnModel().getSelectionModel().getMaxSelectionIndex()-fromColumn+1;
+        pasteSelection(fromrow, fromColumn, nrows, nCols);
+    }
+
+    private void pasteSelection(int fromrow, int fromColumn, int nrows, int nCols) {
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        Transferable clipboardContent = clipboard.getContents(null);
+        if ( clipboardContent.isDataFlavorSupported(CLIPBOARD_FLAVOR )) {
+            try {
+                String[][] val = (String[][]) clipboardContent.getTransferData(CLIPBOARD_FLAVOR);
+                if(fromrow>=0 && fromColumn>=0) {
+                    if( nrows==1 && nCols ==1) {
+                        nrows = val.length;
+                        nCols = val[0].length;
+                    }
+                    if(nrows!=val.length || nCols != val[0].length) {
+                        JOptionPane.showMessageDialog(frame, "Selection dimensions not match data dimensions","Error",JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    if(fromrow+nrows>getModel().getRowCount() || fromColumn+nCols>getModel().getColumnCount()) {
+                        JOptionPane.showMessageDialog(frame, "Selection out of table boundaries","Error",JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    for (int row = fromrow; row < fromrow+nrows; row++) {
+                        for (int col = fromColumn; col < fromColumn + nCols; col++) {
+                            getModel().setValueAt(val[row-fromrow][col-fromColumn],row,col);
+                        }
+                    }
+                    ((GenericTableDataModel)dataModel).fireTableDataChanged();
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(frame, "Oooops:"+e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -204,6 +297,42 @@ public class GenericJTable extends JTable implements GenericTab, PopupMenuListen
 
     @Override
     public void popupMenuCanceled(PopupMenuEvent e) {
+    }
+
+
+
+
+    public static class GenericTableSelection implements Transferable, ClipboardOwner {
+
+        private String[][] selection;
+
+        public GenericTableSelection(String[][] selection) {
+            this.selection = selection;
+        }
+
+        @Override
+        public void lostOwnership(Clipboard clipboard, Transferable contents) {
+            //do nothing
+        }
+
+        @Override
+        public DataFlavor[] getTransferDataFlavors() {
+            return new DataFlavor[]{CLIPBOARD_FLAVOR};
+        }
+
+        @Override
+        public boolean isDataFlavorSupported(DataFlavor flavor) {
+            return CLIPBOARD_FLAVOR.equals(flavor);
+        }
+
+        @Override
+        public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
+            if (isDataFlavorSupported(flavor)){
+                return this.selection;
+            } else {
+                throw new UnsupportedFlavorException(CLIPBOARD_FLAVOR);
+            }
+        }
     }
 
 }
