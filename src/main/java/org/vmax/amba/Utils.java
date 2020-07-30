@@ -133,26 +133,33 @@ public class Utils {
             fwBytes = preprocessor.preprocess(fwBytes);
         }
 
+        try {
+            for (Verify verify : cfg.getVerify()) {
+                if (verify.getVal() != null) {
+                    byte[] bytes = verify.getVal().getBytes("ASCII");
 
-        for (Verify verify : cfg.getVerify()) {
-            if (verify.getVal() != null) {
-                byte[] bytes = verify.getVal().getBytes("ASCII");
-
-                for (int i = 0, addr = verify.getAddr(); i < bytes.length; i++, addr++) {
-                    byte b = bytes[i];
-                    if (fwBytes[addr] != b) {
-                        throw new VerifyException("Verify fail:" + verify.getVal());
+                    for (int i = 0, addr = verify.getAddr(); i < bytes.length; i++, addr++) {
+                        byte b = bytes[i];
+                        if (fwBytes[addr] != b) {
+                            throw new VerifyException("Config Verify fail addr:" + verify.getAddr() + " : " + verify.getVal());
+                        }
                     }
+                } else if (verify.getInt32val() != null) {
+                    if (Utils.readUInt(fwBytes, verify.getAddr()) != verify.getInt32val()) {
+                        throw new VerifyException("Config Verify fail addr: " + verify.getAddr() + " : " + verify.getInt32val());
+                    }
+                } else if (verify.getCrc() != null) {
+                    crcCheck(fwBytes, verify.getCrc().getFromAddr(), verify.getCrc().getLen(), verify.getAddr());
                 }
             }
-            else if(verify.getInt32val()!=null){
-                if(Utils.readUInt(fwBytes,verify.getAddr()) != verify.getInt32val()) {
-                    throw new VerifyException("Verify fail:" + verify.getAddr()+":"+verify.getInt32val());
-                }
-            }
-            else if (verify.getCrc() != null) {
-                crcCheck(fwBytes, verify.getCrc().getFromAddr(), verify.getCrc().getLen(), verify.getAddr());
-            }
+        }
+        catch (VerifyException e) {
+            JOptionPane.showMessageDialog(null,
+                    e.getMessage(),
+                    "Firmware and config mismatch",
+                    JOptionPane.ERROR_MESSAGE
+            );
+            throw e;
         }
 
         //FileUtils.writeByteArrayToFile(new File(f.getName()+".preprocessed"),fwBytes);
