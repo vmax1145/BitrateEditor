@@ -10,5 +10,6 @@ import lombok.Setter;
 public class Verify {
     private int addr;
     private String val;
+    private Integer int32val;
     private CRCverify crc;
 }

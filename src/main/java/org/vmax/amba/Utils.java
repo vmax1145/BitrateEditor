@@ -144,7 +144,13 @@ public class Utils {
                         throw new VerifyException("Verify fail:" + verify.getVal());
                     }
                 }
-            } else if (verify.getCrc() != null) {
+            }
+            else if(verify.getInt32val()!=null){
+                if(Utils.readUInt(fwBytes,verify.getAddr()) != verify.getInt32val()) {
+                    throw new VerifyException("Verify fail:" + verify.getAddr()+":"+verify.getInt32val());
+                }
+            }
+            else if (verify.getCrc() != null) {
                 crcCheck(fwBytes, verify.getCrc().getFromAddr(), verify.getCrc().getLen(), verify.getAddr());
             }
         }
