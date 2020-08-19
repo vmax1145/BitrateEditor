@@ -19,6 +19,7 @@ public class ValueConfig {
     private Range range;
     private String label;
     private boolean hex;
+    private boolean editable=true;
 
     private Map<String, String> valuesMapping = new LinkedHashMap<>();
 }

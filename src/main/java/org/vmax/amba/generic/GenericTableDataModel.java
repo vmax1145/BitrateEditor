@@ -54,7 +54,7 @@ public class GenericTableDataModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return columnIndex>=1;
+        return columnIndex>=1 && cfg.getColumnsConfig().get(columnIndex-1).isEditable();
     }
 
     @Override

@@ -90,7 +90,9 @@ public class GenericJTable extends JTable implements GenericTab, PopupMenuListen
     private void adjustColumns() {
         setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         for(int i=0;i<cfg.getColumnsConfig().size();i++) {
-            this.getColumnModel().getColumn(i+1).setCellEditor(new RangeCellEditor(cfg.getColumnsConfig().get(i).getRange()));
+            if(cfg.getColumnsConfig().get(i).isEditable()) {
+                this.getColumnModel().getColumn(i + 1).setCellEditor(new RangeCellEditor(cfg.getColumnsConfig().get(i).getRange()));
+            }
         }
 
         TableModel tableModel = getModel();
@@ -262,7 +264,9 @@ public class GenericJTable extends JTable implements GenericTab, PopupMenuListen
                     }
                     for (int row = fromrow; row < fromrow+nrows; row++) {
                         for (int col = fromColumn; col < fromColumn + nCols; col++) {
-                            getModel().setValueAt(val[row-fromrow][col-fromColumn],row,col);
+                            if(getModel().isCellEditable(row,col)) {
+                                getModel().setValueAt(val[row - fromrow][col - fromColumn], row, col);
+                            }
                         }
                     }
                     ((GenericTableDataModel)dataModel).fireTableDataChanged();

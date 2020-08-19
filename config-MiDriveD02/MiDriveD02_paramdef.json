@@ -60,6 +60,38 @@
   //           }
   //         },
            {
+             "label": "W",
+             "addrOffset": 372,
+             "type": "UInt32",
+             "range": {
+               "min": 1,
+               "max" : 3000
+             },
+             "editable": false
+           },
+           {
+             "label": "H",
+             "addrOffset": 376,
+             "type": "UInt32",
+             "range": {
+               "min": 1,
+               "max" : 3000
+             },
+             "editable": false
+           },
+           {
+             "label": "FPS",
+             "addrOffset": 368,
+             "type": "UInt32",
+             "range": {
+               "min": 1,
+               "max" : 60
+             },
+             "editable": false
+           },
+
+
+           {
              "label": "Bitrate H265 kb/s",
              "addrOffset": 728,
              "type": "UInt32",
@@ -68,6 +100,7 @@
                "max" : 60000
              }
            },
+
            {
              "label": "Bitrate H264 kb/s",
              "addrOffset": 732,
