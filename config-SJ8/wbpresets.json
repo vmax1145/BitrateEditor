@@ -1,0 +1,108 @@
+{
+  "note" : "SJ8Pro WB Presets",
+  "toolClass" : "org.vmax.amba.generic.GenericTool",
+  "fwFileName" : "SJ8_FWUPDATE.bin",
+  "verify" : [
+    {"section" : 3}
+  ],
+  "preProcessor" : {
+    "className" : "org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName" : "SJ8_CHECK.ch"
+  },
+  "postProcessor" : {
+    "className" : "org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName" : "SJ8_CHECK.ch"
+  },
+  "showFileDialog" : false,
+  "tableDataConfigs" : [ {
+    "label" : "WB Presets",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "aaa_default_00_Imx377",
+        "relAddr" : 1892
+      },
+      "rowLenth" : 52,
+      "rowNames" : [ "not used", "Sunny", "Cloudy", "Fluorescent", "Water", "not used", "not used", "not used", "not used", "not used", "not used", "not used", "not used" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Gr_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Gr_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "Gb_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "Gb_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "YA_min_Slope",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "YA_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "YA_max_Slope",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "YA_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "YB_min_Slope",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "YB_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "YB_max_Slope",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "YB_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Weight",
+      "hex" : false,
+      "editable" : true
+    } ]
+  } ]
+}

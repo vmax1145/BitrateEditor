@@ -22,7 +22,7 @@ public class MiDriveD02MediaAppProcessor implements PreProcessor, PostProcessor 
 
 
     @Override
-    public byte[] preprocess(byte[] fw) throws Exception {
+    public byte[] preprocess(File file, byte[] fw) throws Exception {
         System.out.println("Packed len="+fw.length);
         int packedLen   = (int) Utils.readUInt(fw,0);
         int unpackedLen = (int) Utils.readUInt(fw, 0x4);
@@ -71,7 +71,7 @@ public class MiDriveD02MediaAppProcessor implements PreProcessor, PostProcessor 
     }
 
     @Override
-    public byte[] postprocess(byte[] fwBytes) throws Exception {
+    public byte[] postprocess(File out, byte[] fwBytes) throws Exception {
         int unpackedLen = fwBytes.length;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         byte[] head = {

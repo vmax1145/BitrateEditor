@@ -1,22 +1,26 @@
 package org.vmax.amba;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
 import org.vmax.amba.bitrate.VerifyException;
-import org.vmax.amba.cfg.FirmwareConfig;
-import org.vmax.amba.cfg.Verify;
+import org.vmax.amba.cfg.*;
 import org.vmax.amba.plugins.PostProcessor;
 import org.vmax.amba.plugins.PreProcessor;
 
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.zip.CRC32;
 
 public class Utils {
@@ -130,28 +134,13 @@ public class Utils {
         if (cfg.getPreProcessor() != null) {
             PreProcessor preprocessor = (PreProcessor) Class.forName(cfg.getPreProcessor().getClassName()).newInstance();
             preprocessor.withConfig(cfg);
-            fwBytes = preprocessor.preprocess(fwBytes);
+            fwBytes = preprocessor.preprocess(f,fwBytes);
         }
 
-        try {
-            for (Verify verify : cfg.getVerify()) {
-                if (verify.getVal() != null) {
-                    byte[] bytes = verify.getVal().getBytes("ASCII");
 
-                    for (int i = 0, addr = verify.getAddr(); i < bytes.length; i++, addr++) {
-                        byte b = bytes[i];
-                        if (fwBytes[addr] != b) {
-                            throw new VerifyException("Config Verify fail addr:" + verify.getAddr() + " : " + verify.getVal());
-                        }
-                    }
-                } else if (verify.getInt32val() != null) {
-                    if (Utils.readUInt(fwBytes, verify.getAddr()) != verify.getInt32val()) {
-                        throw new VerifyException("Config Verify fail addr: " + verify.getAddr() + " : " + verify.getInt32val());
-                    }
-                } else if (verify.getCrc() != null) {
-                    crcCheck(fwBytes, verify.getCrc().getFromAddr(), verify.getCrc().getLen(), verify.getAddr());
-                }
-            }
+        try {
+            List<Verify> verifications = cfg.getVerify();
+            performVerifications(fwBytes, verifications);
         }
         catch (VerifyException e) {
             JOptionPane.showMessageDialog(null,
@@ -167,16 +156,46 @@ public class Utils {
         return fwBytes;
     }
 
+    public static void performVerifications(byte[] fwBytes, List<Verify> verifications) throws UnsupportedEncodingException, VerifyException, JsonProcessingException {
+        for (Verify verify : verifications) {
+            if (verify.getVal() != null) {
+                byte[] bytes = verify.getVal().getBytes("ASCII");
+
+                for (int i = 0, addr = verify.getAddr(); i < bytes.length; i++, addr++) {
+                    byte b = bytes[i];
+                    if (fwBytes[addr] != b) {
+                        throw new VerifyException("Config Verify fail addr:" + verify.getAddr() + " : " + verify.getVal());
+                    }
+                }
+            } else if (verify.getInt32val() != null) {
+                if (Utils.readUInt(fwBytes, verify.getAddr()) != verify.getInt32val()) {
+                    throw new VerifyException("Config Verify fail addr: " + verify.getAddr() + " : " + verify.getInt32val());
+                }
+            } else if (verify.getCrc() != null) {
+                try {
+                    crcCheck(fwBytes, verify.getCrc().getFromAddr(), verify.getCrc().getLen(), verify.getAddr());
+                    //System.out.println("CRC check OK:" + toJson(verify));
+                }
+                catch (Exception e) {
+                    System.out.println("CRC check FAIL:"+e.getMessage()+"\n" + toJson(verify));
+                    JOptionPane.showMessageDialog(null,
+                            new ObjectMapper().writer().writeValueAsString(verify),
+                            "Firmware CRC check fail",
+                            JOptionPane.WARNING_MESSAGE
+                    );
+                }
+            }
+            if(!verify.getVerifies().isEmpty()) {
+                performVerifications(fwBytes,verify.getVerifies());
+            }
+        }
+    }
+
     public static void saveFirmware(JFrame tool, FirmwareConfig cfg, byte[] fwBytes) throws Exception {
         for (Verify verify : cfg.getVerify()) {
             if (verify.getCrc() != null) {
                 crcSet(fwBytes, verify.getCrc().getFromAddr(), verify.getCrc().getLen(), verify.getAddr());
             }
-        }
-        if (cfg.getPostProcessor() != null) {
-            PostProcessor postprocessor = (PostProcessor) Class.forName(cfg.getPostProcessor().getClassName()).newInstance();
-            postprocessor.withConfig(cfg);
-            fwBytes = postprocessor.postprocess(fwBytes);
         }
 
         File out = null;
@@ -196,6 +215,11 @@ public class Utils {
             }
         }
         if (out != null) {
+            if (cfg.getPostProcessor() != null) {
+                PostProcessor postprocessor = (PostProcessor) Class.forName(cfg.getPostProcessor().getClassName()).newInstance();
+                postprocessor.withConfig(cfg);
+                fwBytes = postprocessor.postprocess(out,fwBytes);
+            }
             FileUtils.writeByteArrayToFile(out, fwBytes);
         }
 
@@ -273,5 +297,116 @@ public class Utils {
             }
         }
         return addr;
+    }
+
+    public static Map<Integer,SectionInfo> getSectionInfos(byte[] fwBytes, List<Integer> filesSection) throws UnsupportedEncodingException {
+        Map<Integer,SectionInfo> sections = new HashMap<>();
+        int addr = 560;
+        for (int i = 0, num=1; i < 10; i+=2, num++) {
+            int len = (int) readInt(fwBytes,0x30+i*4);
+            int  sectionLen = (int) readInt(fwBytes,addr+0xc);
+            SectionInfo si = new SectionInfo();
+            si.addr = addr;
+            si.len = sectionLen;
+            si.crc = readInt(fwBytes,addr)&0xffffffffL;
+            si.num = num;
+
+            CRC32 crc = new CRC32();
+            crc.update(fwBytes, addr+256, sectionLen);
+            if(si.crc != crc.getValue()) {
+                System.out.println("CRC FAIL : "+ hex(si.crc) + " " + hex(crc.getValue()));
+            }
+            sections.put(si.num, si);
+            if(filesSection.contains(si.num)) {
+                int fatAddr = si.addr+ SectionAddr.SECTION_HEADER_LEN+4;
+                int n = (int) Utils.readInt(fwBytes,fatAddr);
+                fatAddr+=4;
+                for(int f=0;f<n;f++) {
+                    FileInfo fi = new FileInfo();
+                    fi.name = Utils.readString(fwBytes,fatAddr,0x40, "ASCII");
+                    fi.len  = (int) Utils.readInt(fwBytes,fatAddr+0x40);
+                    fi.addr = (int) Utils.readInt(fwBytes,fatAddr+0x44);
+                    fi.crcAddr  = fatAddr+0x48;
+                    crc = new CRC32();
+                    crc.update(fwBytes,fi.addr+si.addr+SectionAddr.SECTION_HEADER_LEN,fi.len);
+                    System.out.println(fi.name+" "+fi.len+" "+(fi.addr+si.addr+SectionAddr.SECTION_HEADER_LEN)+" "+fi.crcAddr );
+                    System.out.println(crc.getValue()+" "+(Utils.readInt(fwBytes,fi.crcAddr)&0xffffffffL));
+                    si.files.put(fi.name,fi);
+                    fatAddr+=0x4C;
+                }
+            }
+            addr+=len;
+        }
+        return sections;
+    }
+
+    public static String readString(byte[] fw, int addr, int maxLen, String charset) throws UnsupportedEncodingException {
+        int end=addr;
+        int max = Math.max(addr+maxLen,fw.length);
+        for(; end < max; end++) {
+            if(fw[end]==0) {
+                break;
+            }
+        }
+        return new String(fw,addr,end-addr,charset);
+    }
+
+    public static int calcAbsAddr(SectionAddr sectionAddr, Map<Integer, SectionInfo> sections, byte[] fw) throws VerifyException {
+        SectionInfo si = sections.get(sectionAddr.getSectionNum());
+        if(si == null) {
+            throw new VerifyException("No section: "+sectionAddr.getSectionNum());
+        }
+        int addr = si.addr + SectionAddr.SECTION_HEADER_LEN;
+        if(sectionAddr.getFileName()!=null) {
+            FileInfo fi = si.files.get(sectionAddr.getFileName());
+            if(fi == null) {
+                throw new VerifyException("No file:" + sectionAddr.getFileName() + " in section " + sectionAddr.getSectionNum());
+            }
+            addr+=fi.addr;
+        }
+        if(sectionAddr.getFindHex()!=null) {
+            addr += findHexOffset(fw,sectionAddr.getFindHex(),addr, si.addr+si.len);
+        }
+        addr+=sectionAddr.getRelAddr();
+        return addr;
+    }
+
+    private static int findHexOffset(byte[] fw, String findHex, int addr, int maxAddr) throws VerifyException {
+        byte[] sample = new byte[findHex.length()/2];
+        for(int i=0;i<sample.length;i++) {
+            sample[i] = (byte) Integer.parseInt(findHex.substring(i*2,(i+1)*2),16);
+        }
+        int inx = indexOf(fw,addr,maxAddr,sample);
+        inx-=addr;
+        if(inx < 0) {
+            throw new VerifyException("bytes: "+findHex+" not found");
+        }
+        return inx;
+    }
+
+
+    public static int indexOf(byte[] array, int from, int maxAddr, byte[] target) {
+        if (target.length == 0) {
+            return -2;
+        }
+        int max =  Math.min(array.length,maxAddr) - target.length + 1;
+        outer:
+        for (int i = from; i < max ; i++) {
+            for (int j = 0; j < target.length; j++) {
+                if (array[i + j] != target[j]) {
+                    continue outer;
+                }
+            }
+            return i;
+        }
+        return -1;
+    }
+
+    public static String toJson(Object fc) throws JsonProcessingException {
+        String s = new ObjectMapper()
+                .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+                .setSerializationInclusion(JsonInclude.Include.NON_EMPTY)
+                .writerWithDefaultPrettyPrinter().writeValueAsString(fc);
+        return s;
     }
 }

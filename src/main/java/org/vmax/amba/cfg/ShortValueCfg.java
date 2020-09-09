@@ -8,7 +8,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class ShortValueCfg {
-    private int addr;
+    private Integer addr;
+    private SectionAddr location;
     private String name;
     private Type   type;
     private IntRange range;

@@ -4,6 +4,7 @@ import org.vmax.amba.Utils;
 import org.vmax.amba.bitrate.VerifyException;
 import org.vmax.amba.cfg.FirmwareConfig;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.zip.CRC32;
 
@@ -27,7 +28,7 @@ public class Yi4kProcessor implements PreProcessor, PostProcessor {
     }
 
     @Override
-    public byte[] preprocess(byte[] fwBytes) throws IOException, VerifyException {
+    public byte[] preprocess( File file, byte[] fwBytes) throws IOException, VerifyException {
         byte[] secretbytes = SECRET.getBytes("ASCII");
         CRC32 crcH = new CRC32();
 
@@ -47,7 +48,7 @@ public class Yi4kProcessor implements PreProcessor, PostProcessor {
     }
 
 
-    public byte[] postprocess(byte[] fwBytes) throws IOException {
+    public byte[] postprocess(File out, byte[] fwBytes) throws IOException {
 
         int secretStart = (int) Utils.readUInt(fwBytes,Z18_SECRET_INIT);
         byte[] secretbytes = SECRET.getBytes("ASCII");

@@ -36,7 +36,7 @@ public class AppMain {
 
         byte[] fwBytes = null;
         if(cfg.getFwFileName()!=null && !cfg.isShowFileDialog()) {
-            fwBytes = Utils.loadFirmware(cfg);
+            fwBytes = Utils.loadFirmware(cfg,  new File(cfg.getFwFileName()));
         }
         else {
             JFileChooser jfc = new JFileChooser(new File("."));
@@ -65,6 +65,8 @@ public class AppMain {
                 }
             }
         }
+
+
         if(fwBytes!=null) {
             startTool(cfg, tool, fwBytes);
         }

@@ -3,6 +3,7 @@ package org.vmax.amba.cfg.tabledata;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.vmax.amba.cfg.SectionAddr;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class NamedRowsConfig {
-    private int firstRowAddr;
+    private SectionAddr firstRowLocation;
+    private Integer firstRowAddr;
     private int rowLenth;
     private List<String> rowNames = new ArrayList<>();
 }
