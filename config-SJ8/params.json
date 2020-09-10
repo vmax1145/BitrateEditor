@@ -13,7 +13,7 @@
     "className" : "org.vmax.amba.plugins.SJ8ProProcessor",
     "md5fileName" : "SJ8_CHECK.ch"
   },
-  "showFileDialog" : false,
+  "showFileDialog" : true,
   "paramsTabs" : [ {
     "label" : "Photo JPEG quality (%)",
     "baseLocation" : {

@@ -13,7 +13,7 @@
     "className" : "org.vmax.amba.plugins.SJ8ProProcessor",
     "md5fileName" : "SJ8_CHECK.ch"
   },
-  "showFileDialog" : false,
+  "showFileDialog" : true,
   "tabs" : [ {
     "name" : "Video VIVID",
     "imageSample" : "samples/SJ8.v1.3.0.stock/video_vivid.jpg",
