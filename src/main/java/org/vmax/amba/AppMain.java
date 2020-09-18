@@ -44,7 +44,7 @@ public class AppMain {
                 FileFilter filter = new FileFilter() {
                     @Override
                     public boolean accept(File file) {
-                            return file.getName().equals(cfg.getFwFileName()) || file.isDirectory();
+                            return file.getName().endsWith(".bin") || file.isDirectory();
                     }
 
                     @Override

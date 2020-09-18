@@ -13,6 +13,8 @@ import org.vmax.amba.tables.config.TableSetConfig;
 import org.vmax.amba.yuv.config.YUVConfig;
 import org.vmax.amba.yuv.config.YUVTabCfg;
 
+import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -48,6 +50,38 @@ public class SJ8ProProcessor implements PreProcessor, PostProcessor {
         //postprocess(fwBytes);
         byte[] digest = Utils.calculateDigest(fwBytes);
         System.out.println("Firmware digest: " + Utils.hex(digest));
+        File md5File = new File(file.getParent(), cfg.getPreProcessor().getMd5fileName());
+
+        if(!md5File.exists()) {
+            JFileChooser jfc = new JFileChooser(file.getParent());
+            if(cfg.getFwFileName()!=null) {
+                FileFilter filter = new FileFilter() {
+                    @Override
+                    public boolean accept(File file) {
+                        return file.getName().endsWith(".ch") || file.isDirectory();
+                    }
+
+                    @Override
+                    public String getDescription() {
+                        return "Firmware MD5 file";
+                    }
+                };
+                jfc.addChoosableFileFilter(filter);
+                jfc.setAcceptAllFileFilterUsed(true);
+                jfc.setSelectedFile(new File(cfg.getPreProcessor().getMd5fileName()));
+            }
+
+            int returnValue = jfc.showOpenDialog(null);
+            if (returnValue == JFileChooser.APPROVE_OPTION) {
+                File selectedFile = jfc.getSelectedFile();
+                if(selectedFile.exists()) {
+                    cfg.getPreProcessor().setMd5fileName(selectedFile.getName());
+                    cfg.getPostProcessor().setMd5fileName(selectedFile.getName());
+                }
+            }
+
+        }
+
         byte[] check = FileUtils.readFileToByteArray(new File(file.getParent(), cfg.getPreProcessor().getMd5fileName()));
         System.out.println(cfg.getPreProcessor().getMd5fileName()+" digest: " + Utils.hex(check));
         if(!Arrays.equals(digest,check)) {
