@@ -1,1 +1,1 @@
-java -jar firmware-editor-tool-10.0-SNAPSHOT.jar config-SJ8\gamma.json
+java -jar firmware-editor-tool-10.2-SNAPSHOT.jar config-SJ8-SJ9\gamma.json

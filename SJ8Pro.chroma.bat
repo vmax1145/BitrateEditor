@@ -1,1 +1,1 @@
-java -jar firmware-editor-tool-10.0-SNAPSHOT.jar config-SJ8\chroma.json
+java -jar firmware-editor-tool-10.2-SNAPSHOT.jar config-SJ8-SJ9\chroma.json

@@ -192,11 +192,8 @@ public class Utils {
     }
 
     public static void saveFirmware(JFrame tool, FirmwareConfig cfg, byte[] fwBytes) throws Exception {
-        for (Verify verify : cfg.getVerify()) {
-            if (verify.getCrc() != null) {
-                crcSet(fwBytes, verify.getCrc().getFromAddr(), verify.getCrc().getLen(), verify.getAddr());
-            }
-        }
+
+        updateCRC(cfg.getVerify(),fwBytes);
 
         File out = null;
         if (cfg.isShowFileDialog() || cfg.getFwFileName() == null) {
@@ -223,6 +220,17 @@ public class Utils {
             FileUtils.writeByteArrayToFile(out, fwBytes);
         }
 
+    }
+
+    private static void updateCRC(List<Verify> verifies, byte[] fwBytes) {
+        for (Verify verify : verifies) {
+            if(verify.getVerifies()!=null && !verify.getVerifies().isEmpty()) {
+                updateCRC(verify.getVerifies(), fwBytes);
+            }
+            if (verify.getCrc() != null) {
+                crcSet(fwBytes, verify.getCrc().getFromAddr(), verify.getCrc().getLen(), verify.getAddr());
+            }
+        }
     }
 
 
