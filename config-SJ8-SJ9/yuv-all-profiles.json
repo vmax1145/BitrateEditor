@@ -1,0 +1,2491 @@
+{
+  "note" : "SJ8 Pro v1.3.0 dummy tables edit",
+  "toolClass" : "org.vmax.amba.yuv.YUVTool",
+  "fwFileName" : "SJ8_FWUPDATE.bin",
+  "verify" : [ {
+    "addr" : null,
+    "val" : null,
+    "int32val" : null,
+    "crc" : null,
+    "section" : 3,
+    "files" : [ ],
+    "verifies" : [ ]
+  } ],
+  "preProcessor" : {
+    "className" : "org.vmax.amba.plugins.SJ8ProProcessor",
+    "fwFileName" : null,
+    "md5fileName" : "SJ8_CHECK.ch"
+  },
+  "postProcessor" : {
+    "className" : "org.vmax.amba.plugins.SJ8ProProcessor",
+    "fwFileName" : null,
+    "md5fileName" : "SJ8_CHECK.ch"
+  },
+  "showFileDialog" : true,
+  "warning" : null,
+  "tabs" : [ {
+    "name" : "Video VIVID (0)",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/video_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 38
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 46
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 54
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 56
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 58
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 60
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Video 1",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/video_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 100
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 108
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 116
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 118
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 120
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 122
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Video FLAT (2)",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/video_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 162
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 170
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 178
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 180
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 182
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 184
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Video 3",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/video_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 224
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 232
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 240
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 242
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 244
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 246
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Video 4",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/video_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 286
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 294
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 302
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 304
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 306
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 308
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Video 5",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/video_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 348
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 356
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 364
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 366
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 368
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 370
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Video 6",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/video_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 410
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 418
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 426
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 428
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 430
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 432
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Video 7",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/video_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 472
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 480
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 488
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 490
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 492
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 494
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Video 8",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/video_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 534
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 542
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 550
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 552
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 554
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 556
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Video 9",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/video_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 596
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 604
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 612
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 614
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 616
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 618
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Video 10",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/video_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 658
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 666
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 674
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 676
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 678
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 680
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Video 11",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/video_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 720
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 728
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 736
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 738
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 740
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 742
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Video 12",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/video_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 782
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 790
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 798
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 800
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 802
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 804
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Video 13",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/video_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 844
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 852
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 860
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 862
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 864
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_video_Imx377",
+        "findHex" : null,
+        "relAddr" : 866
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Photo VIVID (0)",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/photo_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 38
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 46
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 54
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 56
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 58
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 60
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Photo 1",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/photo_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 100
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 108
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 116
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 118
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 120
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 122
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Photo FLAT (2)",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/photo_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 162
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 170
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 178
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 180
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 182
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 184
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Photo 3",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/photo_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 224
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 232
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 240
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 242
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 244
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 246
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Photo 4",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/photo_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 286
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 294
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 302
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 304
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 306
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 308
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Photo 5",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/photo_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 348
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 356
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 364
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 366
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 368
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 370
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Photo 6",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/photo_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 410
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 418
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 426
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 428
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 430
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 432
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Photo 7",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/photo_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 472
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 480
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 488
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 490
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 492
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 494
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Photo 8",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/photo_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 534
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 542
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 550
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 552
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 554
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 556
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Photo 9",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/photo_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 596
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 604
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 612
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 614
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 616
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 618
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Photo 10",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/photo_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 658
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 666
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 674
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 676
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 678
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 680
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Photo 11",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/photo_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 720
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 728
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 736
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 738
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 740
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 742
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Photo 12",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/photo_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 782
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 790
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 798
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 800
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 802
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 804
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  }, {
+    "name" : "Photo 13",
+    "imageSample" : "samples/SJ8.v1.3.0.stock/photo_vivid.jpg",
+    "editables" : [ {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 844
+      },
+      "name" : "Y",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 852
+      },
+      "name" : "U",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 860
+      },
+      "name" : "V",
+      "type" : "Int16",
+      "range" : {
+        "min" : -4096,
+        "max" : 4096
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 862
+      },
+      "name" : "Y-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 864
+      },
+      "name" : "U-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    }, {
+      "addr" : null,
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "de_default_still_Imx377",
+        "findHex" : null,
+        "relAddr" : 866
+      },
+      "name" : "V-offset",
+      "type" : "Int16",
+      "range" : {
+        "min" : -255,
+        "max" : 255
+      }
+    } ]
+  } ]
+}

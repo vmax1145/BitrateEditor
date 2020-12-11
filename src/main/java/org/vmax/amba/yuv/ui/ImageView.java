@@ -21,19 +21,19 @@ public class ImageView extends JPanel implements SliderValuesListener {
     public ImageView(String imagePath, List<Integer> originalVals) {
         try {
             image = ImageIO.read(new File(imagePath));
-            this.Y = originalVals.get(0);
-            this.U = originalVals.get(1);;
-            this.V = originalVals.get(2);
-            this.Yoffset = originalVals.get(3);
-            this.Uoffset = originalVals.get(4);
-            this.Voffset = originalVals.get(5);
+            this.inY = originalVals.get(0);
+            this.inU = originalVals.get(1);
+            this.inV = originalVals.get(2);
+            this.inYoffset = originalVals.get(3);
+            this.inUoffset = originalVals.get(4);
+            this.inVoffset = originalVals.get(5);
 
-            this.inY=Y;
-            this.inU=U;
-            this.inV=V;
-            this.inYoffset=Yoffset;
-            this.inUoffset=Uoffset;
-            this.inVoffset=Voffset;
+            this.Y = 1024;
+            this.U = 1024;
+            this.V = 1024;
+            this.Yoffset = 0;
+            this.Uoffset = 0;
+            this.Voffset = 0;
 
             this.imageFilter = new RGBImageFilter(){
                 @Override

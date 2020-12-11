@@ -56,8 +56,15 @@ public class YUVTool extends FirmwareTool<YUVConfig> {
                 tabData.add(svdata);
                 System.out.println(slider.getName()+" "+svdata.getAddr()+":"+svdata.getValue());
             }
-            data.add(tabData);
-            tabs.add(tabCfg.getName(),createTab(tabData, tabCfg.getImageSample()));
+            try {
+                Component c = createTab(tabData, tabCfg.getImageSample());
+                data.add(tabData);
+                tabs.add(tabCfg.getName(), createTab(tabData, tabCfg.getImageSample()));
+            }
+            catch (IllegalArgumentException e) {
+                System.out.println("Invalid data for "+tabCfg.getName()+" skipped");
+                e.printStackTrace();
+            }
         }
     }
 

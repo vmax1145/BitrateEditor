@@ -1,1 +1,1 @@
-java -jar firmware-editor-tool-10.2-SNAPSHOT.jar config-SJ8-SJ9\yuv.json
+java -jar firmware-editor-tool-10.3-SNAPSHOT.jar config-SJ8-SJ9\yuv.json
