@@ -22,14 +22,18 @@ public abstract class FirmwareTool<T extends FirmwareConfig> extends JFrame {
         JMenu fileMenu = new JMenu("File");
         bar.add(fileMenu);
 
+        JMenu exportM = new JMenu("Export");
 
         getExportActions().forEach(
-                fileMenu::add
+                exportM::add
         );
-        getImportActions().forEach(
-                fileMenu::add
-        );
+        fileMenu.add(exportM);
 
+        JMenu importM = new JMenu("Import");
+        getImportActions().forEach(
+                importM::add
+        );
+        fileMenu.add(importM);
 
         fileMenu.add(new AbstractAction("Save") {
             @Override
