@@ -1,0 +1,5299 @@
+{
+  "note" : "SJ8Pro Scene configs",
+  "toolClass" : "org.vmax.amba.generic.GenericTool",
+  "fwFileName" : "SJ8_FWUPDATE.bin",
+  "verify" : [
+    {"section" : 3}
+  ],
+  "preProcessor" : {
+    "className" : "org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName" : "SJ8_CHECK.ch"
+  },
+  "postProcessor" : {
+    "className" : "org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName" : "SJ8_CHECK.ch"
+  },
+  "showFileDialog" : true,
+
+  "tableDataConfigs" : [ {
+    "label" : "0 SCENE_OFF",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s01_Imx377",
+        "relAddr" : 1920
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "1 SCENE_FLASH",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s01_Imx377",
+        "relAddr" : 20228
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "2 SCENE_TV_OFF",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s01_Imx377",
+        "relAddr" : 38536
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "3 SCENE_AV_OFF",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s01_Imx377",
+        "relAddr" : 56844
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "4 SCENE_SV_OFF",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s01_Imx377",
+        "relAddr" : 75152
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "5 SCENE_TV_ONLY",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s01_Imx377",
+        "relAddr" : 93460
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "6 SCENE_AV_ONLY",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s01_Imx377",
+        "relAddr" : 111768
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "7 SCENE_SV_ONLY",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s01_Imx377",
+        "relAddr" : 130076
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "8 SCENE_NIGHT",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s02_Imx377",
+        "relAddr" : 1920
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "9 SCENE_NIGHT_PORTRAIT",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s02_Imx377",
+        "relAddr" : 20228
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "10 SCENE_SPORTS",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s02_Imx377",
+        "relAddr" : 38536
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "11 SCENE_LANDSCAPE",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s02_Imx377",
+        "relAddr" : 56844
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "12 SCENE_PORTRAIT",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s02_Imx377",
+        "relAddr" : 75152
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "13 SCENE_SUNSET",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s02_Imx377",
+        "relAddr" : 93460
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "14 SCENE_SAND_SNOW",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s02_Imx377",
+        "relAddr" : 111768
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "15 SCENE_FLOWER",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s02_Imx377",
+        "relAddr" : 130076
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "16 SCENE_FIRE_WORK",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s03_Imx377",
+        "relAddr" : 1920
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "17 SCENE_WATER",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s03_Imx377",
+        "relAddr" : 20228
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "18 SCENE_BACK_LIGHT",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s03_Imx377",
+        "relAddr" : 38536
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "19 SCENE_BACK_LIGHT_PORTRAIT",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s03_Imx377",
+        "relAddr" : 56844
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "20 SCENE_TRIPOD",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s03_Imx377",
+        "relAddr" : 75152
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "21 SCENE_BLUE_SKY",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s03_Imx377",
+        "relAddr" : 93460
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "22 SCENE_MACRO",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s03_Imx377",
+        "relAddr" : 111768
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "23 SCENE_MACRO_TEXT",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s03_Imx377",
+        "relAddr" : 130076
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "24 SCENE_ARENA",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s04_Imx377",
+        "relAddr" : 1920
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "25 SCENE_D_LIGHTING",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s04_Imx377",
+        "relAddr" : 20228
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "26 SCENE_MUSEUM",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s04_Imx377",
+        "relAddr" : 38536
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "27 SCENE_BEACH",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s04_Imx377",
+        "relAddr" : 56844
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "28 SCENE_CHILDREN",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s04_Imx377",
+        "relAddr" : 75152
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "29 SCENE_PARTY",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s04_Imx377",
+        "relAddr" : 93460
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "30 SCENE_FISHEYE",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s04_Imx377",
+        "relAddr" : 111768
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "31 SCENE_INDOOR",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s04_Imx377",
+        "relAddr" : 130076
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "32 SCENE_THROUGH_GLASS",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s05_Imx377",
+        "relAddr" : 1920
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "33 SCENE_PANNING",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s05_Imx377",
+        "relAddr" : 20228
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "34 SCENE_PHOTO_FRAME",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s05_Imx377",
+        "relAddr" : 38536
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "35 SCENE_LOMO",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s05_Imx377",
+        "relAddr" : 56844
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "36 SCENE_SELF_PORTRAIT",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s05_Imx377",
+        "relAddr" : 75152
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "37 SCENE_CAR_DV",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s05_Imx377",
+        "relAddr" : 93460
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "38 SCENE_CAR_DV1",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s05_Imx377",
+        "relAddr" : 111768
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "39 SCENE_AUTO",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s05_Imx377",
+        "relAddr" : 130076
+      },
+      "rowLenth" : 128,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "Low_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "Low_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "Int32",
+      "label" : "D50_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "D50_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "High_Gain_R",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 20,
+      "type" : "Int32",
+      "label" : "High_Gain_B",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "AE_target",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "Saturation",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 32,
+      "type" : "Int32",
+      "label" : "Gamma_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "Gamma_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "Gamma_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 44,
+      "type" : "Int32",
+      "label" : "Expo_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 48,
+      "type" : "Int32",
+      "label" : "Expo_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 52,
+      "type" : "Int32",
+      "label" : "Expo_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 56,
+      "type" : "Int32",
+      "label" : "A_knee_min",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 60,
+      "type" : "Int32",
+      "label" : "A_knee_mid",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 64,
+      "type" : "Int32",
+      "label" : "A_knee_max",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 68,
+      "type" : "Int32",
+      "label" : "CbCr_1",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 72,
+      "type" : "Int32",
+      "label" : "CbCr_2",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 76,
+      "type" : "Int32",
+      "label" : "CbCr_3",
+      "hex" : false,
+      "editable" : true
+    } ]
+  } ]
+}
