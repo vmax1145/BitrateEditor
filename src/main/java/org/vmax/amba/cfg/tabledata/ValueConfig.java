@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.vmax.amba.cfg.Range;
+import org.vmax.amba.cfg.SectionAddr;
 import org.vmax.amba.cfg.Type;
 
 import java.util.LinkedHashMap;
@@ -14,7 +15,8 @@ import java.util.Map;
 @NoArgsConstructor
 
 public class ValueConfig {
-    private int addrOffset;
+    private Integer addrOffset;
+    private SectionAddr location;
     private Type type;
     private Range range;
     private String label;

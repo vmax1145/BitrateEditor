@@ -7,6 +7,7 @@ import org.vmax.amba.bitrate.config.BitrateEditorConfig;
 import org.vmax.amba.cfg.*;
 import org.vmax.amba.cfg.tabledata.ParamsConfig;
 import org.vmax.amba.cfg.tabledata.TableDataConfig;
+import org.vmax.amba.cfg.tabledata.ValueConfig;
 import org.vmax.amba.tables.config.SingleTableConf;
 import org.vmax.amba.tables.config.TableConfig;
 import org.vmax.amba.tables.config.TableSetConfig;
@@ -134,6 +135,12 @@ public class SJ8ProProcessor implements PreProcessor, PostProcessor {
                 Integer addr = tc.getBaseAddr();
                 if(addr == null) {
                     tc.setBaseAddr(Utils.calcAbsAddr(tc.getBaseLocation(), sections, fw ));
+                }
+                for(ValueConfig vc : tc.getParams()) {
+                    Integer offset = vc.getAddrOffset();
+                    if(offset == null) {
+                        vc.setAddrOffset(Utils.calcAbsAddr(vc.getLocation(), sections, fw) - tc.getBaseAddr());
+                    }
                 }
             }
         }
