@@ -3,7 +3,15 @@
   "toolClass" : "org.vmax.amba.generic.GenericTool",
   "fwFileName" : "SJ8_FWUPDATE.bin",
   "verify" : [
-    {"section" : 3}
+    { "section" : 3,
+      "files":[
+        "scene_data_s01_Imx377",
+        "scene_data_s02_Imx377",
+        "scene_data_s03_Imx377",
+        "scene_data_s04_Imx377",
+        "scene_data_s05_Imx377"
+      ]
+    }
   ],
   "preProcessor" : {
     "className" : "org.vmax.amba.plugins.SJ8ProProcessor",
