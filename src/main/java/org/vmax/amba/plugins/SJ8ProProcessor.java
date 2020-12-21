@@ -48,10 +48,14 @@ public class SJ8ProProcessor implements PreProcessor, PostProcessor {
     public byte[] preprocess( File file, byte[] fwBytes) throws Exception {
         //postprocess(fwBytes);
         verifyDigest(file, fwBytes);
-        sections = Utils.getSectionInfos(fwBytes, Collections.singletonList(3));
+        sections = Utils.getSectionInfos(fwBytes, Collections.singletonList(3), getFileNameLen());
         preprocessConfig(cfg, fwBytes);
         doVerify();
         return fwBytes;
+    }
+
+    protected int getFileNameLen() {
+        return 0x40;
     }
 
     protected void verifyDigest(File file, byte[] fwBytes) throws Exception {

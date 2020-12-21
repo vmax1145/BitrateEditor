@@ -307,7 +307,7 @@ public class Utils {
         return addr;
     }
 
-    public static Map<Integer,SectionInfo> getSectionInfos(byte[] fwBytes, List<Integer> filesSection) throws UnsupportedEncodingException {
+    public static Map<Integer,SectionInfo> getSectionInfos(byte[] fwBytes, List<Integer> filesSection, int fnLen) throws UnsupportedEncodingException {
         Map<Integer,SectionInfo> sections = new HashMap<>();
         int addr = 560;
         for (int i = 0, num=1; i < 10; i+=2, num++) {
@@ -331,16 +331,16 @@ public class Utils {
                 fatAddr+=4;
                 for(int f=0;f<n;f++) {
                     FileInfo fi = new FileInfo();
-                    fi.name = Utils.readString(fwBytes,fatAddr,0x40, "ASCII");
-                    fi.len  = (int) Utils.readInt(fwBytes,fatAddr+0x40);
-                    fi.addr = (int) Utils.readInt(fwBytes,fatAddr+0x44);
+                    fi.name = Utils.readString(fwBytes,fatAddr,fnLen, "ASCII");
+                    fi.len  = (int) Utils.readInt(fwBytes,fatAddr+fnLen);
+                    fi.addr = (int) Utils.readInt(fwBytes,fatAddr+fnLen+0x4);
                     fi.crcAddr  = fatAddr+0x48;
                     crc = new CRC32();
                     crc.update(fwBytes,fi.addr+si.addr+SectionAddr.SECTION_HEADER_LEN,fi.len);
                     System.out.println(fi.name+" "+fi.len+" "+(fi.addr+si.addr+SectionAddr.SECTION_HEADER_LEN)+" "+fi.crcAddr );
                     System.out.println(crc.getValue()+" "+(Utils.readInt(fwBytes,fi.crcAddr)&0xffffffffL));
                     si.files.put(fi.name,fi);
-                    fatAddr+=0x4C;
+                    fatAddr+=fnLen+0xC;
                 }
             }
             addr+=len;

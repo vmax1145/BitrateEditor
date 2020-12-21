@@ -17,7 +17,7 @@ public class SJ8FilesPreprocessor extends SJ8ProProcessor {
     public byte[] preprocess( File file, byte[] fwBytes) throws Exception {
         //postprocess(fwBytes);
         verifyDigest(file, fwBytes);
-        sections = Utils.getSectionInfos(fwBytes, Collections.singletonList(3));
+        sections = Utils.getSectionInfos(fwBytes, Collections.singletonList(3),getFileNameLen());
         addFilesToConfig(sections.get(3));
         preprocessConfig(cfg, fwBytes);
         doVerify();
