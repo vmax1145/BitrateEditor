@@ -334,7 +334,7 @@ public class Utils {
                     fi.name = Utils.readString(fwBytes,fatAddr,fnLen, "ASCII");
                     fi.len  = (int) Utils.readInt(fwBytes,fatAddr+fnLen);
                     fi.addr = (int) Utils.readInt(fwBytes,fatAddr+fnLen+0x4);
-                    fi.crcAddr  = fatAddr+0x48;
+                    fi.crcAddr  = fatAddr+fnLen+0x8;
                     crc = new CRC32();
                     crc.update(fwBytes,fi.addr+si.addr+SectionAddr.SECTION_HEADER_LEN,fi.len);
                     System.out.println(fi.name+" "+fi.len+" "+(fi.addr+si.addr+SectionAddr.SECTION_HEADER_LEN)+" "+fi.crcAddr );

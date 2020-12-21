@@ -1,0 +1,20 @@
+{
+  "note" : "SJ10Pro rom files ",
+  "toolClass" : "org.vmax.amba.generic.GenericTool",
+  "fwFileName" : "SJ10_FWUPDATE.bin",
+  "verify" : [
+    {"section" : 3}
+  ],
+  "preProcessor" : {
+    "className" : "org.vmax.amba.plugins.SJ10FilesPreprocessor",
+    "md5fileName" : "SJ10_CHECK.ch"
+  },
+  "postProcessor" : {
+    "className" : "org.vmax.amba.plugins.SJ10FilesPreprocessor",
+    "md5fileName" : "SJ10_CHECK.ch"
+  },
+  "showFileDialog" : true
+
+
+
+}
