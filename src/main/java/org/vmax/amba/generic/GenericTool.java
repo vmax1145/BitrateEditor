@@ -3,6 +3,8 @@ package org.vmax.amba.generic;
 import org.vmax.amba.FirmwareTool;
 import org.vmax.amba.Utils;
 import org.vmax.amba.cfg.*;
+import org.vmax.amba.cfg.tabledata.ByteBlockConfig;
+import org.vmax.amba.cfg.tabledata.FileListConfig;
 import org.vmax.amba.cfg.tabledata.ParamsConfig;
 import org.vmax.amba.cfg.tabledata.TableDataConfig;
 
@@ -56,6 +58,19 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
             tabs.add(imgTab.getTabLabel(), new JScrollPane(p));
             allTabs.add(imgTab);
         }
+        for(ByteBlockConfig bcfg : this.cfg.getByteBlockTabs()) {
+            ByteBlockTab byteBlockTab = createByteBlockTab(bcfg,fwBytes);
+            JPanel p = new JPanel();
+            p.add(byteBlockTab.getComponent());
+            tabs.add(byteBlockTab.getTabLabel(), new JScrollPane(p));
+            allTabs.add(byteBlockTab);
+        }
+        for(FileListConfig flfcg : this.cfg.getFileListTabs()) {
+            FileListTab fileTab = createFileListTab(flfcg,fwBytes);
+            tabs.add(fileTab.getTabLabel(), new JScrollPane(fileTab.getComponent()));
+            allTabs.add(fileTab);
+        }
+
 
         if(cfg.getPatchLoader()!=null) {
             patchList = loadPatches(cfg);
@@ -75,6 +90,14 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
             tabs.add("Patches",jsp);
         }
 
+    }
+
+    private FileListTab createFileListTab(FileListConfig fcfg, byte[] fwBytes) {
+        return new FileListTab(this,fcfg,fwBytes);
+    }
+
+    private ByteBlockTab createByteBlockTab(ByteBlockConfig bcfg, byte[] fwBytes) {
+        return new ByteBlockTab(this, bcfg,fwBytes);
     }
 
     protected GenericImageTab createImageTab(ImageConfig icfg, byte[] fwBytes) throws Exception {
@@ -143,5 +166,16 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
         });
         return ret;
 
+    }
+
+    protected List<Action> getOtherActions() {
+        List<Action> ret = new ArrayList<>();
+        allTabs.forEach(t->{
+            List<Action> actions = t.getOtherActions();
+            if(actions!=null) {
+                ret.addAll(actions);
+            }
+        });
+        return ret;
     }
 }

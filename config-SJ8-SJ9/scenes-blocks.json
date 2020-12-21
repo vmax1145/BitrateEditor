@@ -1,0 +1,45 @@
+{
+  "note" : "SJ8Pro Scene configs",
+  "toolClass" : "org.vmax.amba.generic.GenericTool",
+  "fwFileName" : "SJ8_FWUPDATE.bin",
+  "verify" : [
+    {"section" : 3,
+      "files":[
+        "scene_data_s01_Imx377",
+        "scene_data_s02_Imx377",
+        "scene_data_s03_Imx377",
+        "scene_data_s04_Imx377",
+        "scene_data_s05_Imx377"
+      ]
+    }
+  ],
+  "preProcessor" : {
+    "className" : "org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName" : "SJ8_CHECK.ch"
+  },
+  "postProcessor" : {
+    "className" : "org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName" : "SJ8_CHECK.ch"
+  },
+  "showFileDialog" : true,
+
+  "byteBlockTabs" : [ {
+    "label" : "0 SCENE_OFF",
+    "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s01_Imx377",
+        "relAddr" : 1
+      },
+      "len" : 18307
+    },
+
+  {
+    "label" : "39 SCENE_AUTO",
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s05_Imx377",
+        "relAddr" : 128157
+      },
+      "len" : 18307
+    } ]
+}

@@ -6,6 +6,7 @@ import org.vmax.amba.generic.ImportAction;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class FirmwareTool<T extends FirmwareConfig> extends JFrame {
@@ -35,6 +36,10 @@ public abstract class FirmwareTool<T extends FirmwareConfig> extends JFrame {
         );
         fileMenu.add(importM);
 
+        getOtherActions().forEach(
+                fileMenu::add
+        );
+
         fileMenu.add(new AbstractAction("Save") {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -56,6 +61,10 @@ public abstract class FirmwareTool<T extends FirmwareConfig> extends JFrame {
         });
 
         return bar;
+    }
+
+    protected  List<Action> getOtherActions() {
+        return new ArrayList<>();
     }
 
     protected abstract List<ImportAction> getImportActions();

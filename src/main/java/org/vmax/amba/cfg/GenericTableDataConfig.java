@@ -3,6 +3,8 @@ package org.vmax.amba.cfg;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.vmax.amba.cfg.tabledata.ByteBlockConfig;
+import org.vmax.amba.cfg.tabledata.FileListConfig;
 import org.vmax.amba.cfg.tabledata.ParamsConfig;
 import org.vmax.amba.cfg.tabledata.TableDataConfig;
 
@@ -18,5 +20,7 @@ public class GenericTableDataConfig<I> extends FirmwareConfig {
     private List<TableDataConfig> tableDataConfigs = new ArrayList<>();
     private List<ParamsConfig> paramsTabs = new ArrayList<>();
     private List<I> imageTabs = new ArrayList<>();
+    private List<ByteBlockConfig> byteBlockTabs = new ArrayList<>();
+    private List<FileListConfig> fileListTabs = new ArrayList<>();
     private PatchLoaderCfg patchLoader;
 }

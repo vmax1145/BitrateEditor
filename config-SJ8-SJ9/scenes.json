@@ -155,7 +155,10 @@
       "hex" : false,
       "editable" : true
     } ]
-  }, {
+  },
+
+/**
+    {
     "label" : "1 SCENE_FLASH",
     "rowsConfig" : {
       "firstRowLocation" : {
@@ -5171,7 +5174,9 @@
       "hex" : false,
       "editable" : true
     } ]
-  }, {
+  },
+  **/
+  {
     "label" : "39 SCENE_AUTO",
     "rowsConfig" : {
       "firstRowLocation" : {

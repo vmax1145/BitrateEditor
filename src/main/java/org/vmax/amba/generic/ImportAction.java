@@ -10,16 +10,24 @@ import java.io.IOException;
 public abstract class ImportAction extends AbstractAction {
         private Frame frame;
         private FileFilter fileNameFilter;
+        private int fileChooserMode = JFileChooser.FILES_ONLY;
 
     public ImportAction(String name, Frame frame, FileFilter fileNameFilter) {
             super(name);
             this.frame = frame;
             this.fileNameFilter = fileNameFilter;
         }
+    public ImportAction(String name, Frame frame, FileFilter fileNameFilter, int fileChooserSelectionMode) {
+        super(name);
+        this.frame = frame;
+        this.fileNameFilter = fileNameFilter;
+        this.fileChooserMode = fileChooserSelectionMode;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         JFileChooser jfc = new JFileChooser(new File("."));
+        jfc.setFileSelectionMode(fileChooserMode);
         jfc.addChoosableFileFilter(fileNameFilter);
         int returnValue = jfc.showOpenDialog(frame);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
