@@ -1,0 +1,56 @@
+{
+  "note" : "SJ10Pro parameters",
+  "toolClass" : "org.vmax.amba.generic.GenericTool",
+  "fwFileName" : "SJ10_FWUPDATE.bin",
+  "verify" : [
+    {"section" : 1}
+  ],
+  "preProcessor" : {
+    "className" : "org.vmax.amba.plugins.SJ10ProProcessor",
+    "md5fileName" : "SJ10_CHECK.ch"
+  },
+  "postProcessor" : {
+    "className" : "org.vmax.amba.plugins.SJ10ProProcessor",
+    "md5fileName" : "SJ10_CHECK.ch"
+  },
+  "showFileDialog" : true,
+  "paramsTabs" : [ {
+    "label" : "Photo JPEG quality (%)",
+    "baseLocation" : {
+      "sectionNum" : 1,
+      "findHex":  "414D42415F53454E534F525F494D583337375F545950455F325F355F4D4F44455F305F323450",
+      "relAddr" : 96
+    },
+    "params" : [ {
+      "addrOffset" : 0,
+      "type" : "UInt32",
+      "range" : {
+        "min" : 10.0,
+        "max" : 100.0
+      },
+      "label" : "Fine",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "UInt32",
+      "range" : {
+        "min" : 10.0,
+        "max" : 100.0
+      },
+      "label" : "Standard",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "UInt32",
+      "range" : {
+        "min" : 10.0,
+        "max" : 100.0
+      },
+      "label" : "Economy",
+      "hex" : false,
+      "editable" : true
+    } ]
+  } ]
+}

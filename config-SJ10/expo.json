@@ -1,0 +1,59 @@
+{
+  "note" : "SJ10Pro expo edit",
+  "toolClass" : "org.vmax.amba.tables.TablesTool",
+  "fwFileName" : "SJ10_FWUPDATE.bin",
+  "verify" : [
+    {"section" : 3, "files": ["aaa_default_00_Imx377"]}
+  ],
+  "preProcessor" : {
+    "className" : "org.vmax.amba.plugins.SJ10ProProcessor",
+    "md5fileName" : "SJ10_CHECK.ch"
+  },
+  "postProcessor" : {
+    "className" : "org.vmax.amba.plugins.SJ10ProProcessor",
+    "md5fileName" : "SJ10_CHECK.ch"
+  },
+  "showFileDialog" : true,
+  "tableSets" : [ {
+    "label" : "Center",
+    "tables" : [ {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "aaa_default_00_Imx377",
+        "relAddr" : 645
+      },
+      "color" : "red",
+      "label" : "Center"
+    } ]
+  }, {
+    "label" : "Spot",
+    "tables" : [ {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "aaa_default_00_Imx377",
+        "relAddr" : 741
+      },
+      "color" : "green",
+      "label" : "Spot"
+    } ]
+  }, {
+    "label" : "Average",
+    "tables" : [ {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "aaa_default_00_Imx377",
+        "relAddr" : 837
+      },
+      "color" : "blue",
+      "label" : "Average"
+    } ]
+  } ],
+  "ncol" : 12,
+  "nrow" : 8,
+  "range" : {
+    "min" : 0.0,
+    "max" : 128.0
+  },
+  "type" : "UByte",
+  "curves" : false
+}

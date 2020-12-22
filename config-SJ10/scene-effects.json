@@ -1,0 +1,831 @@
+{
+  "note" : "SJ10Pro Scene effects ",
+  "toolClass" : "org.vmax.amba.generic.GenericTool",
+  "fwFileName" : "SJ10_FWUPDATE.bin",
+  "verify" : [
+    { "section" : 3,
+      "files":[
+        "scene_data_s01_Imx377",
+        "scene_data_s02_Imx377",
+        "scene_data_s03_Imx377",
+        "scene_data_s04_Imx377",
+        "scene_data_s05_Imx377"
+      ]
+    }
+  ],
+  "preProcessor" : {
+    "className" : "org.vmax.amba.plugins.SJ10ProProcessor",
+    "md5fileName" : "SJ10_CHECK.ch"
+  },
+  "postProcessor" : {
+    "className" : "org.vmax.amba.plugins.SJ10ProProcessor",
+    "md5fileName" : "SJ10_CHECK.ch"
+  },
+
+  "showFileDialog" : true,
+  "paramsTabs" : [ {
+    "label" : "Scene effects",
+    "baseAddr" : 0,
+    "params" : [ {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s01_Imx377",
+        "relAddr" : 3
+      },
+      "type" : "UByte",
+      "label" : "SCENE_OFF",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s01_Imx377",
+        "relAddr" : 18311
+      },
+      "type" : "UByte",
+      "label" : "SCENE_FLASH",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s01_Imx377",
+        "relAddr" : 36619
+      },
+      "type" : "UByte",
+      "label" : "SCENE_TV_OFF",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s01_Imx377",
+        "relAddr" : 54927
+      },
+      "type" : "UByte",
+      "label" : "SCENE_AV_OFF",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s01_Imx377",
+        "relAddr" : 73235
+      },
+      "type" : "UByte",
+      "label" : "SCENE_SV_OFF",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s01_Imx377",
+        "relAddr" : 91543
+      },
+      "type" : "UByte",
+      "label" : "SCENE_TV_ONLY",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s01_Imx377",
+        "relAddr" : 109851
+      },
+      "type" : "UByte",
+      "label" : "SCENE_AV_ONLY",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s01_Imx377",
+        "relAddr" : 128159
+      },
+      "type" : "UByte",
+      "label" : "SCENE_SV_ONLY",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s02_Imx377",
+        "relAddr" : 3
+      },
+      "type" : "UByte",
+      "label" : "SCENE_NIGHT",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s02_Imx377",
+        "relAddr" : 18311
+      },
+      "type" : "UByte",
+      "label" : "SCENE_NIGHT_PORTRAIT",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s02_Imx377",
+        "relAddr" : 36619
+      },
+      "type" : "UByte",
+      "label" : "SCENE_SPORTS",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s02_Imx377",
+        "relAddr" : 54927
+      },
+      "type" : "UByte",
+      "label" : "SCENE_LANDSCAPE",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s02_Imx377",
+        "relAddr" : 73235
+      },
+      "type" : "UByte",
+      "label" : "SCENE_PORTRAIT",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s02_Imx377",
+        "relAddr" : 91543
+      },
+      "type" : "UByte",
+      "label" : "SCENE_SUNSET",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s02_Imx377",
+        "relAddr" : 109851
+      },
+      "type" : "UByte",
+      "label" : "SCENE_SAND_SNOW",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s02_Imx377",
+        "relAddr" : 128159
+      },
+      "type" : "UByte",
+      "label" : "SCENE_FLOWER",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s03_Imx377",
+        "relAddr" : 3
+      },
+      "type" : "UByte",
+      "label" : "SCENE_FIRE_WORK",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s03_Imx377",
+        "relAddr" : 18311
+      },
+      "type" : "UByte",
+      "label" : "SCENE_WATER",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s03_Imx377",
+        "relAddr" : 36619
+      },
+      "type" : "UByte",
+      "label" : "SCENE_BACK_LIGHT",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s03_Imx377",
+        "relAddr" : 54927
+      },
+      "type" : "UByte",
+      "label" : "SCENE_BACK_LIGHT_PORTRAIT",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s03_Imx377",
+        "relAddr" : 73235
+      },
+      "type" : "UByte",
+      "label" : "SCENE_TRIPOD",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s03_Imx377",
+        "relAddr" : 91543
+      },
+      "type" : "UByte",
+      "label" : "SCENE_BLUE_SKY",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s03_Imx377",
+        "relAddr" : 109851
+      },
+      "type" : "UByte",
+      "label" : "SCENE_MACRO",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s03_Imx377",
+        "relAddr" : 128159
+      },
+      "type" : "UByte",
+      "label" : "SCENE_MACRO_TEXT",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s04_Imx377",
+        "relAddr" : 3
+      },
+      "type" : "UByte",
+      "label" : "SCENE_ARENA",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s04_Imx377",
+        "relAddr" : 18311
+      },
+      "type" : "UByte",
+      "label" : "SCENE_D_LIGHTING",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s04_Imx377",
+        "relAddr" : 36619
+      },
+      "type" : "UByte",
+      "label" : "SCENE_MUSEUM",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s04_Imx377",
+        "relAddr" : 54927
+      },
+      "type" : "UByte",
+      "label" : "SCENE_BEACH",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s04_Imx377",
+        "relAddr" : 73235
+      },
+      "type" : "UByte",
+      "label" : "SCENE_CHILDREN",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s04_Imx377",
+        "relAddr" : 91543
+      },
+      "type" : "UByte",
+      "label" : "SCENE_PARTY",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s04_Imx377",
+        "relAddr" : 109851
+      },
+      "type" : "UByte",
+      "label" : "SCENE_FISHEYE",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s04_Imx377",
+        "relAddr" : 128159
+      },
+      "type" : "UByte",
+      "label" : "SCENE_INDOOR",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s05_Imx377",
+        "relAddr" : 3
+      },
+      "type" : "UByte",
+      "label" : "SCENE_THROUGH_GLASS",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s05_Imx377",
+        "relAddr" : 18311
+      },
+      "type" : "UByte",
+      "label" : "SCENE_PANNING",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s05_Imx377",
+        "relAddr" : 36619
+      },
+      "type" : "UByte",
+      "label" : "SCENE_PHOTO_FRAME",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s05_Imx377",
+        "relAddr" : 54927
+      },
+      "type" : "UByte",
+      "label" : "SCENE_LOMO",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s05_Imx377",
+        "relAddr" : 73235
+      },
+      "type" : "UByte",
+      "label" : "SCENE_SELF_PORTRAIT",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s05_Imx377",
+        "relAddr" : 91543
+      },
+      "type" : "UByte",
+      "label" : "SCENE_CAR_DV",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s05_Imx377",
+        "relAddr" : 109851
+      },
+      "type" : "UByte",
+      "label" : "SCENE_CAR_DV1",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    }, {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s05_Imx377",
+        "relAddr" : 128159
+      },
+      "type" : "UByte",
+      "label" : "SCENE_AUTO",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping" : {
+        "Default" : "255",
+        "NoEffect" : "0",
+        "Flat" : "1",
+        "Sepia" : "2",
+        "Negative" : "3",
+        "BW" : "4",
+        "Vivid" : "5",
+        "Film_70" : "6"
+      }
+    } ]
+  } ]
+}

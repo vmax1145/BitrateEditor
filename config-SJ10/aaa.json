@@ -1,0 +1,182 @@
+{
+  "note" : "SJ10Pro AAA config",
+  "toolClass" : "org.vmax.amba.generic.GenericTool",
+  "fwFileName" : "SJ10_FWUPDATE.bin",
+  "verify" : [
+    {"section" : 3, "files": ["aaa_default_00_Imx377"]}
+  ],
+  "preProcessor" : {
+    "className" : "org.vmax.amba.plugins.SJ10ProProcessor",
+    "md5fileName" : "SJ10_CHECK.ch"
+  },
+  "postProcessor" : {
+    "className" : "org.vmax.amba.plugins.SJ10ProProcessor",
+    "md5fileName" : "SJ10_CHECK.ch"
+  },
+  "showFileDialog" : true,
+  "tableDataConfigs" : [ {
+    "label" : "AGC(dB)",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "aaa_default_00_Imx377",
+        "relAddr" : 92
+      },
+      "rowLenth" : 14,
+      "rowNames" : [ "fps>120", "fps<=120", "fps<=60", "fps<=30", "fps<=15", "fps<=7.5", "fps<=4", "Photo preview" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "UInt16",
+      "range" : {
+        "min" : 1.0,
+        "max" : 33.0
+      },
+      "label" : "HIGH",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 2,
+      "type" : "UInt16",
+      "range" : {
+        "min" : 1.0,
+        "max" : 33.0
+      },
+      "label" : "1/120",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "UInt16",
+      "range" : {
+        "min" : 1.0,
+        "max" : 33.0
+      },
+      "label" : "1/60",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 6,
+      "type" : "UInt16",
+      "range" : {
+        "min" : 1.0,
+        "max" : 33.0
+      },
+      "label" : "1/30",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "UInt16",
+      "range" : {
+        "min" : 1.0,
+        "max" : 33.0
+      },
+      "label" : "1/15",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 10,
+      "type" : "UInt16",
+      "range" : {
+        "min" : 1.0,
+        "max" : 33.0
+      },
+      "label" : "1/7_5",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "UInt16",
+      "range" : {
+        "min" : 1.0,
+        "max" : 33.0
+      },
+      "label" : "Low",
+      "hex" : false,
+      "editable" : true
+    } ]
+  }, {
+    "label" : "Digital gain",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "aaa_default_00_Imx377",
+        "relAddr" : 204
+      },
+      "rowLenth" : 14,
+      "rowNames" : [ "fps>120", "fps<=120", "fps<=60", "fps<=30", "fps<=15", "fps<=7.5", "fps<=4", "Photo preview" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "UInt16",
+      "range" : {
+        "min" : 1.0,
+        "max" : 33.0
+      },
+      "label" : "HIGH",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 2,
+      "type" : "UInt16",
+      "range" : {
+        "min" : 1.0,
+        "max" : 33.0
+      },
+      "label" : "1/120",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 4,
+      "type" : "UInt16",
+      "range" : {
+        "min" : 1.0,
+        "max" : 33.0
+      },
+      "label" : "1/60",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 6,
+      "type" : "UInt16",
+      "range" : {
+        "min" : 1.0,
+        "max" : 33.0
+      },
+      "label" : "1/30",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 8,
+      "type" : "UInt16",
+      "range" : {
+        "min" : 1.0,
+        "max" : 33.0
+      },
+      "label" : "1/15",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 10,
+      "type" : "UInt16",
+      "range" : {
+        "min" : 1.0,
+        "max" : 33.0
+      },
+      "label" : "1/7_5",
+      "hex" : false,
+      "editable" : true
+    }, {
+      "addrOffset" : 12,
+      "type" : "UInt16",
+      "range" : {
+        "min" : 1.0,
+        "max" : 33.0
+      },
+      "label" : "Low",
+      "hex" : false,
+      "editable" : true
+    } ]
+  } ]
+}
