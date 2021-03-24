@@ -6,6 +6,10 @@ import org.vmax.amba.bitrate.VerifyException;
 import org.vmax.amba.bitrate.config.BitrateEditorConfig;
 import org.vmax.amba.cfg.*;
 import org.vmax.amba.cfg.tabledata.*;
+import org.vmax.amba.fwsource.FileFwDestination;
+import org.vmax.amba.fwsource.FileFwSource;
+import org.vmax.amba.fwsource.FwDestination;
+import org.vmax.amba.fwsource.FwSource;
 import org.vmax.amba.tables.config.SingleTableConf;
 import org.vmax.amba.tables.config.TableConfig;
 import org.vmax.amba.tables.config.TableSetConfig;
@@ -32,8 +36,13 @@ public class SJ8ProProcessor implements PreProcessor, PostProcessor {
     }
 
     @Override
-    public byte[] postprocess(File out, byte[] fwBytes) throws IOException, NoSuchAlgorithmException {
-        File ch = new File(out.getParent(), cfg.getPostProcessor().getMd5fileName()+".mod");
+    public byte[] postprocess(FwDestination out, byte[] fwBytes) throws IOException, NoSuchAlgorithmException {
+        if(! (out instanceof FileFwDestination)) {
+            throw new IOException("Destination not regular file");
+        }
+        FileFwDestination ffSource = (FileFwDestination) out;
+
+        File ch = new File(ffSource.getFile().getParent(), cfg.getPostProcessor().getMd5fileName()+".mod");
         if(ch.exists()) {
             ch.delete();
         }
@@ -45,9 +54,13 @@ public class SJ8ProProcessor implements PreProcessor, PostProcessor {
     }
 
     @Override
-    public byte[] preprocess( File file, byte[] fwBytes) throws Exception {
+    public byte[] preprocess(FwSource fwSource, byte[] fwBytes) throws Exception {
         //postprocess(fwBytes);
-        verifyDigest(file, fwBytes);
+        if(!(fwSource instanceof FileFwSource)) {
+            throw new Exception("preprocessor required file firmware source");
+        }
+        FileFwSource ffs = (FileFwSource) fwSource;
+        verifyDigest(ffs.getFile(), fwBytes);
         sections = Utils.getSectionInfos(fwBytes, Collections.singletonList(3), getFileNameLen());
         preprocessConfig(cfg, fwBytes);
         doVerify();

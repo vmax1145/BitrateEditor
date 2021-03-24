@@ -135,7 +135,7 @@ public class YUVTool extends FirmwareTool<YUVConfig> {
             }
         }
         try {
-            Utils.saveFirmware(this, yuvCfg, fwBytes);
+            Utils.saveFirmware(yuvCfg, fwBytes);
         }
         catch (Exception e) {
             e.printStackTrace();

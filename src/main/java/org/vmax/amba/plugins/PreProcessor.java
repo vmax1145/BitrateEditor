@@ -1,12 +1,11 @@
 package org.vmax.amba.plugins;
 
 import org.vmax.amba.cfg.FirmwareConfig;
-
-import java.io.File;
+import org.vmax.amba.fwsource.FwSource;
 
 public interface PreProcessor {
     PreProcessor withConfig(FirmwareConfig cfg);
 
-    byte[] preprocess(File file, byte[] fwBytes ) throws Exception;
+    byte[] preprocess(FwSource fwSource, byte[] fwBytes ) throws Exception;
 
 }

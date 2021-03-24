@@ -3,14 +3,15 @@ package org.vmax.amba;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.io.FileUtils;
 import org.vmax.amba.bitrate.VerifyException;
 import org.vmax.amba.cfg.*;
+import org.vmax.amba.fwsource.FwDestination;
+import org.vmax.amba.fwsource.FwSource;
+import org.vmax.amba.fwsource.FwSourceFactory;
 import org.vmax.amba.plugins.PostProcessor;
 import org.vmax.amba.plugins.PreProcessor;
 
 import javax.swing.*;
-import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
@@ -118,23 +119,14 @@ public class Utils {
         return hex(bb.getInt());
     }
 
-    protected static byte[] loadFirmware(FirmwareConfig cfg) throws Exception {
 
-        File f = new File(cfg.getFwFileName());
-        return loadFirmware(cfg, f);
-    }
-
-    public static byte[] loadFirmware(FirmwareConfig cfg, File f) throws Exception {
-        if (!f.exists()) {
-            System.out.println("FW file " + cfg.getFwFileName() + " not found");
-            System.exit(0);
-        }
-        byte[] fwBytes = FileUtils.readFileToByteArray(f);
+    public static byte[] loadFirmware(FirmwareConfig cfg, FwSource fwSource) throws Exception {
+        byte[] fwBytes = fwSource.load();
 
         if (cfg.getPreProcessor() != null) {
             PreProcessor preprocessor = (PreProcessor) Class.forName(cfg.getPreProcessor().getClassName()).newInstance();
             preprocessor.withConfig(cfg);
-            fwBytes = preprocessor.preprocess(f,fwBytes);
+            fwBytes = preprocessor.preprocess(fwSource,fwBytes);
         }
 
 
@@ -191,34 +183,23 @@ public class Utils {
         }
     }
 
-    public static void saveFirmware(JFrame tool, FirmwareConfig cfg, byte[] fwBytes) throws Exception {
+    public static void saveFirmware(FirmwareConfig cfg, byte[] fwBytes) throws Exception {
 
         updateCRC(cfg.getVerify(),fwBytes);
 
-        File out = null;
-        if (cfg.isShowFileDialog() || cfg.getFwFileName() == null) {
-            JFileChooser jfc = new JFileChooser(new File("."));
-            if (cfg.getFwFileName() != null) {
-                jfc.setSelectedFile(new File(cfg.getFwFileName() + ".mod"));
-            }
-            if (jfc.showSaveDialog(tool) == JFileChooser.APPROVE_OPTION) {
-                out = jfc.getSelectedFile();
-            }
-        } else {
-            out = new File(cfg.getFwFileName() + ".mod");
-            if (out.exists()) {
-                JOptionPane.showMessageDialog(null, "File " + out.getName() + " already exists");
-                return;
-            }
+        FwDestination out = FwSourceFactory.createDestination(cfg);
+        if(out == null) {
+            return;
         }
-        if (out != null) {
-            if (cfg.getPostProcessor() != null) {
+
+        if (cfg.getPostProcessor() != null) {
                 PostProcessor postprocessor = (PostProcessor) Class.forName(cfg.getPostProcessor().getClassName()).newInstance();
                 postprocessor.withConfig(cfg);
                 fwBytes = postprocessor.postprocess(out,fwBytes);
-            }
-            FileUtils.writeByteArrayToFile(out, fwBytes);
         }
+
+        out.save(fwBytes);
+
 
     }
 

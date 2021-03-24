@@ -1,10 +1,10 @@
 package org.vmax.amba;
 
 import org.vmax.amba.cfg.FirmwareConfig;
+import org.vmax.amba.fwsource.FwSource;
+import org.vmax.amba.fwsource.FwSourceFactory;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileFilter;
-import java.io.File;
 
 
 public class AppMain {
@@ -34,41 +34,16 @@ public class AppMain {
         tool.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-        byte[] fwBytes = null;
-        if(cfg.getFwFileName()!=null && !cfg.isShowFileDialog()) {
-            fwBytes = Utils.loadFirmware(cfg,  new File(cfg.getFwFileName()));
+
+        FwSource fwSource = FwSourceFactory.createSource(cfg);
+
+
+        if(fwSource!=null) {
+            byte[] fwBytes = Utils.loadFirmware(cfg,fwSource);
+            startTool(cfg, tool, fwBytes);
         }
         else {
-            JFileChooser jfc = new JFileChooser(new File("."));
-            if(cfg.getFwFileName()!=null) {
-                FileFilter filter = new FileFilter() {
-                    @Override
-                    public boolean accept(File file) {
-                            return file.getName().endsWith(".bin") || file.isDirectory();
-                    }
-
-                    @Override
-                    public String getDescription() {
-                        return "Firmware file";
-                    }
-                };
-                jfc.addChoosableFileFilter(filter);
-                jfc.setAcceptAllFileFilterUsed(true);
-                jfc.setSelectedFile(new File(cfg.getFwFileName()));
-            }
-
-            int returnValue = jfc.showOpenDialog(null);
-            if (returnValue == JFileChooser.APPROVE_OPTION) {
-                File selectedFile = jfc.getSelectedFile();
-                if(selectedFile.exists()) {
-                    fwBytes = Utils.loadFirmware(cfg,selectedFile);
-                }
-            }
-        }
-
-
-        if(fwBytes!=null) {
-            startTool(cfg, tool, fwBytes);
+            System.out.println("Can not create filesource, fw file not found");
         }
     }
 

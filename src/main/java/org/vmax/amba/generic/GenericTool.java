@@ -114,7 +114,7 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
         try {
             applyPatches();
             applyImages();
-            Utils.saveFirmware(this, cfg, fwBytes);
+            Utils.saveFirmware(cfg, fwBytes);
         }
         catch (Exception e) {
             e.printStackTrace();

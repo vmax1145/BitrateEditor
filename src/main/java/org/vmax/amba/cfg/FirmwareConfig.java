@@ -21,6 +21,7 @@ public class FirmwareConfig {
     private String note = "";
     private String toolClass;
     private String fwFileName;
+    private FtpConfig  ftpConfig;
     private List<Verify> verify = new ArrayList<>();
     private ProcessorConfig preProcessor;
     private ProcessorConfig postProcessor;
@@ -39,4 +40,10 @@ public class FirmwareConfig {
         }
     }
 
+
+
+
+    public void setFtpConfig(FtpConfig ftpConfig) {
+        this.ftpConfig = ftpConfig;
+    }
 }

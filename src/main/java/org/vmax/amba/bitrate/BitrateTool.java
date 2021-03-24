@@ -218,7 +218,7 @@ public class BitrateTool extends FirmwareTool<BitrateEditorConfig> {
                     addr += 4;
                 }
             }
-            Utils.saveFirmware(this, cfg, fwBytes);
+            Utils.saveFirmware(cfg, fwBytes);
         }
         catch (Exception e) {
             e.printStackTrace();

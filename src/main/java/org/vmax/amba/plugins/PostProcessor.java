@@ -1,11 +1,10 @@
 package org.vmax.amba.plugins;
 
 import org.vmax.amba.cfg.FirmwareConfig;
-
-import java.io.File;
+import org.vmax.amba.fwsource.FwDestination;
 
 public interface PostProcessor {
     PostProcessor withConfig(FirmwareConfig cfg);
-    byte[] postprocess(File out, byte[] fwBytes) throws Exception;
+    byte[] postprocess(FwDestination out, byte[] fwBytes) throws Exception;
 
 }

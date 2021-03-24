@@ -1,0 +1,223 @@
+{
+  "note" : "SJ10Pro Scene iso-shutter configs",
+  "toolClass" : "org.vmax.amba.generic.GenericTool",
+  "fwFileName" : "SJ10_FWUPDATE.bin",
+  "verify" : [
+    {"section" : 3,
+      "files":[
+        "scene_data_s01_Imx377",
+        "scene_data_s02_Imx377",
+        "scene_data_s03_Imx377",
+        "scene_data_s04_Imx377",
+        "scene_data_s05_Imx377"
+      ]
+    }
+  ],
+  "preProcessor" : {
+    "className" : "org.vmax.amba.plugins.SJ10ProProcessor",
+    "md5fileName" : "SJ10_CHECK.ch"
+  },
+  "postProcessor" : {
+    "className" : "org.vmax.amba.plugins.SJ10ProProcessor",
+    "md5fileName" : "SJ10_CHECK.ch"
+  },
+  "showFileDialog" : true,
+
+  "paramsTabs" : [
+    {
+      "label": "Scene 0 params",
+      "baseLocation": {
+        "sectionNum": 3,
+        "fileName": "scene_data_s01_Imx377",
+        "relAddr": 220
+      },
+      "params": [
+        {
+          "addrOffset": 0,
+          "type": "UByte",
+          "range": {
+            "min": 1,
+            "max": 4
+          },
+          "label": "Number of tables in use",
+          "editable": true
+        }
+      ]
+    },
+    {
+      "label": "Scene 39 params",
+      "baseLocation": {
+        "sectionNum": 3,
+        "fileName": "scene_data_s05_Imx377",
+        "relAddr": 128376
+      },
+      "params": [
+        {
+          "addrOffset": 0,
+          "type": "UByte",
+          "range": {
+            "min": 1,
+            "max": 4
+          },
+          "label": "Number of tables in use",
+          "editable": true
+        }
+      ]
+    }
+  ],
+
+
+  "tableDataConfigs" : [ {
+    "label" : "0 SCENE_OFF",
+    "rowsConfig" : {
+      "firstRowLocation" : {
+        "sectionNum" : 3,
+        "fileName" : "scene_data_s01_Imx377",
+        "relAddr" : 224
+      },
+      "rowLenth" : 64,
+      "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+    },
+    "columnsConfig" : [ {
+      "addrOffset" : 0,
+      "type" : "Int32",
+      "label" : "SHUTTER 0",
+      "hex" : false,
+      "editable" : true,
+      "valuesMapping":{
+        "off":"0",
+        "on":"1"
+      },
+      "range": {"min": 1, "max": 3013}
+    }, {
+      "addrOffset" : 4,
+      "type" : "Int32",
+      "label" : "ISO 0",
+      "hex" : false,
+      "editable" : true,
+      "range": {"min": 100, "max": 6400}
+    }, {
+      "addrOffset" : 12,
+      "type" : "Int32",
+      "label" : "SHUTTER 128",
+      "hex" : false,
+      "editable" : true,
+      "range": {"min": 1, "max": 3013}
+    }, {
+      "addrOffset" : 16,
+      "type" : "Int32",
+      "label" : "ISO 128",
+      "hex" : false,
+      "editable" : true,
+      "range": {"min": 100, "max": 6400}
+    }, {
+      "addrOffset" : 24,
+      "type" : "Int32",
+      "label" : "SHUTTER 256",
+      "hex" : false,
+      "editable" : true,
+      "range": {"min": 1, "max": 3013}
+    }, {
+      "addrOffset" : 28,
+      "type" : "Int32",
+      "label" : "ISO 256",
+      "hex" : false,
+      "editable" : true,
+      "range": {"min": 100, "max": 6400}
+    }, {
+      "addrOffset" : 36,
+      "type" : "Int32",
+      "label" : "SHUTTER 384",
+      "hex" : false,
+      "editable" : true,
+      "range": {"min": 1, "max": 3013}
+    }, {
+      "addrOffset" : 40,
+      "type" : "Int32",
+      "label" : "ISO 384",
+      "hex" : false,
+      "editable" : true,
+      "range": {"min": 100, "max": 6400}
+    } ]
+  },
+    {
+      "label": "39 SCENE_AUTO",
+      "rowsConfig": {
+        "firstRowLocation": {
+          "sectionNum": 3,
+          "fileName": "scene_data_s05_Imx377",
+          "relAddr": 128380
+        },
+        "rowLenth": 64,
+        "rowNames" : [ "row 0", "row 1", "row 2", "row 3", "row 4", "row 5", "row 6", "row 7", "row 8", "row 9", "row 10", "row 11", "row 12", "row 13", "row 14", "row 15", "row 16", "row 17", "row 18", "row 19" ]
+      },
+      "columnsConfig": [
+        {
+          "addrOffset": 0,
+          "type": "Int32",
+          "label": "SHUTTER 0",
+          "hex": false,
+          "editable": true,
+          "range": {"min": 1, "max": 3013}
+        },
+        {
+          "addrOffset": 4,
+          "type": "Int32",
+          "label": "ISO 0",
+          "hex": false,
+          "editable": true,
+          "range": {"min": 100, "max": 6400}
+        },
+        {
+          "addrOffset": 12,
+          "type": "Int32",
+          "label": "SHUTTER 128",
+          "hex": false,
+          "editable": true,
+          "range": {"min": 1, "max": 3013}
+        },
+        {
+          "addrOffset": 16,
+          "type": "Int32",
+          "label": "ISO 128",
+          "hex": false,
+          "editable": true,
+          "range": {"min": 100, "max": 6400}
+        },
+        {
+          "addrOffset": 24,
+          "type": "Int32",
+          "label": "SHUTTER 256",
+          "hex": false,
+          "editable": true,
+          "range": {"min": 1, "max": 3013}
+        },
+        {
+          "addrOffset": 28,
+          "type": "Int32",
+          "label": "ISO 256",
+          "hex": false,
+          "editable": true,
+          "range": {"min": 100, "max": 6400}
+        },
+        {
+          "addrOffset": 36,
+          "type": "Int32",
+          "label": "SHUTTER 384",
+          "hex": false,
+          "editable": true,
+          "range": {"min": 1, "max": 3013}
+        },
+        {
+          "addrOffset": 40,
+          "type": "Int32",
+          "label": "ISO 384",
+          "hex": false,
+          "editable": true,
+          "range": {"min": 100, "max": 6400}
+        }
+
+      ]
+    }
+  ]
+}

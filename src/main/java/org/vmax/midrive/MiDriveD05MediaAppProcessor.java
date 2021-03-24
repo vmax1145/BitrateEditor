@@ -3,6 +3,8 @@ package org.vmax.midrive;
 import org.apache.commons.io.FileUtils;
 import org.vmax.amba.Utils;
 import org.vmax.amba.cfg.FirmwareConfig;
+import org.vmax.amba.fwsource.FwDestination;
+import org.vmax.amba.fwsource.FwSource;
 import org.vmax.amba.plugins.PostProcessor;
 import org.vmax.amba.plugins.PreProcessor;
 
@@ -25,7 +27,7 @@ public class MiDriveD05MediaAppProcessor implements PreProcessor, PostProcessor 
 
 
     @Override
-    public byte[] preprocess(File file, byte[] fw) throws Exception {
+    public byte[] preprocess(FwSource fwSource, byte[] fw) throws Exception {
         System.out.println("Packed len="+fw.length);
         int packedLen   = (int) Utils.readUInt(fw,0);
         int unpackedLen = (int) Utils.readUInt(fw, 0x4);
@@ -71,7 +73,7 @@ public class MiDriveD05MediaAppProcessor implements PreProcessor, PostProcessor 
     }
 
     @Override
-    public byte[] postprocess(File outFile, byte[] fwBytes) throws Exception {
+    public byte[] postprocess(FwDestination outFile, byte[] fwBytes) throws Exception {
         int unpackedLen = fwBytes.length;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         byte[] head = {

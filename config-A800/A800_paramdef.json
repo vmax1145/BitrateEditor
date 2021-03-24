@@ -1,0 +1,159 @@
+{
+  "note": "A800 paramdef editor",
+  "toolClass": "org.vmax.amba.generic.GenericTool",
+
+  "ftpConfig": {
+    "host" : "192.168.0.1",
+    "login" : "root",
+    "password" : "",
+    "path" : "/app/param/paramdef.bin"
+  },
+
+  "showFileDialog": true,
+
+
+  "verify": [
+    {
+      "addr": 22100,
+      "val": "MiDashCam2_v3_"
+    }
+  ],
+
+  "tableDataConfigs":[
+      {
+         "label": "Profiles Front",
+         "rowsConfig": {
+           "firstRowAddr": 8592,
+           "rowLenth": 564,
+           "rowNames":[
+             "1",
+             "2",
+             "3",
+             "4",
+             "5",
+             "6"
+           ]
+         },
+         "columnsConfig": [
+           {
+             "label": "W",
+             "addrOffset": 224,
+             "type": "UInt32",
+             "range": {
+               "min": 1,
+               "max" : 3000
+             },
+             "editable": false
+           },
+           {
+             "label": "H",
+             "addrOffset": 228,
+             "type": "UInt32",
+             "range": {
+               "min": 1,
+               "max" : 3000
+             },
+             "editable": false
+           },
+
+           {
+             "label": "Bitrate H264 kb/s",
+             "addrOffset": 312,
+             "type": "UInt32",
+             "range": {
+               "min": 1,
+               "max" : 60000
+             }
+           },
+
+           {
+             "label": "Bitrate H265 kb/s",
+             "addrOffset": 316,
+             "type": "UInt32",
+             "range": {
+               "min": 1,
+               "max" : 60000
+             }
+           },
+           {
+             "label": "GOP",
+             "addrOffset": 300,
+             "type": "UInt32",
+             "range": {
+               "min": 1,
+               "max" : 30
+             }
+           }
+
+         ]
+      },
+
+
+    {
+      "label": "Profiles Rear",
+      "rowsConfig": {
+        "firstRowAddr": 15124,
+        "rowLenth": 564,
+        "rowNames":[
+          "1",
+          "2"
+        ]
+      },
+      "columnsConfig": [
+        {
+          "label": "W",
+          "addrOffset": 224,
+          "type": "UInt32",
+          "range": {
+            "min": 1,
+            "max" : 3000
+          },
+          "editable": false
+        },
+        {
+          "label": "H",
+          "addrOffset": 228,
+          "type": "UInt32",
+          "range": {
+            "min": 1,
+            "max" : 3000
+          },
+          "editable": false
+        },
+
+        {
+          "label": "Bitrate H264 kb/s",
+          "addrOffset": 312,
+          "type": "UInt32",
+          "range": {
+            "min": 1,
+            "max" : 40000
+          }
+        },
+
+        {
+          "label": "Bitrate H265 kb/s",
+          "addrOffset": 316,
+          "type": "UInt32",
+          "range": {
+            "min": 1,
+            "max" : 40000
+          }
+        },
+        {
+          "label": "GOP",
+          "addrOffset": 300,
+          "type": "UInt32",
+          "range": {
+            "min": 1,
+            "max" : 30
+          }
+        }
+
+      ]
+    }
+
+  ]
+  
+
+}
