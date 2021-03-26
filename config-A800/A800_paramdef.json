@@ -86,9 +86,9 @@
            }
 
          ]
-      },
+      }
 
-
+/*,
     {
       "label": "Profiles Rear",
       "rowsConfig": {
@@ -152,7 +152,7 @@
 
       ]
     }
-
+*/
   ]
   
 
