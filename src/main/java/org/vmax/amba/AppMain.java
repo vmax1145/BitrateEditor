@@ -39,11 +39,26 @@ public class AppMain {
 
 
         if(fwSource!=null) {
-            byte[] fwBytes = Utils.loadFirmware(cfg,fwSource);
-            startTool(cfg, tool, fwBytes);
+            try {
+                byte[] fwBytes = Utils.loadFirmware(cfg, fwSource);
+                startTool(cfg, tool, fwBytes);
+            }
+            catch (Exception e) {
+                JOptionPane.showMessageDialog(
+                        null,
+                        e.getMessage(),
+                        "Error loading source file",
+                        JOptionPane.ERROR_MESSAGE
+                );
+            }
         }
         else {
-            System.out.println("Can not create filesource, fw file not found");
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Error loading firmware source",
+                    "",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
     }
 

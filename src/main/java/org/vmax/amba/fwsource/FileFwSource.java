@@ -17,6 +17,11 @@ public class FileFwSource extends FwSource {
 
     @Override
     public byte[] load() throws Exception {
-        return FileUtils.readFileToByteArray(file);
+        try {
+            return FileUtils.readFileToByteArray(file);
+        }
+        catch (Exception e) {
+            throw new Exception("Failed to load file: "+ file.getAbsolutePath(),e);
+        }
     }
 }
