@@ -44,6 +44,7 @@ public class AppMain {
                 startTool(cfg, tool, fwBytes);
             }
             catch (Exception e) {
+                e.printStackTrace();
                 JOptionPane.showMessageDialog(
                         null,
                         e.getMessage(),

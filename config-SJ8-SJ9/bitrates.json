@@ -34,7 +34,7 @@
     "name" : "???? 3840x2160 15P",
     "inUse" : false
   }, {
-    "name" : "2704x1520 60P",
+    "name" : "2720x1520 60P",
     "inUse" : true
   }, {
     "name" : "???? 2560x1920 30P",
@@ -61,8 +61,8 @@
     "name" : "1920x1080 60P",
     "inUse" : true
   }, {
-    "name" : "1920x1080 25P",
-    "inUse" : true
+    "name" : "HDR 1920x1080 60P 16:9",
+    "inUse" : false
   }, {
     "name" : "???? 1920x1080 40P",
     "inUse" : false
