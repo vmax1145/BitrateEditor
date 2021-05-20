@@ -19,6 +19,7 @@ public class Bitrate {
         setMax(bitrate.getMax());
         setMbps(bitrate.getMbps());
         setInUse(bitrate.isInUse());
+        setGop(bitrate.getGop());
 
         width = null;
         height = null;
