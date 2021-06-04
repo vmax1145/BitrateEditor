@@ -29,7 +29,7 @@ public class FileListTab implements GenericTab {
         Object[] colnames = new String[]{
                 "File name","length","addr"
         };
-        cfg.getFileConfigs().sort( Comparator.comparing(ByteBlockConfig::getLabel));
+        cfg.getFileConfigs().sort( Comparator.comparing(byteBlockConfig -> byteBlockConfig.getLabel().toLowerCase()));
 
 
         Object[][] rowData = new Object[cfg.getFileConfigs().size()][4];
