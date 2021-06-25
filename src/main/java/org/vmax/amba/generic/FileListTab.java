@@ -22,6 +22,7 @@ public class FileListTab implements GenericTab {
     private FileListConfig cfg;
     private byte[] fw;
 
+    
 
     public FileListTab(Frame frame, FileListConfig cfg, byte[] fwBytes) {
         this.cfg = cfg;
