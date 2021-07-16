@@ -1,0 +1,88 @@
+{
+  "note": "A800 logo editor",
+  "toolClass": "org.vmax.midrive.A800ResImageTool",
+
+  "fwFileName": "resImage",
+  "showFileDialog": false,
+
+//  "verify": [
+//    {
+//      "addr": 6409232,
+//      "val": "\u0002"
+//    },
+//    {
+//      "addr": 6367820,
+//      "val": "\u0002"
+//    },
+//    {
+//      "addr": 6218996,
+//      "val": "\u0002"
+//    },
+//    {
+//      "addr": 6293408,
+//      "val": "\u0002"
+//    },
+//    {
+//      "addr": 6432452,
+//      "val": "\u0002"
+//    }
+//  ],
+
+
+  "imageTabs": [
+    {
+      "label": "Logo-0",
+      "addr": 660352,
+      "dimension": {
+        "width":624,
+        "height":92
+      }
+    }
+  ,
+    {
+      "label": "Logo-1",
+      "addr": 775184,
+      "dimension": {
+        "width":464,
+        "height":72
+      }
+    }
+  ,
+    {
+      "label": "Logo-2",
+      "addr":842016,
+      "dimension": {
+        "width":309,
+        "height":48
+      }
+    }
+  ,
+    {
+      "label": "Logo-3",
+      "addr":871984,
+      "dimension": {
+        "width":216,
+        "height":32
+      }
+    }
+  ,
+    {
+      "label": "Logo-4",
+      "addr":885824,
+      "dimension": {
+        "width":168,
+        "height":26
+      }
+    }
+//  ,
+//    {
+//      "label": "Logo-5",
+//      "addr": 6432444,
+//      "dimension": {
+//        "width":316,
+//        "height":130
+//      }
+//    }
+  ]
+
+}

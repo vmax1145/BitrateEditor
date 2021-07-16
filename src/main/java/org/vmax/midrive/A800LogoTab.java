@@ -14,7 +14,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
-import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -27,7 +26,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MiLogoTab extends JPanel implements GenericImageTab {
+public class A800LogoTab extends JPanel implements GenericImageTab {
     private final byte[] fwBytes;
     private MiLogoImageConfig cfg;
     private JTextField nomer;
@@ -37,6 +36,7 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
     private int magicNumber;
 
     public static final String LOAD_FROM_FILE = "Загрузить из файла";
+    public static final String ERASE = "Стереть картинку";
 
 
     private final static Map<String, Variant> VARIANTS = new LinkedHashMap<String, Variant>() {
@@ -53,11 +53,14 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
 
             put(LOAD_FROM_FILE, new Variant("", "")
             );
+            put(ERASE, new Variant("", "")
+            );
+
         }
     };
 
 
-    public MiLogoTab(MiLogoImageConfig cfg, byte[] fwBytes, int magicNumber) {
+    public A800LogoTab(MiLogoImageConfig cfg, byte[] fwBytes, int magicNumber) {
         super(new SpringLayout());
         this.fwBytes = fwBytes;
         this.magicNumber = magicNumber;
@@ -87,9 +90,13 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
         add(new JLabel());
 
         image = loadFromFirmware();
-        render = new JLabel(new ImageIcon(image));
-        render.setMinimumSize(new Dimension(cfg.getDimension().getWidth() * 3 / 2, cfg.getDimension().getHeight() * 3 / 2));
-        render.setPreferredSize(new Dimension(cfg.getDimension().getWidth() * 3 / 2, cfg.getDimension().getHeight() * 3 / 2));
+        ImageIcon ico = new ImageIcon(image);
+        render = new JLabel(ico);
+        render.setBorder(BorderFactory.createDashedBorder(Color.gray, 2,2));
+        render.setMinimumSize(new Dimension(image.getWidth()+2, image.getHeight()+2));
+        render.setPreferredSize(new Dimension(image.getWidth()+2, image.getHeight()+2));
+        render.setIcon(ico);
+
         p = new JPanel();
         p.add(render);
         add(p);
@@ -103,11 +110,12 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
         variant.addActionListener(e -> {
 
             String key = (String) variant.getSelectedItem();
-            MiLogoTab.this.selectedVariant = VARIANTS.get(key);
-            nomer.setText(MiLogoTab.this.selectedVariant.getExample());
+            A800LogoTab.this.selectedVariant = VARIANTS.get(key);
+            nomer.setText(A800LogoTab.this.selectedVariant.getExample());
             if (LOAD_FROM_FILE.equals(key)) {
                 processImageCreation();
             }
+
         });
         variant.setSelectedIndex(0);
     }
@@ -127,17 +135,19 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
 //    }
 
     private void processImageCreation() {
-        if (MiLogoTab.this.selectedVariant != null) {
+        if (A800LogoTab.this.selectedVariant != null) {
             try {
                 BufferedImage bim;
-                if (selectedVariant == VARIANTS.get(LOAD_FROM_FILE)) {
+                if (selectedVariant == VARIANTS.get(ERASE)) {
+                    bim = erase();
+                }
+                else if (selectedVariant == VARIANTS.get(LOAD_FROM_FILE)) {
                     bim = loadFromExternalFile();
                 } else {
                     bim = generate(selectedVariant.template, nomer.getText());
                 }
 
                 if (bim != null) {
-
                     bim = convertImage(bim);
                     if (bim.getWidth() * bim.getHeight() > cfg.getDimension().getWidth() * cfg.getDimension().getHeight()) {
                         JOptionPane.showMessageDialog(null, "Слишком большая картинка", "Ошибка", JOptionPane.ERROR_MESSAGE);
@@ -147,19 +157,25 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
                     }
                     else {
                         ImageIcon ico = new ImageIcon(bim);
-                        render.setMinimumSize(new Dimension(bim.getWidth(), bim.getHeight()));
-                        render.setPreferredSize(new Dimension(bim.getWidth(), bim.getHeight()));
+                        render.setMinimumSize(new Dimension(bim.getWidth()+2, bim.getHeight()+2));
+                        render.setPreferredSize(new Dimension(bim.getWidth()+2, bim.getHeight()+2));
                         render.setIcon(ico);
-                        render.getParent().doLayout();
-                        MiLogoTab.this.image = bim;
-                    }
 
+                        render.getParent().doLayout();
+                        A800LogoTab.this.image = bim;
+                    }
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Oooops! See error stream for details");
             }
         }
+    }
+
+    private BufferedImage erase() {
+        BufferedImage bim = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+        bim.setRGB(0,0,0);
+        return bim;
     }
 
 
@@ -197,11 +213,28 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
                     scaledH--;
                 }
             }
+            if(scaledW%2!=0) {
+                if((scaledW+1)*scaledH < cfg.getDimension().getWidth()*cfg.getDimension().getHeight()) {
+                    scaledW++;
+                }
+                else {
+                    scaledW--;
+                }
+            }
+
         }
         else {
             scaledW = bim.getWidth() * cfg.getDimension().getHeight() / bim.getHeight();
             scaledH = cfg.getDimension().getHeight();
             if(scaledH%2!=0) {
+                if((scaledW+1)*scaledH < cfg.getDimension().getWidth()*cfg.getDimension().getHeight()) {
+                    scaledW++;
+                }
+                else {
+                    scaledW--;
+                }
+            }
+            if(scaledW%2!=0) {
                 if((scaledW+1)*scaledH < cfg.getDimension().getWidth()*cfg.getDimension().getHeight()) {
                     scaledW++;
                 }
@@ -215,22 +248,12 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
         System.out.println(cfg.getDimension().getWidth()+"/"+cfg.getDimension().getHeight()+"->"+im.getWidth(null)+"/"+im.getHeight(null));
 
         BufferedImage converted;
-        if(cfg.isFit()) {
-            converted = new BufferedImage(cfg.getDimension().getWidth(), cfg.getDimension().getHeight(), BufferedImage.TYPE_USHORT_555_RGB);
-            Graphics g = converted.getGraphics();
-            g.setColor(Color.WHITE);
-            g.fillRect(0,0, cfg.getDimension().getWidth(), cfg.getDimension().getHeight());
-            g.drawImage(im, (cfg.getDimension().getWidth()-scaledW)/2, (cfg.getDimension().getHeight()-scaledH)/2, null);
-            g.dispose();
-        }
-        else {
-            converted = new BufferedImage(scaledW, scaledH, BufferedImage.TYPE_USHORT_555_RGB);
-            Graphics g = converted.getGraphics();
-            g.setColor(Color.WHITE);
-            g.fillRect(0,0, scaledW, scaledH);
-            g.drawImage(im, 0, 0, null);
-            g.dispose();
-        }
+        converted = new BufferedImage(cfg.getDimension().getWidth(), cfg.getDimension().getHeight(), BufferedImage.TYPE_INT_ARGB);
+        Graphics g = converted.getGraphics();
+        g.setColor(new Color(0,true));
+        g.fillRect(0,0, cfg.getDimension().getWidth(), cfg.getDimension().getHeight());
+        g.drawImage(im, (cfg.getDimension().getWidth()-scaledW)/2, (cfg.getDimension().getHeight()-scaledH)/2, null);
+        g.dispose();
         return converted;
     }
 
@@ -254,17 +277,29 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
         ByteBuffer bb = ByteBuffer.wrap(fwBytes);
         bb.order(ByteOrder.LITTLE_ENDIAN);
         bb.position(cfg.getAddr());
-        int h = bb.getInt();
+        int magic = bb.getInt();
         int w = bb.getInt();
-        bb.getInt(); //skip
-        short[] data = new short[w * h];
-        for (int i = 0; i < data.length; i++) {
-            data[i] = bb.getShort();
+        int h = bb.getInt();
+        BufferedImage bim = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+
+        //int[] data = new int[w * h];
+        for (int j = 0; j < h; j++) {
+            for (int i = 0; i < w; i++) {
+                short col = bb.getShort();
+                int a = (((col >> 15) & 1) == 0 ? 0 : 0xff);
+                int r = ((col >> 10) & 0x1f)<<3;
+                int g = ((col >> 5) & 0x1f)<<3;
+                int b = ((col) & 0x1f)<<3;
+                int d = (a << 24) | (r << 16) | (g << 8) | (b);
+                bim.setRGB(i,j,d);
+            }
         }
 
-        BufferedImage bim = new BufferedImage(w, h, BufferedImage.TYPE_USHORT_555_RGB);
-        WritableRaster raster = bim.getRaster();
-        raster.setDataElements(0, 0, w, h, data);
+
+
+
+
+
         System.out.println(cfg.getAddr()+":"+w+"*"+h);
         return bim;
     }
@@ -274,20 +309,34 @@ public class MiLogoTab extends JPanel implements GenericImageTab {
         if(image!=null) {
             int w = image.getWidth();
             int h = image.getHeight();
-
-            short[] data = new short[w * h];
-            image.getRaster().getDataElements(0, 0, w, h, data);
-
             ByteBuffer bb = ByteBuffer.wrap(fwBytes);
             bb.order(ByteOrder.LITTLE_ENDIAN);
-            bb.position(cfg.getAddr());
-            bb.putInt(h);
-            bb.putInt(w);
-            bb.putInt(magicNumber);
-            for (short pix : data) {
-                bb.putShort(pix);
+            bb.position(cfg.getAddr()+12);
+
+            for (int j = 0; j < h; j++) {
+                for (int i = 0; i < w; i++) {
+                    int col = image.getRGB(i,j);
+                    int a = (((col >> 24) & 0xff) > 127 ? 1 : 0);
+                    int r = ((col >> 16) & 0xff)>>3;
+                    int g = ((col >> 8) & 0xff)>>3;
+                    int b = ((col) & 0xff)>>3;
+                    int d = (a << 15) | (r << 10) | (g << 5) | (b);
+                    bb.putShort((short) d);
+                }
             }
-            System.out.println(cfg.getAddr()+":"+w+"*"+h);
+//            short[] data = new short[w * h];
+//            image.getRaster().getDataElements(0, 0, w, h, data);
+//
+//            ByteBuffer bb = ByteBuffer.wrap(fwBytes);
+//            bb.order(ByteOrder.LITTLE_ENDIAN);
+//            bb.position(cfg.getAddr());
+//            bb.putInt(h);
+//            bb.putInt(w);
+//            bb.putInt(magicNumber);
+//            for (short pix : data) {
+//                bb.putShort(pix);
+//            }
+//            System.out.println(cfg.getAddr()+":"+w+"*"+h);
         }
     }
 
