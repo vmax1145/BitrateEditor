@@ -1,1 +1,1 @@
-java -jar firmware-editor-tool-10.6-SNAPSHOT.jar config-SJ10\yuv-all-profiles.json
+java -jar firmware-editor-tool-10.7-SNAPSHOT.jar config-SJ10\yuv-all-profiles.json

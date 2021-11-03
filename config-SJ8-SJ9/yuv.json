@@ -3,6 +3,7 @@
   "toolClass" : "org.vmax.amba.yuv.YUVTool",
   "fwFileName" : "SJ8_FWUPDATE.bin",
   "verify" : [
+    {"section" : 1},
     {"section" : 3}
   ],
   "preProcessor" : {
@@ -14,7 +15,175 @@
     "md5fileName" : "SJ8_CHECK.ch"
   },
   "showFileDialog" : true,
-  "tabs" : [ {
+  "tabs" : [
+    {
+      "name" : "Video default",
+      "imageSample" : "samples/SJ8.v1.3.0.stock/video_vivid.jpg",
+      "location": {
+        "sectionNum" : 1,
+        "findHex" : "00004000400000000100FF00000400000000000000040000000000000004000400000000000000040000000000000004000000000000FF000004FF00FF00 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "findSkip" : 1,
+        "relAddr" : -434
+        //-62*7
+      },
+      "editables" : [ {
+        "location" : {
+          "relAddr" : 12
+          //38
+
+        },
+        "name" : "Y",
+        "type" : "Int16",
+        "range" : {
+          "min" : 0,
+          "max" : 2048
+        }
+      }, {
+        "location" : {
+          "relAddr" : 20
+          //46
+        },
+        "name" : "U",
+        "type" : "Int16",
+        "range" : {
+          "min" : 0,
+          "max" : 2048
+        }
+      }, {
+        "location" : {
+          "relAddr" : 28
+          //54
+        },
+        "name" : "V",
+        "type" : "Int16",
+        "range" : {
+          "min" : 0,
+          "max" : 2048
+        }
+      }, {
+        "location" : {
+          "relAddr" : 32
+          //56
+        },
+        "name" : "Y-offset",
+        "type" : "Int16",
+        "range" : {
+          "min" : -128,
+          "max" : 128
+        }
+      }, {
+        "location" : {
+          "relAddr" : 34
+          //58
+        },
+        "name" : "U-offset",
+        "type" : "Int16",
+        "range" : {
+          "min" : -128,
+          "max" : 128
+        }
+      }, {
+        "location" : {
+          "relAddr" : 36
+          //60
+        },
+        "name" : "V-offset",
+        "type" : "Int16",
+        "range" : {
+          "min" : -128,
+          "max" : 128
+        }
+      }
+      ]
+    },
+
+    {
+      "name" : "Photo default",
+      "imageSample" : "samples/SJ8.v1.3.0.stock/video_vivid.jpg",
+      "location": {
+        "sectionNum" : 1,
+        "findHex" : "00004000400000000100FF00000400000000000000040000000000000004000400000000000000040000000000000004000000000000FF000004FF00FF00 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "findSkip" : 0,
+        "relAddr" : -434
+        //-62*7
+      },
+      "editables" : [ {
+        "location" : {
+          "relAddr" : 12
+          //38
+
+        },
+        "name" : "Y",
+        "type" : "Int16",
+        "range" : {
+          "min" : 0,
+          "max" : 2048
+        }
+      }, {
+        "location" : {
+          "relAddr" : 20
+          //46
+        },
+        "name" : "U",
+        "type" : "Int16",
+        "range" : {
+          "min" : 0,
+          "max" : 2048
+        }
+      }, {
+        "location" : {
+          "relAddr" : 28
+          //54
+        },
+        "name" : "V",
+        "type" : "Int16",
+        "range" : {
+          "min" : 0,
+          "max" : 2048
+        }
+      }, {
+        "location" : {
+          "relAddr" : 32
+          //56
+        },
+        "name" : "Y-offset",
+        "type" : "Int16",
+        "range" : {
+          "min" : -128,
+          "max" : 128
+        }
+      }, {
+        "location" : {
+          "relAddr" : 34
+          //58
+        },
+        "name" : "U-offset",
+        "type" : "Int16",
+        "range" : {
+          "min" : -128,
+          "max" : 128
+        }
+      }, {
+        "location" : {
+          "relAddr" : 36
+          //60
+        },
+        "name" : "V-offset",
+        "type" : "Int16",
+        "range" : {
+          "min" : -128,
+          "max" : 128
+        }
+      }
+      ]
+    },
+
+
+
+
+
+    //========================
+    {
     "name" : "Video VIVID",
     "imageSample" : "samples/SJ8.v1.3.0.stock/video_vivid.jpg",
     "editables" : [ {
@@ -318,5 +487,6 @@
         "max" : 128
       }
     } ]
+
   } ]
 }

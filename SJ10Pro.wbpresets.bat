@@ -1,1 +1,1 @@
-java -jar firmware-editor-tool-10.6-SNAPSHOT.jar config-SJ10\wbpresets.json
+java -jar firmware-editor-tool-10.7-SNAPSHOT.jar config-SJ10\wbpresets.json

@@ -173,10 +173,21 @@ public class SJ8ProProcessor implements PreProcessor, PostProcessor {
         }
         else if(cfg instanceof YUVConfig) {
             for(YUVTabCfg tc : ((YUVConfig) cfg).getTabs()) {
+                Integer baseAddr = tc.getAddr();
+                if(baseAddr == null) {
+                    SectionAddr sa = tc.getLocation();
+                    if(sa == null) {
+                        baseAddr = 0;
+                    }
+                    else {
+                        baseAddr = Utils.calcAbsAddr(sa, sections, fw);
+                    }
+                }
                 for(ShortValueCfg vc : tc.getEditables()) {
                     Integer addr = vc.getAddr();
                     if(addr == null) {
-                        vc.setAddr(Utils.calcAbsAddr(vc.getLocation(), sections, fw));
+                        vc.setAddr(baseAddr + Utils.calcAbsAddr(vc.getLocation(), sections, fw));
+                        System.out.println(vc.getName()+" addr="+ vc.getAddr());
                     }
                 }
             }

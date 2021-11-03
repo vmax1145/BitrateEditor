@@ -341,26 +341,41 @@ public class Utils {
     }
 
     public static int calcAbsAddr(SectionAddr sectionAddr, Map<Integer, SectionInfo> sections, byte[] fw) throws VerifyException {
-        SectionInfo si = sections.get(sectionAddr.getSectionNum());
-        if(si == null) {
-            throw new VerifyException("No section: "+sectionAddr.getSectionNum());
-        }
-        int addr = si.addr + SectionAddr.SECTION_HEADER_LEN;
-        if(sectionAddr.getFileName()!=null) {
-            FileInfo fi = si.files.get(sectionAddr.getFileName());
-            if(fi == null) {
-                throw new VerifyException("No file:" + sectionAddr.getFileName() + " in section " + sectionAddr.getSectionNum());
+        int addr = 0;
+        if(sectionAddr.getSectionNum()!=null) {
+            SectionInfo si = sections.get(sectionAddr.getSectionNum());
+            if (si == null) {
+                throw new VerifyException("No section: " + sectionAddr.getSectionNum());
             }
-            addr+=fi.addr;
-        }
-        if(sectionAddr.getFindHex()!=null) {
-            addr += findHexOffset(fw,sectionAddr.getFindHex(),addr, si.addr+si.len);
+            addr = si.addr + SectionAddr.SECTION_HEADER_LEN;
+            if (sectionAddr.getFileName() != null) {
+                FileInfo fi = si.files.get(sectionAddr.getFileName());
+                if (fi == null) {
+                    throw new VerifyException("No file:" + sectionAddr.getFileName() + " in section " + sectionAddr.getSectionNum());
+                }
+                addr += fi.addr;
+            }
+
+
+            if (sectionAddr.getFindHex() != null) {
+                int cnt =sectionAddr.getFindSkip();
+                do {
+                    addr += findHexOffset(fw, sectionAddr.getFindHex(), addr, si.addr + si.len);
+                    if (cnt == 0) {
+                        break;
+                    }
+                    cnt--;
+                    addr++;
+                }
+                while (true);
+            }
         }
         addr+=sectionAddr.getRelAddr();
         return addr;
     }
 
     private static int findHexOffset(byte[] fw, String findHex, int addr, int maxAddr) throws VerifyException {
+        findHex = findHex.replaceAll(" ","");
         byte[] sample = new byte[findHex.length()/2];
         for(int i=0;i<sample.length;i++) {
             sample[i] = (byte) Integer.parseInt(findHex.substring(i*2,(i+1)*2),16);
