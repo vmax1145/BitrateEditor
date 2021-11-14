@@ -20,8 +20,21 @@ public class ValueConfig {
     private Type type;
     private Range range;
     private String label;
-    private boolean hex;
+    private boolean hex=false;
     private boolean editable=true;
 
     private Map<String, String> valuesMapping = new LinkedHashMap<>();
+
+    public ValueConfig(ValueConfig copyFrom) {
+        this.addrOffset = copyFrom.addrOffset;
+        if(copyFrom.location!=null) {
+            this.location = new SectionAddr(copyFrom.location);
+        }
+        this.type = copyFrom.type;
+        this.range = copyFrom.range;
+        this.label = copyFrom.label;
+        this.hex = copyFrom.hex;
+        this.editable = copyFrom.editable;
+    }
+
 }

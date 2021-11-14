@@ -223,6 +223,11 @@ public class Utils {
         bb.order(ByteOrder.LITTLE_ENDIAN);
         return bb.getShort() & 0xffffL;
     }
+    public static Object readShort(byte[] fw, int addr) {
+        ByteBuffer bb = ByteBuffer.wrap(fw, addr, Short.BYTES);
+        bb.order(ByteOrder.LITTLE_ENDIAN);
+        return bb.getShort();
+    }
 
 
     public static void writeUShort(byte[] fw, int addr, long val) {
@@ -413,4 +418,5 @@ public class Utils {
                 .writerWithDefaultPrettyPrinter().writeValueAsString(fc);
         return s;
     }
+
 }

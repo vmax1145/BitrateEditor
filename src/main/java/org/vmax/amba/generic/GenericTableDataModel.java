@@ -74,6 +74,7 @@ public class GenericTableDataModel extends AbstractTableModel {
             case UInt32:
                 return Utils.readUInt(fw,addr);
             case Int16:
+                return Utils.readShort(fw,addr);
             case UInt16:
                 return Utils.readUShort(fw,addr);
             default:

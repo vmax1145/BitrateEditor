@@ -16,4 +16,12 @@ public class SectionAddr {
     String findHex;
     int findSkip = 0;
     int relAddr;
+
+    public SectionAddr(SectionAddr location) {
+        this.sectionNum = location.sectionNum;
+        this.fileName = location.fileName;
+        this.findHex = location.findHex;
+        this.findSkip = location.findSkip;
+        this.relAddr = location.relAddr;
+    }
 }

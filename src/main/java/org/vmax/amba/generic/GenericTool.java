@@ -30,7 +30,7 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
 
     @Override
     public void init(FirmwareConfig acfg, byte[] fwBytes) throws Exception {
-        this.cfg = (GenericTableDataConfig) acfg;
+        this.cfg = (GenericTableDataConfig<ImageConfig>) acfg;
         this.fwBytes = fwBytes;
 
 
@@ -104,9 +104,9 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
         throw new Exception("Image tab not implemented in base class");
     }
 
-    protected List<Patch> loadPatches(GenericTableDataConfig cfg) {
+    protected List<Patch> loadPatches(GenericTableDataConfig<ImageConfig> cfg) {
         return new ArrayList<>();
-    };
+    }
 
 
     @Override
