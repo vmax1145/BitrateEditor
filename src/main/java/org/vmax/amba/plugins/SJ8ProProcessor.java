@@ -25,6 +25,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class SJ8ProProcessor implements PreProcessor, PostProcessor {
     FirmwareConfig cfg;
@@ -116,8 +117,34 @@ public class SJ8ProProcessor implements PreProcessor, PostProcessor {
 
     protected void preprocessConfig(FirmwareConfig cfg, byte[] fw) throws VerifyException {
 
+        if(cfg instanceof MultiFilesTablesConfig) {
+            MultiFilesTablesConfig<ImageConfig> config = (MultiFilesTablesConfig<ImageConfig>) cfg;
+            for(String fileName : config.getFilenames()) {
+                for(int i = 0 ; i<config.getTablesPerFile() ; i++) {
+                    TableDataConfig tableDataConfig = new TableDataConfig();
+                    NamedRowsConfig rowsConfig = new NamedRowsConfig();
+                    tableDataConfig.setLabel(fileName+"/"+i);
+                    SectionAddr sa = new SectionAddr();
+                    sa.setSectionNum(config.getSectionNum());
+                    sa.setFileName(fileName);
+                    sa.setFindHex(config.getFindHex());
+                    sa.setFindSkip(config.getFindSkip());
+                    sa.setRelAddr(config.getRelAddr() + i * config.getTableLen());
+
+
+                    rowsConfig.setFirstRowLocation(sa);
+                    rowsConfig.setRowNames(config.getRowNames());
+                    rowsConfig.setRowLenth(config.getRowLength());
+
+                    tableDataConfig.setRowsConfig(rowsConfig);
+                    tableDataConfig.setColumnsConfig( config.getColumnsConfig().stream().map(ValueConfig::new).collect(Collectors.toList()) );
+                    config.getTableDataConfigs().add(tableDataConfig);
+                }
+            }
+        }
+
         if(cfg instanceof GenericTableDataConfig) {
-            GenericTableDataConfig<?> config = (GenericTableDataConfig) cfg;
+            GenericTableDataConfig<?> config = (GenericTableDataConfig<?>) cfg;
             for (TableDataConfig tc : config.getTableDataConfigs()) {
                 Integer addr = tc.getRowsConfig().getFirstRowAddr();
                 if(addr == null) {
@@ -195,6 +222,7 @@ public class SJ8ProProcessor implements PreProcessor, PostProcessor {
 
 
     }
+
 
     void doVerify() throws VerifyException {
         for(Verify v : cfg.getVerify()) {
