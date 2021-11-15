@@ -45,7 +45,6 @@ public class GenericJTable extends JTable implements GenericTab, PopupMenuListen
         ListSelectionModel rowSelectionModel = getSelectionModel();
         rowSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
-
         JMenuItem copyItem = popupMenu.add(new JMenuItem(new AbstractAction("Copy selection") {
             @Override
             public void actionPerformed(ActionEvent e) {

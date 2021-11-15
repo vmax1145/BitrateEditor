@@ -41,6 +41,11 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
         for(TableDataConfig tdcfg : this.cfg.getTableDataConfigs()) {
             GenericTableDataModel model = new GenericTableDataModel(tdcfg, fwBytes);
             GenericJTable editorPanel = new GenericJTable(this, tdcfg, model);
+            editorPanel.getSelectionModel().addListSelectionListener(e->{
+                this.tableRowSeleted(
+                        editorPanel,
+                        ((DefaultListSelectionModel)e.getSource()));
+            });
             tabs.add(tdcfg.getLabel(), new JScrollPane(editorPanel));
             allTabs.add(editorPanel);
         }
@@ -91,6 +96,7 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
         }
 
     }
+
 
     private FileListTab createFileListTab(FileListConfig fcfg, byte[] fwBytes) {
         return new FileListTab(this,fcfg,fwBytes);
@@ -178,4 +184,9 @@ public class GenericTool extends FirmwareTool<GenericTableDataConfig> {
         });
         return ret;
     }
+
+    private void tableRowSeleted(GenericJTable editorPanel, DefaultListSelectionModel source) {
+        //do nothing
+    }
+
 }
