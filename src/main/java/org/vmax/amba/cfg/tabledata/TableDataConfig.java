@@ -14,4 +14,13 @@ public class TableDataConfig  {
     private String label;
     private NamedRowsConfig rowsConfig;
     private List<ValueConfig> columnsConfig = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "TableDataConfig{" +
+                "label='" + label + '\'' +
+                ", rowsConfig=" + rowsConfig +
+                ", columnsConfig=" + columnsConfig +
+                '}';
+    }
 }

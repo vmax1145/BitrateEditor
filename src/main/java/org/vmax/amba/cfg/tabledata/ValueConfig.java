@@ -37,4 +37,17 @@ public class ValueConfig {
         this.editable = copyFrom.editable;
     }
 
+    @Override
+    public String toString() {
+        return "ValueConfig{" +
+                "addrOffset=" + addrOffset +
+                ", location=" + location +
+                ", type=" + type +
+                ", range=" + range +
+                ", label='" + label + '\'' +
+                ", hex=" + hex +
+                ", editable=" + editable +
+                ", valuesMapping=" + valuesMapping +
+                '}';
+    }
 }

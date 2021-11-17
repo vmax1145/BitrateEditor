@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.vmax.amba.bitrate.VerifyException;
 import org.vmax.amba.cfg.*;
+import org.vmax.amba.cfg.tabledata.ValueConfig;
 import org.vmax.amba.fwsource.FwDestination;
 import org.vmax.amba.fwsource.FwSource;
 import org.vmax.amba.fwsource.FwSourceFactory;
@@ -223,7 +224,7 @@ public class Utils {
         bb.order(ByteOrder.LITTLE_ENDIAN);
         return bb.getShort() & 0xffffL;
     }
-    public static Object readShort(byte[] fw, int addr) {
+    public static long readShort(byte[] fw, int addr) {
         ByteBuffer bb = ByteBuffer.wrap(fw, addr, Short.BYTES);
         bb.order(ByteOrder.LITTLE_ENDIAN);
         return bb.getShort();
@@ -419,4 +420,23 @@ public class Utils {
         return s;
     }
 
+    public static long readByValueConfigAsLong(ValueConfig vc, byte[] bytes, int baseAddr) {
+        int addr = baseAddr+vc.getAddrOffset();
+        switch (vc.getType()) {
+            case UInt32:
+                return readUInt(bytes, addr);
+            case Int32:
+                return (int)Utils.readUInt(bytes, addr);
+            case Int16:
+                return Utils.readUShort(bytes, addr);
+            case UInt16:
+                return Utils.readUShort(bytes, addr);
+            case Byte:
+                return (long)(bytes[addr]);
+            case UByte:
+                return Utils.readUByte(bytes, addr);
+            default:
+                throw new RuntimeException(vc.getType()+ " can't be read as long" );
+        }
+    }
 }

@@ -18,50 +18,49 @@ import java.io.IOException;
 import java.util.Arrays;
 
 
-public class FilterPreviewFrame extends JFrame {
+public class FilterEditorPanel extends JPanel {
     public static final int KERNEL_SIZE = 7;
     public static final float NORMALIZATION =  256.0f;
     private int[] ZOOMS = {50,100,200,400,800};
+    private JLabel zoomLabel, titleLabel;
     private JLabel imageLabel;
     private JLabel imageLabel2;
     private BufferedImage image;
     private JScrollPane scrollPane1, scrollPane2;
     private int zoom = 1;
     private int[] rowData;
+    private FilterTableModel tableModel;
 
-    public FilterPreviewFrame(String title, String inputImage) throws HeadlessException, IOException {
-        super(title);
+    public FilterEditorPanel(String inputImage) throws HeadlessException, IOException {
         rowData = new int[KERNEL_SIZE*KERNEL_SIZE/2+1];
         Arrays.fill(rowData,0);
         image = ImageIO.read(new File(inputImage));
-        Panel p = new Panel();
-        p.setLayout(new BorderLayout());
+
+        setLayout(new BorderLayout());
+        titleLabel = new JLabel();
+        add(titleLabel,BorderLayout.NORTH);
+
         scrollPane1 = new JScrollPane();
         scrollPane1.setPreferredSize(new Dimension(800,500));
         scrollPane2 = new JScrollPane();
         scrollPane2.setPreferredSize(new Dimension(800,500));
 
-        p.add(scrollPane1, BorderLayout.WEST);
-        p.add(scrollPane2, BorderLayout.EAST);
-
-        getContentPane().add(p);
+        add(scrollPane1, BorderLayout.WEST);
+        add(scrollPane2, BorderLayout.EAST);
 
         scrollPane1.getViewport().addChangeListener(this::portChange);
         scrollPane2.getViewport().addChangeListener(this::portChange);
 
-
-        ImageIcon imageIcon = new ImageIcon(image);
-        imageLabel = new JLabel( imageIcon );
+        imageLabel = new JLabel( new ImageIcon(image) );
         scrollPane1.setViewportView(imageLabel);
         imageLabel.addMouseWheelListener(this::onMouseWheelScroll);
 
-        imageIcon = new ImageIcon();
-        imageLabel2 = new JLabel(imageIcon);
+        imageLabel2 = new JLabel(new ImageIcon());
         scrollPane2.setViewportView(imageLabel2);
         imageLabel2.addMouseWheelListener(this::onMouseWheelScroll);
 
         JPanel edit = new JPanel();
-        AbstractTableModel tableModel = new FilterTableModel();
+        tableModel = new FilterTableModel();
         JTable rowTable = new JTable(tableModel) {
             @Override
             public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
@@ -83,20 +82,17 @@ public class FilterPreviewFrame extends JFrame {
             resizeImage();
         });
         edit.add(rowTable);
-        p.add(edit,BorderLayout.SOUTH);
+        add(edit,BorderLayout.SOUTH);
 
         JPanel calc = new JPanel();
-        calc.setPreferredSize(new Dimension(600,200));
+        calc.setPreferredSize(new Dimension(800,200));
         JTextField kField = new JTextField("255",5);
-
-
         JTextField sigmaField = new JTextField("1.0", 5);
-
-
         JLabel sigma2label = new JLabel("  Sigma 2:");
         calc.add(sigma2label);
         JTextField sigma2Field = new JTextField("2.0", 5);
-
+        sigma2label.setEnabled(false);
+        sigma2Field.setEnabled(false);
 
         JComboBox filterSelect = new JComboBox(
                 new String[]{"Laplacian of Gaussian","Difference of Gaussian"}
@@ -109,7 +105,8 @@ public class FilterPreviewFrame extends JFrame {
             }
         });
 
-
+        zoomLabel = new JLabel("zoom=100%");
+        calc.add(zoomLabel);
         calc.add(filterSelect);
         calc.add(new JLabel("  K:"));
         calc.add(kField);
@@ -117,8 +114,6 @@ public class FilterPreviewFrame extends JFrame {
         calc.add(sigmaField);
         calc.add(sigma2label);
         calc.add(sigma2Field);
-
-
 
         calc.add(new JButton(new AbstractAction("Calculate") {
             @Override
@@ -169,6 +164,8 @@ public class FilterPreviewFrame extends JFrame {
                 tableModel.fireTableDataChanged();
             }
         }));
+
+
     }
 
     private void calulateDoGTable(double sigma1, double sigma2, double k) {
@@ -248,10 +245,11 @@ public class FilterPreviewFrame extends JFrame {
         temp = Math.max(temp, 0);
         if (temp != zoom) {
             zoom = temp;
-            setTitle(ZOOMS[zoom]+"%");
+            zoomLabel.setText("zoom="+ZOOMS[zoom]+"%");
             resizeImage();
         }
     }
+
 
     public void portChange(ChangeEvent e) {
         JScrollPane src, dst;
@@ -269,6 +267,7 @@ public class FilterPreviewFrame extends JFrame {
 
     public void setRow(int[] row) {
         System.arraycopy(row,0,this.rowData,0,this.rowData.length);
+        tableModel.fireTableDataChanged();
         resizeImage();
     }
 
@@ -277,13 +276,19 @@ public class FilterPreviewFrame extends JFrame {
         System.arraycopy(rowData,0,dest,0,this.rowData.length);
         return dest;
     }
+    private void updateTitle() {
+        //todo
+    }
 
 
     public static void main(String[] args) throws IOException {
-        FilterPreviewFrame f = new FilterPreviewFrame("hi", "samples/cat.jpeg");
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.pack();
-        f.setVisible(true);
+        JFrame fr = new JFrame("hi");
+        fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        FilterEditorPanel f = new FilterEditorPanel("samples/cat.jpeg");
+        fr.getContentPane().add(f);
+        fr.pack();
+        fr.setVisible(true);
 
         int[] data = new int[] {
                  0, -3, -9,-13, -9, -3,  0,

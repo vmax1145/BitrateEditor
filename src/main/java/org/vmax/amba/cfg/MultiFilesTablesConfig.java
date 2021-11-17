@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class MultiFilesTablesConfig<I> extends GenericTableDataConfig<I> {
+public class MultiFilesTablesConfig extends GenericTableDataConfig<ImageConfig> {
     Integer sectionNum;
     private List<String> filenames = new ArrayList<>();
     private int  tableLen;

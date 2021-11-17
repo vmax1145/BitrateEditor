@@ -16,4 +16,14 @@ public class NamedRowsConfig {
     private Integer firstRowAddr;
     private int rowLenth;
     private List<String> rowNames = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "NamedRowsConfig{" +
+                "firstRowLocation=" + firstRowLocation +
+                ", firstRowAddr=" + firstRowAddr +
+                ", rowLenth=" + rowLenth +
+                ", rowNames=" + rowNames +
+                '}';
+    }
 }

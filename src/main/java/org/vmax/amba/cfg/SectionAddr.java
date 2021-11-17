@@ -24,4 +24,16 @@ public class SectionAddr {
         this.findSkip = location.findSkip;
         this.relAddr = location.relAddr;
     }
+
+    @Override
+    public String toString() {
+        return "SectionAddr{" +
+                "sectionNum=" + sectionNum +
+                ", fileName='" + fileName + '\'' +
+                ", findHex='" + findHex + '\'' +
+                ", findSkip=" + findSkip +
+                ", relAddr=" + relAddr +
+                '}';
+    }
+
 }

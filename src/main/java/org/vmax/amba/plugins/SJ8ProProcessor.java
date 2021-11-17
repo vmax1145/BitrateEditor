@@ -118,7 +118,7 @@ public class SJ8ProProcessor implements PreProcessor, PostProcessor {
     protected void preprocessConfig(FirmwareConfig cfg, byte[] fw) throws VerifyException {
 
         if(cfg instanceof MultiFilesTablesConfig) {
-            MultiFilesTablesConfig<ImageConfig> config = (MultiFilesTablesConfig<ImageConfig>) cfg;
+            MultiFilesTablesConfig config = (MultiFilesTablesConfig) cfg;
             for(String fileName : config.getFilenames()) {
                 for(int i = 0 ; i<config.getTablesPerFile() ; i++) {
                     TableDataConfig tableDataConfig = new TableDataConfig();
