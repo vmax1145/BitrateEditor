@@ -3,7 +3,6 @@ package org.vmax.amba.convolution;
 import org.vmax.amba.FirmwareTool;
 import org.vmax.amba.Utils;
 import org.vmax.amba.cfg.FirmwareConfig;
-import org.vmax.amba.cfg.GenericTableDataConfig;
 import org.vmax.amba.cfg.MultiFilesTablesConfig;
 import org.vmax.amba.cfg.tabledata.TableDataConfig;
 import org.vmax.amba.cfg.tabledata.ValueConfig;
@@ -11,12 +10,11 @@ import org.vmax.amba.generic.ExportAction;
 import org.vmax.amba.generic.ImportAction;
 
 import javax.swing.*;
+import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -65,12 +63,10 @@ public class ConvolutionFilterTool extends FirmwareTool<MultiFilesTablesConfig> 
         tableNumberSelect.addActionListener(l);
         rowSelect.addActionListener(l);
 
-//        p.add(new JButton(new AbstractAction("test") {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                rowSelectionChanged(filesSelect.getSelectedIndex(), tableNumberSelect.getSelectedIndex(),rowSelect.getSelectedIndex());
-//            }
-//        }));
+        rowSelectionChanged(filesSelect.getSelectedIndex(), tableNumberSelect.getSelectedIndex(),rowSelect.getSelectedIndex());
+
+        TableModel applyTableModel = new ApplyTableModel(cfg.getFilenames(),cfg.getTablesPerFile(),cfg.getRowNames().size());
+        
     }
 
     private void rowSelectionChanged(int fileN, int tableN, int rowN) {
@@ -106,7 +102,13 @@ public class ConvolutionFilterTool extends FirmwareTool<MultiFilesTablesConfig> 
 
     @Override
     public void updateFW() {
-
+        try {
+            Utils.saveFirmware(cfg, fw);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this,"Oooops! See error stream for details");
+        }
     }
 
     @Override
