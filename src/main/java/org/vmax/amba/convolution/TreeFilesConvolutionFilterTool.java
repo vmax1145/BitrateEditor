@@ -6,23 +6,17 @@ import org.vmax.amba.FirmwareTool;
 import org.vmax.amba.Utils;
 import org.vmax.amba.cfg.FirmwareConfig;
 import org.vmax.amba.cfg.MultiFilesTablesConfig;
-import org.vmax.amba.cfg.tabledata.TableDataConfig;
 import org.vmax.amba.cfg.tabledata.ValueConfig;
 import org.vmax.amba.generic.ExportAction;
 import org.vmax.amba.generic.ImportAction;
 import org.vmax.amba.generic.MultiFileTreeTableModel;
 
 import javax.swing.*;
-import javax.swing.event.PopupMenuEvent;
-import javax.swing.event.PopupMenuListener;
-import javax.swing.table.TableModel;
 import javax.swing.tree.TreePath;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -32,6 +26,7 @@ public class TreeFilesConvolutionFilterTool extends FirmwareTool<MultiFilesTable
     FilterEditorPanel editor;
     int popupOnRow = -1;
     int popupOnCol = -1;
+    TreePath popupOnPath = null;
 
     int[] rowClipboard = null;
     int[][] tableClipboard = null;
@@ -40,7 +35,7 @@ public class TreeFilesConvolutionFilterTool extends FirmwareTool<MultiFilesTable
     public void init(FirmwareConfig config, byte[] fwBytes) throws Exception {
         this.cfg = (MultiFilesTablesConfig)config;
         this.fw = fwBytes;
-        editor = new FilterEditorPanel("samples/no_sharp.png");
+        editor = new FilterEditorPanel("samples/dubai.jpg");
 
         TreeTableModel treeTableModel = MultiFileTreeTableModel.create(cfg, fwBytes);
         JTreeTable treeTable = new JTreeTable(treeTableModel);
@@ -58,14 +53,14 @@ public class TreeFilesConvolutionFilterTool extends FirmwareTool<MultiFilesTable
         JMenuItem copyRowItem = new JMenuItem(new AbstractAction("Copy row") {
             @Override
             public void actionPerformed(ActionEvent e) {
-                copyRow(treeTable, popupOnRow);
+                copyRow(treeTableModel, popupOnPath);
             }
         });
         popupMenu.add(copyRowItem);
         JMenuItem pasteRowItem = new JMenuItem(new AbstractAction("Paste row") {
             @Override
             public void actionPerformed(ActionEvent e) {
-                pasteRow(treeTable,treeTableModel,popupOnRow);
+                pasteRow(treeTable,treeTableModel,popupOnPath);
             }
         });
         popupMenu.add(pasteRowItem);
@@ -74,14 +69,14 @@ public class TreeFilesConvolutionFilterTool extends FirmwareTool<MultiFilesTable
         JMenuItem copyTableItem = new JMenuItem(new AbstractAction("Copy table") {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //copyTable(treeTable, treeTableModel, popupOnRow);
+                copyTable(treeTableModel,popupOnPath);
             }
         });
         popupMenu.add(copyTableItem);
         JMenuItem pasteTableItem = new JMenuItem(new AbstractAction("Paste table") {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //pasteTable(treeTable,treeTableModel,popupOnRow);
+                pasteTable(treeTable, treeTableModel,popupOnPath);
             }
         });
         popupMenu.add(pasteTableItem);
@@ -122,8 +117,12 @@ public class TreeFilesConvolutionFilterTool extends FirmwareTool<MultiFilesTable
                         popupOnCol = col;
                     }
                     TreePath p = treeTable.getTree().getPathForLocation(e.getX(),e.getY());
-
-                    Object last = p==null ? null : p.getLastPathComponent();
+                    if(p==null) {
+                        return;
+                    }
+                    popupOnPath = p;
+                    System.out.println(p.toString());
+                    Object last = p.getLastPathComponent();
                     if(last instanceof MultiFileTreeTableModel.RowNode) {
                         copyRowItem.setEnabled(true);
                         pasteRowItem.setEnabled(rowClipboard!=null);
@@ -205,25 +204,79 @@ public class TreeFilesConvolutionFilterTool extends FirmwareTool<MultiFilesTable
     }
 
 
-    private void copyRow(JTreeTable treeTable, int popupOnRow) {
+    private void copyTable(TreeTableModel model, TreePath path) {
+        this.tableClipboard = null;
+        if(path == null) return;
+        while (path!=null) {
+            Object last = path.getLastPathComponent();
+            int[][] ret = new int[cfg.getRowNames().size()][];
+            if(last instanceof MultiFileTreeTableModel.TableNode) {
+                MultiFileTreeTableModel.TableNode tn = (MultiFileTreeTableModel.TableNode) last;
+                for(int i=0; i< tn.getRows().size(); i++) {
+                    MultiFileTreeTableModel.RowNode rn = tn.getRows().get(i);
+                    int[] rowData = new int[rn.getValueConfigs().size()];
+                    for(int j=0; j< rn.getValueConfigs().size();j++) {
+                        rowData[j] = ((Long) model.getValueAt(rn,j+1)).intValue();
+                    }
+                    ret[i]=rowData;
+                }
+                this.tableClipboard = ret;
+                return;
+            }
+            path = path.getParentPath();
+        }
+    }
+
+    private void pasteTable(JTreeTable treeTable, TreeTableModel model, TreePath path) {
+        if(path == null || tableClipboard == null ) return;
+        while (path!=null) {
+            Object last = path.getLastPathComponent();
+            int[][] ret = new int[cfg.getRowNames().size()][];
+            if(last instanceof MultiFileTreeTableModel.TableNode) {
+                MultiFileTreeTableModel.TableNode tn = (MultiFileTreeTableModel.TableNode) last;
+                for(int i=0; i< tn.getRows().size(); i++) {
+                    MultiFileTreeTableModel.RowNode rn = tn.getRows().get(i);
+                    int[] rowData = this.tableClipboard[i];
+                    for(int j=0; j< rn.getValueConfigs().size();j++) {
+                         model.setValueAt((long)rowData[j], rn,j+1);
+                    }
+                    ret[i]=rowData;
+                }
+                this.tableClipboard = ret;
+                treeTable.updateUI();
+                return;
+            }
+            path = path.getParentPath();
+        }
+    }
+
+
+    private void copyRow(TreeTableModel model, TreePath popupOnPath) {
         this.rowClipboard = null;
-        if(popupOnRow<0) return;
+        if(popupOnPath==null) {
+            return;
+        }
+        Object node = popupOnPath.getLastPathComponent();
+        if(!(node instanceof MultiFileTreeTableModel.RowNode)) return;
+
         int n = cfg.getColumnsConfig().size();
         int[] vals = new int[n];
-
         for(int i =0;i<n; i++) {
-            Integer v = ((Long) treeTable.getValueAt(popupOnRow, i + 1)).intValue();
+            Integer v = ((Long) model.getValueAt(node, i + 1)).intValue();
             vals[i] = v;
         }
         this.rowClipboard = vals;
     }
 
-    private void pasteRow(JTreeTable treeTable, TreeTableModel model, int popupOnRow) {
-        if(this.rowClipboard!=null) {
-            for(int i=0;i<rowClipboard.length;i++) {
-                treeTable.getModel().setValueAt((long)rowClipboard[i],popupOnRow,i+1);
-            }
+    private void pasteRow(JTreeTable treeTable, TreeTableModel model, TreePath path) {
+        if(path == null || this.rowClipboard==null) return;
+        Object o = path.getLastPathComponent();
+        if(!(o instanceof MultiFileTreeTableModel.RowNode)) return;
+
+        for(int i=0;i<rowClipboard.length;i++) {
+            model.setValueAt((long)rowClipboard[i],o,i+1);
         }
+
         treeTable.updateUI();
     }
 

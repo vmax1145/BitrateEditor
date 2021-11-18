@@ -5,6 +5,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseWheelEvent;
@@ -79,6 +80,12 @@ public class FilterEditorPanel extends JPanel {
                 return comp;
             }
         };
+        TableColumnModel cols = rowTable.getColumnModel();
+        for(int i=0;i<cols.getColumnCount();i++) {
+            cols.getColumn(i).setPreferredWidth(40);
+        }
+
+
         tableModel.addTableModelListener(e->{
             resizeImage();
         });
