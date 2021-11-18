@@ -27,7 +27,7 @@ public class ConvolutionFilterTool extends FirmwareTool<MultiFilesTablesConfig> 
     public void init(FirmwareConfig config, byte[] fwBytes) throws Exception {
         this.cfg = (MultiFilesTablesConfig)config;
         this.fw = fwBytes;
-        editor = new FilterEditorPanel("samples/cat.jpeg");
+        editor = new FilterEditorPanel("samples/no_sharp.png");
 
         List<String> files = cfg.getFilenames();
         JComboBox<String> filesSelect = new JComboBox<>(files.toArray(new String[0]));
