@@ -122,7 +122,8 @@ public class TreeFilesConvolutionFilterTool extends FirmwareTool<MultiFilesTable
                         popupOnCol = col;
                     }
                     TreePath p = treeTable.getTree().getPathForLocation(e.getX(),e.getY());
-                    Object last = p.getLastPathComponent();
+
+                    Object last = p==null ? null : p.getLastPathComponent();
                     if(last instanceof MultiFileTreeTableModel.RowNode) {
                         copyRowItem.setEnabled(true);
                         pasteRowItem.setEnabled(rowClipboard!=null);

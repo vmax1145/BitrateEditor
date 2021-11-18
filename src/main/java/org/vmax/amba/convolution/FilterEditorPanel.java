@@ -41,9 +41,9 @@ public class FilterEditorPanel extends JPanel {
         add(titleLabel,BorderLayout.NORTH);
 
         scrollPane1 = new JScrollPane();
-        scrollPane1.setPreferredSize(new Dimension(800,500));
+        scrollPane1.setPreferredSize(new Dimension(700,500));
         scrollPane2 = new JScrollPane();
-        scrollPane2.setPreferredSize(new Dimension(800,500));
+        scrollPane2.setPreferredSize(new Dimension(700,500));
 
         add(scrollPane1, BorderLayout.WEST);
         add(scrollPane2, BorderLayout.EAST);
@@ -60,6 +60,7 @@ public class FilterEditorPanel extends JPanel {
         imageLabel2.addMouseWheelListener(this::onMouseWheelScroll);
 
         JPanel edit = new JPanel();
+
         tableModel = new FilterTableModel();
         JTable rowTable = new JTable(tableModel) {
             @Override
@@ -82,14 +83,13 @@ public class FilterEditorPanel extends JPanel {
             resizeImage();
         });
         edit.add(rowTable);
-        add(edit,BorderLayout.SOUTH);
+        add(edit,BorderLayout.CENTER);
 
         JPanel calc = new JPanel();
-        calc.setPreferredSize(new Dimension(800,200));
+        calc.setLayout(new GridLayout(0,2));
         JTextField kField = new JTextField("255",5);
         JTextField sigmaField = new JTextField("1.0", 5);
-        JLabel sigma2label = new JLabel("  Sigma 2:");
-        calc.add(sigma2label);
+        JLabel sigma2label = new JLabel("  Sigma 2:",SwingConstants.RIGHT);
         JTextField sigma2Field = new JTextField("2.0", 5);
         sigma2label.setEnabled(false);
         sigma2Field.setEnabled(false);
@@ -105,12 +105,14 @@ public class FilterEditorPanel extends JPanel {
             }
         });
 
-        zoomLabel = new JLabel("zoom=100%");
+        zoomLabel = new JLabel("zoom=100%", SwingConstants.RIGHT );
         calc.add(zoomLabel);
+        calc.add(new JLabel());
+        calc.add(new JLabel("Filter type:",SwingConstants.RIGHT));
         calc.add(filterSelect);
-        calc.add(new JLabel("  K:"));
+        calc.add(new JLabel("  K:",SwingConstants.RIGHT));
         calc.add(kField);
-        calc.add(new JLabel("  Sigma 1:"));
+        calc.add(new JLabel("  Sigma 1:",SwingConstants.RIGHT));
         calc.add(sigmaField);
         calc.add(sigma2label);
         calc.add(sigma2Field);
@@ -154,7 +156,7 @@ public class FilterEditorPanel extends JPanel {
                 catch (Exception ex){}
             }
         }));
-        edit.add(calc);
+
 
         calc.add(new JButton(new AbstractAction("Clear") {
 
@@ -164,7 +166,7 @@ public class FilterEditorPanel extends JPanel {
                 tableModel.fireTableDataChanged();
             }
         }));
-
+        edit.add(calc);
 
     }
 
