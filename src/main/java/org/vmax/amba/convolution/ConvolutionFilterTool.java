@@ -65,7 +65,7 @@ public class ConvolutionFilterTool extends FirmwareTool<MultiFilesTablesConfig> 
 
         rowSelectionChanged(filesSelect.getSelectedIndex(), tableNumberSelect.getSelectedIndex(),rowSelect.getSelectedIndex());
 
-        TableModel applyTableModel = new ApplyTableModel(cfg.getFilenames(),cfg.getTablesPerFile(),cfg.getRowNames().size());
+
         
     }
 

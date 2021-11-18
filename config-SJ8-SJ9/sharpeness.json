@@ -1,7 +1,8 @@
 {
   "note": "SJ8Pro Sharpenes files",
   //"toolClass": "org.vmax.amba.generic.MultifileTablesTool",
-  "toolClass": "org.vmax.amba.convolution.ConvolutionFilterTool",
+  //"toolClass": "org.vmax.amba.convolution.ConvolutionFilterTool",
+  "toolClass": "org.vmax.amba.convolution.TreeFilesConvolutionFilterTool",
   "fwFileName": "SJ8_FWUPDATE.bin",
   "verify": [
     {
