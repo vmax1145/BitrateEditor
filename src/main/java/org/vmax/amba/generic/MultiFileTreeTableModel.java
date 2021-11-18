@@ -169,7 +169,7 @@ public class MultiFileTreeTableModel extends AbstractTreeTableModel {
     }
 
     @Getter
-    static class FileNode {
+    public static class FileNode {
         String name;
         List<TableNode> tables = new ArrayList<>();
         public String toString() {
