@@ -16,6 +16,7 @@ import javax.swing.*;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 import javax.swing.table.TableModel;
+import javax.swing.tree.TreePath;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,8 +30,8 @@ public class TreeFilesConvolutionFilterTool extends FirmwareTool<MultiFilesTable
     private MultiFilesTablesConfig cfg;
     private byte[] fw;
     FilterEditorPanel editor;
-    int popupOnRow = 0;
-    int popupOnCol = 0;
+    int popupOnRow = -1;
+    int popupOnCol = -1;
 
     @Override
     public void init(FirmwareConfig config, byte[] fwBytes) throws Exception {
@@ -40,9 +41,8 @@ public class TreeFilesConvolutionFilterTool extends FirmwareTool<MultiFilesTable
 
         TreeTableModel treeTableModel = MultiFileTreeTableModel.create(cfg, fwBytes);
         JTreeTable treeTable = new JTreeTable(treeTableModel);
-        ListSelectionModel listSelectionModel = treeTable.getSelectionModel();
+        treeTable.getColumnModel().getColumn(0).setPreferredWidth(350);
         JScrollPane treePanel = new JScrollPane(treeTable);
-
 
         JPanel p = new JPanel();
         p.setLayout(new BorderLayout());
@@ -52,16 +52,16 @@ public class TreeFilesConvolutionFilterTool extends FirmwareTool<MultiFilesTable
 
 
         JPopupMenu popupMenu = new JPopupMenu();
-        JMenuItem toPreview = new JMenuItem(new AbstractAction("copy to Preview") {
+        JMenuItem toPreview = new JMenuItem(new AbstractAction("copy row to Preview") {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                copyToPreview(treeTable, popupOnRow);
             }
         });
-        JMenuItem toFirmware = new JMenuItem(new AbstractAction("update from Preview") {
+        JMenuItem toFirmware = new JMenuItem(new AbstractAction("update selected rows from Preview") {
             @Override
             public void actionPerformed(ActionEvent e) {
-                e.getSource();
+                copyToFirmware(treeTable,treeTableModel, popupOnRow);
             }
         });
 
@@ -93,6 +93,35 @@ public class TreeFilesConvolutionFilterTool extends FirmwareTool<MultiFilesTable
 
     }
 
+    private void copyToFirmware(JTreeTable treeTable, TreeTableModel treeTableModel, int popupOnRow) {
+        TreePath[] paths = treeTable.getTree().getSelectionPaths();
+        if(paths!=null) {
+            int[] vals = editor.getRow();
+            for (TreePath p : paths) {
+                if(p.getLastPathComponent() instanceof MultiFileTreeTableModel.RowNode) {
+                    MultiFileTreeTableModel.RowNode rn = (MultiFileTreeTableModel.RowNode) p.getLastPathComponent();
+                    int inx=0;
+                    for(ValueConfig vc : rn.getValueConfigs()) {
+                        treeTableModel.setValueAt((long)(vals[inx]),p.getLastPathComponent(),inx+1);
+                        inx++;
+                    }
+                }
+            }
+        }
+        treeTable.updateUI();
+    }
+
+    private void copyToPreview(JTreeTable treeTable, int popupOnRow) {
+        if(popupOnRow<0) return;
+        int n = cfg.getColumnsConfig().size();
+        int[] vals = new int[n];
+
+        for(int i =0;i<n; i++) {
+            Integer v = ((Long) treeTable.getValueAt(popupOnRow, i + 1)).intValue();
+            vals[i] = v;
+        }
+        editor.setRow(vals);
+    }
 
 
     @Override

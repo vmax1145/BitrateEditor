@@ -2,6 +2,7 @@ package org.vmax.amba.generic;
 
 import de.javagl.treetable.AbstractTreeTableModel;
 import de.javagl.treetable.TreeTableModel;
+import lombok.Getter;
 import org.vmax.amba.Utils;
 import org.vmax.amba.cfg.MultiFilesTablesConfig;
 import org.vmax.amba.cfg.tabledata.NamedRowsConfig;
@@ -34,7 +35,7 @@ public class MultiFileTreeTableModel extends AbstractTreeTableModel {
                     rn.name = cfg.getRowNames().get(j);
                     rn.addr = namedRowsConfig.getFirstRowAddr()+cfg.getRowLength()*j;
                     rn.len  = cfg.getRowLength();
-                    rn.vc = cfg.getColumnsConfig();
+                    rn.valueConfigs = cfg.getColumnsConfig();
                     tn.rows.add(rn);
                 }
             }
@@ -71,7 +72,7 @@ public class MultiFileTreeTableModel extends AbstractTreeTableModel {
     public Object getValueAt(Object o, int column) {
         if(o instanceof RowNode && column > 0 ) {
             int inx = column-1;
-            ValueConfig vc = ((RowNode) o).vc.get(inx);
+            ValueConfig vc = ((RowNode) o).valueConfigs.get(inx);
             int addrOffset = vc.getAddrOffset();
             switch (vc.getType()) {
                 case Int16:
@@ -135,7 +136,7 @@ public class MultiFileTreeTableModel extends AbstractTreeTableModel {
         if(o instanceof RowNode && column > 0 ) {
             Long v = (Long) aValue;
             int inx = column-1;
-            ValueConfig vc = ((RowNode) o).vc.get(inx);
+            ValueConfig vc = ((RowNode) o).valueConfigs.get(inx);
             int addrOffset = vc.getAddrOffset();
             switch (vc.getType()) {
                 case Int16:
@@ -167,6 +168,7 @@ public class MultiFileTreeTableModel extends AbstractTreeTableModel {
         }
     }
 
+    @Getter
     static class FileNode {
         String name;
         List<TableNode> tables = new ArrayList<>();
@@ -175,7 +177,8 @@ public class MultiFileTreeTableModel extends AbstractTreeTableModel {
         }
     }
 
-    static class TableNode {
+    @Getter
+    public static class TableNode {
         String name;
         List<RowNode> rows = new ArrayList<>();
         public String toString() {
@@ -184,11 +187,12 @@ public class MultiFileTreeTableModel extends AbstractTreeTableModel {
 
     }
 
-    static class RowNode {
+    @Getter
+    public static class RowNode {
         String name;
         int addr;
         int len;
-        List<ValueConfig> vc;
+        List<ValueConfig> valueConfigs;
         public String toString() {
             return name;
         }
