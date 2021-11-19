@@ -1,11 +1,8 @@
 package org.vmax.amba.convolution;
 
-import org.vmax.amba.fwsource.FileFwSource;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
-import javax.swing.filechooser.FileFilter;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
@@ -20,7 +17,6 @@ import java.awt.image.Kernel;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Locale;
 
 
 public class FilterEditorPanel extends JPanel {
@@ -46,12 +42,12 @@ public class FilterEditorPanel extends JPanel {
         add(titleLabel,BorderLayout.NORTH);
 
         scrollPane1 = new JScrollPane();
-        scrollPane1.setPreferredSize(new Dimension(700,500));
+        scrollPane1.setPreferredSize(new Dimension(500,500));
         scrollPane2 = new JScrollPane();
-        scrollPane2.setPreferredSize(new Dimension(700,500));
+        scrollPane2.setPreferredSize(new Dimension(500,500));
 
-        add(scrollPane1, BorderLayout.WEST);
-        add(scrollPane2, BorderLayout.EAST);
+        //add(scrollPane1, BorderLayout.WEST);
+        //add(scrollPane2, BorderLayout.EAST);
 
         scrollPane1.getViewport().addChangeListener(this::portChange);
         scrollPane2.getViewport().addChangeListener(this::portChange);
@@ -65,7 +61,8 @@ public class FilterEditorPanel extends JPanel {
         imageLabel2.addMouseWheelListener(this::onMouseWheelScroll);
 
         JPanel edit = new JPanel();
-
+        edit.setMinimumSize(new Dimension(300,300));
+        edit.setPreferredSize(new Dimension(300,300));
         tableModel = new FilterTableModel();
         JTable rowTable = new JTable(tableModel) {
             @Override
@@ -94,7 +91,13 @@ public class FilterEditorPanel extends JPanel {
             resizeImage();
         });
         edit.add(rowTable);
-        add(edit,BorderLayout.CENTER);
+
+        JPanel bottom = new JPanel();
+        bottom.setLayout(new BoxLayout(bottom,BoxLayout.LINE_AXIS));
+        bottom.add(scrollPane1);
+        bottom.add(edit);
+        bottom.add(scrollPane2);
+        add(bottom,BorderLayout.SOUTH);
 
         JPanel calc = new JPanel();
         calc.setLayout(new GridLayout(0,2));
