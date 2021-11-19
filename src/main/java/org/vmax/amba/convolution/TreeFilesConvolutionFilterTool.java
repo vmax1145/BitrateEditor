@@ -112,10 +112,8 @@ public class TreeFilesConvolutionFilterTool extends FirmwareTool<MultiFilesTable
                 if (e.isPopupTrigger()) {
                     int row = treeTable.rowAtPoint(e.getPoint());
                     int col = treeTable.columnAtPoint(e.getPoint());
-                    if (treeTable.getValueAt(row,col)!=null) {
-                        popupOnRow = row;
-                        popupOnCol = col;
-                    }
+                    popupOnRow = row;
+                    popupOnCol = col;
                     TreePath p = treeTable.getTree().getPathForLocation(e.getX(),e.getY());
                     if(p==null) {
                         return;
