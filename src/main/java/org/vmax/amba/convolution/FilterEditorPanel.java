@@ -1,8 +1,11 @@
 package org.vmax.amba.convolution;
 
+import org.vmax.amba.fwsource.FileFwSource;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
+import javax.swing.filechooser.FileFilter;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
@@ -17,6 +20,7 @@ import java.awt.image.Kernel;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Locale;
 
 
 public class FilterEditorPanel extends JPanel {
@@ -113,6 +117,15 @@ public class FilterEditorPanel extends JPanel {
         });
 
         zoomLabel = new JLabel("zoom=100%", SwingConstants.RIGHT );
+        JLabel filenameLabel = new JLabel("    ");
+        calc.add(filenameLabel);
+        calc.add(new JButton(new AbstractAction("Select image") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                chooseImage();
+            }
+        }));
+
         calc.add(zoomLabel);
         calc.add(new JLabel());
         calc.add(new JLabel("Filter type:",SwingConstants.RIGHT));
@@ -123,6 +136,9 @@ public class FilterEditorPanel extends JPanel {
         calc.add(sigmaField);
         calc.add(sigma2label);
         calc.add(sigma2Field);
+        calc.add(new JLabel(" Make Square:",SwingConstants.RIGHT));
+        JCheckBox square = new JCheckBox();
+        calc.add(square);
 
         calc.add(new JButton(new AbstractAction("Calculate") {
             @Override
@@ -153,10 +169,10 @@ public class FilterEditorPanel extends JPanel {
                             sigma2Field.setBackground(Color.RED);
                             throw e;
                         }
-                        calulateDoGTable(sigma,sigma2, k);
+                        calulateDoGTable(sigma,sigma2, k, square.isSelected());
                     }
                     else {
-                        calulateLoGTable(sigma,k);
+                        calulateLoGTable(sigma,k, square.isSelected());
                     }
                     tableModel.fireTableDataChanged();
                 }
@@ -177,7 +193,29 @@ public class FilterEditorPanel extends JPanel {
 
     }
 
-    private void calulateDoGTable(double sigma1, double sigma2, double k) {
+    private void chooseImage() {
+        JFileChooser jfc = new JFileChooser(new File("."));
+        int returnValue = jfc.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = jfc.getSelectedFile();
+            if(selectedFile.exists()) {
+                try {
+                    BufferedImage img = ImageIO.read(selectedFile);
+                    setImage(img);
+                }
+                catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "error reading as image " + selectedFile.getName());
+                }
+            }
+        }
+    }
+
+    public void setImage(BufferedImage img) {
+        this.image = img;
+        resizeImage();
+    }
+
+    private void calulateDoGTable(double sigma1, double sigma2, double k, boolean square) {
         double twoSigmaSq = 2*sigma1*sigma1;
 
         int inx=0;
@@ -185,6 +223,12 @@ public class FilterEditorPanel extends JPanel {
         for(inx=0 ; inx<this.rowData.length-1;inx++) {
             int x = inx%KERNEL_SIZE - KERNEL_SIZE/2;
             int y = inx/KERNEL_SIZE - KERNEL_SIZE/2;
+            if(square) {
+                x=Math.abs(x);
+                y=Math.abs(y);
+                x=Math.max(x,y);
+                y=0;
+            }
             double g1 = gaussian(sigma1,x,y);
             double g2 = gaussian(sigma2,x,y);
             double v = k*(g1-g2);
@@ -202,7 +246,7 @@ public class FilterEditorPanel extends JPanel {
     }
 
 
-    private void calulateLoGTable(double sigma, double k) {
+    private void calulateLoGTable(double sigma, double k, boolean square) {
         double twoSigmaSq = 2*sigma*sigma;
 
         int inx=0;
@@ -210,6 +254,12 @@ public class FilterEditorPanel extends JPanel {
         for(inx=0 ; inx<this.rowData.length-1;inx++) {
                 int x = inx%KERNEL_SIZE - KERNEL_SIZE/2;
                 int y = inx/KERNEL_SIZE - KERNEL_SIZE/2;
+                if(square) {
+                    x=Math.abs(x);
+                    y=Math.abs(y);
+                    x=Math.max(x,y);
+                    y=0;
+                }
                 double a = (x * x + y * y) / twoSigmaSq;
                 double v = 4 * k / Math.PI / twoSigmaSq / twoSigmaSq * (1 - a) * Math.exp(-a);
                 int iv = (int) Math.round(v);
@@ -287,25 +337,6 @@ public class FilterEditorPanel extends JPanel {
     }
     private void updateTitle() {
         //todo
-    }
-
-
-    public static void main(String[] args) throws IOException {
-        JFrame fr = new JFrame("hi");
-        fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        FilterEditorPanel f = new FilterEditorPanel("samples/cat.jpeg");
-        fr.getContentPane().add(f);
-        fr.pack();
-        fr.setVisible(true);
-
-        int[] data = new int[] {
-                 0, -3, -9,-13, -9, -3,  0,
-                -3,-18,-40,-44,-40,-18, -3,
-                -9,-40,  0, 99,  0,-40, -9,
-               -13,-44, 99,320
-        };
-        f.setRow(data);
     }
 
 

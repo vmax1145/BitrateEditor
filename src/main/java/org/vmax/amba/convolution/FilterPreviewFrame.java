@@ -280,7 +280,7 @@ public class FilterPreviewFrame extends JFrame {
 
 
     public static void main(String[] args) throws IOException {
-        FilterPreviewFrame f = new FilterPreviewFrame("hi", "samples/cat.jpeg");
+        FilterPreviewFrame f = new FilterPreviewFrame("hi", "samples/cat.jpg");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.pack();
         f.setVisible(true);
