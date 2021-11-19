@@ -1,5 +1,5 @@
 {
-  "note": "SJ8Pro VIDEO Sharpenes tables",
+  "note": "SJ8Pro STILL Sharpenes tables",
   "toolClass": "org.vmax.amba.convolution.TreeFilesConvolutionFilterTool",
   "fwFileName": "SJ8_FWUPDATE.bin",
   "verify": [
@@ -18,14 +18,10 @@
   "showFileDialog": true,
   "sectionNum": 3,
   "filenames" : [
-     "adj_video_default_00_Imx377",
-     "adj_video_default_01_Imx377",
-     "adj_video_default_02_Imx377",
-     "adj_video_default_03_Imx377",
-     "adj_video_default_04_Imx377",
-     "adj_video_default_05_Imx377"
+    "adj_still_default_00_Imx377",
+    "adj_still_default_01_Imx377"
   ],
-  "relAddr": 94908,
+  "relAddr": 103732,
   "tablesPerFile" : 10,
   "tableLen": 450,
   "rowLength" : 50,
