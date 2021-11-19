@@ -1,5 +1,5 @@
 {
-  "note": "SJ8Pro STILL Sharpenes tables",
+  "note": "SJ8Pro HISO_STILL Sharpenes tables",
   "toolClass": "org.vmax.amba.convolution.TreeFilesConvolutionFilterTool",
   "fwFileName": "SJ8_FWUPDATE.bin",
   "verify": [
