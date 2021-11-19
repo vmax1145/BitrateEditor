@@ -1,1 +1,1 @@
-java -jar firmware-editor-tool-10.7-SNAPSHOT.jar config-SJ10\expo.json
+java -jar firmware-editor-tool-10.8-SNAPSHOT.jar config-SJ10\expo.json

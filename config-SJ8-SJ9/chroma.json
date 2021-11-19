@@ -3,7 +3,7 @@
   "toolClass" : "org.vmax.amba.tables.TablesTool",
   "fwFileName" : "SJ8_FWUPDATE.bin",
   "verify" : [
-    {"section" : 3, "files": ["adj_video_default_00_Imx377"]}
+    {"section" : 3, "files": ["adj_video_default_00_Imx377","adj_video_default_02_Imx377"]}
   ],
   "preProcessor" : {
     "className" : "org.vmax.amba.plugins.SJ8ProProcessor",
@@ -15,7 +15,7 @@
   },
   "showFileDialog" : true,
   "tableSets" : [ {
-    "label" : "4K30/255",
+    "label" : "4K[30]/255",
     "tables" : [ {
       "location" : {
         "sectionNum" : 3,
@@ -26,7 +26,7 @@
       "label" : "Red"
     } ]
   }, {
-    "label" : "4K30/128",
+    "label" : "4K[30]/128",
     "tables" : [ {
       "location" : {
         "sectionNum" : 3,
@@ -37,7 +37,7 @@
       "label" : "Red"
     } ]
   }, {
-    "label" : "4K30/0",
+    "label" : "4K[30]/0",
     "tables" : [ {
       "location" : {
         "sectionNum" : 3,
@@ -47,7 +47,61 @@
       "color" : "red",
       "label" : "Red"
     } ]
-  } ],
+  },
+
+
+
+
+
+
+
+
+    {
+      "label" : "1080u,1080[24-60],1440,2.7K,4Ku,4K[24] /255",
+      "tables" : [ {
+        "location" : {
+          "sectionNum" : 3,
+          "fileName" : "adj_video_default_02_Imx377",
+          "relAddr" : 29940
+        },
+        "color" : "red",
+        "label" : "Red"
+      } ]
+    }, {
+      "label" : "1080u,1080[24-60],1440,2.7K,4Ku,4K[24] /128",
+      "tables" : [ {
+        "location" : {
+          "sectionNum" : 3,
+          "fileName" : "adj_video_default_02_Imx377",
+          "relAddr" : 30196
+        },
+        "color" : "red",
+        "label" : "Red"
+      } ]
+    }, {
+      "label" : "1080u,1080[24-60],1440,2.7K,4Ku,4K[24] /0",
+      "tables" : [ {
+        "location" : {
+          "sectionNum" : 3,
+          "fileName" : "adj_video_default_02_Imx377",
+          "relAddr" : 30452
+        },
+        "color" : "red",
+        "label" : "Red"
+      } ]
+    }
+
+
+
+
+
+
+
+
+
+
+
+  ],
   "ncol" : 16,
   "nrow" : 8,
   "range" : {
