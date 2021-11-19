@@ -1,0 +1,156 @@
+{
+  "note": "SJ8Pro STILL Sharpenes tables",
+  "toolClass": "org.vmax.amba.convolution.TreeFilesConvolutionFilterTool",
+  "fwFileName": "SJ10_FWUPDATE.bin",
+  "verify": [
+    {
+      "section": 3
+    }
+  ],
+  "preProcessor": {
+    "className": "org.vmax.amba.plugins.SJ10ProProcessor",
+    "md5fileName": "SJ10_CHECK.ch"
+  },
+  "postProcessor": {
+    "className": "org.vmax.amba.plugins.SJ10ProProcessor",
+    "md5fileName": "SJ10_CHECK.ch"
+  },
+  "showFileDialog": true,
+  "sectionNum": 3,
+  "filenames" : [
+    "adj_still_default_00_Imx377",
+    "adj_still_default_01_Imx377"
+  ],
+  "relAddr": 103732,
+  "tablesPerFile" : 10,
+  "tableLen": 450,
+  "rowLength" : 50,
+  "rowNames" : ["Row0","Row1","Row2","Row3","Row4","Row5","Row6","Row7","Row8"], // 9 rows
+  "columnsConfig" : [
+    {
+      "addrOffset" : 0,
+      "type" : "Int16",
+      "label" : "col0"
+    },
+    {
+      "addrOffset" : 2,
+      "type" : "Int16",
+      "label" : "col1"
+    },
+    {
+      "addrOffset" : 4,
+      "type" : "Int16",
+      "label" : "col2"
+    },
+    {
+      "addrOffset" : 6,
+      "type" : "Int16",
+      "label" : "col3"
+    },
+    {
+      "addrOffset" : 8,
+      "type" : "Int16",
+      "label" : "col4"
+    },
+    {
+      "addrOffset" : 10,
+      "type" : "Int16",
+      "label" : "col5"
+    },
+    {
+      "addrOffset" : 12,
+      "type" : "Int16",
+      "label" : "col6"
+    },
+    {
+      "addrOffset" : 14,
+      "type" : "Int16",
+      "label" : "col7"
+    },
+    {
+      "addrOffset" : 16,
+      "type" : "Int16",
+      "label" : "col8"
+    },
+    {
+      "addrOffset" : 18,
+      "type" : "Int16",
+      "label" : "col9"
+    },
+    {
+      "addrOffset" : 20,
+      "type" : "Int16",
+      "label" : "col10"
+    },
+    {
+      "addrOffset" : 22,
+      "type" : "Int16",
+      "label" : "col11"
+    },
+    {
+      "addrOffset" : 24,
+      "type" : "Int16",
+      "label" : "col12"
+    },
+    {
+      "addrOffset" : 26,
+      "type" : "Int16",
+      "label" : "col13"
+    },
+    {
+      "addrOffset" : 28,
+      "type" : "Int16",
+      "label" : "col14"
+    },
+    {
+      "addrOffset" : 30,
+      "type" : "Int16",
+      "label" : "col15"
+    },
+    {
+      "addrOffset" : 32,
+      "type" : "Int16",
+      "label" : "col16"
+    },
+    {
+      "addrOffset" : 34,
+      "type" : "Int16",
+      "label" : "col17"
+    },
+    {
+      "addrOffset" : 36,
+      "type" : "Int16",
+      "label" : "col18"
+    },
+    {
+      "addrOffset" : 38,
+      "type" : "Int16",
+      "label" : "col19"
+    },
+    {
+      "addrOffset" : 40,
+      "type" : "Int16",
+      "label" : "col20"
+    },
+    {
+      "addrOffset" : 42,
+      "type" : "Int16",
+      "label" : "col21"
+    },
+    {
+      "addrOffset" : 44,
+      "type" : "Int16",
+      "label" : "col22"
+    },
+    {
+      "addrOffset" : 46,
+      "type" : "Int16",
+      "label" : "col23"
+    },
+    {
+      "addrOffset" : 48,
+      "type" : "Int16",
+      "label" : "col24"
+    }
+  ]
+}
