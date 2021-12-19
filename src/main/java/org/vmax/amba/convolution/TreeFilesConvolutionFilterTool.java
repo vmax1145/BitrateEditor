@@ -13,7 +13,6 @@ import org.vmax.amba.generic.MultiFileTreeTableModel;
 
 import javax.swing.*;
 import javax.swing.tree.TreePath;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -42,10 +41,9 @@ public class TreeFilesConvolutionFilterTool extends FirmwareTool<MultiFilesTable
         treeTable.getColumnModel().getColumn(0).setPreferredWidth(350);
         JScrollPane treePanel = new JScrollPane(treeTable);
 
-        JPanel p = new JPanel();
-        p.setLayout(new BorderLayout());
-        p.add(treePanel,BorderLayout.NORTH);
-        p.add(editor,BorderLayout.CENTER);
+        JSplitPane p = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+        p.add(treePanel);
+        p.add(editor);
         getContentPane().add(p);
 
 

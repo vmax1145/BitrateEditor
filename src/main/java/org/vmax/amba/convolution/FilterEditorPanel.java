@@ -24,10 +24,9 @@ public class FilterEditorPanel extends JPanel {
     public static final float NORMALIZATION =  256.0f;
     private int[] ZOOMS = {50,100,200,400,800};
     private JLabel zoomLabel, titleLabel;
-    private JLabel imageLabel;
+    private JLabel imageLabel1;
     private JLabel imageLabel2;
     private BufferedImage image;
-    private JScrollPane scrollPane1, scrollPane2;
     private int zoom = 1;
     private int[] rowData;
     private FilterTableModel tableModel;
@@ -37,33 +36,50 @@ public class FilterEditorPanel extends JPanel {
         Arrays.fill(rowData,0);
         image = ImageIO.read(new File(inputImage));
 
-        setLayout(new BorderLayout());
-        titleLabel = new JLabel();
-        add(titleLabel,BorderLayout.NORTH);
+        setLayout(new BoxLayout(this,BoxLayout.LINE_AXIS));
 
-        scrollPane1 = new JScrollPane();
-        scrollPane1.setPreferredSize(new Dimension(500,500));
-        scrollPane2 = new JScrollPane();
-        scrollPane2.setPreferredSize(new Dimension(500,500));
+        JScrollPane scrollPane1 = new JScrollPane();
+        JScrollPane scrollPane2 = new JScrollPane();
 
-        //add(scrollPane1, BorderLayout.WEST);
-        //add(scrollPane2, BorderLayout.EAST);
+        scrollPane1.setPreferredSize(new Dimension(500,550));
+        scrollPane2.setPreferredSize(new Dimension(500,550));
+//        scrollPane1.setMinimumSize(new Dimension(100,100));
+//        scrollPane2.setMinimumSize(new Dimension(100,100));
 
-        scrollPane1.getViewport().addChangeListener(this::portChange);
-        scrollPane2.getViewport().addChangeListener(this::portChange);
 
-        imageLabel = new JLabel( new ImageIcon(image) );
-        scrollPane1.setViewportView(imageLabel);
-        imageLabel.addMouseWheelListener(this::onMouseWheelScroll);
-
+        imageLabel1 = new JLabel( new ImageIcon(image) );
         imageLabel2 = new JLabel(new ImageIcon());
+
+        scrollPane1.setViewportView(imageLabel1);
         scrollPane2.setViewportView(imageLabel2);
+
+        imageLabel1.addMouseWheelListener(this::onMouseWheelScroll);
         imageLabel2.addMouseWheelListener(this::onMouseWheelScroll);
 
+        scrollPane1.getViewport().addChangeListener(e -> portChange(e,scrollPane1,scrollPane2));
+        scrollPane2.getViewport().addChangeListener(e -> portChange(e,scrollPane1,scrollPane2));
+
         JPanel edit = new JPanel();
-        edit.setMinimumSize(new Dimension(300,300));
-        edit.setPreferredSize(new Dimension(300,300));
+        edit.setMinimumSize(new Dimension(300,330));
+        edit.setPreferredSize(new Dimension(300,330));
         tableModel = new FilterTableModel();
+        JTable rowTable = createPreviewTable();
+        edit.add(rowTable);
+        JPanel calc = createCalcPanel();
+        edit.add(calc);
+
+        add(scrollPane1);
+        add(edit);
+        add(scrollPane2);
+
+
+
+
+
+    }
+
+
+    public JTable createPreviewTable() {
         JTable rowTable = new JTable(tableModel) {
             @Override
             public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
@@ -90,15 +106,11 @@ public class FilterEditorPanel extends JPanel {
         tableModel.addTableModelListener(e->{
             resizeImage();
         });
-        edit.add(rowTable);
+        return rowTable;
+    }
 
-        JPanel bottom = new JPanel();
-        bottom.setLayout(new BoxLayout(bottom,BoxLayout.LINE_AXIS));
-        bottom.add(scrollPane1);
-        bottom.add(edit);
-        bottom.add(scrollPane2);
-        add(bottom,BorderLayout.SOUTH);
 
+    public JPanel createCalcPanel() {
         JPanel calc = new JPanel();
         calc.setLayout(new GridLayout(0,2));
         JTextField kField = new JTextField("255",5);
@@ -146,54 +158,54 @@ public class FilterEditorPanel extends JPanel {
         calc.add(new JButton(new AbstractAction("Calculate") {
             @Override
             public void actionPerformed(ActionEvent event) {
-                try {
-                    int filter = filterSelect.getSelectedIndex();
-                    double sigma, sigma2;
-                    double k;
-                    try {
-                        k = Double.parseDouble(kField.getText());
-                        kField.setBackground(Color.WHITE);
-                    } catch (NumberFormatException e) {
-                        kField.setBackground(Color.RED);
-                        throw e;
-                    }
-                    try {
-                        sigma = Double.parseDouble(sigmaField.getText());
-                        sigmaField.setBackground(Color.WHITE);
-                    } catch (NumberFormatException e) {
-                        sigmaField.setBackground(Color.RED);
-                        throw e;
-                    }
-                    if(filter==1) {
-                        try {
-                            sigma2 = Double.parseDouble(sigma2Field.getText());
-                            sigma2Field.setBackground(Color.WHITE);
-                        } catch (NumberFormatException e) {
-                            sigma2Field.setBackground(Color.RED);
-                            throw e;
-                        }
-                        calulateDoGTable(sigma,sigma2, k, square.isSelected());
-                    }
-                    else {
-                        calulateLoGTable(sigma,k, square.isSelected());
-                    }
-                    tableModel.fireTableDataChanged();
-                }
-                catch (Exception ex){}
+                calculate(filterSelect, kField, sigmaField, sigma2Field, square);
             }
         }));
-
-
         calc.add(new JButton(new AbstractAction("Clear") {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 Arrays.fill(rowData,0);
                 tableModel.fireTableDataChanged();
             }
         }));
-        edit.add(calc);
+        return calc;
+    }
 
+    public void calculate(JComboBox filterSelect, JTextField kField, JTextField sigmaField, JTextField sigma2Field, JCheckBox square) {
+        try {
+            int filter = filterSelect.getSelectedIndex();
+            double sigma, sigma2;
+            double k;
+            try {
+                k = Double.parseDouble(kField.getText());
+                kField.setBackground(Color.WHITE);
+            } catch (NumberFormatException e) {
+                kField.setBackground(Color.RED);
+                throw e;
+            }
+            try {
+                sigma = Double.parseDouble(sigmaField.getText());
+                sigmaField.setBackground(Color.WHITE);
+            } catch (NumberFormatException e) {
+                sigmaField.setBackground(Color.RED);
+                throw e;
+            }
+            if(filter==1) {
+                try {
+                    sigma2 = Double.parseDouble(sigma2Field.getText());
+                    sigma2Field.setBackground(Color.WHITE);
+                } catch (NumberFormatException e) {
+                    sigma2Field.setBackground(Color.RED);
+                    throw e;
+                }
+                calulateDoGTable(sigma,sigma2, k, square.isSelected());
+            }
+            else {
+                calulateLoGTable(sigma,k, square.isSelected());
+            }
+            tableModel.fireTableDataChanged();
+        }
+        catch (Exception ex){}
     }
 
     private void chooseImage() {
@@ -279,7 +291,7 @@ public class FilterEditorPanel extends JPanel {
         at.scale(ZOOMS[zoom]/100.0, ZOOMS[zoom]/100.0);
         AffineTransformOp scaleOp = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
         BufferedImage after = scaleOp.filter(image,null);
-        imageLabel.setIcon(new ImageIcon(after));
+        imageLabel1.setIcon(new ImageIcon(after));
 
         Kernel kernel = convertRowToKernel();
 
@@ -313,15 +325,15 @@ public class FilterEditorPanel extends JPanel {
     }
 
 
-    public void portChange(ChangeEvent e) {
+    public void portChange(ChangeEvent e, JScrollPane scrollPane1, JScrollPane scrollPane2) {
         JScrollPane src, dst;
-        if(e.getSource()==scrollPane1.getViewport()) {
-            src=scrollPane1;
-            dst=scrollPane2;
+        if(e.getSource()== scrollPane1.getViewport()) {
+            src= scrollPane1;
+            dst= scrollPane2;
         }
         else {
-            src=scrollPane2;
-            dst=scrollPane1;
+            src= scrollPane2;
+            dst= scrollPane1;
         }
         dst.getHorizontalScrollBar().setValue(src.getHorizontalScrollBar().getValue());
         dst.getVerticalScrollBar().setValue(src.getVerticalScrollBar().getValue());
