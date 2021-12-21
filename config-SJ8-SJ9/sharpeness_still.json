@@ -4,9 +4,14 @@
   "fwFileName": "SJ8_FWUPDATE.bin",
   "verify": [
     {
-      "section": 3
+      "section": 3,
+      "files": [
+        "adj_still_default_00_Imx377",
+        "adj_still_default_01_Imx377"
+      ]
     }
   ],
+
   "preProcessor": {
     "className": "org.vmax.amba.plugins.SJ8ProProcessor",
     "md5fileName": "SJ8_CHECK.ch"
