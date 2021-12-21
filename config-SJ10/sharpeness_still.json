@@ -4,7 +4,11 @@
   "fwFileName": "SJ10_FWUPDATE.bin",
   "verify": [
     {
-      "section": 3
+      "section": 3,
+      "files": [
+        "adj_still_default_00_Imx377",
+        "adj_still_default_01_Imx377"
+      ]
     }
   ],
   "preProcessor": {
