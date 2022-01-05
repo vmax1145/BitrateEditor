@@ -16,6 +16,7 @@ import javax.swing.tree.TreePath;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -130,14 +131,9 @@ public class TreeFilesConvolutionFilterTool extends FirmwareTool<MultiFilesTable
                         copyRowItem.setEnabled(false);
                         pasteRowItem.setEnabled(false);
                         toPreview.setEnabled(false);
-                        if(last instanceof MultiFileTreeTableModel.TableNode){
-                            copyTableItem.setEnabled(true);
-                            pasteTableItem.setEnabled(tableClipboard!=null);
-                        }
-                        else {
-                            copyTableItem.setEnabled(false);
-                            pasteTableItem.setEnabled(false);
-                        }
+
+                        copyTableItem.setEnabled(last instanceof MultiFileTreeTableModel.TableNode);
+                        pasteTableItem.setEnabled(tableClipboard!=null);
                     }
                     popupMenu.show(e.getComponent(), e.getX(), e.getY());
                 }
@@ -223,27 +219,54 @@ public class TreeFilesConvolutionFilterTool extends FirmwareTool<MultiFilesTable
         }
     }
 
-    private void pasteTable(JTreeTable treeTable, TreeTableModel model, TreePath path) {
-        if(path == null || tableClipboard == null ) return;
-        while (path!=null) {
-            Object last = path.getLastPathComponent();
-            int[][] ret = new int[cfg.getRowNames().size()][];
-            if(last instanceof MultiFileTreeTableModel.TableNode) {
-                MultiFileTreeTableModel.TableNode tn = (MultiFileTreeTableModel.TableNode) last;
-                for(int i=0; i< tn.getRows().size(); i++) {
-                    MultiFileTreeTableModel.RowNode rn = tn.getRows().get(i);
-                    int[] rowData = this.tableClipboard[i];
-                    for(int j=0; j< rn.getValueConfigs().size();j++) {
-                         model.setValueAt((long)rowData[j], rn,j+1);
-                    }
-                    ret[i]=rowData;
-                }
-                this.tableClipboard = ret;
-                treeTable.updateUI();
-                return;
+    private void pasteTable(JTreeTable treeTable, TreeTableModel model, TreePath ppp) {
+        TreePath[] rows = treeTable.getTree().getSelectionPaths();
+        if(rows==null || rows.length==0 || tableClipboard == null ) return;
+
+        List<MultiFileTreeTableModel.TableNode> tables = new ArrayList<>();
+        for(TreePath p : rows) {
+            Object last = p.getLastPathComponent();
+            if(last instanceof  MultiFileTreeTableModel.TableNode) {
+                tables.add((MultiFileTreeTableModel.TableNode) last);
             }
-            path = path.getParentPath();
+            else if(last instanceof MultiFileTreeTableModel.FileNode){
+                MultiFileTreeTableModel.FileNode fn = (MultiFileTreeTableModel.FileNode) last;
+                tables.addAll(fn.getTables());
+            }
         }
+        for(MultiFileTreeTableModel.TableNode tn : tables) {
+            for(int i=0; i< tn.getRows().size(); i++) {
+                MultiFileTreeTableModel.RowNode rn = tn.getRows().get(i);
+                int[] rowData = this.tableClipboard[i];
+                for(int j=0; j< rn.getValueConfigs().size();j++) {
+                    model.setValueAt((long)rowData[j], rn,j+1);
+                }
+            }
+        }
+        treeTable.updateUI();
+
+
+
+//        if(path == null || tableClipboard == null ) return;
+//        while (path!=null) {
+//            Object last = path.getLastPathComponent();
+//            int[][] ret = new int[cfg.getRowNames().size()][];
+//            if(last instanceof MultiFileTreeTableModel.TableNode) {
+//                MultiFileTreeTableModel.TableNode tn = (MultiFileTreeTableModel.TableNode) last;
+//                for(int i=0; i< tn.getRows().size(); i++) {
+//                    MultiFileTreeTableModel.RowNode rn = tn.getRows().get(i);
+//                    int[] rowData = this.tableClipboard[i];
+//                    for(int j=0; j< rn.getValueConfigs().size();j++) {
+//                         model.setValueAt((long)rowData[j], rn,j+1);
+//                    }
+//                    ret[i]=rowData;
+//                }
+//                this.tableClipboard = ret;
+//                treeTable.updateUI();
+//                return;
+//            }
+//            path = path.getParentPath();
+//        }
     }
 
 
