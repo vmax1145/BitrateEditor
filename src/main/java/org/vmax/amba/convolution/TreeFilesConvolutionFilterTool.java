@@ -35,7 +35,7 @@ public class TreeFilesConvolutionFilterTool extends FirmwareTool<MultiFilesTable
     public void init(FirmwareConfig config, byte[] fwBytes) throws Exception {
         this.cfg = (MultiFilesTablesConfig)config;
         this.fw = fwBytes;
-        editor = new FilterEditorPanel("samples/no-sharp/4K-30-1.png");
+        editor = new FilterEditorPanel("samples/no-sharp/FHD30n.png");
 
         TreeTableModel treeTableModel = MultiFileTreeTableModel.create(cfg, fwBytes);
         JTreeTable treeTable = new JTreeTable(treeTableModel);

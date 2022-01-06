@@ -8,7 +8,6 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseWheelEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
@@ -21,13 +20,15 @@ import java.util.Arrays;
 
 public class FilterEditorPanel extends JPanel {
     public static final int KERNEL_SIZE = 7;
-    public static final float NORMALIZATION =  256.0f;
-    private int[] ZOOMS = {50,100,200,400,800};
+    public static final float NORMALIZATION =  1.6f/256f;
+    private Integer[] ZOOMS = {50,100,200,400};
     private JLabel zoomLabel, titleLabel;
+    private JComboBox zoomBox;
     private JLabel imageLabel1;
     private JLabel imageLabel2;
+    private JScrollPane scrollPane1, scrollPane2;
     private BufferedImage image;
-    private int zoom = 1;
+    private int zoom = 100;
     private int[] rowData;
     private FilterTableModel tableModel;
 
@@ -38,8 +39,8 @@ public class FilterEditorPanel extends JPanel {
 
         setLayout(new BoxLayout(this,BoxLayout.LINE_AXIS));
 
-        JScrollPane scrollPane1 = new JScrollPane();
-        JScrollPane scrollPane2 = new JScrollPane();
+        scrollPane1 = new JScrollPane();
+        scrollPane2 = new JScrollPane();
 
         scrollPane1.setPreferredSize(new Dimension(500,550));
         scrollPane2.setPreferredSize(new Dimension(500,550));
@@ -53,8 +54,8 @@ public class FilterEditorPanel extends JPanel {
         scrollPane1.setViewportView(imageLabel1);
         scrollPane2.setViewportView(imageLabel2);
 
-        imageLabel1.addMouseWheelListener(this::onMouseWheelScroll);
-        imageLabel2.addMouseWheelListener(this::onMouseWheelScroll);
+//        imageLabel1.addMouseWheelListener(this::onMouseWheelScroll);
+//        imageLabel2.addMouseWheelListener(this::onMouseWheelScroll);
 
         scrollPane1.getViewport().addChangeListener(e -> portChange(e,scrollPane1,scrollPane2));
         scrollPane2.getViewport().addChangeListener(e -> portChange(e,scrollPane1,scrollPane2));
@@ -104,7 +105,7 @@ public class FilterEditorPanel extends JPanel {
 
 
         tableModel.addTableModelListener(e->{
-            resizeImage();
+            resizeImage(zoom);
         });
         return rowTable;
     }
@@ -131,7 +132,13 @@ public class FilterEditorPanel extends JPanel {
             }
         });
 
-        zoomLabel = new JLabel("zoom=100%", SwingConstants.RIGHT );
+        zoomLabel = new JLabel("zoom", SwingConstants.RIGHT );
+        zoomBox = new JComboBox<>(ZOOMS);
+        zoomBox.setSelectedIndex(1);
+        zoomBox.addItemListener(e -> {
+            Integer zoom = (Integer) e.getItem();
+            resizeImage(zoom);
+        });
         JLabel filenameLabel = new JLabel("    ");
         calc.add(filenameLabel);
         calc.add(new JButton(new AbstractAction("Select image") {
@@ -142,7 +149,7 @@ public class FilterEditorPanel extends JPanel {
         }));
 
         calc.add(zoomLabel);
-        calc.add(new JLabel());
+        calc.add(zoomBox);
         calc.add(new JLabel("Filter type:",SwingConstants.RIGHT));
         calc.add(filterSelect);
         calc.add(new JLabel("  K:",SwingConstants.RIGHT));
@@ -227,7 +234,7 @@ public class FilterEditorPanel extends JPanel {
 
     public void setImage(BufferedImage img) {
         this.image = img;
-        resizeImage();
+        resizeImage(zoom);
     }
 
     private void calulateDoGTable(double sigma1, double sigma2, double k, boolean square) {
@@ -286,10 +293,11 @@ public class FilterEditorPanel extends JPanel {
     }
 
 
-    public void resizeImage() {
+    public void resizeImage(int newZoom) {
+
         AffineTransform at = new AffineTransform();
-        at.scale(ZOOMS[zoom]/100.0, ZOOMS[zoom]/100.0);
-        AffineTransformOp scaleOp = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
+        at.scale(newZoom/100.0, newZoom/100.0);
+        AffineTransformOp scaleOp = new AffineTransformOp(at, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
         BufferedImage after = scaleOp.filter(image,null);
         imageLabel1.setIcon(new ImageIcon(after));
 
@@ -299,12 +307,15 @@ public class FilterEditorPanel extends JPanel {
         BufferedImage filteredImage = convolveOp.filter(image, null);
         BufferedImage after2 = scaleOp.filter(filteredImage, null);
         imageLabel2.setIcon(new ImageIcon(after2));
+
+        zoom = newZoom;
+
     }
 
     protected Kernel convertRowToKernel() {
         float[] kernelData = new float[rowData.length*2-1];
         for(int i=0;i<rowData.length;i++) {
-            kernelData[i] = rowData[i]/NORMALIZATION;
+            kernelData[i] = rowData[i]*NORMALIZATION;
             kernelData[kernelData.length-1-i] = kernelData[i];
         }
         kernelData[rowData.length-1]+=1.0f;
@@ -312,17 +323,17 @@ public class FilterEditorPanel extends JPanel {
     }
 
 
-    public void onMouseWheelScroll(MouseWheelEvent e) {
-        int notches = e.getWheelRotation();
-        int temp = zoom + notches;
-        temp = Math.min(temp, ZOOMS.length-1);
-        temp = Math.max(temp, 0);
-        if (temp != zoom) {
-            zoom = temp;
-            zoomLabel.setText("zoom="+ZOOMS[zoom]+"%");
-            resizeImage();
-        }
-    }
+//    public void onMouseWheelScroll(MouseWheelEvent e) {
+//        int notches = e.getWheelRotation();
+//        int temp = zoom + notches;
+//        temp = Math.min(temp, ZOOMS.length-1);
+//        temp = Math.max(temp, 0);
+//        if (temp != zoom) {
+//            zoom = temp;
+//            zoomLabel.setText("zoom="+ZOOMS[zoom]+"%");
+//            resizeImage();
+//        }
+//    }
 
 
     public void portChange(ChangeEvent e, JScrollPane scrollPane1, JScrollPane scrollPane2) {
@@ -335,6 +346,7 @@ public class FilterEditorPanel extends JPanel {
             src= scrollPane2;
             dst= scrollPane1;
         }
+        System.out.println(src.getViewport().getViewPosition());
         dst.getHorizontalScrollBar().setValue(src.getHorizontalScrollBar().getValue());
         dst.getVerticalScrollBar().setValue(src.getVerticalScrollBar().getValue());
     }
@@ -342,7 +354,7 @@ public class FilterEditorPanel extends JPanel {
     public void setRow(int[] row) {
         System.arraycopy(row,0,this.rowData,0,this.rowData.length);
         tableModel.fireTableDataChanged();
-        resizeImage();
+        resizeImage(zoom);
     }
 
     public int[] getRow() {
