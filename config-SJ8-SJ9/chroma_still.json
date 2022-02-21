@@ -1,0 +1,103 @@
+{
+  "note" : "SJ8Pro Chroma curve edit Photo, PhotoLapse ISO 100-400, HISO 800-6400,  Burst Mode - ISO 100, 200, 400, 800, 1600, 3200, 64000",
+  "toolClass" : "org.vmax.amba.tables.TablesTool",
+  "fwFileName" : "SJ8_FWUPDATE.bin",
+  "verify" : [
+    {"section" : 3, "files": [
+        "adj_still_default_00_Imx377",
+        "adj_hiso_still_default_00_Imx377"
+      ]
+    }
+  ],
+  "preProcessor" : {
+    "className" : "org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName" : "SJ8_CHECK.ch"
+  },
+  "postProcessor" : {
+    "className" : "org.vmax.amba.plugins.SJ8ProProcessor",
+    "md5fileName" : "SJ8_CHECK.ch"
+  },
+  "showFileDialog" : true,
+  "tableSets" : [ {
+    "label" : "Photo,PhotoLapse[100-400],Burst[100-64000]/255",
+    "tables" : [ {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "adj_still_default_00_Imx377",
+        "relAddr" : 42556
+      },
+      "color" : "red",
+      "label" : "Red"
+    } ]
+  }, {
+    "label" : "Photo,PhotoLapse[100-400],Burst[100-64000]/128",
+    "tables" : [ {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "adj_still_default_00_Imx377",
+        "relAddr" : 42812
+      },
+      "color" : "red",
+      "label" : "Red"
+    } ]
+  }, {
+    "label" : "Photo,PhotoLapse[100-400],Burst[100-64000]/0",
+    "tables" : [ {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "adj_still_default_00_Imx377",
+        "relAddr" : 43068
+      },
+      "color" : "red",
+      "label" : "Red"
+    } ]
+  }
+,
+
+    {
+      "label" : "Photo,PhotoLapse[800-64000]/255",
+      "tables" : [ {
+        "location" : {
+          "sectionNum" : 3,
+          "fileName" : "adj_hiso_still_default_00_Imx377",
+          "relAddr" : 42556
+        },
+        "color" : "red",
+        "label" : "Red"
+      } ]
+    }, {
+      "label" : "Photo,PhotoLapse[800-64000]/128",
+      "tables" : [ {
+        "location" : {
+          "sectionNum" : 3,
+          "fileName" : "adj_hiso_still_default_00_Imx377",
+          "relAddr" : 42812
+        },
+        "color" : "red",
+        "label" : "Red"
+      } ]
+    }, {
+      "label" : "Photo,PhotoLapse[800-64000]/0",
+      "tables" : [ {
+        "location" : {
+          "sectionNum" : 3,
+          "fileName" : "adj_hiso_still_default_00_Imx377",
+          "relAddr" : 43068
+        },
+        "color" : "red",
+        "label" : "Red"
+      } ]
+    }
+
+
+
+  ],
+  "ncol" : 16,
+  "nrow" : 8,
+  "range" : {
+    "min" : 0.0,
+    "max" : 2048.0
+  },
+  "type" : "Int16",
+  "curves" : true
+}
