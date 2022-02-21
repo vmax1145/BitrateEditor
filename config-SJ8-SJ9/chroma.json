@@ -3,7 +3,14 @@
   "toolClass" : "org.vmax.amba.tables.TablesTool",
   "fwFileName" : "SJ8_FWUPDATE.bin",
   "verify" : [
-    {"section" : 3, "files": ["adj_video_default_00_Imx377","adj_video_default_02_Imx377"]}
+    {"section" : 3, "files": [
+        "adj_video_default_00_Imx377",
+        "adj_video_default_01_Imx377",
+        "adj_video_default_02_Imx377",
+        "adj_video_default_03_Imx377",
+        "adj_video_default_04_Imx377"
+      ]
+    }
   ],
   "preProcessor" : {
     "className" : "org.vmax.amba.plugins.SJ8ProProcessor",
@@ -50,7 +57,40 @@
   },
 
 
-
+  {
+    "label" : "4K[60]/255",
+    "tables" : [ {
+      "location" : {
+        "sectionNum" : 3,
+        "fileName" : "adj_video_default_01_Imx377",
+        "relAddr" : 29940
+      },
+      "color" : "red",
+      "label" : "Red"
+    } ]
+    }, {
+      "label" : "4K[60]/128",
+      "tables" : [ {
+        "location" : {
+          "sectionNum" : 3,
+          "fileName" : "adj_video_default_01_Imx377",
+          "relAddr" : 30196
+        },
+        "color" : "red",
+        "label" : "Red"
+      } ]
+    }, {
+      "label" : "4K[60]/0",
+      "tables" : [ {
+        "location" : {
+          "sectionNum" : 3,
+          "fileName" : "adj_video_default_01_Imx377",
+          "relAddr" : 30452
+        },
+        "color" : "red",
+        "label" : "Red"
+      } ]
+    },
 
 
 
@@ -89,14 +129,81 @@
         "color" : "red",
         "label" : "Red"
       } ]
+    },
+
+
+
+    {
+      "label" : "FHD[120]/255",
+      "tables" : [ {
+        "location" : {
+          "sectionNum" : 3,
+          "fileName" : "adj_video_default_03_Imx377",
+          "relAddr" : 29940
+        },
+        "color" : "red",
+        "label" : "Red"
+      } ]
+    }, {
+      "label" : "FHD[120]/128",
+      "tables" : [ {
+        "location" : {
+          "sectionNum" : 3,
+          "fileName" : "adj_video_default_03_Imx377",
+          "relAddr" : 30196
+        },
+        "color" : "red",
+        "label" : "Red"
+      } ]
+    }, {
+      "label" : "FHD[120]/0",
+      "tables" : [ {
+        "location" : {
+          "sectionNum" : 3,
+          "fileName" : "adj_video_default_03_Imx377",
+          "relAddr" : 30452
+        },
+        "color" : "red",
+        "label" : "Red"
+      } ]
+    },
+
+
+
+    {
+      "label" : "HD[240]/255",
+      "tables" : [ {
+        "location" : {
+          "sectionNum" : 3,
+          "fileName" : "adj_video_default_04_Imx377",
+          "relAddr" : 29940
+        },
+        "color" : "red",
+        "label" : "Red"
+      } ]
+    }, {
+      "label" : "HD[240]/128",
+      "tables" : [ {
+        "location" : {
+          "sectionNum" : 3,
+          "fileName" : "adj_video_default_04_Imx377",
+          "relAddr" : 30196
+        },
+        "color" : "red",
+        "label" : "Red"
+      } ]
+    }, {
+      "label" : "HD[240]/0",
+      "tables" : [ {
+        "location" : {
+          "sectionNum" : 3,
+          "fileName" : "adj_video_default_04_Imx377",
+          "relAddr" : 30452
+        },
+        "color" : "red",
+        "label" : "Red"
+      } ]
     }
-
-
-
-
-
-
-
 
 
 
