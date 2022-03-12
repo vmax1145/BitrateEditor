@@ -219,7 +219,7 @@
           "location": {
             "sectionNum": 3,
             "fileName": "adj_video_default_00_Imx377",
-            "relAddr": 3232
+            "relAddr": 3236
           },
           "type": "Int32",
           "label": "4K[30]",
@@ -234,7 +234,7 @@
           "location": {
             "sectionNum": 3,
             "fileName": "adj_video_default_01_Imx377",
-            "relAddr": 3232
+            "relAddr": 3236
           },
           "type": "Int32",
           "label": "4K[60]",
@@ -249,7 +249,7 @@
           "location": {
             "sectionNum": 3,
             "fileName": "adj_video_default_02_Imx377",
-            "relAddr": 3232
+            "relAddr": 3236
           },
           "type": "Int32",
           "label": "1080u,1080[24-60],1440,2.7K,4Ku,4K[24]",
@@ -264,7 +264,7 @@
           "location": {
             "sectionNum": 3,
             "fileName": "adj_video_default_03_Imx377",
-            "relAddr": 3232
+            "relAddr": 3236
           },
           "type": "Int32",
           "label": "FHD[120]",
@@ -279,7 +279,7 @@
           "location": {
             "sectionNum": 3,
             "fileName": "adj_video_default_04_Imx377",
-            "relAddr": 3232
+            "relAddr": 3236
           },
           "type": "Int32",
           "label": "HD[240]",
