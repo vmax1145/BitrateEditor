@@ -5,7 +5,10 @@ import org.apache.commons.io.FileUtils;
 import org.vmax.amba.FirmwareTool;
 import org.vmax.amba.Utils;
 import org.vmax.amba.cfg.FirmwareConfig;
+import org.vmax.amba.cfg.tabledata.ParamsConfig;
 import org.vmax.amba.generic.ExportAction;
+import org.vmax.amba.generic.GenericParamsDataModel;
+import org.vmax.amba.generic.GenericParamsTable;
 import org.vmax.amba.generic.ImportAction;
 import org.vmax.amba.tables.config.SingleTableConf;
 import org.vmax.amba.tables.config.TableConfig;
@@ -70,6 +73,13 @@ public class TablesTool  extends FirmwareTool<TableConfig> {
             }
             JScrollPane jsp = new JScrollPane(p);
             tabbedPane.add(tableSetConfig.getLabel() ,jsp);
+        }
+
+        for(ParamsConfig pcfg : this.cfg.getParamsTabs()) {
+            GenericParamsDataModel model = new GenericParamsDataModel(pcfg, fwBytes);
+            GenericParamsTable editorPanel = new GenericParamsTable(pcfg, model);
+            tabbedPane.add(pcfg.getLabel(), new JScrollPane(editorPanel));
+            //allTabs.add(editorPanel);
         }
 
     }
@@ -182,6 +192,7 @@ public class TablesTool  extends FirmwareTool<TableConfig> {
                     System.arraycopy(modelBytes, 0, fwBytes, model.getAddr(), modelBytes.length);
                 }
             }
+
             Utils.saveFirmware(cfg, fwBytes);
         }
         catch (Exception e) {

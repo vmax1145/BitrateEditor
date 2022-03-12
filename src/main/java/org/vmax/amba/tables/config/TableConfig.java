@@ -6,6 +6,10 @@ import lombok.Setter;
 import org.vmax.amba.cfg.FirmwareConfig;
 import org.vmax.amba.cfg.Range;
 import org.vmax.amba.cfg.Type;
+import org.vmax.amba.cfg.tabledata.ParamsConfig;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,4 +23,5 @@ public class TableConfig extends FirmwareConfig {
     private Type type;
     private boolean curves=true;
     private String imageSample;
+    private List<ParamsConfig> paramsTabs = new ArrayList<>();
 }

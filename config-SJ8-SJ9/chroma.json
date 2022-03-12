@@ -209,6 +209,90 @@
 
 
   ],
+
+  "paramsTabs" : [
+    {
+      "label": "On/Off switches",
+      "baseAddr": 0,
+      "params": [
+        {
+          "location": {
+            "sectionNum": 3,
+            "fileName": "adj_video_default_00_Imx377",
+            "relAddr": 3232
+          },
+          "type": "Int32",
+          "label": "4K[30]",
+          "hex": false,
+          "editable": true,
+          "valuesMapping": {
+            "off": "0",
+            "on": "1"
+          }
+        },
+        {
+          "location": {
+            "sectionNum": 3,
+            "fileName": "adj_video_default_01_Imx377",
+            "relAddr": 3232
+          },
+          "type": "Int32",
+          "label": "4K[60]",
+          "hex": false,
+          "editable": true,
+          "valuesMapping": {
+            "off": "0",
+            "on": "1"
+          }
+        },
+        {
+          "location": {
+            "sectionNum": 3,
+            "fileName": "adj_video_default_02_Imx377",
+            "relAddr": 3232
+          },
+          "type": "Int32",
+          "label": "1080u,1080[24-60],1440,2.7K,4Ku,4K[24]",
+          "hex": false,
+          "editable": true,
+          "valuesMapping": {
+            "off": "0",
+            "on": "1"
+          }
+        },
+        {
+          "location": {
+            "sectionNum": 3,
+            "fileName": "adj_video_default_03_Imx377",
+            "relAddr": 3232
+          },
+          "type": "Int32",
+          "label": "FHD[120]",
+          "hex": false,
+          "editable": true,
+          "valuesMapping": {
+            "off": "0",
+            "on": "1"
+          }
+        },
+        {
+          "location": {
+            "sectionNum": 3,
+            "fileName": "adj_video_default_04_Imx377",
+            "relAddr": 3232
+          },
+          "type": "Int32",
+          "label": "HD[240]",
+          "hex": false,
+          "editable": true,
+          "valuesMapping": {
+            "off": "0",
+            "on": "1"
+          }
+        }
+      ]
+    }],
+
   "ncol" : 16,
   "nrow" : 8,
   "range" : {
