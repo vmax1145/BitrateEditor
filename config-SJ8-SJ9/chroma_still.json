@@ -92,6 +92,45 @@
 
 
   ],
+  "paramsTabs" : [
+    {
+      "label": "On/Off switches",
+      "baseAddr": 0,
+      "params": [
+        {
+          "location": {
+            "sectionNum": 3,
+            "fileName": "adj_still_default_00_Imx377",
+            "relAddr": 15856
+          },
+          "type": "Int32",
+          "label": "Photo,PhotoLapse[100-400],Burst[100-64000]/255",
+          "hex": false,
+          "editable": true,
+          "valuesMapping": {
+            "off": "0",
+            "on": "1"
+          }
+        },
+        {
+          "location": {
+            "sectionNum": 3,
+            "fileName": "adj_hiso_still_default_00_Imx377",
+            "relAddr": 15856
+          },
+          "type": "Int32",
+          "label": "Photo,PhotoLapse[800-64000]",
+          "hex": false,
+          "editable": true,
+          "valuesMapping": {
+            "off": "0",
+            "on": "1"
+          }
+        }
+      ]
+    }],
+
+
   "ncol" : 16,
   "nrow" : 8,
   "range" : {
