@@ -21,7 +21,7 @@ public class SJ8FilesPreprocessor extends SJ8ProProcessor {
             throw new Exception("Preprocessor requires file firmware source");
         }
         FileFwSource ffs = (FileFwSource) fwSource;
-
+        cfg.getPreProcessor().setFwFileName(ffs.getFile().getName());
         verifyDigest(ffs.getFile(), fwBytes);
         sections = Utils.getSectionInfos(fwBytes, Collections.singletonList(3),getFileNameLen());
         addFilesToConfig(sections.get(3));

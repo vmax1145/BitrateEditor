@@ -16,6 +16,7 @@ public class SectionAddr {
     String findHex;
     int findSkip = 0;
     int relAddr;
+    ValueFinder findValue;
 
     public SectionAddr(SectionAddr location) {
         this.sectionNum = location.sectionNum;
@@ -23,6 +24,7 @@ public class SectionAddr {
         this.findHex = location.findHex;
         this.findSkip = location.findSkip;
         this.relAddr = location.relAddr;
+        this.findValue = location.findValue;
     }
 
     @Override
@@ -33,6 +35,7 @@ public class SectionAddr {
                 ", findHex='" + findHex + '\'' +
                 ", findSkip=" + findSkip +
                 ", relAddr=" + relAddr +
+                ", findValue=" + findValue.toString()+
                 '}';
     }
 

@@ -1,0 +1,42 @@
+{
+  "note" : "SJ8Pro parameters",
+  "toolClass" : "org.vmax.amba.generic.GenericTool",
+  "fwFileName" : "SJ8_FWUPDATE.bin",
+  "verify" : [
+    {"section" : 1}
+  ],
+  "preProcessor" : {
+    "className" : "org.vmax.amba.plugins.SJ8ProProcessor"
+  },
+  "postProcessor" : {
+    "className" : "org.vmax.amba.plugins.SJ8ProProcessor"
+  },
+  "showFileDialog" : true,
+  "paramsTabs" : [ {
+    "label" : "Secondry Stream Bitrate",
+    "baseLocation" : {
+      "sectionNum" : 1,
+      "findHex":  "2E4D5034000000002E4A504700000000",
+      "relAddr" : -128,
+      "findValue" : {
+         "type" : "UInt32",
+         "range" : {
+            "min" : 1000000,
+            "max" : 10000000
+         },
+         "searchLen" : 128
+      }
+    },
+    "params" : [ {
+      "addrOffset" : 0,
+      "type" : "UInt32",
+      "label" : "bit/sec",
+      "hex" : false,
+      "editable" : true,
+      "range" : {
+        "min" : 1000000,
+        "max" : 10000000
+      }
+    } ]
+  } ]
+}

@@ -1,1 +1,1 @@
-java -jar firmware-editor-tool-10.8-SNAPSHOT.jar config-SJ10\params.json
+java -jar firmware-editor-tool-10.9-SNAPSHOT.jar config-SJ10\params.json

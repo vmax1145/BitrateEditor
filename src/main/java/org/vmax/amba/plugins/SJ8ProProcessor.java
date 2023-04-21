@@ -33,6 +33,7 @@ public class SJ8ProProcessor implements PreProcessor, PostProcessor {
     @Override
     public SJ8ProProcessor withConfig(FirmwareConfig cfg) {
         this.cfg=cfg;
+
         return this;
     }
 
@@ -42,6 +43,7 @@ public class SJ8ProProcessor implements PreProcessor, PostProcessor {
             throw new IOException("Destination not regular file");
         }
         FileFwDestination ffSource = (FileFwDestination) out;
+        cfg.getPostProcessor().setFwFileName(ffSource.getFile().getName());
 
         File ch = new File(ffSource.getFile().getParent(), cfg.getPostProcessor().getMd5fileName()+".mod");
         if(ch.exists()) {
@@ -61,6 +63,7 @@ public class SJ8ProProcessor implements PreProcessor, PostProcessor {
             throw new Exception("preprocessor required file firmware source");
         }
         FileFwSource ffs = (FileFwSource) fwSource;
+        cfg.getPreProcessor().setFwFileName(ffs.getFile().getName());
         verifyDigest(ffs.getFile(), fwBytes);
         sections = Utils.getSectionInfos(fwBytes, Collections.singletonList(3), getFileNameLen());
         preprocessConfig(cfg, fwBytes);
@@ -110,12 +113,12 @@ public class SJ8ProProcessor implements PreProcessor, PostProcessor {
         byte[] check = FileUtils.readFileToByteArray(new File(file.getParent(), cfg.getPreProcessor().getMd5fileName()));
         System.out.println(cfg.getPreProcessor().getMd5fileName()+" digest: " + Utils.hex(check));
         if(!Arrays.equals(digest,check)) {
-            throw new Exception("File md5 digest mismatch");
+            throw new Exception("File md5 digest mismatch "+cfg.getPreProcessor().getMd5fileName());
         }
     }
 
 
-    protected void preprocessConfig(FirmwareConfig cfg, byte[] fw) throws VerifyException {
+    protected void preprocessConfig(FirmwareConfig cfg, byte[] fw) throws Exception {
 
         if(cfg instanceof MultiFilesTablesConfig) {
             MultiFilesTablesConfig config = (MultiFilesTablesConfig) cfg;

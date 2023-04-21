@@ -229,6 +229,9 @@ public class Utils {
         bb.order(ByteOrder.LITTLE_ENDIAN);
         return bb.getShort();
     }
+    public static long readByte(byte[] fw, int addr) {
+        return fw[addr] & 0xffL;
+    }
 
 
     public static void writeUShort(byte[] fw, int addr, long val) {
@@ -346,7 +349,7 @@ public class Utils {
         return new String(fw,addr,end-addr,charset);
     }
 
-    public static int calcAbsAddr(SectionAddr sectionAddr, Map<Integer, SectionInfo> sections, byte[] fw) throws VerifyException {
+    public static int calcAbsAddr(SectionAddr sectionAddr, Map<Integer, SectionInfo> sections, byte[] fw) throws Exception {
         int addr = 0;
         if(sectionAddr.getSectionNum()!=null) {
             SectionInfo si = sections.get(sectionAddr.getSectionNum());
@@ -368,6 +371,7 @@ public class Utils {
                 do {
                     addr += findHexOffset(fw, sectionAddr.getFindHex(), addr, si.addr + si.len);
                     if (cnt == 0) {
+                        System.out.println("Found "+sectionAddr.getFindHex()+" at "+Utils.hex(addr) );
                         break;
                     }
                     cnt--;
@@ -377,8 +381,14 @@ public class Utils {
             }
         }
         addr+=sectionAddr.getRelAddr();
+
+        if(sectionAddr.getFindValue()!=null) {
+            addr = findAddressByValue(fw,addr,sectionAddr.getFindValue());
+        }
+
         return addr;
     }
+
 
     private static int findHexOffset(byte[] fw, String findHex, int addr, int maxAddr) throws VerifyException {
         findHex = findHex.replaceAll(" ","");
@@ -439,4 +449,49 @@ public class Utils {
                 throw new RuntimeException(vc.getType()+ " can't be read as long" );
         }
     }
+
+
+    private static int findAddressByValue(byte[] fw, int addr, ValueFinder findValue) throws Exception {
+        int addrMax = addr + findValue.getSearchLen();
+        Number v = null;
+        Range range = findValue.getRange();
+        while (true){
+            switch (findValue.getType()) {
+                case Int16:
+                    v = readShort(fw, addr);
+                    break;
+                case UInt16:
+                    v = readUShort(fw, addr);
+                    break;
+                case Int32:
+                    v = readInt(fw, addr);
+                    break;
+                case UInt32:
+                    v = readUInt(fw, addr);
+                    break;
+                case UByte:
+                    v = readUByte(fw, addr);
+                    break;
+                case Byte:
+                    v = readByte(fw, addr);
+                    break;
+            }
+            if (v == null) {
+                throw new Exception("Type " + findValue.getType() + " not supported for finder");
+            }
+            if (range.getMax() >= v.floatValue() && range.getMin() <= v.floatValue()) {
+                System.out.println("Find addr "+Utils.hex(addr)+" by value="+v.longValue());
+                return addr;
+            }
+            addr += findValue.getType().getByteLen();
+            if (addr >= fw.length || addr >= addrMax) {
+                throw new Exception("Address not found for value");
+            }
+        }
+
+    }
+
+
+
+
 }
