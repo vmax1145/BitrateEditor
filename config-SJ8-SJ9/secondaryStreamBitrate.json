@@ -38,5 +38,36 @@
         "max" : 10000000
       }
     } ]
-  } ]
+  },
+    {
+      "label" : "Secondry Stream GOP N",
+      "baseLocation" : {
+        "sectionNum" : 1,
+        "findHex":  "2E4D5034000000002E4A504700000000",
+        "relAddr" : -128,
+        "findValue" : {
+          "type" : "UInt32",
+          "range" : {
+            "min" : 8,
+            "max" : 60
+          },
+          "searchLen" : 64
+        }
+      },
+      "params" : [ {
+        "addrOffset" : 0,
+        "type" : "UInt32",
+        "label" : "GopN",
+        "hex" : false,
+        "editable" : true,
+        "range" : {
+          "min" : 8,
+          "max" : 60
+        }
+      } ]
+    }
+
+
+
+  ]
 }
