@@ -72,12 +72,20 @@
       "baseLocation" : {
         "sectionNum" : 1,
         "findHex":  "80BB000080BB00000200020000000000",
-        "relAddr" : 16
+        "relAddr" : 16,
+        "findValue" : {
+          "type" : "UInt32",
+          "range" : {
+            "min" : 32000,
+            "max" : 256000
+          },
+          "searchLen" : 0
+        }
       },
       "params" : [ {
         "addrOffset" : 0,
         "type" : "UInt32",
-        "label" : "bps",
+        "label" : "Audio bps",
         "hex" : false,
         "editable" : true,
         "range" : {
