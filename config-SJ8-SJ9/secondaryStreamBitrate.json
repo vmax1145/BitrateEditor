@@ -65,6 +65,26 @@
           "max" : 60
         }
       } ]
+    },
+
+    {
+      "label" : "Audio Bitrate",
+      "baseLocation" : {
+        "sectionNum" : 1,
+        "findHex":  "80BB000080BB00000200020000000000",
+        "relAddr" : 16
+      },
+      "params" : [ {
+        "addrOffset" : 0,
+        "type" : "UInt32",
+        "label" : "bps",
+        "hex" : false,
+        "editable" : true,
+        "range" : {
+          "min" : 32000,
+          "max" : 256000
+        }
+      } ]
     }
 
 
